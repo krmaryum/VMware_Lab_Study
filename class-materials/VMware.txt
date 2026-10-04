@@ -1,0 +1,54 @@
+
+
+
+VMware Certified Professional - VCP
+
+
+VMware Certification
+https://www.broadcom.com/support/education/vmware/certification
+https://www.broadcom.com/support/education/vmware/certification/vcp-vvf-administrator - VCP-VCF 16.25
+
+
+
+VCTA - L1
+VCP - L2, L3
+VCAP - SME (L4, L5)
+
+
+
+Project - VMware
+Google                        2000 Server
+Microsoft                     250 Physical | 1200 Virtual (VMware) | 950 Cloud Server (Azure)
+				   OS - Windows | Linux (Ubuntu)
+				   Network -  Router, Switch, Network Load Balancer, Firewall
+				   Security - Antivirus, Monitoring Tool
+
+
+ITIL, Agile, PMP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

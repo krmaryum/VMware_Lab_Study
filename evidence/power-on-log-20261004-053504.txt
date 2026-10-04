@@ -1,0 +1,102 @@
+PS C:\WINDOWS\system32> Get-Content -LiteralPath "C:\vmware\VMware ESXI-01\vmware.log" -Tail 100
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.rdseed - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.adx - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.smap - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.clflushopt - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.clwb - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.sha - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.umip - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.gfni - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.vaes - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.vpclmulqdq - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.rdpid - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.movdiri - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.movdir64b - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.fast_short_repmov - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.mdclear - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.serialize - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.stibp - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.fcmd - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.ssbd - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.avx_vnni - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.fast_short_stosb - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.psfd - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.xcr0_master_sse - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.xcr0_master_ymm_h - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.xsaveopt - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.xsavec - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.xgetbv_ecx1 - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.xsaves - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.lahf64 - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.abm - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.3dnprefetch - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.nx - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.pdpe1gb - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.rdtscp - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.lm - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.intel - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.ibrs - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.ibpb - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: hv.capable - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: vt.realmode - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: misc.rdcl_no - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: misc.ibrs_all - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: misc.mds_no - Bool:Min:1
+2026-10-04T05:32:31.251Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: vt.ignserrcode - Bool:Min:1
+2026-10-04T05:32:31.253Z -WARNING vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ULM: Failed to set up partition, res 0xc0350005.
+2026-10-04T05:32:31.253Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Module 'ULM' power on failed.
+2026-10-04T05:32:31.253Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VMX_PowerOn: ModuleTable_PowerOn = 0
+2026-10-04T05:32:31.253Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] HgfsServerManagerVigorExit: Destroy:
+2026-10-04T05:32:31.253Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: open of C:\Program Files (x86)\VMware\VMware Workstation\isoimages_manifest.txt.sig failed: Could not find the file
+2026-10-04T05:32:31.253Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Unable to read signature file 'C:\Program Files (x86)\VMware\VMware Workstation\isoimages_manifest.txt.sig', ignoring.
+2026-10-04T05:32:31.255Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Guest 'vmkernel9' not found in Tools image map file 'C:\Program Files (x86)\VMware\VMware Workstation\isoimages_manifest.txt'
+2026-10-04T05:32:31.255Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Updated cached value for imageName to '(null)'.
+2026-10-04T05:32:31.255Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] GuestOS: GuestOS_GetToolsImageName: Failed to get Tools ISO image path.
+2026-10-04T05:32:31.255Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] TOOLS updated cached value for isoImageExists to 0.
+2026-10-04T05:32:31.255Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Tools: ToolsRunningStatus_Exit, delayedRequest is 0x245272832B0
+2026-10-04T05:32:31.255Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Stopping MKS/SVGA threads
+2026-10-04T05:32:31.255Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] MKSThread: Requesting MKS exit
+2026-10-04T05:32:31.255Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="svga"] MKSThread: SVGA thread is skipping the main loop
+2026-10-04T05:32:31.255Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] MKS/SVGA threads are stopped
+2026-10-04T05:32:31.257Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="usbCCIDEnumCards"] USB-CCID: Card enum thread exiting.
+2026-10-04T05:32:31.267Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] SOUNDLIB: Closing Wave sound backend.
+2026-10-04T05:32:31.267Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="mks"] MKSRenderMain: Stopping BasicOps
+2026-10-04T05:32:31.267Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="mks"] MKSRenderMain: Stopped BasicOps
+2026-10-04T05:32:31.267Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="mks"] MKS PowerOff
+2026-10-04T05:32:31.267Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="mks"] MKS thread is exiting
+2026-10-04T05:32:31.267Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="svga"] SVGA thread is exiting
+2026-10-04T05:32:31.267Z -WARNING vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Guest:
+2026-10-04T05:32:31.267Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] scsi0:0: numIOs = 1 numMergedIOs = 0 numSplitIOs = 0 ( 0.0%)
+2026-10-04T05:32:31.267Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Closing disk 'scsi0:0'
+2026-10-04T05:32:31.283Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] AIOWIN32C: asyncOps=1 syncOps=7 bufSize=0Kb fixedOps=0
+2026-10-04T05:32:31.283Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="aioCompletion"] AIO thread processed 1 completions
+2026-10-04T05:32:31.283Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="deviceThread"] Device thread is exiting
+2026-10-04T05:32:31.283Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:1173]: VMAutomationPowerOff: Powering off.
+2026-10-04T05:32:31.283Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] PolicyVMX_Exit: Could not write out policies: 15.
+2026-10-04T05:32:31.283Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] WORKER: asyncOps=1 maxActiveOps=1 maxPending=1 maxCompleted=0
+2026-10-04T05:32:31.283Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="PowerNotifyThread"] PowerNotify thread exiting.
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]: VMAutomation_ReportPowerOpFinished: statevar=1, newAppState=1873, success=1 additionalError=0
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] STATSFILE: Amount of dynamic storage used: 592
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] STATSFILE: Number of entries made: 55
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]
+2026-10-04T05:32:31.294Z +INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Power on failure messages: Failed to start the virtual machine.
+2026-10-04T05:32:31.294Z +INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]: VMAutomation_ReportPowerOpFinished: statevar=0, newAppState=1870, success=1 additionalError=0
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Transitioned vmx/execState/val to poweredOff
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]: VMAutomation_ReportPowerOpFinished: statevar=0, newAppState=1870, success=0 additionalError=0
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4210]: Error VIX_E_FAIL in VMAutomation_ReportPowerOpFinished(): Unknown error
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]: VMAutomation_ReportPowerOpFinished: statevar=0, newAppState=1870, success=1 additionalError=0
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Transitioned vmx/execState/val to poweredOff
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] WQPoolFreePoll : pollIx = 3, signalHandle = 988
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:819]: VMAutomation_LateShutdown()
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:774]: VMAutomationCloseListenerSocket. Closing listener socket.
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Flushing VMX VMDB connections
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VmdbDbRemoveCnx: Removing Cnx from Db for '/db/connection/#1/'
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VmdbCnxDisconnect: Disconnect: closed pipe for pub cnx '/db/connection/#1/' (0)
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VigorTransport_ServerDestroy: server destroyed.
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] WQPoolFreePoll : pollIx = 2, signalHandle = 804
+2026-10-04T05:32:31.294Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] WQPoolFreePoll : pollIx = 1, signalHandle = 876
+2026-10-04T05:32:31.298Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VMX exit (0).
+2026-10-04T05:32:31.300Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] OBJLIB-LIB: ObjLib cleanup done.
+2026-10-04T05:32:31.300Z -INFO vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] AIOMGR-S : stat o=3 r=28 w=1 i=0 br=374268 bw=262144
+PS C:\WINDOWS\system32>

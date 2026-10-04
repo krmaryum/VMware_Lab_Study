@@ -1,0 +1,675 @@
+PS C:\WINDOWS\system32> Select-String -LiteralPath "C:\vmware\VMware ESXI-01\vmware.log" `
+>>     -Pattern 'Monitor Mode|ULM|WHP|Hyper-V|VBS|VT-x|EPT|unsupported|error|fail' `
+>>     -Context 3,3
+
+  C:\vmware\VMware ESXI-01\vmware.log:5:2026-10-04T05:32:30.522Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Host offset from UTC is +06:00.
+  C:\vmware\VMware ESXI-01\vmware.log:6:2026-10-04T05:32:30.493Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VTHREAD 25292 "vmx"
+  C:\vmware\VMware ESXI-01\vmware.log:7:2026-10-04T05:32:30.495Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DictionaryLoad: Cannot open file
+"C:\ProgramData\VMware\vCenterServer\cfg\vsphereFeatures\vsphereFeatures.cfg": The
+system cannot find the path specified.
+> C:\vmware\VMware ESXI-01\vmware.log:8:2026-10-04T05:32:30.495Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] [msg.dictionary.load.openFailed]
+Cannot open file
+"C:\ProgramData\VMware\vCenterServer\cfg\vsphereFeatures\vsphereFeatures.cfg": The
+system cannot find the path specified.
+> C:\vmware\VMware ESXI-01\vmware.log:9:2026-10-04T05:32:30.495Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] FeatureStateLib: Error while
+loading feature config file:
+C:\ProgramData\VMware\vCenterServer\cfg\vsphereFeatures\vsphereFeatures.cfg, using
+default feature state values.
+  C:\vmware\VMware ESXI-01\vmware.log:10:2026-10-04T05:32:30.495Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DictionaryLoad: Cannot open file
+"C:\ProgramData\VMware\vCenterServer\cfg\vsphereFeatures\techPreview.cfg": The
+system cannot find the path specified.
+> C:\vmware\VMware ESXI-01\vmware.log:11:2026-10-04T05:32:30.495Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] [msg.dictionary.load.openFailed]
+Cannot open file
+"C:\ProgramData\VMware\vCenterServer\cfg\vsphereFeatures\techPreview.cfg": The
+system cannot find the path specified.
+> C:\vmware\VMware ESXI-01\vmware.log:12:2026-10-04T05:32:30.495Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] FeatureStateLib: Error while
+loading tech preview config file:
+C:\ProgramData\VMware\vCenterServer\cfg\vsphereFeatures\techPreview.cfg, using
+default (disabled) for all Tech Preview features.
+  C:\vmware\VMware ESXI-01\vmware.log:13:2026-10-04T05:32:30.495Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] LOCALE windows-1252 -> NULL
+User=409 System=409
+  C:\vmware\VMware ESXI-01\vmware.log:14:2026-10-04T05:32:30.495Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Msg_SetLocaleEx:
+HostLocale=windows-1252 UserLocale=NULL
+  C:\vmware\VMware ESXI-01\vmware.log:15:2026-10-04T05:32:30.506Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DictionaryLoad: Cannot open file
+"C:\Users\krmar\AppData\Roaming\VMware\config.ini": The system cannot find the
+file specified.
+  C:\vmware\VMware ESXI-01\vmware.log:16:2026-10-04T05:32:30.506Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Msg_Reset:
+> C:\vmware\VMware ESXI-01\vmware.log:17:2026-10-04T05:32:30.506Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] [msg.dictionary.load.openFailed]
+Cannot open file "C:\Users\krmar\AppData\Roaming\VMware\config.ini": The system
+cannot find the file specified.
+  C:\vmware\VMware ESXI-01\vmware.log:18:2026-10-04T05:32:30.506Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]
+----------------------------------------
+> C:\vmware\VMware ESXI-01\vmware.log:19:2026-10-04T05:32:30.506Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ConfigDB: Failed to load
+C:\Users\krmar\AppData\Roaming\VMware\config.ini
+  C:\vmware\VMware ESXI-01\vmware.log:20:2026-10-04T05:32:30.506Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] OBJLIB-LIB: Objlib initialized.
+  C:\vmware\VMware ESXI-01\vmware.log:21:2026-10-04T05:32:30.506Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DictionaryLoad: Cannot open file
+"C:\Users\krmar\AppData\Roaming\VMware\config.ini": The system cannot find the
+file specified.
+> C:\vmware\VMware ESXI-01\vmware.log:22:2026-10-04T05:32:30.506Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] [msg.dictionary.load.openFailed]
+Cannot open file "C:\Users\krmar\AppData\Roaming\VMware\config.ini": The system
+cannot find the file specified.
+  C:\vmware\VMware ESXI-01\vmware.log:23:2026-10-04T05:32:30.506Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] PREF Optional preferences file not
+found at C:\Users\krmar\AppData\Roaming\VMware\config.ini. Using default values.
+  C:\vmware\VMware ESXI-01\vmware.log:24:2026-10-04T05:32:30.506Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] lib/ssl: OpenSSL using default
+provider
+  C:\vmware\VMware ESXI-01\vmware.log:25:2026-10-04T05:32:30.506Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] lib/ssl: Client usage
+  C:\vmware\VMware ESXI-01\vmware.log:60:2026-10-04T05:32:30.698Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VmdbAddConnection:
+cnxPath=/db/connection/#1/, cnxIx=1
+  C:\vmware\VMware ESXI-01\vmware.log:61:2026-10-04T05:32:30.698Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:490]:
+VMAutomation: Initializing VMAutomation.
+  C:\vmware\VMware ESXI-01\vmware.log:62:2026-10-04T05:32:30.701Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:742]:
+VMAutomationOpenListenerSocket() listening
+> C:\vmware\VMware ESXI-01\vmware.log:63:2026-10-04T05:32:30.716Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]:
+VMAutomation_ReportPowerOpFinished: statevar=0, newAppState=1870, success=1
+additionalError=0
+  C:\vmware\VMware ESXI-01\vmware.log:64:2026-10-04T05:32:30.716Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Transitioned vmx/execState/val to
+poweredOff
+> C:\vmware\VMware ESXI-01\vmware.log:65:2026-10-04T05:32:30.716Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]:
+VMAutomation_ReportPowerOpFinished: statevar=1, newAppState=1873, success=1
+additionalError=0
+> C:\vmware\VMware ESXI-01\vmware.log:66:2026-10-04T05:32:30.716Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]:
+VMAutomation_ReportPowerOpFinished: statevar=2, newAppState=1877, success=1
+additionalError=0
+> C:\vmware\VMware ESXI-01\vmware.log:67:2026-10-04T05:32:30.716Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]:
+VMAutomation_ReportPowerOpFinished: statevar=3, newAppState=1881, success=1
+additionalError=0
+> C:\vmware\VMware ESXI-01\vmware.log:68:2026-10-04T05:32:30.716Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] IOPL_Init: Hyper-V detected by
+CPUID
+  C:\vmware\VMware ESXI-01\vmware.log:69:2026-10-04T05:32:30.720Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] IOCTL_VMX86_SET_MEMORY_PARAMS
+already set
+  C:\vmware\VMware ESXI-01\vmware.log:70:2026-10-04T05:32:30.809Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] hostCPUID vendor: GenuineIntel
+  C:\vmware\VMware ESXI-01\vmware.log:71:2026-10-04T05:32:30.809Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] hostCPUID family: 0x6 model: 0xba
+stepping: 0x3
+  C:\vmware\VMware ESXI-01\vmware.log:248:2026-10-04T05:32:30.878Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ConfigCheck: No rules file found.
+Checks are disabled.
+  C:\vmware\VMware ESXI-01\vmware.log:249:2026-10-04T05:32:30.878Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] changing directory to
+C:\vmware\VMware ESXI-01\.
+  C:\vmware\VMware ESXI-01\vmware.log:250:2026-10-04T05:32:30.878Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Config file: C:\vmware\VMware
+ESXI-01\VMware ESXi 8.vmx
+> C:\vmware\VMware ESXI-01\vmware.log:251:2026-10-04T05:32:30.878Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]:
+VMAutomation_ReportPowerOpFinished: statevar=1, newAppState=1873, success=1
+additionalError=0
+> C:\vmware\VMware ESXI-01\vmware.log:252:2026-10-04T05:32:30.878Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]:
+VMAutomation_ReportPowerOpFinished: statevar=2, newAppState=1878, success=1
+additionalError=0
+  C:\vmware\VMware ESXI-01\vmware.log:253:2026-10-04T05:32:30.878Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] LogRotation: Rotating to a new log
+file (keepOld 3) took 0.001758 seconds.
+  C:\vmware\VMware ESXI-01\vmware.log:254:2026-10-04T05:32:30.891Z -NOTICE
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] LogVMXReplace: Successful
+switching from temporary to permanent log file took 0.011861 seconds.
+  C:\vmware\VMware ESXI-01\vmware.log:255:2026-10-04T05:32:30.891Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] distroName is 'vmkernel'
+  C:\vmware\VMware ESXI-01\vmware.log:256:2026-10-04T05:32:30.910Z -WARNING
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] PowerOn
+  C:\vmware\VMware ESXI-01\vmware.log:257:2026-10-04T05:32:30.910Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VMX_PowerOn: VMX build 24995812,
+UI build 24995812
+  C:\vmware\VMware ESXI-01\vmware.log:258:2026-10-04T05:32:30.910Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] HostWin32: WIN32 NUMA node 0, CPU
+mask 0x0000000000000fff
+> C:\vmware\VMware ESXI-01\vmware.log:259:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]:
+VMAutomation_ReportPowerOpFinished: statevar=0, newAppState=1871, success=1
+additionalError=0
+  C:\vmware\VMware ESXI-01\vmware.log:260:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] STATSFILE: StatsFile
+'C:\vmware\VMware ESXI-01\VMware ESXi 8.scoreboard' created
+  C:\vmware\VMware ESXI-01\vmware.log:261:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] HOST Windows version 10.0, build
+26200, platform 2, ""
+  C:\vmware\VMware ESXI-01\vmware.log:262:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DICT --- GLOBAL SETTINGS
+C:\ProgramData\VMware\VMware Workstation\settings.ini
+  C:\vmware\VMware ESXI-01\vmware.log:457:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DICT --- GLOBAL SETTINGS
+C:\ProgramData\VMware\VMware Workstation\settings.ini
+  C:\vmware\VMware ESXI-01\vmware.log:458:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DICT          printers.enabled =
+"FALSE"
+  C:\vmware\VMware ESXI-01\vmware.log:459:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Powering on guestOS 'vmkernel9'
+using the configuration for 'vmkernel9'.
+> C:\vmware\VMware ESXI-01\vmware.log:460:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: open of C:\Program Files
+(x86)\VMware\VMware Workstation\isoimages_manifest.txt.sig failed: Could not find
+the file
+  C:\vmware\VMware ESXI-01\vmware.log:461:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Unable to read signature
+file 'C:\Program Files (x86)\VMware\VMware
+Workstation\isoimages_manifest.txt.sig', ignoring.
+  C:\vmware\VMware ESXI-01\vmware.log:462:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Guest 'vmkernel9' not
+found in Tools image map file 'C:\Program Files (x86)\VMware\VMware
+Workstation\isoimages_manifest.txt'
+  C:\vmware\VMware ESXI-01\vmware.log:463:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Updated cached value for
+imageName to '(null)'.
+> C:\vmware\VMware ESXI-01\vmware.log:464:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] GuestOS:
+GuestOS_GetToolsImageName: Failed to get Tools ISO image path.
+> C:\vmware\VMware ESXI-01\vmware.log:465:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]:
+VMAutomation_ReportPowerOpFinished: statevar=1, newAppState=1873, success=1
+additionalError=0
+  C:\vmware\VMware ESXI-01\vmware.log:466:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DEVSWAP: GuestOS does not require
+LSI adapter swap.
+> C:\vmware\VMware ESXI-01\vmware.log:467:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Monitor Mode: ULM
+  C:\vmware\VMware ESXI-01\vmware.log:468:2026-10-04T05:32:30.922Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] MsgHint:
+msg.loader.mitigations.wsAndFusion
+  C:\vmware\VMware ESXI-01\vmware.log:469:2026-10-04T05:32:30.922Z +INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] You are running this virtual
+machine with side channel mitigations enabled. Side channel mitigations provide
+enhanced security but also lower performance.
+  C:\vmware\VMware ESXI-01\vmware.log:470:2026-10-04T05:32:30.922Z +INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]
+  C:\vmware\VMware ESXI-01\vmware.log:485:2026-10-04T05:32:31.087Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="PowerNotifyThread"] PowerNotify thread
+is alive.
+  C:\vmware\VMware ESXI-01\vmware.log:486:2026-10-04T05:32:31.087Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] LICENSE: Running unlicensed VMX
+(VMware Workstation)
+  C:\vmware\VMware ESXI-01\vmware.log:487:2026-10-04T05:32:31.087Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vthread-24156"] VTHREAD 24156
+"vthread-24156"
+> C:\vmware\VMware ESXI-01\vmware.log:488:2026-10-04T05:32:31.087Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Win32U_GetFileAttributes:
+GetFileAttributesExW("C:\vmware\VMware ESXI-01\VMware ESXi 8.vmpl", ...) failed,
+error: 2
+  C:\vmware\VMware ESXI-01\vmware.log:489:2026-10-04T05:32:31.087Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] PolicyVMXFindPolicyKey: policy
+file does not exist.
+> C:\vmware\VMware ESXI-01\vmware.log:490:2026-10-04T05:32:31.087Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Win32U_GetFileAttributes:
+GetFileAttributesExW("C:\vmware\VMware ESXI-01\VMware ESXi 8.vmpl", ...) failed,
+error: 2
+  C:\vmware\VMware ESXI-01\vmware.log:491:2026-10-04T05:32:31.087Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] PolicyVMXFindPolicyKey: policy
+file does not exist.
+  C:\vmware\VMware ESXI-01\vmware.log:492:2026-10-04T05:32:31.087Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Host PA size: 39 bits. Guest PA
+size: 45 bits.
+> C:\vmware\VMware ESXI-01\vmware.log:493:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: open of C:\Program Files
+(x86)\VMware\VMware Workstation\isoimages_manifest.txt.sig failed: Could not find
+the file
+  C:\vmware\VMware ESXI-01\vmware.log:494:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Unable to read signature
+file 'C:\Program Files (x86)\VMware\VMware
+Workstation\isoimages_manifest.txt.sig', ignoring.
+  C:\vmware\VMware ESXI-01\vmware.log:495:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Guest 'vmkernel9' not
+found in Tools image map file 'C:\Program Files (x86)\VMware\VMware
+Workstation\isoimages_manifest.txt'
+  C:\vmware\VMware ESXI-01\vmware.log:496:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Updated cached value for
+imageName to '(null)'.
+> C:\vmware\VMware ESXI-01\vmware.log:497:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] GuestOS:
+GuestOS_GetToolsImageName: Failed to get Tools ISO image path.
+  C:\vmware\VMware ESXI-01\vmware.log:498:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="deviceThread"] VTHREAD 21040
+"deviceThread"
+> C:\vmware\VMware ESXI-01\vmware.log:499:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Host VT-x Capabilities:
+  C:\vmware\VMware ESXI-01\vmware.log:500:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Basic VMX Information
+(0x01d8100000000001)
+  C:\vmware\VMware ESXI-01\vmware.log:501:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   VMCS revision ID
+          1
+  C:\vmware\VMware ESXI-01\vmware.log:502:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   VMCS region length
+       4096
+  C:\vmware\VMware ESXI-01\vmware.log:503:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   VMX physical-address width
+    natural
+> C:\vmware\VMware ESXI-01\vmware.log:504:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   SMM dual-monitor mode
+         no
+  C:\vmware\VMware ESXI-01\vmware.log:505:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   VMCS memory type
+         WB
+  C:\vmware\VMware ESXI-01\vmware.log:506:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Advanced INS/OUTS info
+        yes
+  C:\vmware\VMware ESXI-01\vmware.log:507:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   True VMX MSRs
+        yes
+> C:\vmware\VMware ESXI-01\vmware.log:508:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Exception Injection ignores
+error code   yes
+  C:\vmware\VMware ESXI-01\vmware.log:509:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] True Pin-Based VM-Execution
+Controls (0x0000003f00000016)
+  C:\vmware\VMware ESXI-01\vmware.log:510:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   External-interrupt exiting
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:511:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   NMI exiting
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:538:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Activate secondary controls
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:539:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Secondary Processor-Based
+VM-Execution Controls (0x065018ae00000000)
+  C:\vmware\VMware ESXI-01\vmware.log:540:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Virtualize APIC accesses
+        { 0 }
+> C:\vmware\VMware ESXI-01\vmware.log:541:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Enable EPT
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:542:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Descriptor-table exiting
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:543:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Enable RDTSCP
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:544:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Virtualize x2APIC mode
+        { 0 }
+  C:\vmware\VMware ESXI-01\vmware.log:555:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   ENCLS exiting
+        { 0 }
+  C:\vmware\VMware ESXI-01\vmware.log:556:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   RDSEED exiting
+        { 0 }
+  C:\vmware\VMware ESXI-01\vmware.log:557:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Enable PML
+        { 0 }
+> C:\vmware\VMware ESXI-01\vmware.log:558:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   EPT-violation #VE
+        { 0 }
+  C:\vmware\VMware ESXI-01\vmware.log:559:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Conceal VMX from PT
+        { 0 }
+  C:\vmware\VMware ESXI-01\vmware.log:560:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Enable XSAVES/XRSTORS
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:561:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   PASID translation
+        { 0 }
+> C:\vmware\VMware ESXI-01\vmware.log:562:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Mode-based execute control for
+EPT       {0,1}
+> C:\vmware\VMware ESXI-01\vmware.log:563:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Sub-page write permissions for
+EPT       { 0 }
+  C:\vmware\VMware ESXI-01\vmware.log:564:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   PT uses guest physical addresses
+        { 0 }
+  C:\vmware\VMware ESXI-01\vmware.log:565:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Use TSC scaling
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:566:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Enable UMWAIT and TPAUSE
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:574:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Enable Paging-Write
+          no
+  C:\vmware\VMware ESXI-01\vmware.log:575:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Enable Guest Paging Verification
+          no
+  C:\vmware\VMware ESXI-01\vmware.log:576:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Enable IPI Virtualization
+          no
+> C:\vmware\VMware ESXI-01\vmware.log:577:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   TD shared bit position for
+5-level EPT     no
+  C:\vmware\VMware ESXI-01\vmware.log:578:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Enable RDMSRLIST/WRMSRLIST
+          no
+  C:\vmware\VMware ESXI-01\vmware.log:579:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Enable Virtual MSR_SPEC_CTRL
+          no
+  C:\vmware\VMware ESXI-01\vmware.log:580:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] True VM-Exit Controls
+(0x143fffff00036ffb)
+  C:\vmware\VMware ESXI-01\vmware.log:602:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Load debug controls
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:603:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   IA-32e mode guest
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:604:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Entry to SMM
+        { 0 }
+> C:\vmware\VMware ESXI-01\vmware.log:605:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Deactivate dual-monitor mode
+        { 0 }
+  C:\vmware\VMware ESXI-01\vmware.log:606:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Load IA32_PERF_GLOBAL_CTRL
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:607:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Load IA32_PAT
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:608:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Load IA32_EFER
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:613:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Load CET state
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:614:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Load IA32_LBR_CTL MSR
+        {0,1}
+  C:\vmware\VMware ESXI-01\vmware.log:615:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Load PKRS
+        { 0 }
+> C:\vmware\VMware ESXI-01\vmware.log:616:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VPID and EPT Capabilities
+(0x00000f0106f34041)
+  C:\vmware\VMware ESXI-01\vmware.log:617:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   R=0/W=0/X=1
+         yes
+  C:\vmware\VMware ESXI-01\vmware.log:618:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Page-walk length 3
+         yes
+> C:\vmware\VMware ESXI-01\vmware.log:619:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   EPT memory type WB
+         yes
+  C:\vmware\VMware ESXI-01\vmware.log:620:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   2MB super-page
+         yes
+  C:\vmware\VMware ESXI-01\vmware.log:621:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   1GB super-page
+         yes
+> C:\vmware\VMware ESXI-01\vmware.log:622:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   INVEPT support
+         yes
+  C:\vmware\VMware ESXI-01\vmware.log:623:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Access & Dirty Bits
+         yes
+> C:\vmware\VMware ESXI-01\vmware.log:624:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Advanced VM exit information for
+EPT violations   yes
+  C:\vmware\VMware ESXI-01\vmware.log:625:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Supervisor shadow-stack control
+         yes
+> C:\vmware\VMware ESXI-01\vmware.log:626:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Type 1 INVEPT
+         yes
+> C:\vmware\VMware ESXI-01\vmware.log:627:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Type 2 INVEPT
+         yes
+  C:\vmware\VMware ESXI-01\vmware.log:628:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   INVVPID support
+         yes
+  C:\vmware\VMware ESXI-01\vmware.log:629:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Type 0 INVVPID
+         yes
+  C:\vmware\VMware ESXI-01\vmware.log:630:2026-10-04T05:32:31.093Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]   Type 1 INVVPID
+         yes
+  C:\vmware\VMware ESXI-01\vmware.log:688:2026-10-04T05:32:31.113Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="svga"] SVGA thread is alive
+  C:\vmware\VMware ESXI-01\vmware.log:689:2026-10-04T05:32:31.113Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="mks"] MKS: SSE2=1, SSSE3=1, SSE4_1=1
+  C:\vmware\VMware ESXI-01\vmware.log:690:2026-10-04T05:32:31.113Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="mouse"] VTHREAD 23592 "mouse"
+> C:\vmware\VMware ESXI-01\vmware.log:691:2026-10-04T05:32:31.115Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="mks"] MKS-HookKeyboard:
+RegQueryValueEx(LowLevelHooksTimeout) failed: The system cannot find the file
+specified (2)
+  C:\vmware\VMware ESXI-01\vmware.log:692:2026-10-04T05:32:31.115Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="kbh"] VTHREAD 22648 "kbh"
+  C:\vmware\VMware ESXI-01\vmware.log:693:2026-10-04T05:32:31.117Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="mks"] MKSWin32: Registering top level
+window (0x50a82) to receive session change notification.
+  C:\vmware\VMware ESXI-01\vmware.log:694:2026-10-04T05:32:31.119Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="mks"] MKSWin32: Disabled power
+throttling.
+  C:\vmware\VMware ESXI-01\vmware.log:726:2026-10-04T05:32:31.178Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DiskGetGeometry: Reading of disk
+partition table
+  C:\vmware\VMware ESXI-01\vmware.log:727:2026-10-04T05:32:31.178Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DISK: Disk 'C:\vmware\VMware
+ESXI-01\VMware ESXi 8.vmdk' has UUID '60 00 c2 9e 5c f9 ee b6-c9 16 e0 68 49 04 c2
+ec'
+  C:\vmware\VMware ESXI-01\vmware.log:728:2026-10-04T05:32:31.178Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DISK: OPEN 'C:\vmware\VMware
+ESXI-01\VMware ESXi 8.vmdk' Geo (32635/255/63) BIOS Geo (0/0/0)
+> C:\vmware\VMware ESXI-01\vmware.log:729:2026-10-04T05:32:31.178Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DISKUTILWIN32:
+DiskUtilW32IsATASSDDevice: Failed to send ATA IDENTIFY command to the target
+device.
+  C:\vmware\VMware ESXI-01\vmware.log:730:2026-10-04T05:32:31.178Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DISKUTILWIN32:
+DiskUtilW32IsScsiSSDDevice: Reported rotation rate = 1
+  C:\vmware\VMware ESXI-01\vmware.log:731:2026-10-04T05:32:31.178Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DISK: DiskConfigureVirtualSSD:
+Disk 'scsi0:0' identified as Virtual SSD device.
+  C:\vmware\VMware ESXI-01\vmware.log:732:2026-10-04T05:32:31.178Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DISK: Opening disks took 10 ms.
+  C:\vmware\VMware ESXI-01\vmware.log:858:2026-10-04T05:32:31.239Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DISKUTIL: (null) : max
+toolsVersion = 0, type = 0
+  C:\vmware\VMware ESXI-01\vmware.log:859:2026-10-04T05:32:31.239Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] DISKUTIL: Offline toolsVersion =
+0, type = 0
+  C:\vmware\VMware ESXI-01\vmware.log:860:2026-10-04T05:32:31.239Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] TOOLS setting legacy tools version
+to '0' type 0, manifest status is 9
+> C:\vmware\VMware ESXI-01\vmware.log:861:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: open of C:\Program Files
+(x86)\VMware\VMware Workstation\isoimages_manifest.txt.sig failed: Could not find
+the file
+  C:\vmware\VMware ESXI-01\vmware.log:862:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Unable to read signature
+file 'C:\Program Files (x86)\VMware\VMware
+Workstation\isoimages_manifest.txt.sig', ignoring.
+  C:\vmware\VMware ESXI-01\vmware.log:863:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Guest 'vmkernel9' not
+found in Tools image map file 'C:\Program Files (x86)\VMware\VMware
+Workstation\isoimages_manifest.txt'
+  C:\vmware\VMware ESXI-01\vmware.log:864:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Updated cached value for
+imageName to '(null)'.
+> C:\vmware\VMware ESXI-01\vmware.log:865:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] GuestOS:
+GuestOS_GetToolsImageName: Failed to get Tools ISO image path.
+  C:\vmware\VMware ESXI-01\vmware.log:866:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] TOOLS updated cached value for
+isoImageExists to 0.
+  C:\vmware\VMware ESXI-01\vmware.log:867:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VMXVmdb_SetToolsVersionStatus:
+status value set to 'notAvailable', 'noTools', install impossible
+> C:\vmware\VMware ESXI-01\vmware.log:868:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: open of C:\Program Files
+(x86)\VMware\VMware Workstation\isoimages_manifest.txt.sig failed: Could not find
+the file
+  C:\vmware\VMware ESXI-01\vmware.log:869:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Unable to read signature
+file 'C:\Program Files (x86)\VMware\VMware
+Workstation\isoimages_manifest.txt.sig', ignoring.
+  C:\vmware\VMware ESXI-01\vmware.log:870:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Guest 'vmkernel9' not
+found in Tools image map file 'C:\Program Files (x86)\VMware\VMware
+Workstation\isoimages_manifest.txt'
+  C:\vmware\VMware ESXI-01\vmware.log:871:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Updated cached value for
+imageName to '(null)'.
+> C:\vmware\VMware ESXI-01\vmware.log:872:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] GuestOS:
+GuestOS_GetToolsImageName: Failed to get Tools ISO image path.
+  C:\vmware\VMware ESXI-01\vmware.log:873:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] TOOLS updated cached value for
+isoImageExists to 0.
+  C:\vmware\VMware ESXI-01\vmware.log:874:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VMXVmdb_SetToolsVersionStatus:
+status value set to 'notAvailable', 'noTools', install impossible
+  C:\vmware\VMware ESXI-01\vmware.log:875:2026-10-04T05:32:31.241Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Tools: sending 'OS_PowerOn' (state
+= 3) state change request
+  C:\vmware\VMware ESXI-01\vmware.log:1040:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Capability Found: vt.mbx = 1
+  C:\vmware\VMware ESXI-01\vmware.log:1041:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Capability Found:
+misc.cpuidfaulting = 1
+  C:\vmware\VMware ESXI-01\vmware.log:1042:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Capability Found: vt.advexitinfo =
+1
+> C:\vmware\VMware ESXI-01\vmware.log:1043:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Capability Found: vt.eptad = 1
+  C:\vmware\VMware ESXI-01\vmware.log:1044:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Capability Found: misc.rdcl_no = 1
+  C:\vmware\VMware ESXI-01\vmware.log:1045:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Capability Found: misc.ibrs_all = 1
+  C:\vmware\VMware ESXI-01\vmware.log:1046:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Capability Found: misc.mds_no = 1
+  C:\vmware\VMware ESXI-01\vmware.log:1047:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Capability Found: vt.ignserrcode =
+1
+> C:\vmware\VMware ESXI-01\vmware.log:1048:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Capability Found: vt.eptsss = 1
+  C:\vmware\VMware ESXI-01\vmware.log:1049:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] FeatureCompat: Requirements:
+  C:\vmware\VMware ESXI-01\vmware.log:1050:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: cpuid.sse3 -
+Bool:Min:1
+  C:\vmware\VMware ESXI-01\vmware.log:1051:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required:
+cpuid.pclmulqdq - Bool:Min:1
+  C:\vmware\VMware ESXI-01\vmware.log:1115:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required:
+misc.ibrs_all - Bool:Min:1
+  C:\vmware\VMware ESXI-01\vmware.log:1116:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required: misc.mds_no
+- Bool:Min:1
+  C:\vmware\VMware ESXI-01\vmware.log:1117:2026-10-04T05:32:31.251Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VM Features Required:
+vt.ignserrcode - Bool:Min:1
+> C:\vmware\VMware ESXI-01\vmware.log:1118:2026-10-04T05:32:31.253Z -WARNING
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ULM: Failed to set up partition,
+res 0xc0350005.
+> C:\vmware\VMware ESXI-01\vmware.log:1119:2026-10-04T05:32:31.253Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Module 'ULM' power on failed.
+  C:\vmware\VMware ESXI-01\vmware.log:1120:2026-10-04T05:32:31.253Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] VMX_PowerOn: ModuleTable_PowerOn =
+0
+  C:\vmware\VMware ESXI-01\vmware.log:1121:2026-10-04T05:32:31.253Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] HgfsServerManagerVigorExit:
+Destroy:
+> C:\vmware\VMware ESXI-01\vmware.log:1122:2026-10-04T05:32:31.253Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: open of C:\Program Files
+(x86)\VMware\VMware Workstation\isoimages_manifest.txt.sig failed: Could not find
+the file
+  C:\vmware\VMware ESXI-01\vmware.log:1123:2026-10-04T05:32:31.253Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Unable to read signature
+file 'C:\Program Files (x86)\VMware\VMware
+Workstation\isoimages_manifest.txt.sig', ignoring.
+  C:\vmware\VMware ESXI-01\vmware.log:1124:2026-10-04T05:32:31.255Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Guest 'vmkernel9' not
+found in Tools image map file 'C:\Program Files (x86)\VMware\VMware
+Workstation\isoimages_manifest.txt'
+  C:\vmware\VMware ESXI-01\vmware.log:1125:2026-10-04T05:32:31.255Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] ToolsISO: Updated cached value for
+imageName to '(null)'.
+> C:\vmware\VMware ESXI-01\vmware.log:1126:2026-10-04T05:32:31.255Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] GuestOS:
+GuestOS_GetToolsImageName: Failed to get Tools ISO image path.
+  C:\vmware\VMware ESXI-01\vmware.log:1127:2026-10-04T05:32:31.255Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] TOOLS updated cached value for
+isoImageExists to 0.
+  C:\vmware\VMware ESXI-01\vmware.log:1128:2026-10-04T05:32:31.255Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Tools: ToolsRunningStatus_Exit,
+delayedRequest is 0x245272832B0
+  C:\vmware\VMware ESXI-01\vmware.log:1129:2026-10-04T05:32:31.255Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Stopping MKS/SVGA threads
+  C:\vmware\VMware ESXI-01\vmware.log:1147:2026-10-04T05:32:31.283Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] PolicyVMX_Exit: Could not write
+out policies: 15.
+  C:\vmware\VMware ESXI-01\vmware.log:1148:2026-10-04T05:32:31.283Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] WORKER: asyncOps=1 maxActiveOps=1
+maxPending=1 maxCompleted=0
+  C:\vmware\VMware ESXI-01\vmware.log:1149:2026-10-04T05:32:31.283Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="PowerNotifyThread"] PowerNotify thread
+exiting.
+> C:\vmware\VMware ESXI-01\vmware.log:1150:2026-10-04T05:32:31.294Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]:
+VMAutomation_ReportPowerOpFinished: statevar=1, newAppState=1873, success=1
+additionalError=0
+  C:\vmware\VMware ESXI-01\vmware.log:1151:2026-10-04T05:32:31.294Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] STATSFILE: Amount of dynamic
+storage used: 592
+  C:\vmware\VMware ESXI-01\vmware.log:1152:2026-10-04T05:32:31.294Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] STATSFILE: Number of entries made:
+55
+  C:\vmware\VMware ESXI-01\vmware.log:1153:2026-10-04T05:32:31.294Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]
+> C:\vmware\VMware ESXI-01\vmware.log:1154:2026-10-04T05:32:31.294Z +INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Power on failure messages: Failed
+to start the virtual machine.
+  C:\vmware\VMware ESXI-01\vmware.log:1155:2026-10-04T05:32:31.294Z +INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"]
+> C:\vmware\VMware ESXI-01\vmware.log:1156:2026-10-04T05:32:31.294Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]:
+VMAutomation_ReportPowerOpFinished: statevar=0, newAppState=1870, success=1
+additionalError=0
+  C:\vmware\VMware ESXI-01\vmware.log:1157:2026-10-04T05:32:31.294Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Transitioned vmx/execState/val to
+poweredOff
+> C:\vmware\VMware ESXI-01\vmware.log:1158:2026-10-04T05:32:31.294Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]:
+VMAutomation_ReportPowerOpFinished: statevar=0, newAppState=1870, success=0
+additionalError=0
+> C:\vmware\VMware ESXI-01\vmware.log:1159:2026-10-04T05:32:31.294Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4210]: Error
+VIX_E_FAIL in VMAutomation_ReportPowerOpFinished(): Unknown error
+> C:\vmware\VMware ESXI-01\vmware.log:1160:2026-10-04T05:32:31.294Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:4172]:
+VMAutomation_ReportPowerOpFinished: statevar=0, newAppState=1870, success=1
+additionalError=0
+  C:\vmware\VMware ESXI-01\vmware.log:1161:2026-10-04T05:32:31.294Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Transitioned vmx/execState/val to
+poweredOff
+  C:\vmware\VMware ESXI-01\vmware.log:1162:2026-10-04T05:32:31.294Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] WQPoolFreePoll : pollIx = 3,
+signalHandle = 988
+  C:\vmware\VMware ESXI-01\vmware.log:1163:2026-10-04T05:32:31.294Z -INFO
+vmware-vmx.exe 16632 [ws@4413 threadName="vmx"] Vix: [mainDispatch.c:819]:
+VMAutomation_LateShutdown()
+
+
+PS C:\WINDOWS\system32>

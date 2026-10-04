@@ -1,0 +1,32 @@
+
+VCTA
+VCP - VCF - New - Storage - vSAN, (NSX - Hypervisor - Networking), VCF
+VCP - DCV - Older - vSphere Suit (ESXi - Hypervisor - Compute) | (vCenter Server - vCSA - Management Server)
+
+
+ESXi Installtion
+- CPU 2 Core
+- Memory - 4GB Minimum, 8GB Recom.
+- Storage - 250GB
+- 1 NIC
+- ISO of Hypervisor
+
+ESXi - Hypervisor, VMvisor, ESX, Host
+
+Physical Server - Tower Server | Rack Server | Blade Server -
+	Rack Server
+		- RAID
+		- RMM
+		- Firmware
+		- Hypervisor Installation
+
+
+allowLegacyCPU=True
+
+
+Palo Alto - R&D - Intel + VMware
+Intel - Virtualization Technology (Hardware)
+VMware - Hypervisor (Software - ESX | Player)
+
+
+
