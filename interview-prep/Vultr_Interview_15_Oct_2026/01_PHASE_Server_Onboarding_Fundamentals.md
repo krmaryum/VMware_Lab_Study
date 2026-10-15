@@ -47,4 +47,6 @@ Taking a newly racked physical server from hardware handoff to a consistent, ver
 3. What evidence proves the system is production-ready?
 4. Which failures are hardware vs network vs OS configuration?
 
+Server onboarding is the process of receiving a new physical server, verifying its BMC, BIOS, network, and storage configurations, deploying the operating system, applying the required configurations, performing health checks, and completing documentation before marking the server as ready for production.
+
 **Simple Roman Urdu:** Server onboarding ka matlab naya physical server receive karna, BMC/BIOS/network/storage verify karna, OS deploy karna, configuration apply karna, phir health check aur documentation ke baad production ke liye ready mark karna.
