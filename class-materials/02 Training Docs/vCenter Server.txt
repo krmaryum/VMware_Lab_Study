@@ -1,0 +1,45 @@
+
+Host - ESXi - Hypervisor
+vCenter Server -  Management Centerlized Server
+- Physical Server (HPE | DELL)
+- OS (Windows | RHEL) 
+- Database(MS SQL | Oracle | MYSQL-Freeware)
+- vCenter Server
+
+vCSA - vSphere Center Server Appliance - Stage I | Stage 2
+- Physical Server (HPE | DELL | CISCO)
+- Hypervisor - ESXi
+- Stage I - Will create a VM - Photon (Open Source OS)
+- Stage II - Database - vPostgress - vCenter Server
+
+vCenter Server Role
+- Single Sign ON - IAM
+- Web Service
+- Inventory - DB
+- vCenter Server
+
+
+vCSA Installation Requirement - Hardware
+- ISO Image of vCSA
+- Host(Hypervisor)
+- Storage - 619 GB - SSD | NVME
+- Memory - 14 GB (Minimum) - 22-24 GB Reco.
+- Core CPU - 2 Core Minimum
+- NIC - 1Gig Minimum
+
+vCSA Installation Requirement - Software
+- DNS - A Record
+- IP Address | Subnet Mask | Gateway | vLAN
+- NTP
+
+
+
+
+
+
+
+
+
+
+
+

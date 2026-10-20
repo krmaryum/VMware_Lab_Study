@@ -1,0 +1,51 @@
+Step,Topic,Original filename,Bundle filename
+1,Installation media,image(20261020-040534).png,screenshots/01_040534.png
+2,Start the VM wizard,image(20261020-040702).png,screenshots/02_040702.png
+3,Configuration type,image(20261020-041335).png,screenshots/03_041335.png
+4,Install the OS later,image(20261020-041459).png,screenshots/04_041459.png
+5,Correction: guest OS,image(20261020-041629).png,screenshots/05_041629.png
+6,Correct guest OS,image(20261020-041803).png,screenshots/06_041803.png
+7,Name and location: initial screen,image(20261020-041921).png,screenshots/07_041921.png
+8,VM name and files,image(20261020-042104).png,screenshots/08_042104.png
+9,Disk: initial setting,image(20261020-042231).png,screenshots/09_042231.png
+10,Review: disk correction needed,image(20261020-042619).png,screenshots/10_042619.png
+11,Teacher reference,image(20261020-042851).png,screenshots/11_042851.png
+12,Memory,image(20261020-043120).png,screenshots/12_043120.png
+13,Processors,image(20261020-043305).png,screenshots/13_043305.png
+14,CD/DVD source,image(20261020-043438).png,screenshots/14_043438.png
+15,Attach ISO,image(20261020-043634).png,screenshots/15_043634.png
+16,ISO evidence: additional view,image(20261020-043811).png,screenshots/16_043811.png
+17,Network adapter,image(20261020-043945).png,screenshots/17_043945.png
+18,Final hardware review,image(20261020-044137).png,screenshots/18_044137.png
+19,Final review: second capture,image(20261020-044159).png,screenshots/19_044159.png
+20,Superseded screenshot,image(20261020-044346).png,screenshots/20_044346.png
+21,VM created,image(20261020-044557).png,screenshots/21_044557.png
+22,Missed ISO boot prompt,image(20261020-044834).png,screenshots/22_044834.png
+23,Recover through EFI Boot Manager,image(20261020-044924).png,screenshots/23_044924.png
+24,Windows Setup boot entry,image(20261020-045133).png,screenshots/24_045133.png
+25,Language and regional format,image(20261020-045335).png,screenshots/25_045335.png
+26,Keyboard,image(20261020-045452).png,screenshots/26_045452.png
+27,Installation option,image(20261020-045524).png,screenshots/27_045524.png
+28,Select edition,image(20261020-045708).png,screenshots/28_045708.png
+29,License terms,image(20261020-045825).png,screenshots/29_045825.png
+30,Installation disk,image(20261020-045907).png,screenshots/30_045907.png
+31,Ready to install,image(20261020-050010).png,screenshots/31_050010.png
+32,Workstation Library organization,image(20261020-050338).png,screenshots/32_050338.png
+33,Folder menu and grouping,image(20261020-050806).png,screenshots/33_050806.png
+34,Administrator password,image(20261020-051531).png,screenshots/34_051531.png
+35,First sign-in,image(20261020-051756).png,screenshots/35_051756.png
+36,Diagnostic data,image(20261020-052033).png,screenshots/36_052033.png
+37,Server Manager,image(20261020-052157).png,screenshots/37_052157.png
+38,Inspect initial server state,image(20261020-052353).png,screenshots/38_052353.png
+39,Open rename dialog,image(20261020-052534).png,screenshots/39_052534.png
+40,Set hostname,image(20261020-052645).png,screenshots/40_052645.png
+41,Restart for rename,image(20261020-052854).png,screenshots/41_052854.png
+42,Verify hostname,image(20261020-053157).png,screenshots/42_053157.png
+43,DHCP baseline,image(20261020-053544).png,screenshots/43_053544.png
+44,Inspect VMnet8,image(20261020-053758).png,screenshots/44_053758.png
+45,Record DHCP pool,image(20261020-053921).png,screenshots/45_053921.png
+46,Network Connections,image(20261020-054323).png,screenshots/46_054323.png
+47,IPv4 Properties,image(20261020-054503).png,screenshots/47_054503.png
+48,Catch the IP typo,image(20261020-054852).png,screenshots/48_054852.png
+49,Verify static configuration,image(20261020-055203).png,screenshots/49_055203.png
+50,Connectivity and name resolution,image(20261020-055446).png,screenshots/50_055446.png
