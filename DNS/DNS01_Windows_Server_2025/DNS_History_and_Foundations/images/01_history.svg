@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#53738b"/></marker></defs>
+<rect width="1200" height="760" fill="#f4f7fb"/>
+<text x="50" y="60" font-family="sans-serif" font-size="30" font-weight="bold" fill="#142f48">Name resolution: the historical picture</text>
+<text x="50" y="96" font-family="sans-serif" font-size="19" fill="#496177">DNS is a standard; BIND implements it. WINS belongs to the legacy NetBIOS branch.</text>
+<path d="M370,215 L445,215" fill="none" stroke="#53738b" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M755,215 L830,215" fill="none" stroke="#53738b" stroke-width="3" marker-end="url(#arrow)"/>
+<path d="M600,280 L600,420" fill="none" stroke="#53738b" stroke-width="3" marker-end="url(#arrow)"/>
+
+<path d="M755,490 L830,490" fill="none" stroke="#53738b" stroke-width="3" marker-end="url(#arrow)"/>
+
+<rect x="60" y="150" width="310" height="130" rx="15" fill="white" stroke="#16867b" stroke-width="2"/>
+<text x="78" y="184" font-family="sans-serif" font-size="22" font-weight="bold" fill="#142f48">Before DNS</text>
+<text x="78" y="215" font-family="sans-serif" font-size="16" fill="#496177">Shared HOSTS.TXT</text>
+<text x="78" y="240" font-family="sans-serif" font-size="16" fill="#496177">Manual distribution and updates</text>
+<rect x="445" y="150" width="310" height="130" rx="15" fill="white" stroke="#16867b" stroke-width="2"/>
+<text x="463" y="184" font-family="sans-serif" font-size="22" font-weight="bold" fill="#142f48">1983 / 1987</text>
+<text x="463" y="215" font-family="sans-serif" font-size="16" fill="#496177">DNS RFCs published</text>
+<text x="463" y="240" font-family="sans-serif" font-size="16" fill="#496177">Distributed naming standards</text>
+<rect x="830" y="150" width="310" height="130" rx="15" fill="white" stroke="#16867b" stroke-width="2"/>
+<text x="848" y="184" font-family="sans-serif" font-size="22" font-weight="bold" fill="#142f48">BIND</text>
+<text x="848" y="215" font-family="sans-serif" font-size="16" fill="#496177">Berkeley DNS implementation</text>
+<text x="848" y="240" font-family="sans-serif" font-size="16" fill="#496177">BIND 9 released in 2000</text>
+<rect x="445" y="420" width="310" height="140" rx="15" fill="white" stroke="#16867b" stroke-width="2"/>
+<text x="463" y="454" font-family="sans-serif" font-size="22" font-weight="bold" fill="#142f48">Legacy Windows branch</text>
+<text x="463" y="485" font-family="sans-serif" font-size="16" fill="#496177">NetBIOS names + WINS</text>
+<text x="463" y="510" font-family="sans-serif" font-size="16" fill="#496177">LMHOSTS is a separate file</text>
+<rect x="830" y="420" width="310" height="140" rx="15" fill="white" stroke="#16867b" stroke-width="2"/>
+<text x="848" y="454" font-family="sans-serif" font-size="22" font-weight="bold" fill="#142f48">Modern Windows DNS</text>
+<text x="848" y="485" font-family="sans-serif" font-size="16" fill="#496177">DNS Server implementation</text>
+<text x="848" y="510" font-family="sans-serif" font-size="16" fill="#496177">AD can use DNS; not required</text>
+<text x="50" y="720" font-family="sans-serif" font-size="17" fill="#496177">Conceptual timeline: WINS did not replace BIND, and DNS was not invented in 2000.</text></svg>
