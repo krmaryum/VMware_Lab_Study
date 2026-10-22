@@ -1,5 +1,10 @@
 # Conditional forwarding — KRNC.org (Roman Urdu)
 
+## Bunyadi tasawwur
+
+Conditional forwarder khaas domain ki queries selected DNS IP ko bhejta hai. Is se connected private ya partner network ki zone copy kiye baghair names resolve ho sakte hain. KRNC.org ka saved rule queries 172.16.0.18 ko bhejta hai; jawab ke liye target reachable aur requested naam resolve karne ke qabil hona chahiye.
+
+
 ## Kya aur kyun
 
 Conditional forwarder ek khaas domain ki queries muqarrar DNS IP ko bhejta hai. Zone ki copy nahin leta. Ye connected offices, partner networks aur hybrid networks mein kaam aata hai. General forwarder doosri eligible queries handle karta hai; conditional rule khaas namespace match karta hai.

@@ -48,3 +48,12 @@ Repeat each chapter independently and record both the DNS server queried and the
 - [Microsoft: Import-DnsServerTrustAnchor](https://learn.microsoft.com/en-us/powershell/module/dnsserver/import-dnsservertrustanchor)
 
 Screenshots document your captured lab stages; Microsoft links support the explanations. Historical/classroom choices are separated from unverified future procedures.
+
+
+## Added concept explanations
+
+Each topic now includes a short introductory explanation of its meaning, purpose and operation, followed by the original detailed procedure and screenshots. The earlier chapter layout and step-by-step notes have been retained.
+
+6. [DNS Suffix — English](06_DNS_Suffix/STUDY_NOTES_ENGLISH.md) | [Roman Urdu](06_DNS_Suffix/STUDY_NOTES_ROMAN_URDU.md)
+
+A primary zone maintains original records; a secondary serves a complete read-only replica; a stub identifies authoritative servers; a conditional forwarder routes queries by domain; DNSSEC signatures and Trust Points support validation; a DNS suffix supplies the computer's naming context. For a fresh build, review the suffix chapter first, then primary, secondary, stub, forwarding and DNSSEC.

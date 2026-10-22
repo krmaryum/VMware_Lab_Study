@@ -1,5 +1,10 @@
 # DNS01 — Primary DNS Server Configuration
 
+## Bunyadi tasawwur
+
+Primary DNS zone records ki writable aur authoritative asal copy hai. Is ka maqsad names resolve karna aur secondary server ko asal data dena hai. Is lab mein DNS01 par forward aur reverse zone, A, PTR aur CNAME records maintain huay aur DNS02 ne zone transfer se copies leen.
+
+
 Step-by-step lab record • 21 October 2026
 
 Is bundle mein primary zone, reverse zone, A/PTR, CNAME aur verification hain. DNS02 secondary aur DNS03 stub ke liye alag notes honge.

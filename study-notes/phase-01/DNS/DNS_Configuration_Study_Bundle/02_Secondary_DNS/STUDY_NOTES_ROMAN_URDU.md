@@ -1,5 +1,10 @@
 # DNS02 — Secondary DNS lab (Roman Urdu)
 
+## Bunyadi tasawwur
+
+Secondary DNS zone mukammal read-only authoritative copy hai. Is se doosra server apni replicated records se jawab de sakta hai. DNS02 master DNS01 se zone leta, SOA maloomat se changes check karta aur zone transfer se copy refresh karta hai. Records primary par change hotay hain.
+
+
 ## Lab values
 
 | Server | Address | Role |

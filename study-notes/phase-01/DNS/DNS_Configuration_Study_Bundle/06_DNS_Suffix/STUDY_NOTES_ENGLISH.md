@@ -1,5 +1,10 @@
 # DNS03 — DNS Suffix Study Notes
 
+## Concept overview
+
+A primary DNS suffix combines with a host name to form its full computer name, such as DNS03.VCPLAB.Com. It establishes the intended naming context; suffix search settings can also help expand short names. The suffix is configured in Computer Name → Change → More, applied after restart and checked with ipconfig /all. It does not itself create DNS records, create a zone or join Active Directory.
+
+
 Lab record: 21 October 2026
 
 Configure the primary DNS suffix on DNS03, following your classroom workflow. This record covers only the suffix procedure and its verification. Network values below are reference values observed in your lab; this procedure does not change them.

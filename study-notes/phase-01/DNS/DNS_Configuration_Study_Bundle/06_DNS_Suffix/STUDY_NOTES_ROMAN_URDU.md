@@ -1,5 +1,10 @@
 # DNS03 — DNS Suffix Study Notes
 
+## Bunyadi tasawwur
+
+Primary DNS suffix host naam ke saath mil kar DNS03.VCPLAB.Com jaisa full naam banata hai. Ye naming context set karta hai; suffix search settings short names expand karne mein bhi madad de sakti hain. Computer Name → Change → More mein suffix set hua, restart ke baad ipconfig /all se check hua. Is se khud DNS record, zone ya AD membership nahin banti.
+
+
 Lab record: 21 October 2026
 
 Yeh notes DNS03 par primary DNS suffix set karne ke classroom steps hain. Neechay network values aap ke lab ki reference settings hain; in steps mein IP settings change nahi hoti.

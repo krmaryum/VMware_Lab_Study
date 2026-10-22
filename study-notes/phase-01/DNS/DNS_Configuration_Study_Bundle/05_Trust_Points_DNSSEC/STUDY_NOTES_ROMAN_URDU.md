@@ -1,5 +1,10 @@
 # Trust Points aur DNSSEC (Roman Urdu)
 
+## Bunyadi tasawwur
+
+DNSSEC digital signatures se DNS data ki authenticity aur signed data ki tabdeeli check karne mein madad deta hai. Trust Point trusted key ya digest rakhta hai jahan se validation shuru hoti hai. Authoritative server records sign karta aur validating resolver trusted chain se signatures check karta hai. Queries encrypt nahin hotin. Signing, anchor import aur validation alag steps hain; is lab mein signing aur unsigning demonstrate hui.
+
+
 ## Kya aur kyun
 
 DNSSEC digital signatures se DNS data ka asal source, integrity aur kisi name/record ke na hone ka authenticated saboot check karne mein madad deta hai. Traffic encrypt nahin karta. Trust Point mein trusted DNSKEY/DS anchor hota hai jahan se validation ka bharosa shuru hota hai. Ye AD domain trust nahin. Signing data par signatures banata hai; validation trusted anchor tak chain check karti hai.

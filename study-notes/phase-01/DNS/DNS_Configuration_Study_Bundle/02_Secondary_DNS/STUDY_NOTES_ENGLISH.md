@@ -1,5 +1,10 @@
 # DNS02 — Secondary DNS lab
 
+## Concept overview
+
+A secondary DNS zone is a complete, read-only authoritative replica of a zone. It provides another server that can answer from its own replicated records. DNS02 obtains the zone from DNS01, checks SOA information for changes and refreshes its copy through zone transfers; record changes are made on the primary.
+
+
 ## Lab values
 
 | Server | Address | Role |

@@ -1,5 +1,10 @@
 # DNS03 — Stub zone lab
 
+## Concept overview
+
+A stub zone holds SOA, NS and necessary address records identifying the authoritative DNS servers. It helps a resolver locate those servers without keeping a complete zone replica. DNS03 refreshes this limited information from its master and uses it to locate the servers that can answer queries for VCPLAB.Com.
+
+
 ## Lab values
 
 | Server | Address | Role |

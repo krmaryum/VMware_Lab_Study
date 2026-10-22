@@ -1,5 +1,10 @@
 # DNS03 — Stub zone (Roman Urdu)
 
+## Bunyadi tasawwur
+
+Stub zone mein SOA, NS aur authoritative server ke zaroori address records hotay hain. Is ka maqsad full copy rakhe baghair asal DNS servers tak pohanchna hai. DNS03 master se ye limited maloomat refresh karta aur VCPLAB.Com ki queries ke jawab ke liye relevant authoritative server dhoondhta hai.
+
+
 ## Lab values
 
 | Server | Address | Role |

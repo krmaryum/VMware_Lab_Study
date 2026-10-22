@@ -1,5 +1,10 @@
 # DNS01 — Primary DNS Server Configuration
 
+## Concept overview
+
+A primary DNS zone is the writable, authoritative source of DNS records. It provides the original data used to resolve names and supply secondary copies. In this lab, DNS01 stores VCPLAB.Com and the reverse zone; A, PTR and CNAME records are maintained here, and DNS02 receives copies through zone transfers.
+
+
 Step-by-step lab record • 21 October 2026
 
 Scope: standard primary DNS zone, reverse zone, A/PTR records, CNAME and verification. DNS02 secondary and DNS03 stub configuration will be separate.

@@ -1,5 +1,10 @@
 # Conditional forwarding — KRNC.org example
 
+## Concept overview
+
+A conditional forwarder sends queries for a specific domain to selected DNS server IPs. It supports resolution between connected private or partner networks without copying their zones. The saved KRNC.org rule directs matching queries to 172.16.0.18; successful answers require that destination to be reachable and able to resolve the requested name.
+
+
 ## What and why
 
 A conditional forwarder sends queries for a chosen domain to configured DNS server addresses. It does not copy that domain's zone. It is useful between connected private networks, partner organizations and hybrid networks. A general forwarder handles other eligible queries; a conditional forwarder matches a specific namespace.
