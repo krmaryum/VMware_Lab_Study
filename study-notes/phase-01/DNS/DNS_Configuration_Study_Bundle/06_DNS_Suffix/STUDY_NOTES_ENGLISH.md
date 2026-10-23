@@ -11,6 +11,16 @@ Configure the primary DNS suffix on DNS03, following your classroom workflow. Th
 
 A primary DNS suffix combines with the host name to form the full computer name: **DNS03 + VCPLAB.Com = DNS03.VCPLAB.Com**. Setting it does not join Active Directory, create a DNS zone, or guarantee that a DNS record exists. DNS03 remains in WORKGROUP.
 
+## Understanding this configuration
+
+`DNS03` is the short host name; `DNS03.VCPLAB.Com` is the full name formed with its primary suffix. This gives consistent naming within the lab. A resolver’s suffix search behavior can also expand short names, but the primary suffix, connection-specific suffix and explicit search list are distinct settings.
+
+For example, a short-name query for `dns02` may be expanded to `dns02.vcplab.com` under the configured search rules. An absolute query `dns02.vcplab.com.` explicitly includes the root-ending dot and avoids relying on suffix expansion. That is why the verification commands use complete names.
+
+Setting the suffix changes neither WORKGROUP membership into AD membership nor a stub into a primary. It does not by itself guarantee successful DNS registration. The computer setting is checked with `ipconfig /all`; the DNS record is checked separately by querying the intended DNS server.
+
+**Recorded result:** DNS03’s suffix and search-list values were shown after restart. Other servers’ suffixes should not be inferred solely from this DNS03 evidence. For a fresh build, this chapter can be read before creating the primary zone; the existing numbered folders are retained to preserve the original bundle layout.
+
 ## Lab reference
 
 | Setting | Value |
@@ -25,6 +35,10 @@ A primary DNS suffix combines with the host name to form the full computer name:
 | Default gateway | Blank |
 | Preferred DNS server | 192.168.0.123 |
 | Alternate DNS server | 192.168.0.121 |
+
+## Reading the lab record
+
+The procedure below documents the configuration workflow and can be reused for practice. Statements marked verified refer to the supplied record; proposed tests and missing captures are identified separately. The review did not change or re-test the running machines.
 
 ## Step 1: Open Local Server
 

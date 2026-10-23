@@ -5,7 +5,17 @@
 DNSSEC digital signatures se DNS data ki authenticity aur signed data ki tabdeeli check karne mein madad deta hai. Trust Point trusted key ya digest rakhta hai jahan se validation shuru hoti hai. Authoritative server records sign karta aur validating resolver trusted chain se signatures check karta hai. Queries encrypt nahin hotin. Signing, anchor import aur validation alag steps hain; is lab mein signing aur unsigning demonstrate hui.
 
 
-## Kya aur kyun
+## Is configuration ko samjhein
+
+Aam DNS resolution data deta hai. DNSSEC validating resolver ko yeh check karne deta hai ke signed DNS data authentic hai aur badla nahin gaya. Trusted public key ya digest starting point deta hai aur applicable trust chain ke zariye signatures check hotay hain. DNS Manager ke Trust Points trusted anchor information organize karte hain. In ka AD domain trusts se talluq nahin.
+
+Signing aur validation alag roles mein hotay hain. Authoritative server DNSKEY aur RRSIG publish kar sakta hai, chahe kisi client ki validation abhi demonstrate na hui ho. Isi tarah Trust Points node ki tasveer se kisi particular zone ki successful validation sabit nahin hoti.
+
+Is lab mein signing se DNSSEC records aaye aur unsigning se hat gaye. Final forward zone **unsigned** hai. Yeh signing/unsigning ki completed exercise hai, end-to-end validated deployment nahin. Baad ka trust-anchor import example explanation hai; example file captured lab artifact nahin.
+
+Future validation exercise mein signed zone, securely obtained public anchor information, validating resolver aur validation behavior ki evidence chahiye. Isolated test mein deliberately invalid signatures reject honi chahiye. Private signing keys trust-anchor files samajh kar distribute nahin karni. Anchor changes aur unsigning saath plan hon taa ke purana trust resolution ko unexpectedly na toray.
+
+## Lab mein is ka kirdar
 
 DNSSEC digital signatures se DNS data ka asal source, integrity aur kisi name/record ke na hone ka authenticated saboot check karne mein madad deta hai. Traffic encrypt nahin karta. Trust Point mein trusted DNSKEY/DS anchor hota hai jahan se validation ka bharosa shuru hota hai. Ye AD domain trust nahin. Signing data par signatures banata hai; validation trusted anchor tak chain check karti hai.
 
@@ -16,6 +26,10 @@ DNSSEC digital signatures se DNS data ka asal source, integrity aur kisi name/re
 | DNSKEY | Public key |
 | RRSIG | Record set ki signature |
 | NSEC3 | Hashed names ke zariye authenticated non-existence ka saboot |
+
+## Lab record ko parhne ka tareeqa
+
+Neechay configuration ka recorded workflow hai jo practice mein dobara use ho sakta hai. Verified result supplied record ka hai; proposed tests aur missing captures alag wazeh hain. Is review mein running machines ki setting change ya live re-test nahin ki gayi.
 
 ## 1. DNS01 par signing shuru karein
 

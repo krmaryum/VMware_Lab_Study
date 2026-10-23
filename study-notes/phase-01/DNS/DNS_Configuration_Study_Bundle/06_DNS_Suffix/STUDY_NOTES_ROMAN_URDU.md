@@ -11,6 +11,16 @@ Yeh notes DNS03 par primary DNS suffix set karne ke classroom steps hain. Neecha
 
 Primary DNS suffix host name ke saath mil kar full computer name banata hai: **DNS03 + VCPLAB.Com = DNS03.VCPLAB.Com**. Sirf suffix set karne se Active Directory domain join, DNS zone create, ya DNS record ki mojoodgi confirm nahi hoti. DNS03 WORKGROUP mein rehta hai.
 
+## Is configuration ko samjhein
+
+`DNS03` short host name hai aur primary suffix ke saath `DNS03.VCPLAB.Com` full name banta hai. Is se lab ki naming consistent hoti hai. Resolver ke suffix search rules short names expand bhi kar sakte hain, lekin primary suffix, connection-specific suffix aur explicit search list alag settings hain.
+
+Misaal ke taur par configured search rules ke tehat short query `dns02`, `dns02.vcplab.com` ban sakti hai. Absolute query `dns02.vcplab.com.` mein aakhri root dot bhi hai aur suffix expansion par bharosa nahin karna parta. Isi liye verification commands complete names use karti hain.
+
+Suffix set karne se WORKGROUP, AD membership mein nahin badalta aur stub primary nahin banta. Is se successful DNS registration bhi guaranteed nahin. Computer setting `ipconfig /all` se aur actual DNS record intended DNS server ko query karke alag verify hota hai.
+
+**Recorded result:** restart ke baad DNS03 ki suffix aur search-list values dikhayi gayi hain. Sirf DNS03 ki evidence se doosray servers ki suffix assume nahin ki gayi. Fresh build mein yeh chapter primary zone se pehle parha ja sakta hai; original layout rakhne ke liye numbered folders wahi hain.
+
 ## Lab reference
 
 | Setting | Value |
@@ -25,6 +35,10 @@ Primary DNS suffix host name ke saath mil kar full computer name banata hai: **D
 | Default gateway | Blank |
 | Preferred DNS server | 192.168.0.123 |
 | Alternate DNS server | 192.168.0.121 |
+
+## Lab record ko parhne ka tareeqa
+
+Neechay configuration ka recorded workflow hai jo practice mein dobara use ho sakta hai. Verified result supplied record ka hai; proposed tests aur missing captures alag wazeh hain. Is review mein running machines ki setting change ya live re-test nahin ki gayi.
 
 ## Step 1: Local Server kholen
 

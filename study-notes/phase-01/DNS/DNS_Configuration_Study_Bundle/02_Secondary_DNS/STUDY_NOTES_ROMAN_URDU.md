@@ -5,6 +5,18 @@
 Secondary DNS zone mukammal read-only authoritative copy hai. Is se doosra server apni replicated records se jawab de sakta hai. DNS02 master DNS01 se zone leta, SOA maloomat se changes check karta aur zone transfer se copy refresh karta hai. Records primary par change hotay hain.
 
 
+## Is configuration ko samjhein
+
+DNS02 **apni poori zone copy** se queries ka jawab deta hai. Har lookup par DNS01 se nahin poochta. Is se aik running DNS process par dependence kam hoti hai, lekin availability design mein shared ESXi host, storage, power aur network bhi dekhna hota hai.
+
+Primary par change ke baad SOA serial se naya version pehchana jata hai. Notify check karne ka paigham de sakta hai; refresh/retry timers bhi checks control karte hain. Shuru ki full transfer aur baad ke updates copy ko current rakhte hain. Expiry interval tak successful refresh na ho to secondary hamesha ke liye woh zone serve nahin kar sakta. Yeh expiry cached record ke TTL se alag hai.
+
+Secondary zone aur client ki “alternate DNS server” setting aik cheez nahin. Client settings munasib honi chahiye. NXDOMAIN jaisa valid negative jawab milne par client aam tor par har alternate resolver ko nahin poochta. Existing records ka jawab dene ke liye secondary ko primary banana zaroori nahin. Writable primary mein conversion alag administrative recovery action hai; automatic failover nahin.
+
+**Evidence ki had:** transferred records aur direct forward/reverse queries recorded hain. Naya record add karke replication aur primary band karke outage test recorded nahin. Yeh optional follow-up tests hain.
+
+**Agla marhala:** DNS03 poori zone ke bajaye authority information rakhta hai.
+
 ## Lab values
 
 | Server | Address | Role |
@@ -15,9 +27,13 @@ Secondary DNS zone mukammal read-only authoritative copy hai. Is se doosra serve
 
 VMnet2 host-only: 192.168.0.0/24. Forward zone: VCPLAB.Com. Reverse zone: 0.168.192.in-addr.arpa. Internet is unnecessary for these local lookups. A DNS suffix does not join a computer to an AD domain. This lab uses file-backed zones, not AD-integrated zones.
 
-## Kya aur kyun
+## Lab mein is ka kirdar
 
 Secondary zone primary ki mukammal, read-only authoritative copy hoti hai. Records DNS01 par change karein; DNS02 zone transfer se changes leta hai. Forward aur reverse zones ka setup alag hota hai.
+
+## Lab record ko parhne ka tareeqa
+
+Neechay configuration ka recorded workflow hai jo practice mein dobara use ho sakta hai. Verified result supplied record ka hai; proposed tests aur missing captures alag wazeh hain. Is review mein running machines ki setting change ya live re-test nahin ki gayi.
 
 ## 1. DNS01 ke records check karein
 

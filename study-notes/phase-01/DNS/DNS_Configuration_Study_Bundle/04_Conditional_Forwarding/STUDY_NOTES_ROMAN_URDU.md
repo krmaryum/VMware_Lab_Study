@@ -5,7 +5,17 @@
 Conditional forwarder khaas domain ki queries selected DNS IP ko bhejta hai. Is se connected private ya partner network ki zone copy kiye baghair names resolve ho sakte hain. KRNC.org ka saved rule queries 172.16.0.18 ko bhejta hai; jawab ke liye target reachable aur requested naam resolve karne ke qabil hona chahiye.
 
 
-## Kya aur kyun
+## Is configuration ko samjhein
+
+Rule ka sawal hai: “Is namespace ki query kis DNS server ko bhejni hai?” `KRNC.org` ke liye saved destination `172.16.0.18` hai. Rule banane se DNS01 us domain ka authoritative server nahin banta aur na us domain ke records ki zone copy milti hai.
+
+Yeh stub ki authority-discovery information se alag hai. Forwarding destination explicitly configured hoti hai, is liye address badlay to rule manage karna hota hai. Yeh default gateway bhi nahin: forwarder application level par DNS sawal bhejta hai, lekin network ko target IP tak raasta phir bhi chahiye.
+
+Current VMnet2 host-only subnet `192.168.0.0/24` hai aur gateway blank recorded hai. Doosri subnet ka rule save karna connectivity nahin banata. Meaningful test ke liye real target DNS, existing test record, working route aur permitted DNS traffic chahiye.
+
+**Recorded result:** corrected rule save hua. Is ke zariye successful resolution demonstrate nahin hui. Future test mein target ko direct query aur DNS01 ke zariye wohi query compare karke actual results capture hon. Sirf TCP port test valid DNS jawab ka saboot nahin.
+
+## Lab mein is ka kirdar
 
 Conditional forwarder ek khaas domain ki queries muqarrar DNS IP ko bhejta hai. Zone ki copy nahin leta. Ye connected offices, partner networks aur hybrid networks mein kaam aata hai. General forwarder doosri eligible queries handle karta hai; conditional rule khaas namespace match karta hai.
 

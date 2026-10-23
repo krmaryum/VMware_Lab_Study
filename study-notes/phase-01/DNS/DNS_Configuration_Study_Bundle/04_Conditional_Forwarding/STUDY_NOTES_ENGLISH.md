@@ -5,7 +5,17 @@
 A conditional forwarder sends queries for a specific domain to selected DNS server IPs. It supports resolution between connected private or partner networks without copying their zones. The saved KRNC.org rule directs matching queries to 172.16.0.18; successful answers require that destination to be reachable and able to resolve the requested name.
 
 
-## What and why
+## Understanding this configuration
+
+The rule answers a routing question: “Which DNS server should handle queries for this namespace?” For `KRNC.org`, the saved destination is `172.16.0.18`. DNS01 does not become authoritative for that domain merely by creating the rule, and it does not receive its zone records through the rule.
+
+This differs from the stub’s authority-discovery information. The forwarding destination is explicitly configured, so changes to that destination must be managed. It also differs from a default gateway: a DNS forwarder routes DNS questions at the application level, while the network still needs a route to the target IP.
+
+The current VMnet2 host-only subnet is `192.168.0.0/24`, with no gateway recorded. Saving a rule for another subnet does not create connectivity. A known target server, a real test record, working routing and permitted DNS traffic are prerequisites for a meaningful test.
+
+**Result recorded:** the corrected rule was saved. Successful resolution through it has not been demonstrated. Future testing should compare a direct query to the target with the same query through DNS01 and capture the actual results. A TCP port test alone cannot prove that a valid DNS answer is available.
+
+## Purpose in this lab
 
 A conditional forwarder sends queries for a chosen domain to configured DNS server addresses. It does not copy that domain's zone. It is useful between connected private networks, partner organizations and hybrid networks. A general forwarder handles other eligible queries; a conditional forwarder matches a specific namespace.
 

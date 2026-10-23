@@ -7,11 +7,23 @@ A primary DNS zone is the writable, authoritative source of DNS records. It prov
 
 Step-by-step lab record • 21 October 2026
 
-Scope: standard primary DNS zone, reverse zone, A/PTR records, CNAME and verification. DNS02 secondary and DNS03 stub configuration will be separate.
+Scope: standard primary DNS zone, reverse zone, A/PTR records, CNAME and verification. DNS02 secondary and DNS03 stub procedures are recorded in their own chapters.
+
+## Understanding this configuration
+
+The primary is the editing point for these **standard file-backed zones**. For example, `dns02.vcplab.com` is an A record in the forward zone, while the address-to-name mapping is a PTR in a separate reverse zone. An alias such as `dns.vcplab.com` points to a canonical name through CNAME; it does not store the address itself.
+
+When a client explicitly queries DNS01 at `.121`, DNS01 answers for the zones it hosts. DNS02 can obtain a full copy, but adding DNS02’s A record alone does not configure that copy. This explains why record creation and secondary-zone configuration are separate chapters.
+
+“Primary” describes a zone’s role on a server, not a permanent machine identity. The same DNS server can hold other zones with different roles. In a later AD-integrated exercise, appropriate writable domain-controller DNS replicas use AD replication; do not automatically label all other replicas standard secondaries.
+
+**Reading the results:** the last IP in `nslookup name server-IP` selects the DNS server being tested. The returned address belongs to the name being looked up. A successful lookup is evidence of name resolution, not evidence that SSH, RDP or another application is available.
+
+**Transition:** the next chapter adds an independently queryable copy of the forward and reverse zones on DNS02.
 
 ## Lab settings
 
-| Server | IP | Planned zone role |
+| Server | IP | Recorded zone role |
 | --- | --- | --- |
 | DNS01 | 192.168.0.121 | Primary — configured |
 | DNS02 | 192.168.0.122 | Secondary — verified |
@@ -30,6 +42,10 @@ Network: VMnet2 host-only, 192.168.0.0/24; gateway blank. Zone: VCPLAB.Com. DNS0
 | NS | Authoritative name server for the zone |
 | SOA | Zone authority, serial and refresh metadata |
 | Zone transfer | Copies zone data to another DNS server |
+
+## Reading the lab record
+
+The procedure below documents the configuration workflow and can be reused for practice. Statements marked verified refer to the supplied record; proposed tests and missing captures are identified separately. The review did not change or re-test the running machines.
 
 ## 1. Open DNS Manager
 
@@ -175,7 +191,7 @@ Run **nslookup dns.vcplab.com. 192.168.0.121**. Your final output shows Name dns
 
 ## 10. Continue with secondary DNS
 
-The earlier incomplete transfer setup is superseded by the completed procedure in ../02_Secondary_DNS. DNS02 and DNS03 lookup verification succeeded later in the lab. DNS01 was subsequently signed and unsigned for the DNSSEC exercise; its final forward zone is unsigned. See Chapter 05.
+The earlier incomplete transfer setup is superseded by the completed procedure in ../02_Secondary_DNS/ (Chapter 02). DNS02 and DNS03 lookup verification succeeded later in the lab. DNS01 was subsequently signed and unsigned for the DNSSEC exercise; its final forward zone is unsigned. See Chapter 05.
 
 ## Repeat these verification commands
 

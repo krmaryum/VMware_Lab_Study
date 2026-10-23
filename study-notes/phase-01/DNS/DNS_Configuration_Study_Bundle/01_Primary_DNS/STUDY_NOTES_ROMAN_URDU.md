@@ -7,11 +7,23 @@ Primary DNS zone records ki writable aur authoritative asal copy hai. Is ka maqs
 
 Step-by-step lab record • 21 October 2026
 
-Is bundle mein primary zone, reverse zone, A/PTR, CNAME aur verification hain. DNS02 secondary aur DNS03 stub ke liye alag notes honge.
+Is bundle mein primary zone, reverse zone, A/PTR, CNAME aur verification hain. DNS02 secondary aur DNS03 stub ki configuration alag chapters mein recorded hai.
+
+## Is configuration ko samjhein
+
+In **standard file-backed zones** mein primary records edit karne ki jagah hai. `dns02.vcplab.com` forward zone ka A record hai; address se naam ki mapping alag reverse zone mein PTR hai. `dns.vcplab.com` jaisa CNAME alias asal naam ki taraf ishara karta hai; us mein seedha IP store nahin hota.
+
+Client jab DNS01 `.121` ko directly query karta hai to DNS01 apni hosted zones ka jawab deta hai. DNS02 poori copy le sakta hai, magar sirf DNS02 ka A record add karne se woh copy configure nahin hoti. Isi liye records aur secondary-zone configuration alag chapters hain.
+
+“Primary” server par aik zone ka role hai, machine ki permanent pehchan nahin. Aik DNS server doosri zones ke liye doosray roles bhi rakh sakta hai. Baad ki AD-integrated exercise mein suitable writable domain-controller DNS replicas AD replication use karti hain; har doosri replica ko standard secondary na samjhein.
+
+**Result parhne ka tareeqa:** `nslookup name server-IP` mein aakhri IP us DNS server ki hai jis ko test kiya ja raha hai. Answer mein aane wali IP queried naam ki hoti hai. Successful lookup naam resolve hone ka saboot hai, SSH, RDP ya doosri application chalne ka nahin.
+
+**Agla marhala:** DNS02 par forward aur reverse zones ki independently query honay wali copy.
 
 ## Lab settings
 
-| Server | IP | Planned zone role |
+| Server | IP | Recorded zone role |
 | --- | --- | --- |
 | DNS01 | 192.168.0.121 | Primary — configured |
 | DNS02 | 192.168.0.122 | Secondary — verified |
@@ -30,6 +42,10 @@ Network: VMnet2 host-only, 192.168.0.0/24; gateway blank. Zone: VCPLAB.Com. DNS0
 | NS | Zone ka authoritative name server |
 | SOA | Authority, serial aur refresh ki information |
 | Zone transfer | Zone data doosray DNS server ko copy karna |
+
+## Lab record ko parhne ka tareeqa
+
+Neechay configuration ka recorded workflow hai jo practice mein dobara use ho sakta hai. Verified result supplied record ka hai; proposed tests aur missing captures alag wazeh hain. Is review mein running machines ki setting change ya live re-test nahin ki gayi.
 
 ## 1. DNS Manager kholen
 
@@ -173,11 +189,11 @@ VCPLAB.Com par right-click → New Alias (CNAME) karein. Alias **DNS** likhein. 
 
 ![Your lab screenshot — 022455](screenshots/20261022_022455.png)
 
-## 10. Continue with secondary DNS
+## 10. Secondary DNS ka agla marhala
 
-The earlier incomplete transfer setup is superseded by the completed procedure in ../02_Secondary_DNS. DNS02 and DNS03 lookup verification succeeded later in the lab. DNS01 was subsequently signed and unsigned for the DNSSEC exercise; its final forward zone is unsigned. See Chapter 05.
+Pehle incomplete transfer setup ke baad Chapter 02 mein completed procedure recorded hai. Lab ke baad walay marhalay mein DNS02 aur DNS03 ki lookups successful thin. DNSSEC exercise mein DNS01 ki zone sign aur phir unsign hui; final forward zone unsigned hai. Tafseel Chapter 05 mein hai.
 
-## Repeat these verification commands
+## Dobara verification ki commands
 
 ```powershell
 nslookup dns01.vcplab.com. 192.168.0.121
@@ -189,9 +205,9 @@ nslookup 192.168.0.123 192.168.0.121
 nslookup dns.vcplab.com. 192.168.0.121
 ```
 
-Expected A answers: .121 / .122 / .123 respectively. Expected PTR targets: DNS01 / DNS02 / DNS03 in VCPLAB.Com. Expected alias target: DNS01, .121. These commands form a repeat checklist; screenshots do not document every command above being run.
+Expected A answers tarteeb se .121, .122 aur .123 hain. PTR targets VCPLAB.Com mein DNS01, DNS02 aur DNS03 hain. Alias target DNS01, .121 hai. Yeh repeat checklist hai; har command run honay ki screenshot recorded nahin.
 
 
 ## Current lab checkpoint / Maujooda halat
 
-DNS01 primary, DNS02 secondary, and DNS03 stub all returned successful lab lookups. KRNC.org conditional forwarding is configured but not resolution-tested. VCPLAB.Com was signed, then unsigned; no trust-anchor import or DNSSEC validation test was shown.
+DNS01 primary, DNS02 secondary aur DNS03 stub se lab lookups successful thin. KRNC.org forwarding configured hai magar resolution test recorded nahin. VCPLAB.Com sign aur phir unsign hui; trust-anchor import aur DNSSEC validation ki evidence nahin.

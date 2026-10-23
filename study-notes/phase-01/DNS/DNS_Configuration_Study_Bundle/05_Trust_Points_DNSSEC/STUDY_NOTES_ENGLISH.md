@@ -5,7 +5,17 @@
 DNSSEC uses digital signatures to authenticate DNS data and detect changes to signed information. A Trust Point holds the trusted key or digest that starts validation. The authoritative server signs record sets; a validating resolver checks signatures through a trusted chain. DNSSEC does not encrypt queries. Signing, importing a trust anchor and proving validation are separate steps; this lab demonstrated signing and unsigning only.
 
 
-## What and why
+## Understanding this configuration
+
+Ordinary name resolution returns data. DNSSEC additionally allows a validating resolver to check whether signed DNS data is authentic and unchanged. A trusted public key or digest provides a starting point; signatures are checked through the applicable chain of trust. Trust Points in DNS Manager organize that trusted anchor information. They are unrelated to Active Directory domain trusts.
+
+Signing and validation happen in different roles. An authoritative server can publish DNSKEY and RRSIG records even though no client has yet demonstrated validation. Conversely, a screenshot of the Trust Points node does not prove that a particular zone’s signatures were successfully checked.
+
+In this lab, signing produced DNSSEC records and unsigning removed them. The final forward zone is **unsigned**. This accurately demonstrates a signing/unsigning exercise, not an end-to-end validated deployment. The later trust-anchor import example is explanatory; the example file is not a captured lab artifact.
+
+A future validation exercise needs a signed zone, securely obtained public anchor information, a validating resolver and evidence of its validation behavior. Deliberately invalid signatures should fail validation in an isolated test. Private signing keys are not trust-anchor files to distribute. Plan anchor changes and unsigning together so stale trust does not unexpectedly break resolution.
+
+## Purpose in this lab
 
 DNSSEC adds signatures for data-origin authentication, integrity and authenticated denial of existence. It does not encrypt DNS traffic. A Trust Point contains trusted DNSKEY/DS anchor information used as a starting point for validation; it does not create an AD domain trust. Signing publishes signed zone data; validation checks it against a chain ending in a trusted anchor. These are distinct tasks.
 
@@ -16,6 +26,10 @@ DNSSEC adds signatures for data-origin authentication, integrity and authenticat
 | DNSKEY | Public DNSSEC key |
 | RRSIG | Signature over a DNS record set |
 | NSEC3 | Supports authenticated denial of existence using hashed names |
+
+## Reading the lab record
+
+The procedure below documents the configuration workflow and can be reused for practice. Statements marked verified refer to the supplied record; proposed tests and missing captures are identified separately. The review did not change or re-test the running machines.
 
 ## 1. Start signing on DNS01
 

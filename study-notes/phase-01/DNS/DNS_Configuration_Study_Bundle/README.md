@@ -1,59 +1,84 @@
-# DNS configuration study bundle
+# DNS configuration — theory and recorded lab
 
-English and Roman Urdu • Lab checkpoint: 21 October 2026
+Reviewed learning edition • English and Roman Urdu
 
-Extract the entire ZIP before opening the Markdown files. Keep each chapter's screenshots folder beside its notes so images display correctly. Each topic is also supplied as an individual ZIP in separate_bundles.
+This bundle keeps the original six-topic layout, detailed procedures and screenshot evidence. Each chapter now connects its definition and purpose to the actual lab workflow and the meaning of the results. It is a review of supplied evidence, not a live re-test of the machines.
 
-## Suggested study order
+## Start here / Yahan se shuru karein
 
-1. [Primary DNS](01_Primary_DNS/STUDY_NOTES_ENGLISH.md): zones, A/PTR, CNAME and verification.
-2. [Secondary DNS](02_Secondary_DNS/STUDY_NOTES_ENGLISH.md): DNS01 permissions and DNS02 replication.
-3. [Stub DNS](03_Stub_DNS/STUDY_NOTES_ENGLISH.md): locating authoritative servers.
-4. [Conditional forwarding](04_Conditional_Forwarding/STUDY_NOTES_ENGLISH.md): domain-specific query routing.
-5. [Trust Points and DNSSEC](05_Trust_Points_DNSSEC/STUDY_NOTES_ENGLISH.md): signing versus validation, then unsigning.
+Extract the whole ZIP. Open one language per topic and keep its `screenshots` folder beside the Markdown files. A Markdown preview or GitHub displays the images; plain Notepad displays their link text.
 
-Every chapter has STUDY_NOTES_ENGLISH.md, STUDY_NOTES_ROMAN_URDU.md and screenshot evidence. The primary chapter includes earlier teacher reference images labelled as such; they are not represented as your own captures. These are configuration notes, not a complete OS installation guide. No class PDFs were available as source material for this deliverable.
+**Existing-lab revision:** Primary → Secondary → Stub → Conditional Forwarding → DNSSEC → Suffix.
 
-## Verified status
+**Fresh-build reading:** Suffix → Primary → Secondary → Stub → Conditional Forwarding → DNSSEC. Review actual network settings before reproducing any procedure. The folder numbers stay unchanged so the familiar layout is preserved.
 
-| Topic | Evidence / current status |
-| --- | --- |
-| DNS01 primary | Forward records, reverse PTR and alias verified |
-| DNS02 secondary | Records transferred; forward/reverse queries to .122 passed |
-| DNS03 stub | Stub records loaded; forward/reverse queries to .123 passed |
-| KRNC.org forwarder | Saved pointing to 172.16.0.18; resolution untested |
-| DNSSEC | Forward zone signed, then unsigned; final state unsigned |
-| Trust Points | Concept and future import procedure only; no import/validation evidence |
+Har topic mein pehle concept aur uska purpose, phir recorded steps, screenshots aur result ki explanation hai. Aik waqt mein aik language parhein. Future test ko completed result na samjhein.
+
+| Topic | English notes | Roman Urdu notes |
+|---|---|---|
+| Primary DNS | [English](01_Primary_DNS/STUDY_NOTES_ENGLISH.md) | [Roman Urdu](01_Primary_DNS/STUDY_NOTES_ROMAN_URDU.md) |
+| Secondary DNS | [English](02_Secondary_DNS/STUDY_NOTES_ENGLISH.md) | [Roman Urdu](02_Secondary_DNS/STUDY_NOTES_ROMAN_URDU.md) |
+| Stub Zone | [English](03_Stub_DNS/STUDY_NOTES_ENGLISH.md) | [Roman Urdu](03_Stub_DNS/STUDY_NOTES_ROMAN_URDU.md) |
+| Conditional Forwarding | [English](04_Conditional_Forwarding/STUDY_NOTES_ENGLISH.md) | [Roman Urdu](04_Conditional_Forwarding/STUDY_NOTES_ROMAN_URDU.md) |
+| Trust Points / DNSSEC | [English](05_Trust_Points_DNSSEC/STUDY_NOTES_ENGLISH.md) | [Roman Urdu](05_Trust_Points_DNSSEC/STUDY_NOTES_ROMAN_URDU.md) |
+| DNS Suffix | [English](06_DNS_Suffix/STUDY_NOTES_ENGLISH.md) | [Roman Urdu](06_DNS_Suffix/STUDY_NOTES_ROMAN_URDU.md) |
+
+## Recorded environment
+
+| Setting | Supplied lab record |
+|---|---|
+| Network | VMnet2 host-only, 192.168.0.0/24 |
+| Default gateway | Blank in the recorded isolated lab |
+| Forward zone | VCPLAB.Com |
+| Reverse zone | 0.168.192.in-addr.arpa |
+| DNS01 | 192.168.0.121 — standard primary |
+| DNS02 | 192.168.0.122 — forward/reverse secondary |
+| DNS03 | 192.168.0.123 — forward/reverse stub and resolving server |
+| Directory model | Workgroup, file-backed zones; this is not an AD-integrated exercise |
+
+This completed configuration supersedes the earlier installation-only checkpoint at 192.168.23.10. Earlier screenshots describing that checkpoint are historical, not the current configuration recorded here. The example domain name is retained from the private classroom lab; public ownership is not established by these notes.
+
+## Results and limits / Results aur unki had
+
+| Topic | Recorded result | Not established by that result |
+|---|---|---|
+| Primary | Forward/reverse records and CNAME lookup verified | Every listed repeat command was not separately captured |
+| Secondary | Full records loaded; direct forward/reverse lookup passed | Primary outage recovery or a later new-record replication test |
+| Stub | Limited authority records loaded; lookups through DNS03 passed | Exact packet path or behavior with all authorities offline |
+| Conditional forwarding | KRNC.org rule saved with target 172.16.0.18 | Working route, target availability or successful forwarded lookup |
+| DNSSEC | Zone signed, then unsigned; final state unsigned | Trust-anchor import or end-to-end validation |
+| DNS suffix | DNS03 suffix/search-list shown after restart | AD domain join or successful registration of every name |
 
 ## Compare the concepts
 
-| Feature | What it keeps | Main job |
-| --- | --- | --- |
-| Primary | Writable authoritative zone | Maintain original records |
-| Secondary | Full read-only authoritative copy | Serve replicated records |
-| Stub | SOA, NS, necessary address records | Find authoritative servers |
-| Conditional forwarder | Domain-to-DNS-IP rule | Route queries for that domain |
-| Trust Point | Trusted key/digest information | Start DNSSEC validation |
+| Feature | Keeps | Purpose |
+|---|---|---|
+| Standard primary | Writable zone records | Maintain this lab’s authoritative data |
+| Secondary | Full read-only zone copy | Answer from replicated records |
+| Stub | Limited authority information | Locate authoritative servers |
+| Conditional forwarder | Domain-to-DNS-address rule | Send matching queries to configured destinations |
+| Trust Point | Trusted public key/digest anchor | Provide a starting point for DNSSEC validation |
+| Primary DNS suffix | Computer naming context | Form a full computer name; not an AD join |
 
-## Suggestions for your next study session
+## Recommended next session
 
-Repeat each chapter independently and record both the DNS server queried and the returned result. For DNSSEC, capture the missing key/ZSK/rollover wizard pages before repeating; finish a separate trust-anchor and validation exercise. For conditional forwarding, first establish whether the target is real and reachable and obtain a known record. Failover, automated replication after a new edit, and DNSSEC validation remain optional future tests, not completed claims.
+The highest-value follow-up is a controlled secondary update and outage test, with actual outputs recorded. Conditional forwarding needs a real reachable target and known record. DNSSEC validation should be a separate signed-zone/trust-anchor exercise. None of these has been marked completed in this review.
 
-## Reference sources
+Production design also considers independent host/storage/network failure domains, restricted transfers, appropriate updates and tested backups. The original isolated-lab choices remain documented as choices, not universal defaults.
 
+## Evidence and included files
+
+All original screenshots and screenshot indexes are retained. Teacher-reference images remain labelled separately from local captures. Missing wizard pages are not reconstructed as evidence. Chapter commands remain usable repeat procedures; successful output is claimed only where the original record supports it.
+
+`separate_bundles` contains freshly rebuilt copies of all six updated chapters, with the same notes as the main folders. Original detailed instructions are retained for reproducibility. `REVIEW_NOTES.md` records the editorial changes and verification scope.
+
+## Official references
+
+- [Microsoft: DNS zones](https://learn.microsoft.com/en-us/windows-server/networking/dns/zone-types)
+- [Microsoft: Manage DNS zones](https://learn.microsoft.com/en-us/windows-server/networking/dns/manage-dns-zones)
 - [Microsoft: DNS forwarding](https://learn.microsoft.com/en-us/windows-server/networking/dns/forwarding)
-- [Microsoft: conditional-forwarder PowerShell](https://learn.microsoft.com/en-us/powershell/module/dnsserver/add-dnsserverconditionalforwarderzone)
+- [Microsoft: DNSSEC overview](https://learn.microsoft.com/en-us/windows-server/networking/dns/dnssec-overview)
 - [Microsoft: Trust Anchors](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn593672(v=ws.11))
-- [Microsoft: Import a Trust Point](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/dn593665(v=ws.11))
-- [Microsoft: Import-DnsServerTrustAnchor](https://learn.microsoft.com/en-us/powershell/module/dnsserver/import-dnsservertrustanchor)
+- [Microsoft: Dynamic DNS updates and naming](https://learn.microsoft.com/en-us/windows-server/networking/dns/dynamic-update)
 
-Screenshots document your captured lab stages; Microsoft links support the explanations. Historical/classroom choices are separated from unverified future procedures.
-
-
-## Added concept explanations
-
-Each topic now includes a short introductory explanation of its meaning, purpose and operation, followed by the original detailed procedure and screenshots. The earlier chapter layout and step-by-step notes have been retained.
-
-6. [DNS Suffix — English](06_DNS_Suffix/STUDY_NOTES_ENGLISH.md) | [Roman Urdu](06_DNS_Suffix/STUDY_NOTES_ROMAN_URDU.md)
-
-A primary zone maintains original records; a secondary serves a complete read-only replica; a stub identifies authoritative servers; a conditional forwarder routes queries by domain; DNSSEC signatures and Trust Points support validation; a DNS suffix supplies the computer's naming context. For a fresh build, review the suffix chapter first, then primary, secondary, stub, forwarding and DNSSEC.
+Screenshots are the lab evidence. Official references explain the mechanisms; they do not prove the state of the running machines.

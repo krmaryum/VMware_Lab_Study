@@ -5,6 +5,16 @@
 A stub zone holds SOA, NS and necessary address records identifying the authoritative DNS servers. It helps a resolver locate those servers without keeping a complete zone replica. DNS03 refreshes this limited information from its master and uses it to locate the servers that can answer queries for VCPLAB.Com.
 
 
+## Understanding this configuration
+
+A stub is a directory of the zone’s authorities, not another full host directory. The SOA, NS and necessary address/glue entries identify where authoritative answers can be obtained. “Three record types” does not mean exactly three individual records; multiple name servers and address entries are possible.
+
+For example, a client asks DNS03 for `dns02.vcplab.com`. DNS03 can use the stub’s authority information to resolve the name through a reachable authoritative server and return the answer. Its own stub does not suddenly contain every A, CNAME or PTR record. The captured successful answer proves resolution through DNS03, but packet tracing would be needed to establish the precise live path and caching behavior.
+
+If the required authorities are unavailable and no usable answer is cached, a stub cannot replace their complete zone data. It is therefore not the same resilience mechanism as DNS02’s secondary. It also does not guarantee faster queries. In this lab the stub points to DNS01; do not assume DNS02 will automatically be used without checking the authority information and configuration.
+
+**Comparison:** a secondary copies the records; a stub tracks the authorities; a conditional forwarder, covered next, uses a configured domain-to-server rule.
+
 ## Lab values
 
 | Server | Address | Role |
@@ -15,9 +25,13 @@ A stub zone holds SOA, NS and necessary address records identifying the authorit
 
 VMnet2 host-only: 192.168.0.0/24. Forward zone: VCPLAB.Com. Reverse zone: 0.168.192.in-addr.arpa. Internet is unnecessary for these local lookups. A DNS suffix does not join a computer to an AD domain. This lab uses file-backed zones, not AD-integrated zones.
 
-## What and why
+## Purpose in this lab
 
 A stub zone retains SOA, NS and necessary address records identifying authoritative DNS servers. It does not copy every host, alias or PTR. It helps a resolver find the servers responsible for a namespace and refresh that information. It is not a replacement for a full secondary replica.
+
+## Reading the lab record
+
+The procedure below documents the configuration workflow and can be reused for practice. Statements marked verified refer to the supplied record; proposed tests and missing captures are identified separately. The review did not change or re-test the running machines.
 
 ## 1. Create the forward stub
 

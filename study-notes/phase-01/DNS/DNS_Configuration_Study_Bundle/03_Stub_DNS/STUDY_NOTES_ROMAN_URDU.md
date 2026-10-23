@@ -5,6 +5,16 @@
 Stub zone mein SOA, NS aur authoritative server ke zaroori address records hotay hain. Is ka maqsad full copy rakhe baghair asal DNS servers tak pohanchna hai. DNS03 master se ye limited maloomat refresh karta aur VCPLAB.Com ki queries ke jawab ke liye relevant authoritative server dhoondhta hai.
 
 
+## Is configuration ko samjhein
+
+Stub zone ke authoritative servers ki directory hai, poori host directory nahin. SOA, NS aur zaroori address/glue entries batati hain ke authoritative jawab kahan se mil sakta hai. “Teen record types” ka matlab sirf teen individual records nahin; multiple servers aur addresses ho sakte hain.
+
+Misaal: client DNS03 se `dns02.vcplab.com` poochta hai. DNS03 stub ki authority information use karke reachable authoritative server ke zariye naam resolve kar sakta hai. Is ka matlab yeh nahin ke stub mein tamam A, CNAME aur PTR records aa gaye. Captured successful answer DNS03 ke zariye resolution sabit karta hai; exact live path aur cache ka use maloom karne ke liye packet tracing chahiye.
+
+Agar required authoritative servers available na hon aur usable cached answer bhi na ho to stub unki poori zone data ka badal nahin. Is liye yeh DNS02 secondary jaisi resilience nahin deta. Har query ko tez karne ki guarantee bhi nahin. Is lab mein stub DNS01 ki authority information rakhta hai; DNS02 automatic use hoga, yeh authority aur configuration check kiye baghair assume na karein.
+
+**Muqabla:** secondary records copy karta hai; stub authorities ki maloomat rakhta hai; aglay chapter ka conditional forwarder configured domain-to-server rule use karta hai.
+
 ## Lab values
 
 | Server | Address | Role |
@@ -15,9 +25,13 @@ Stub zone mein SOA, NS aur authoritative server ke zaroori address records hotay
 
 VMnet2 host-only: 192.168.0.0/24. Forward zone: VCPLAB.Com. Reverse zone: 0.168.192.in-addr.arpa. Internet is unnecessary for these local lookups. A DNS suffix does not join a computer to an AD domain. This lab uses file-backed zones, not AD-integrated zones.
 
-## Kya aur kyun
+## Lab mein is ka kirdar
 
 Stub zone SOA, NS aur zaroori address records rakhta hai taa ke authoritative server ka pata chal sake. Har A, CNAME ya PTR copy nahin hota. Server ki maloomat refresh hoti rehti hai. Ye full secondary replica ka badal nahin.
+
+## Lab record ko parhne ka tareeqa
+
+Neechay configuration ka recorded workflow hai jo practice mein dobara use ho sakta hai. Verified result supplied record ka hai; proposed tests aur missing captures alag wazeh hain. Is review mein running machines ki setting change ya live re-test nahin ki gayi.
 
 ## 1. Forward stub banayein
 

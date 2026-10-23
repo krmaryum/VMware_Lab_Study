@@ -5,6 +5,18 @@
 A secondary DNS zone is a complete, read-only authoritative replica of a zone. It provides another server that can answer from its own replicated records. DNS02 obtains the zone from DNS01, checks SOA information for changes and refreshes its copy through zone transfers; record changes are made on the primary.
 
 
+## Understanding this configuration
+
+DNS02 provides a second place to answer queries from its **own full zone copy**. It does not contact DNS01 for every record lookup. This reduces dependence on one running DNS process, but a real availability design must also consider shared ESXi hosts, storage, power and networking.
+
+After a primary-zone change, the SOA serial helps identify a newer version. Notify can prompt a check; refresh/retry timers also govern checks. An initial full transfer and later updates keep the copy current. If the secondary cannot successfully refresh for its expiry interval, it cannot keep serving that zone indefinitely. This expiry is different from a cached record’s TTL.
+
+A secondary zone is not the same thing as a client’s “alternate DNS server” setting. Clients must be configured appropriately, and a valid negative response such as NXDOMAIN does not normally cause them to try every alternate resolver. A secondary can answer existing records without being promoted to primary. Conversion to a writable primary is a separate administrative recovery action, not automatic failover.
+
+**Evidence boundary:** transferred records and direct forward/reverse queries are recorded. A new-record replication test and primary-outage test were not recorded. Those remain optional follow-up tests.
+
+**Transition:** DNS03 demonstrates a different approach: keeping authority information rather than a full zone.
+
 ## Lab values
 
 | Server | Address | Role |
@@ -15,9 +27,13 @@ A secondary DNS zone is a complete, read-only authoritative replica of a zone. I
 
 VMnet2 host-only: 192.168.0.0/24. Forward zone: VCPLAB.Com. Reverse zone: 0.168.192.in-addr.arpa. Internet is unnecessary for these local lookups. A DNS suffix does not join a computer to an AD domain. This lab uses file-backed zones, not AD-integrated zones.
 
-## What and why
+## Purpose in this lab
 
 A secondary zone is a full, read-only authoritative copy obtained by zone transfer. Edit records on DNS01; DNS02 receives changes. Forward and reverse zones are separate and require separate setup.
+
+## Reading the lab record
+
+The procedure below documents the configuration workflow and can be reused for practice. Statements marked verified refer to the supplied record; proposed tests and missing captures are identified separately. The review did not change or re-test the running machines.
 
 ## 1. Check the records on DNS01
 
