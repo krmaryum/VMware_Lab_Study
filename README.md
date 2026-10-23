@@ -6,6 +6,23 @@ A topic-wise study collection with detailed lab notes, screenshots and revision 
 
 Foundations → lab setup → ESXi installation → networking → DNS → storage → vCenter and VM management. Use troubleshooting whenever a relevant problem arises.
 
+## Study and Lab Status
+
+Status describes the documented scope, not every possible task in the subject. **Completed** means the named record or configuration is available; **In progress** means recorded work exists with specific verification still pending; **Planned** means no completed practical chapter is claimed.
+
+| Section | Status | Documented checkpoint / remaining work |
+|---|---|---|
+| 01. Foundations | Completed — notes available | Encapsulation, payload and revision material documented; further learning continues |
+| 02. Lab Setup | Completed — recorded scope | File transfer and passwordless SSH procedures/results available |
+| 03. ESXi Installation | Completed — recorded scope | Desktop installation sequence and evidence available |
+| 04. ESXi Networking | In progress | Switch/port-group/VMkernel configuration recorded; controlled failover, guest connectivity and shaping measurements pending |
+| 05. DNS Services | In progress | Primary, secondary, stub and DNS03 suffix verified; conditional-forwarder resolution and trust-anchor/DNSSEC validation pending |
+| 06. ESXi Storage | Planned — full practical lab | Existing VMFS checkpoint/reference material available; complete protocol/datastore lab pending |
+| 07. vCenter and VM Management | Planned | Reserved for deployment and administration labs |
+| 08. Troubleshooting | Completed — existing case records | Historical connection/incident cases documented; new cases can be added |
+
+**DNS03 Server 2025:** a [dedicated installation and readiness checkpoint](05_DNS/Server_Installation/DNS03_Windows_Server_2025/README.md) is now included. It distinguishes verified later Server 2025 evidence from the archived Windows 11 build and identifies missing installation-stage captures.
+
 ## 01. Virtualization Foundations
 
 ESXi encapsulation, payload study material and revision questions.

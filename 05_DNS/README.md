@@ -89,6 +89,15 @@ These resources preserve the installation sequence and earlier study material. U
 - [Installation Notes — English](<Server_Installation/DNS02_Windows_Server_2016/STUDY_NOTES_ENGLISH.md>)
 - [Installation Notes — Roman Urdu](<Server_Installation/DNS02_Windows_Server_2016/STUDY_NOTES_ROMAN_URDU.md>)
 
+### DNS03 — Windows Server 2025
+
+The replacement-server checkpoint is separate from the archived Windows 11 build. It connects Server 2025 readiness to the later suffix and stub evidence; missing installation screens are identified.
+
+- [Installation and readiness overview](<Server_Installation/DNS03_Windows_Server_2025/README.md>)
+- [English notes](<Server_Installation/DNS03_Windows_Server_2025/STUDY_NOTES_ENGLISH.md>)
+- [Roman Urdu notes](<Server_Installation/DNS03_Windows_Server_2025/STUDY_NOTES_ROMAN_URDU.md>)
+- [Screenshot provenance](<Server_Installation/DNS03_Windows_Server_2025/SCREENSHOT_INDEX.md>)
+
 ## Configuration Overview and Review
 
 - [Configuration Bundle Overview](<Configuration/README.md>)
