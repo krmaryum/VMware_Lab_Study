@@ -46,6 +46,17 @@ Primary DNS suffix configuration and verification of the full computer name.
 
 [English](<Configuration/06_DNS_Suffix/STUDY_NOTES_ENGLISH.md>) | [Roman Urdu](<Configuration/06_DNS_Suffix/STUDY_NOTES_ROMAN_URDU.md>)
 
+## DNS Tools and Verification
+
+### nslookup
+
+DNS queries, forward/reverse lookups, record types, output
+interpretation and troubleshooting using the DNS01/DNS02/DNS03 lab.
+
+- [Overview](Tools_and_Verification/Nslookup/README.md)
+- [English](Tools_and_Verification/Nslookup/Nslookup_English.md)
+- [Roman Urdu](Tools_and_Verification/Nslookup/Nslookup_Roman_Urdu.md)
+
 ## Recorded Lab Status
 
 | Topic | Recorded result |
