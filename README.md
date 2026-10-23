@@ -27,49 +27,49 @@ Status describes the documented scope, not every possible task in the subject. *
 
 ESXi encapsulation, payload study material and revision questions.
 
-[Open topic guide](<01_Foundations/START_HERE.md>)
+[Open topic guide](<01_Foundations/README.md>)
 
 ## 02. Lab Setup
 
 Remote access, file transfer and passwordless SSH reference material.
 
-[Open topic guide](<02_Lab_Setup/START_HERE.md>)
+[Open topic guide](<02_Lab_Setup/README.md>)
 
 ## 03. ESXi Installation
 
 The recorded desktop installation sequence, screenshots and diagnostic outputs.
 
-[Open topic guide](<03_ESXi_Installation/START_HERE.md>)
+[Open topic guide](<03_ESXi_Installation/README.md>)
 
 ## 04. ESXi Networking
 
 Reviewed networking chapters with English and Roman Urdu notes and lab evidence.
 
-[Open topic guide](<04_ESXi_Networking/START_HERE.md>)
+[Open topic guide](<04_ESXi_Networking/README.md>)
 
 ## 05. DNS Services
 
 Foundations, installation records, DNS suffix, primary, secondary, stub, conditional forwarding and DNSSEC.
 
-[Open topic guide](<05_DNS/START_HERE.md>)
+[Open topic guide](<05_DNS/README.md>)
 
 ## 06. ESXi Storage
 
 Storage reference material and the next planned practical chapter.
 
-[Open topic guide](<06_ESXi_Storage/START_HERE.md>)
+[Open topic guide](<06_ESXi_Storage/README.md>)
 
 ## 07. vCenter and VM Management
 
 A reserved section for future vCenter and VM administration labs.
 
-[Open topic guide](<07_vCenter_and_VM_Management/START_HERE.md>)
+[Open topic guide](<07_vCenter_and_VM_Management/README.md>)
 
 ## 08. Troubleshooting
 
 Historical connection labs and incident records, organized by case.
 
-[Open topic guide](<08_Troubleshooting/START_HERE.md>)
+[Open topic guide](<08_Troubleshooting/README.md>)
 
 ## Additional Resources
 
