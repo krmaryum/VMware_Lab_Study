@@ -1,0 +1,84 @@
+# Chapter 02 — Port Groups (Roman Urdu)
+
+## Concept aur lab ka talluq
+
+Port group switch par connections aur policies ka group hai. VM port group mein guest vNIC lagta hai; VMkernel interface ESXi host ke liye hai. `SERVERS` naam purpose samjhata hai, lekin naam akela VLAN ya traffic isolation nahin banata.
+
+Recorded practical mein VM port group select hua, `vSwitch0` choose hua, `SERVERS` aur VLAN None (0) set huay aur creation confirm hui. Zero VMs attached thin. Is liye creation evidenced hai, guest-to-guest ya guest-to-LAN connectivity nahin. Baad mein VM ki Network Adapter settings se yeh group select karke guest IP aur actual connectivity verify ho sakti hai.
+
+**Revision:** `SERVERS` banane se naya ESXi host IP ya guest OS ki configuration nahin bani.
+
+> **Hifazati ehtiyat:** Read-only inspection theek hai. Management uplink, VLAN, port group ya `vmk0` IP change karne se remote access band ho sakta hai. Changes se pehle local/VM console aur rollback plan zaroor hona chahiye.
+
+## Is chapter mein kya seekhenge?
+VM Port Group, VMkernel Port Group, VLAN IDs aur virtual machine ka apni logical network se attach hona samjhenge.
+
+## Port Group kya hota hai?
+**Port Group** virtual switch ke ports ke liye common settings aur policies define karta hai. Guest VM apni **virtual-machine port group** se connect hoti hai. ESXi ki management aur kuch services **VMkernel interface** aur uske port group ke through connect hoti hain.
+
+| Aapke screen ka naam | Kaam | Screenshot se evidence |
+|---|---|---|
+| `Management Network` | ESXi host ke management/service traffic ke liye | `vmk0`, IP `10.0.0.10` |
+| `VM Network` | Virtual machine ki NIC attach karne ke liye | `Virtual Machines (0)` |
+
+### Management aur VM networking mein farq
+`Management Network` ko aise samjhein jaise ESXi administrator ke liye raasta. Aap jab browser par Host Client open karte hain to management IP use hota hai. `VM Network` guest VMs ko LAN par traffic bhejne ya doosri VMs se communicate karne ka logical connection deti hai. Dono ek hi `vSwitch0` share kar sakte hain; lekin policies alag ho sakti hain.
+
+## VLAN ID kya hota hai?
+VLAN se ek physical/virtual switching network ko logical Layer-2 segments mein divide karte hain. ESXi standard port group mein aam tor par **VLAN 0** untagged traffic ko represent karta hai; **1–4094** VLAN tagging ke use-cases ke liye hain (kuch values platform par special/reserved ho sakti hain); **4095** special guest trunking mode hai, har lab ke liye nahin.
+
+**Aapke screenshot mein `VLAN ID: --` likha hai.** Is ka matlab yeh *nahin* ke hum 100% yaqeen se VLAN 0 declare kar dein. Actual VLAN field ko **Networking → Port Groups** par check karna hoga.
+
+### Misal (aapke host par apply nahin ki gayi)
+Conceptual raasta: endpoint interface → port group → standard switch → bahar ke destination ke liye munasib uplink. Screenshots captured objects dikhati hain; outer Workstation mapping alag verify hoti hai.
+
+## GUI practical lab — Read-only
+1. ESXi Host Client mein **Networking → Port groups** open karein.
+2. Har group ka **Name**, **Virtual Switch**, **VLAN ID** aur related VM/VMkernel association record karein.
+3. Policy details dekhein, **Edit** ya **Remove** na karein.
+4. Future VM banate waqt uski **Network Adapter** settings mein selected Port Group note karein.
+5. Screenshot ka naam `02-port-groups.png` rakh sakte hain.
+
+## Screen ke fields ka matlab
+- **Name:** Admin ka diya hua label; isay DNS hostname na samjhein.
+- **Virtual Switch:** Port group kis vSwitch se linked hai.
+- **VLAN ID:** Traffic ki tag/untag configuration; upstream physical/Workstation network ko bhi compatible hona chahiye.
+- **Virtual Machines (0):** Filhaal koi VM attached nahin; yeh failure ka signal nahin.
+
+## Ahm ehtiyat
+Agar management VLAN galat kar di, to browser se ESXi disconnect ho sakta hai. Pehle console access verify karein; is chapter mein sirf observation hai.
+
+## Practice / Interview sawalat
+1. `Management Network` aur `VM Network` ka practical farq batayein.
+2. Management VLAN galat change karne ka kya nuksan hai?
+3. `VLAN ID: --` dekh kar direct VLAN 0 assume kyun nahin karna chahiye?
+
+
+---
+
+## Actual Practical Lab — SERVERS VM Port Group
+
+Teacher PDF ke page 4 par VM Port Group ko virtual machines ki connectivity ke liye bataya gaya hai. **Hamare lab mein** `SERVERS` naam ka port group `vSwitch0` par create hua, VLAN `None (0)` rakha gaya, aur completion screenshot ne creation verify ki.
+
+### Step 1 — Connection type select
+![VM port group select](screenshots/14-servers-select-portgroup.png)
+
+**Kyun?** Kyun ke hum ESXi host ka naya IP interface nahi, balke future VMs ko connect karne ka logical network bana rahe thay. `Virtual Machine Port Group for a Standard Switch` correct selection hai.
+
+### Step 2 — Target vSwitch select
+![Select vSwitch0](screenshots/15-servers-target-vswitch0.png)
+
+**Kyun?** Port group ko kisi existing standard switch se associate karna hota hai. Humne `vSwitch0` select kiya, na ke storage ka `vSwitch1`.
+
+### Step 3 — Label aur VLAN
+![SERVERS label, VLAN None](screenshots/16-servers-label.png)
+
+**Network label:** `SERVERS`. **VLAN ID:** `None (0)`. Naam alag hone se isolation automatically nahi banti. `SERVERS` aur `VM Network` dono untagged VLAN port groups hon to ordinarily same Layer 2 broadcast domain share kar sakte hain, baqi policies aur upstream mapping par dependent.
+
+### Step 4 — Creation verify
+![SERVERS created](screenshots/17-servers-created.png)
+
+Screenshot mein `Management Network`, `SERVERS`, `VM Network` teeno `vSwitch0` par listed hain, aur `Update network configuration` completed hai. `SERVERS` ke samne **0 virtual machines** hain. **Is stage par koi VM attach karke networking test nahi hua.**
+
+**Read-only command:** `esxcli network vswitch standard portgroup list` — port groups aur corresponding vSwitch ka naam verify karne ke liye. Output mein agar SERVERS ke saamne `vSwitch0` aaye to configured association confirm hoti hai.
+
