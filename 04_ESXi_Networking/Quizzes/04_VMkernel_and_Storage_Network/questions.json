@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "cat": "Concept",
+    "prompt": "What is a VMkernel network adapter?",
+    "options": [
+      "An IP-enabled network interface used by the ESXi host",
+      "A virtual disk attached to a guest",
+      "A guest operating system’s network adapter",
+      "A DNS zone containing ESXi names"
+    ],
+    "correct": 0,
+    "en": "VMkernel interfaces support host networking, distinct from guest vNICs.",
+    "ru": "VMkernel interface host networking ke liye hai, guest vNIC se alag."
+  },
+  {
+    "id": 2,
+    "cat": "Concept",
+    "prompt": "Which naming pattern normally identifies VMkernel interfaces?",
+    "options": [
+      "vmk0, vmk1 and other vmk numbers",
+      "vmnic0 and vmnic1 only",
+      "Hard Disk 1 and Hard Disk 2",
+      "VCPLAB.Com and in-addr.arpa"
+    ],
+    "correct": 0,
+    "en": "vmk identifies a VMkernel interface; vmnic identifies an ESXi network adapter.",
+    "ru": "vmk VMkernel interface aur vmnic ESXi network adapter ko identify karta hai."
+  },
+  {
+    "id": 3,
+    "cat": "Concept",
+    "prompt": "Which object carries the ESXi management address in this lab?",
+    "options": [
+      "vmk0",
+      "The vSwitch0 label itself",
+      "The guest VM’s CNAME record",
+      "The datastore name"
+    ],
+    "correct": 0,
+    "en": "The host IP endpoint is its VMkernel interface, not the switch name.",
+    "ru": "Host IP endpoint VMkernel interface hai, switch name nahin."
+  },
+  {
+    "id": 4,
+    "cat": "Concept",
+    "prompt": "Which statement about vMotion is accurate?",
+    "options": [
+      "It is a function that uses appropriately configured VMkernel networking",
+      "It is another name for every VMkernel adapter",
+      "Creating any vmk automatically performs a migration",
+      "It is a guest-only DNS protocol"
+    ],
+    "correct": 0,
+    "en": "A VMkernel interface and the service using it are different concepts.",
+    "ru": "VMkernel interface aur usay use karne wali service alag concepts hain."
+  },
+  {
+    "id": 5,
+    "cat": "Concept",
+    "prompt": "Does creating a storage VMkernel interface automatically mount an NFS datastore?",
+    "options": [
+      "No; target, protocol and datastore configuration/testing remain separate",
+      "Yes; the STORAGE label mounts every available export",
+      "Yes; all reachable disks are formatted automatically",
+      "Only if the address begins with 172.16"
+    ],
+    "correct": 0,
+    "en": "Network configuration does not complete storage-protocol or datastore setup.",
+    "ru": "Network configuration storage-protocol ya datastore setup complete nahin karti."
+  },
+  {
+    "id": 6,
+    "cat": "Concept",
+    "prompt": "What is the key difference between a VMkernel interface and its port group?",
+    "options": [
+      "The interface supplies the host IP endpoint; the group supplies network attachment/policy context",
+      "Both are identical names for one DNS record",
+      "The group is a disk; the interface is a CPU",
+      "The group assigns every guest its administrator password"
+    ],
+    "correct": 0,
+    "en": "Separate networking objects provide addressing and connection-policy roles.",
+    "ru": "Alag networking objects addressing aur connection-policy roles dete hain."
+  },
+  {
+    "id": 7,
+    "cat": "Concept",
+    "prompt": "When does reaching an off-subnet storage IP require routing?",
+    "options": [
+      "When the destination is not reachable through a suitable directly connected subnet",
+      "Never; every storage label creates a route",
+      "Only when a DNS alias is uppercase",
+      "Only when the guest uses a split virtual disk"
+    ],
+    "correct": 0,
+    "en": "Off-subnet reachability needs an appropriate route and working path.",
+    "ru": "Off-subnet reachability ko munasib route aur working path chahiye."
+  },
+  {
+    "id": 8,
+    "cat": "Concept",
+    "prompt": "What does MTU describe?",
+    "options": [
+      "The maximum packet size supported at a network layer on an interface/path",
+      "The guaranteed application throughput",
+      "The number of VMs allowed on a datastore",
+      "The time before a DNS record expires"
+    ],
+    "correct": 0,
+    "en": "MTU is a size parameter; it is not a bandwidth guarantee.",
+    "ru": "MTU size parameter hai, bandwidth guarantee nahin."
+  },
+  {
+    "id": 9,
+    "cat": "Concept",
+    "prompt": "What must be considered before using jumbo frames for IP storage?",
+    "options": [
+      "Compatible MTU and successful testing across the entire path",
+      "Only changing the VMkernel MTU on one end",
+      "Only renaming the port group JUMBO",
+      "Only adding another DNS suffix"
+    ],
+    "correct": 0,
+    "en": "A larger MTU must work across the relevant virtual and physical network path.",
+    "ru": "Bara MTU relevant virtual aur physical poore path par work karna chahiye."
+  },
+  {
+    "id": 10,
+    "cat": "Concept",
+    "prompt": "Why specify an interface in vmkping?",
+    "options": [
+      "To test connectivity using the intended VMkernel path",
+      "To create a new interface automatically",
+      "To install an iSCSI target",
+      "To guarantee datastore read/write performance"
+    ],
+    "correct": 0,
+    "en": "Interface selection helps avoid testing the wrong host network.",
+    "ru": "Interface selection ghalat host network test karne se bachati hai."
+  },
+  {
+    "id": 11,
+    "cat": "Lab scenario",
+    "prompt": "Which address was recorded for management vmk0 on desktop-esxi9?",
+    "options": [
+      "10.0.0.10",
+      "10.0.0.11",
+      "172.16.0.102",
+      "192.168.0.121"
+    ],
+    "correct": 0,
+    "en": "The ESXi9 management checkpoint uses .10; .11 belongs to the separate ESXi8 context.",
+    "ru": "ESXi9 management checkpoint .10 hai; .11 alag ESXi8 context hai."
+  },
+  {
+    "id": 12,
+    "cat": "Lab scenario",
+    "prompt": "Which storage VMkernel address and prefix were captured in the original storage setup?",
+    "options": [
+      "172.16.0.102/16",
+      "172.16.50.10/24",
+      "192.168.0.123/24",
+      "10.0.0.10/32"
+    ],
+    "correct": 0,
+    "en": "The recorded STORAGE interface was 172.16.0.102 with mask 255.255.0.0.",
+    "ru": "Recorded STORAGE interface 172.16.0.102 aur mask 255.255.0.0 tha."
+  },
+  {
+    "id": 13,
+    "cat": "Lab scenario",
+    "prompt": "Which combination was shown after the original storage-network creation?",
+    "options": [
+      "vSwitch1 → STORAGE → vmk1",
+      "vSwitch0 → SERVERS → every guest automatically",
+      "DNS01 → VCPLAB.Com → an NFS export",
+      "VMnet2 → a new AD domain"
+    ],
+    "correct": 0,
+    "en": "The captured storage network consisted of those host networking objects.",
+    "ru": "Captured storage network un host networking objects par mushtamil tha."
+  },
+  {
+    "id": 14,
+    "cat": "Lab scenario",
+    "prompt": "What MTU was captured in the storage wizard?",
+    "options": [
+      "1500",
+      "9000 as a verified end-to-end result",
+      "4095",
+      "65535 as a measured storage rate"
+    ],
+    "correct": 0,
+    "en": "1500 was the recorded baseline; jumbo-frame success was not documented.",
+    "ru": "1500 recorded baseline tha; jumbo-frame success documented nahin."
+  },
+  {
+    "id": 15,
+    "cat": "Lab scenario",
+    "prompt": "The storage service checkboxes are not selected in the captured properties. Which claim is justified?",
+    "options": [
+      "Those screenshots do not establish enabled vMotion/vSAN services or mounted storage",
+      "Every storage protocol is permanently impossible",
+      "A datastore was mounted automatically",
+      "The interface has no possible IP connectivity"
+    ],
+    "correct": 0,
+    "en": "Service enablement and protocol/storage completion require their own evidence.",
+    "ru": "Service enablement aur protocol/storage completion ki evidence alag chahiye."
+  },
+  {
+    "id": 16,
+    "cat": "Lab scenario",
+    "prompt": "A same-subnet storage peer is to be tested while management uses gateway 10.0.0.1. What should not be done merely to match the storage label?",
+    "options": [
+      "Replace the management default gateway with an invented storage gateway",
+      "Inspect the actual routes",
+      "Verify the intended peer address",
+      "Select the correct interface for testing"
+    ],
+    "correct": 0,
+    "en": "Do not disrupt the existing default route simply because another connected subnet is added.",
+    "ru": "Doosri connected subnet add honay par existing default route ko bila wajah disturb na karein."
+  },
+  {
+    "id": 17,
+    "cat": "Lab scenario",
+    "prompt": "A later exercise proposes 172.16.50.0/24 while existing STORAGE is 172.16.0.102/16. What is the planning concern?",
+    "options": [
+      "The proposed /24 overlaps the existing /16 connected network",
+      "Different third octets guarantee no overlap",
+      "Both are public address ranges that cannot be used privately",
+      "The overlap is removed by changing a port-group label"
+    ],
+    "correct": 0,
+    "en": "172.16.50.0/24 falls within 172.16.0.0/16.",
+    "ru": "172.16.50.0/24, 172.16.0.0/16 ke andar aata hai."
+  },
+  {
+    "id": 18,
+    "cat": "Lab scenario",
+    "prompt": "Which read-only command displays VMkernel IPv4 address settings?",
+    "options": [
+      "esxcli network ip interface ipv4 get",
+      "esxcli network nic list",
+      "esxcli storage filesystem unmount",
+      "esxcli system shutdown poweroff"
+    ],
+    "correct": 0,
+    "en": "The IP-interface command inspects host interface addressing.",
+    "ru": "IP-interface command host interface addressing inspect karti hai."
+  },
+  {
+    "id": 19,
+    "cat": "Lab scenario",
+    "prompt": "Which command inspects IPv4 routes on ESXi?",
+    "options": [
+      "esxcli network ip route ipv4 list",
+      "esxcli network ip dns server list",
+      "esxcli network nic get -n vmnic0",
+      "esxcli storage filesystem list"
+    ],
+    "correct": 0,
+    "en": "Routes describe destination reachability decisions, distinct from DNS servers or NIC link data.",
+    "ru": "Routes destination reachability decisions batate hain; DNS servers aur NIC link data alag hain."
+  },
+  {
+    "id": 20,
+    "cat": "Lab scenario",
+    "prompt": "A known storage peer replies to vmkping through the intended storage vmk. What is established?",
+    "options": [
+      "Basic IP reachability on that tested path",
+      "A verified mounted datastore and successful storage I/O",
+      "Guaranteed throughput at the NIC’s reported link rate",
+      "Proof that every storage protocol is enabled"
+    ],
+    "correct": 0,
+    "en": "A ping is a reachability test, not storage-session or I/O verification.",
+    "ru": "Ping reachability test hai, storage-session ya I/O verification nahin."
+  },
+  {
+    "id": 21,
+    "cat": "Troubleshooting",
+    "prompt": "The intended storage peer does not reply. Which checks are most relevant?",
+    "options": [
+      "Correct vmk, IP/mask, VLAN, uplink mapping, peer firewall and route where needed",
+      "Only the name of the VM storage folder",
+      "Only the Windows wallpaper",
+      "Only the capitalization of the STORAGE label"
+    ],
+    "correct": 0,
+    "en": "Investigate the actual network path and endpoint, not labels alone.",
+    "ru": "Actual network path aur endpoint investigate hon, sirf labels nahin."
+  },
+  {
+    "id": 22,
+    "cat": "Troubleshooting",
+    "prompt": "A ping works without an explicit interface, but the storage path is in doubt. What is useful next?",
+    "options": [
+      "Repeat with the actual intended VMkernel interface and inspect routes",
+      "Assume all interfaces have been tested",
+      "Delete vmk0 immediately",
+      "Change the peer’s DNS suffix instead"
+    ],
+    "correct": 0,
+    "en": "A successful default-path test may not exercise the intended storage interface.",
+    "ru": "Successful default-path test intended storage interface ko exercise nahin bhi kar sakta."
+  },
+  {
+    "id": 23,
+    "cat": "Troubleshooting",
+    "prompt": "A new VMkernel interface is assigned a different number than the notes’ vmk2 example. What should be used in tests?",
+    "options": [
+      "The actual assigned interface number from the current inventory",
+      "Always vmk2 regardless of inventory",
+      "Always vmk0 because it was created first",
+      "The uplink’s vmnic number as the vmk name"
+    ],
+    "correct": 0,
+    "en": "Interface numbers must come from the current host, not an assumed example.",
+    "ru": "Interface numbers current host se lene hain, assumed example se nahin."
+  },
+  {
+    "id": 24,
+    "cat": "Troubleshooting",
+    "prompt": "Small-packet reachability works, but a planned jumbo-frame validation fails. What should be investigated?",
+    "options": [
+      "MTU consistency and supported packet size across the full path",
+      "Only whether the port group is named STORAGE",
+      "Assume any successful small ping proves jumbo support",
+      "Delete reverse DNS records first"
+    ],
+    "correct": 0,
+    "en": "Small packets do not establish that the path can carry jumbo frames.",
+    "ru": "Small packets se path ki jumbo frames carry karne ki ability prove nahin hoti."
+  },
+  {
+    "id": 25,
+    "cat": "Troubleshooting",
+    "prompt": "Management access disappears after a VMkernel change. Which response best preserves recovery?",
+    "options": [
+      "Use the local console to inspect and restore recorded management settings",
+      "Reset every network object before identifying the change",
+      "Delete the storage datastore immediately",
+      "Assume the DNS suffix must be changed first"
+    ],
+    "correct": 0,
+    "en": "Console access and known previous configuration help recover without broad destructive changes.",
+    "ru": "Console access aur known previous configuration broad destructive changes ke baghair recovery mein madad karte hain."
+  }
+]

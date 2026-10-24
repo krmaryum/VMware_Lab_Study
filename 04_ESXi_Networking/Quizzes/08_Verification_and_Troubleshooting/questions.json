@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "cat": "Concept",
+    "prompt": "What is a sensible first step in an ESXi networking investigation?",
+    "options": [
+      "Identify the exact host and collect current read-only configuration evidence",
+      "Reset all switches before reading their settings",
+      "Delete management vmk0 immediately",
+      "Change every VLAN simultaneously"
+    ],
+    "correct": 0,
+    "en": "A current inventory narrows the problem without introducing unrelated changes.",
+    "ru": "Current inventory unrelated changes ke baghair problem narrow karti hai."
+  },
+  {
+    "id": 2,
+    "cat": "Concept",
+    "prompt": "What does TcpTestSucceeded: True for port 443 establish?",
+    "options": [
+      "A TCP connection to that destination port succeeded",
+      "The ESXi login page definitely rendered",
+      "The user’s password is correct",
+      "Every management API call has passed"
+    ],
+    "correct": 0,
+    "en": "A TCP handshake is distinct from TLS, page loading and authentication.",
+    "ru": "TCP handshake TLS, page loading aur authentication se alag hai."
+  },
+  {
+    "id": 3,
+    "cat": "Concept",
+    "prompt": "What does a ping timeout prove by itself?",
+    "options": [
+      "No ICMP reply arrived within the test period",
+      "The host is certainly powered off",
+      "Every TCP port is closed",
+      "The DNS record is definitely missing"
+    ],
+    "correct": 0,
+    "en": "ICMP may be filtered or unanswered even when another service is reachable.",
+    "ru": "ICMP filtered ya unanswered ho sakti hai jab doosri service reachable ho."
+  },
+  {
+    "id": 4,
+    "cat": "Concept",
+    "prompt": "What does an HTTP 301 response indicate?",
+    "options": [
+      "A redirect to another URL/location",
+      "A successful ESXi administrator login",
+      "A measured network throughput result",
+      "An authoritative reverse DNS answer"
+    ],
+    "correct": 0,
+    "en": "A redirect response is not proof the destination page loaded or authenticated.",
+    "ru": "Redirect response destination page load ya authentication ka proof nahin."
+  },
+  {
+    "id": 5,
+    "cat": "Concept",
+    "prompt": "Which command inventories ESXi standard switches and uplinks?",
+    "options": [
+      "esxcli network vswitch standard list",
+      "esxcli system shutdown poweroff",
+      "esxcli storage filesystem unmount",
+      "esxcli network ip dns server add"
+    ],
+    "correct": 0,
+    "en": "The list command inspects configuration without applying a switch change.",
+    "ru": "List command switch change apply kiye baghair configuration inspect karti hai."
+  },
+  {
+    "id": 6,
+    "cat": "Concept",
+    "prompt": "Which command displays assigned VMkernel IPv4 settings?",
+    "options": [
+      "esxcli network ip interface ipv4 get",
+      "esxcli network nic get -n vmnic0",
+      "esxcli storage filesystem list",
+      "esxcli system hostname get"
+    ],
+    "correct": 0,
+    "en": "VMkernel addresses and physical-adapter link details are different data.",
+    "ru": "VMkernel addresses aur physical-adapter link details alag data hain."
+  },
+  {
+    "id": 7,
+    "cat": "Concept",
+    "prompt": "Which command checks ESXi IPv4 routing information?",
+    "options": [
+      "esxcli network ip route ipv4 list",
+      "esxcli network vswitch standard portgroup list",
+      "esxcli network nic list",
+      "esxcli storage core adapter list"
+    ],
+    "correct": 0,
+    "en": "Routing information helps investigate off-subnet paths.",
+    "ru": "Routing information off-subnet paths investigate karne mein madad karti hai."
+  },
+  {
+    "id": 8,
+    "cat": "Concept",
+    "prompt": "What information should a useful test record preserve?",
+    "options": [
+      "Actual command, source/destination, output, context and a justified conclusion",
+      "Only the expected answer copied from instructions",
+      "Only a screenshot title without host identity",
+      "Only the time the browser was opened"
+    ],
+    "correct": 0,
+    "en": "Evidence needs enough context to connect results to the tested path.",
+    "ru": "Evidence mein itna context chahiye ke result tested path se connect ho."
+  },
+  {
+    "id": 9,
+    "cat": "Concept",
+    "prompt": "Why keep local console access before changing management networking?",
+    "options": [
+      "To recover if remote management is disconnected",
+      "To guarantee all guests have Internet access",
+      "To create a public DNS record automatically",
+      "To double every NIC’s reported bandwidth"
+    ],
+    "correct": 0,
+    "en": "Console recovery provides a path back when the remote network is broken.",
+    "ru": "Remote network toot jaye to console recovery wapas access deti hai."
+  },
+  {
+    "id": 10,
+    "cat": "Concept",
+    "prompt": "Which statement distinguishes an expected result from observed evidence?",
+    "options": [
+      "Expected output is a prediction; observed output is what the actual test returned",
+      "They are interchangeable if the instructions look correct",
+      "Expected output proves every future run will pass",
+      "Only screenshots can be evidence; text output never can"
+    ],
+    "correct": 0,
+    "en": "Do not present predicted outcomes as measurements from the host.",
+    "ru": "Predicted outcomes ko host ki actual measurements ke taur par pesh na karein."
+  },
+  {
+    "id": 11,
+    "cat": "Lab scenario",
+    "prompt": "You are checking desktop-esxi9. Which recorded management IP belongs to that context?",
+    "options": [
+      "10.0.0.10",
+      "10.0.0.11",
+      "192.168.0.121",
+      "172.16.0.18"
+    ],
+    "correct": 0,
+    "en": "The ESXi8 .11 connection case is separate from ESXi9 .10.",
+    "ru": "ESXi8 .11 connection case ESXi9 .10 se alag hai."
+  },
+  {
+    "id": 12,
+    "cat": "Lab scenario",
+    "prompt": "The Host Client opens by IP but not by host name. What is a focused comparison?",
+    "options": [
+      "Check name resolution and client/browser proxy or name handling",
+      "Reformat the datastore immediately",
+      "Assume the physical NIC must be absent",
+      "Delete every VM port group"
+    ],
+    "correct": 0,
+    "en": "IP access working narrows attention to name-dependent behavior, without proving one root cause.",
+    "ru": "IP access work kare to name-dependent behavior investigate hota hai, aik root cause prove nahin."
+  },
+  {
+    "id": 13,
+    "cat": "Lab scenario",
+    "prompt": "A Windows hosts mapping resolves a name for normal applications, but nslookup finds no DNS record. What can explain it?",
+    "options": [
+      "Hosts-file resolution and direct DNS querying are different paths",
+      "nslookup must read SSH private keys first",
+      "The host cannot have a management IP",
+      "A successful application lookup proves public DNS has the record"
+    ],
+    "correct": 0,
+    "en": "A local mapping does not automatically create a DNS server record.",
+    "ru": "Local mapping automatically DNS server record create nahin karti."
+  },
+  {
+    "id": 14,
+    "cat": "Lab scenario",
+    "prompt": "Which PowerShell lookup bypasses the Windows hosts file for a focused DNS-path check?",
+    "options": [
+      "Resolve-DnsName desktop-esxi9 -Type A -DnsOnly -NoHostsFile",
+      "Get-Volume -DriveLetter C",
+      "Test-NetConnection 10.0.0.10 -Port 443",
+      "Get-Content C:\\Windows\\System32\\drivers\\etc\\hosts"
+    ],
+    "correct": 0,
+    "en": "The explicit NoHostsFile option separates this check from local hosts-file mappings.",
+    "ru": "Explicit NoHostsFile option is check ko local hosts mappings se alag karti hai."
+  },
+  {
+    "id": 15,
+    "cat": "Lab scenario",
+    "prompt": "Which test checks the HTTPS TCP port directly using the ESXi9 management IP?",
+    "options": [
+      "Test-NetConnection 10.0.0.10 -Port 443",
+      "nslookup desktop-esxi9",
+      "Get-Volume",
+      "ping 127.0.0.1"
+    ],
+    "correct": 0,
+    "en": "The explicit IP and port test isolates that TCP connection attempt.",
+    "ru": "Explicit IP aur port test us TCP connection attempt ko isolate karta hai."
+  },
+  {
+    "id": 16,
+    "cat": "Lab scenario",
+    "prompt": "You need to test the intended storage VMkernel path to a known peer. What should be selected?",
+    "options": [
+      "The actual storage vmk interface and confirmed peer address",
+      "Always vmk0 regardless of the path",
+      "An interface number copied without checking current inventory",
+      "The guest’s DNS suffix instead of an interface"
+    ],
+    "correct": 0,
+    "en": "Interface-specific testing avoids accidentally using another host path.",
+    "ru": "Interface-specific testing ghalti se doosra host path use karne se bachati hai."
+  },
+  {
+    "id": 17,
+    "cat": "Lab scenario",
+    "prompt": "A saved topology shows STORAGE/vmk1 and its IP. What remains separate verification?",
+    "options": [
+      "Storage endpoint reachability and protocol/datastore I/O",
+      "Whether the shown object exists in that screenshot",
+      "Whether the label appears in the captured view",
+      "Whether the displayed vmk name can be read"
+    ],
+    "correct": 0,
+    "en": "Host network-object creation is not a storage-protocol completion test.",
+    "ru": "Host network-object creation storage-protocol completion test nahin."
+  },
+  {
+    "id": 18,
+    "cat": "Lab scenario",
+    "prompt": "The lab notes have different uplink assignments at different times. What should precede a repeat change?",
+    "options": [
+      "A current inventory reconciled with the historical checkpoints",
+      "Assume the oldest screenshot is the live final state",
+      "Assume every uncaptured intermediate change is known",
+      "Reset all adapters to guessed names"
+    ],
+    "correct": 0,
+    "en": "Historical observations do not replace current host inspection.",
+    "ru": "Historical observations current host inspection ka badal nahin."
+  },
+  {
+    "id": 19,
+    "cat": "Lab scenario",
+    "prompt": "A failover exercise uses two same-host VMs on the same switch as ping endpoints. What evidence is still needed?",
+    "options": [
+      "A path that actually traverses the tested uplink and its recovery during a fault",
+      "Only more local pings to the same peer",
+      "Only two adapters being listed Active",
+      "Only a label called REDUNDANT"
+    ],
+    "correct": 0,
+    "en": "Local traffic may bypass uplinks, so it cannot establish uplink failover.",
+    "ru": "Local traffic uplinks bypass kar sakti hai; is se uplink failover establish nahin hota."
+  },
+  {
+    "id": 20,
+    "cat": "Lab scenario",
+    "prompt": "A shaping exercise reports only successful ping. Which evidence would assess the bandwidth policy?",
+    "options": [
+      "Baseline, shaped and restored throughput measurements on the intended path",
+      "Only the VM’s static host name",
+      "Only the DNS SOA serial",
+      "Only a screenshot of disk capacity"
+    ],
+    "correct": 0,
+    "en": "Reachability and throughput are different questions.",
+    "ru": "Reachability aur throughput alag sawal hain."
+  },
+  {
+    "id": 21,
+    "cat": "Troubleshooting",
+    "prompt": "TCP 443 works but the browser still fails to show Host Client. Which checks are relevant?",
+    "options": [
+      "HTTPS URL, TLS/certificate response, proxy/browser and management service behavior",
+      "Assume the user has already authenticated",
+      "Replace every VM’s IP immediately",
+      "Delete the secondary DNS zone as the first fix"
+    ],
+    "correct": 0,
+    "en": "A working TCP connection narrows but does not complete the application-layer diagnosis.",
+    "ru": "Working TCP connection diagnosis narrow karti hai, application-layer diagnosis complete nahin."
+  },
+  {
+    "id": 22,
+    "cat": "Troubleshooting",
+    "prompt": "A same-host guest ping works but an external peer fails. What should be investigated?",
+    "options": [
+      "Uplink status, outer mapping, VLAN, addressing, routes and peer firewall",
+      "Assume local success proves external connectivity",
+      "Only the guest’s desktop resolution",
+      "Only whether the datastore is split into files"
+    ],
+    "correct": 0,
+    "en": "External traffic adds path components that local switching may not exercise.",
+    "ru": "External traffic mein woh path components aate hain jo local switching test nahin karti."
+  },
+  {
+    "id": 23,
+    "cat": "Troubleshooting",
+    "prompt": "A test-interface number in the notes does not exist on the current host. What is the next step?",
+    "options": [
+      "Inventory actual interfaces and substitute the confirmed correct one",
+      "Create a new management interface blindly to match the number",
+      "Delete all interfaces with lower numbers",
+      "Assume the missing number is a DNS failure"
+    ],
+    "correct": 0,
+    "en": "Use real identifiers from the current system instead of forcing examples into place.",
+    "ru": "Examples force karne ke bajaye current system ke actual identifiers use karein."
+  },
+  {
+    "id": 24,
+    "cat": "Troubleshooting",
+    "prompt": "You need to remove an isolated practice network after testing. Which order is most sensible?",
+    "options": [
+      "Restore test policies/links, detach dependent lab endpoints, then remove only unused lab interfaces/groups/switch",
+      "Delete management vmk0 before identifying lab objects",
+      "Delete every switch before moving any attached VM",
+      "Reset the whole network regardless of scope"
+    ],
+    "correct": 0,
+    "en": "Cleanup should follow dependencies and preserve pre-existing management/storage objects.",
+    "ru": "Cleanup dependencies follow kare aur existing management/storage objects preserve kare."
+  },
+  {
+    "id": 25,
+    "cat": "Troubleshooting",
+    "prompt": "An earlier browser timeout is followed by successful access without a captured root-cause test. What should the incident notes say?",
+    "options": [
+      "Access succeeded later; the original timeout’s exact cause remains unconfirmed",
+      "DNS was definitely the cause because it is a networking issue",
+      "The physical cable definitely failed despite no link evidence",
+      "Every future access attempt is guaranteed to work"
+    ],
+    "correct": 0,
+    "en": "Resolution of a symptom and proof of its original cause are separate conclusions.",
+    "ru": "Symptom resolve hona aur original cause ka proof alag conclusions hain."
+  }
+]

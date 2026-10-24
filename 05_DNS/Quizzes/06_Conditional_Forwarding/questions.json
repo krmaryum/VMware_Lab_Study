@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "cat": "Concept",
+    "prompt": "What does a conditional forwarder configure?",
+    "options": [
+      "A rule sending queries for a specified DNS namespace to selected DNS servers",
+      "A complete read-only copy of every record in that namespace",
+      "An IP address pool for DHCP clients",
+      "An Active Directory trust between two domains"
+    ],
+    "correct": 0,
+    "en": "The condition is the queried DNS namespace; matching questions go to configured DNS destinations.",
+    "ru": "Condition queried DNS namespace hai; matching sawal configured DNS destinations ko jate hain."
+  },
+  {
+    "id": 2,
+    "cat": "Concept",
+    "prompt": "What does a conditional-forwarder rule store for its basic operation?",
+    "options": [
+      "The domain to match and target DNS server addresses",
+      "Every host A and PTR record in the target zone",
+      "Client passwords and Kerberos tickets",
+      "The target network’s complete switch configuration"
+    ],
+    "correct": 0,
+    "en": "The rule identifies where to ask, not a transferred inventory of host records.",
+    "ru": "Rule batata hai kahan poochna hai; host records ki transferred inventory nahin."
+  },
+  {
+    "id": 3,
+    "cat": "Concept",
+    "prompt": "How does a conditional forwarder differ from a standard secondary zone?",
+    "options": [
+      "It forwards matching questions rather than holding a full authoritative zone copy",
+      "It always stores more zone records than a secondary",
+      "It is a writable primary copy under another name",
+      "It replaces the client’s network adapter"
+    ],
+    "correct": 0,
+    "en": "A secondary replicates full zone data; a conditional rule routes queries.",
+    "ru": "Secondary full zone data replicate karta hai; conditional rule queries bhejta hai."
+  },
+  {
+    "id": 4,
+    "cat": "Concept",
+    "prompt": "Which comparison with a stub zone is accurate?",
+    "options": [
+      "A stub maintains authority metadata; a conditional forwarder uses configured query destinations",
+      "Both necessarily contain every ordinary host record",
+      "A stub sets the default gateway; forwarding creates PTRs",
+      "A conditional forwarder always discovers every changed authority automatically"
+    ],
+    "correct": 0,
+    "en": "The mechanisms differ: authority discovery versus a configured namespace-to-server rule.",
+    "ru": "Mechanisms alag: authority discovery aur configured namespace-to-server rule."
+  },
+  {
+    "id": 5,
+    "cat": "Concept",
+    "prompt": "Does creating a conditional forwarder make the local server authoritative for the destination domain?",
+    "options": [
+      "No; configuring a query destination does not confer zone authority",
+      "Yes; all matching domain records become writable locally",
+      "Yes; authority transfers as soon as the dialog is saved",
+      "Only if the target address is a private IPv4 address"
+    ],
+    "correct": 0,
+    "en": "Forwarding configuration alone does not establish authoritative zone ownership.",
+    "ru": "Sirf forwarding configuration authoritative zone ownership establish nahin karti."
+  },
+  {
+    "id": 6,
+    "cat": "Concept",
+    "prompt": "Which DNS Manager area creates a domain-specific forwarding rule?",
+    "options": [
+      "Conditional Forwarders node",
+      "Reverse Lookup Zones only",
+      "The client’s hosts file editor",
+      "The Network Adapter IPv4 gateway field"
+    ],
+    "correct": 0,
+    "en": "Conditional Forwarders is distinct from the server-wide general Forwarders settings.",
+    "ru": "Conditional Forwarders node server-wide general Forwarders settings se alag hai."
+  },
+  {
+    "id": 7,
+    "cat": "Concept",
+    "prompt": "What is the role of an ordinary server-level forwarder?",
+    "options": [
+      "Handle eligible unresolved queries through a general forwarding path",
+      "Maintain the writable source for every remote zone",
+      "Provide the client’s default IP route",
+      "Create every reverse record automatically"
+    ],
+    "correct": 0,
+    "en": "General forwarding and namespace-specific forwarding have different scope.",
+    "ru": "General aur namespace-specific forwarding ka scope alag hai."
+  },
+  {
+    "id": 8,
+    "cat": "Concept",
+    "prompt": "What remains necessary when the target DNS server is on another subnet?",
+    "options": [
+      "Working network routing and permitted DNS traffic",
+      "Only a matching wallpaper on both machines",
+      "Only a CNAME pointing to the subnet mask",
+      "No network path because forwarding creates one"
+    ],
+    "correct": 0,
+    "en": "A DNS rule does not create an IP route, tunnel or firewall exception.",
+    "ru": "DNS rule IP route, tunnel ya firewall exception create nahin karta."
+  },
+  {
+    "id": 9,
+    "cat": "Concept",
+    "prompt": "Is zone-transfer permission required merely to forward a DNS query?",
+    "options": [
+      "No; query forwarding and zone transfer are different operations",
+      "Yes; every query must download the full zone",
+      "Yes; otherwise the client must become a secondary",
+      "Only when the queried name contains a final dot"
+    ],
+    "correct": 0,
+    "en": "Queries ask for answers; zone transfer replicates zone data.",
+    "ru": "Query answer poochti hai; zone transfer zone data replicate karta hai."
+  },
+  {
+    "id": 10,
+    "cat": "Concept",
+    "prompt": "Which transport access should be considered for normal DNS operation?",
+    "options": [
+      "Both UDP and TCP port 53 as appropriate",
+      "Only TCP port 3389",
+      "Only UDP port 67",
+      "Only HTTPS port 443 without a DNS service"
+    ],
+    "correct": 0,
+    "en": "DNS commonly uses UDP and also needs TCP for appropriate responses and operations.",
+    "ru": "DNS aam tor par UDP use karta aur munasib responses/operations ke liye TCP bhi chahiye."
+  },
+  {
+    "id": 11,
+    "cat": "Lab scenario",
+    "prompt": "What was the saved classroom conditional-forwarder destination for KRNC.org?",
+    "options": [
+      "172.16.0.18",
+      "192.168.0.122",
+      "192.168.0.123",
+      "255.255.255.0"
+    ],
+    "correct": 0,
+    "en": "The recorded KRNC.org rule on DNS01 points to 172.16.0.18.",
+    "ru": "DNS01 ka recorded KRNC.org rule 172.16.0.18 ko point karta hai."
+  },
+  {
+    "id": 12,
+    "cat": "Lab scenario",
+    "prompt": "On which classroom server was the KRNC.org rule saved?",
+    "options": [
+      "DNS01 — 192.168.0.121",
+      "DNS02 — 192.168.0.122",
+      "DNS03 — 192.168.0.123",
+      "A client identified only by its subnet mask"
+    ],
+    "correct": 0,
+    "en": "DNS01 is the documented rule’s local forwarding server.",
+    "ru": "Documented rule ka local forwarding server DNS01 hai."
+  },
+  {
+    "id": 13,
+    "cat": "Lab scenario",
+    "prompt": "A rule matches KRNC.org. Which illustrative name falls within that namespace?",
+    "options": [
+      "app.krnc.org.",
+      "app.vcplab.com.",
+      "krnc.org.example.",
+      "app.otherorg.example."
+    ],
+    "correct": 0,
+    "en": "The name app.krnc.org is under KRNC.org; it is illustrative, not a verified existing record.",
+    "ru": "app.krnc.org, KRNC.org ke andar hai; yeh misaal hai, verified existing record nahin."
+  },
+  {
+    "id": 14,
+    "cat": "Lab scenario",
+    "prompt": "DNS01 has the local authoritative VCPLAB.Com zone and a KRNC.org forwarder. What normally answers a known local dns02.vcplab.com record?",
+    "options": [
+      "DNS01’s local authoritative zone data",
+      "The KRNC.org rule solely because it was added last",
+      "The target subnet’s default gateway as a DNS record",
+      "The conditional rule automatically removes the local zone"
+    ],
+    "correct": 0,
+    "en": "The local hosted zone covers the queried name; the unrelated KRNC.org rule is not its route.",
+    "ru": "Local hosted zone queried naam cover karti hai; unrelated KRNC.org rule us ka route nahin."
+  },
+  {
+    "id": 15,
+    "cat": "Lab scenario",
+    "prompt": "The input 172.16.018 causes an entry error. Which correction matches the recorded intended target?",
+    "options": [
+      "172.16.0.18",
+      "172.16.0.1800",
+      "172.16.018.0.1",
+      "172.16"
+    ],
+    "correct": 0,
+    "en": "The documented target is the four-octet IPv4 address 172.16.0.18.",
+    "ru": "Documented target chaar-octet IPv4 address 172.16.0.18 hai."
+  },
+  {
+    "id": 16,
+    "cat": "Lab scenario",
+    "prompt": "The rule is saved and its target address is displayed. Which statement matches the available classroom evidence?",
+    "options": [
+      "Configuration was saved; successful KRNC.org resolution was not demonstrated",
+      "Every KRNC.org record is now verified",
+      "Routing to the target is automatically proven",
+      "A trust-anchor validation test has completed"
+    ],
+    "correct": 0,
+    "en": "A saved configuration is not an end-to-end resolution test.",
+    "ru": "Saved configuration end-to-end resolution test nahin."
+  },
+  {
+    "id": 17,
+    "cat": "Lab scenario",
+    "prompt": "The host-only lab is 192.168.0.0/24 with no configured gateway. The rule points to 172.16.0.18. What needs checking?",
+    "options": [
+      "Whether any valid network path to that other subnet exists",
+      "Whether saving the DNS rule created a router automatically",
+      "Whether all machines must rename themselves KRNC",
+      "Whether the local subnet mask is a DNS server address"
+    ],
+    "correct": 0,
+    "en": "Host-only membership alone does not provide routing to another private subnet.",
+    "ru": "Host-only membership akeli doosri private subnet tak routing nahin deti."
+  },
+  {
+    "id": 18,
+    "cat": "Lab scenario",
+    "prompt": "A real known-host.krnc.org record has been confirmed by the instructor. Which comparison is most useful?",
+    "options": [
+      "Query it directly at 172.16.0.18, then through DNS01 at .121",
+      "Query an unrelated Google name twice",
+      "Ping DNS02 and assume the forwarding path works",
+      "Check only that the local CNAME exists"
+    ],
+    "correct": 0,
+    "en": "The direct-versus-forwarded comparison separates target service/data from the forwarding path.",
+    "ru": "Direct aur forwarded comparison target service/data ko forwarding path se alag karta hai."
+  },
+  {
+    "id": 19,
+    "cat": "Lab scenario",
+    "prompt": "A successful query through DNS01 might have used cached data. What additional evidence helps establish forwarding occurred?",
+    "options": [
+      "Relevant query logs or a packet capture of the DNS01-to-target exchange",
+      "Only the presence of the rule in the console",
+      "Only the client’s DNS suffix",
+      "Only the current desktop hostname"
+    ],
+    "correct": 0,
+    "en": "A returned answer alone does not establish the precise upstream packet path.",
+    "ru": "Returned answer akela exact upstream packet path establish nahin karta."
+  },
+  {
+    "id": 20,
+    "cat": "Lab scenario",
+    "prompt": "The target address changes. What must be reviewed for a manually configured conditional forwarder?",
+    "options": [
+      "Its configured target list and connectivity to the new destination",
+      "Only the client’s desktop theme",
+      "Only the target zone’s MX record",
+      "Nothing, because all configured addresses update automatically"
+    ],
+    "correct": 0,
+    "en": "A manually configured destination needs lifecycle management when addresses change.",
+    "ru": "Manually configured destination ka address badlay to uski management chahiye."
+  },
+  {
+    "id": 21,
+    "cat": "Troubleshooting",
+    "prompt": "Direct queries to the target DNS time out. What should be investigated before blaming DNS01’s rule?",
+    "options": [
+      "Target service, route, DNS access controls and permitted traffic",
+      "Only DNS01’s reverse-zone capitalization",
+      "Only the order of unrelated CNAME records",
+      "Delete the local primary zone immediately"
+    ],
+    "correct": 0,
+    "en": "Failure directly at the destination suggests a target or path issue to investigate.",
+    "ru": "Destination ko direct query fail ho to target ya path investigate karna chahiye."
+  },
+  {
+    "id": 22,
+    "cat": "Troubleshooting",
+    "prompt": "The target answers directly, but the same name fails through DNS01. What is a focused next check?",
+    "options": [
+      "The exact namespace rule, target list and DNS01’s own path/policy",
+      "Assume the target is down despite the direct answer",
+      "Rename the test client to match the remote domain",
+      "Promote DNS02 just to change the destination rule"
+    ],
+    "correct": 0,
+    "en": "The forwarding server can have different reachability and policy from the testing client.",
+    "ru": "Forwarding server ki reachability aur policy testing client se mukhtalif ho sakti hai."
+  },
+  {
+    "id": 23,
+    "cat": "Troubleshooting",
+    "prompt": "The target returns a valid NXDOMAIN for a misspelled name. What expectation is wrong?",
+    "options": [
+      "The resolver must keep trying other paths until it finds an address",
+      "The query spelling should be checked",
+      "The target returned a negative DNS response",
+      "The name may be absent from the target namespace"
+    ],
+    "correct": 0,
+    "en": "A valid negative reply is not the same as silence and does not normally trigger an answer hunt.",
+    "ru": "Valid negative reply silence nahin; aam tor par pasand ka answer dhoondne ka trigger nahin."
+  },
+  {
+    "id": 24,
+    "cat": "Troubleshooting",
+    "prompt": "DNS-A forwards the same namespace to DNS-B, while DNS-B forwards it back to DNS-A without either resolving it. What is the risk?",
+    "options": [
+      "A forwarding loop leading to failed or delayed resolution",
+      "Automatic creation of authoritative records",
+      "Automatic replication of a complete zone",
+      "Guaranteed successful load balancing"
+    ],
+    "correct": 0,
+    "en": "Circular rules can send unresolved work back and forth rather than to a source of answers.",
+    "ru": "Circular rules unresolved sawal ko answers ke source ke bajaye wapas bhej sakti hain."
+  },
+  {
+    "id": 25,
+    "cat": "Troubleshooting",
+    "prompt": "A target stops responding. Is fallback to another resolution path guaranteed?",
+    "options": [
+      "No; it depends on recursion/fallback settings, timeouts and usable connectivity",
+      "Yes; every query always reaches public root servers",
+      "Yes; a conditional rule becomes a secondary automatically",
+      "No; every timeout permanently deletes the forwarding rule"
+    ],
+    "correct": 0,
+    "en": "Fallback is conditional, not proof that another reachable resolution path exists.",
+    "ru": "Fallback conditional hai; doosra reachable resolution path honay ka proof nahin."
+  }
+]

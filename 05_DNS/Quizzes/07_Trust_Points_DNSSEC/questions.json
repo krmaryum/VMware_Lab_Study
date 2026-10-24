@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "cat": "Concept",
+    "prompt": "What is DNSSEC primarily designed to provide?",
+    "options": [
+      "Authentication and integrity checks for signed DNS data",
+      "Encryption of every DNS query",
+      "Automatic recovery of failed DNS hardware",
+      "IP address allocation to clients"
+    ],
+    "correct": 0,
+    "en": "DNSSEC supports checking data origin and integrity; it does not encrypt DNS traffic.",
+    "ru": "DNSSEC data origin aur integrity check karta hai; DNS traffic encrypt nahin karta."
+  },
+  {
+    "id": 2,
+    "cat": "Concept",
+    "prompt": "Which operation publishes signatures for authoritative zone data?",
+    "options": [
+      "Zone signing",
+      "Client domain joining",
+      "Creating an SSH alias",
+      "Setting a default gateway"
+    ],
+    "correct": 0,
+    "en": "Signing and checking those signatures are separate operations.",
+    "ru": "Signatures publish karna aur unhein check karna alag operations hain."
+  },
+  {
+    "id": 3,
+    "cat": "Concept",
+    "prompt": "Which DNS record carries a signature over a record set?",
+    "options": [
+      "RRSIG",
+      "PTR",
+      "CNAME",
+      "MX"
+    ],
+    "correct": 0,
+    "en": "RRSIG holds the signature associated with an RRset.",
+    "ru": "RRSIG RRset ki signature rakhta hai."
+  },
+  {
+    "id": 4,
+    "cat": "Concept",
+    "prompt": "What does a DNSKEY record publish?",
+    "options": [
+      "A public DNSSEC key",
+      "The private signing key",
+      "A client password hash",
+      "The zone’s subnet mask"
+    ],
+    "correct": 0,
+    "en": "Public key material supports signature verification; private keys must remain protected.",
+    "ru": "Public key verification mein madad karti hai; private keys protected rehti hain."
+  },
+  {
+    "id": 5,
+    "cat": "Concept",
+    "prompt": "In a conventional split KSK/ZSK design, what does the KSK sign?",
+    "options": [
+      "The DNSKEY record set",
+      "Every client’s hosts file",
+      "The server’s IP routing table",
+      "Only reverse PTR records"
+    ],
+    "correct": 0,
+    "en": "The key-signing key protects the DNSKEY RRset in the conventional split-key model.",
+    "ru": "Conventional split-key model mein KSK DNSKEY RRset sign karti hai."
+  },
+  {
+    "id": 6,
+    "cat": "Concept",
+    "prompt": "In that conventional split-key design, what does the ZSK sign?",
+    "options": [
+      "The zone’s other record sets",
+      "Only the Windows registry",
+      "The client’s TLS private key",
+      "The default gateway address"
+    ],
+    "correct": 0,
+    "en": "The zone-signing key signs ordinary zone RRsets in this model.",
+    "ru": "Is model mein ZSK ordinary zone RRsets sign karti hai."
+  },
+  {
+    "id": 7,
+    "cat": "Concept",
+    "prompt": "What is a trust anchor?",
+    "options": [
+      "Trusted public key or digest information used as a validation starting point",
+      "A copy of all private signing keys",
+      "A domain user’s login password",
+      "A complete secondary zone for every namespace"
+    ],
+    "correct": 0,
+    "en": "Validation needs a trusted starting point, not merely an untrusted key received in a response.",
+    "ru": "Validation ko trusted starting point chahiye, sirf response mein mili untrusted key nahin."
+  },
+  {
+    "id": 8,
+    "cat": "Concept",
+    "prompt": "How is a DNS Trust Point related to an Active Directory domain trust?",
+    "options": [
+      "They are different mechanisms with different purposes",
+      "Creating one automatically creates the other",
+      "Both grant users access to every DNS server",
+      "Both are simply aliases for a PTR record"
+    ],
+    "correct": 0,
+    "en": "DNS Trust Points concern DNSSEC validation, not AD cross-domain identity trust.",
+    "ru": "DNS Trust Points DNSSEC validation ke liye hain, AD identity trust ke liye nahin."
+  },
+  {
+    "id": 9,
+    "cat": "Concept",
+    "prompt": "What does authenticated denial of existence address?",
+    "options": [
+      "Verifying signed evidence that a requested name or type does not exist",
+      "Preventing all network outages",
+      "Encrypting nonexistent host names",
+      "Creating a replacement record automatically"
+    ],
+    "correct": 0,
+    "en": "DNSSEC can authenticate negative answers as well as positive data.",
+    "ru": "DNSSEC negative answers ko bhi authenticate kar sakta hai."
+  },
+  {
+    "id": 10,
+    "cat": "Concept",
+    "prompt": "What is a DS record used for in a signed delegation?",
+    "options": [
+      "Linking a child zone’s key information into the parent’s trust chain",
+      "Replicating every child A record to the parent",
+      "Replacing all NS records with IP routes",
+      "Publishing the child’s private signing key"
+    ],
+    "correct": 0,
+    "en": "The delegation signer record supports a chain of trust to the child.",
+    "ru": "DS record child tak trust chain mein madad karta hai."
+  },
+  {
+    "id": 11,
+    "cat": "Lab scenario",
+    "prompt": "Which classroom zone was signed during the recorded exercise?",
+    "options": [
+      "VCPLAB.Com on DNS01",
+      "KRNC.org on the remote target",
+      "Every reverse zone on all three servers",
+      "Only the client’s local hosts file"
+    ],
+    "correct": 0,
+    "en": "The recorded exercise signed the forward zone on DNS01.",
+    "ru": "Recorded exercise mein DNS01 ki forward zone sign hui."
+  },
+  {
+    "id": 12,
+    "cat": "Lab scenario",
+    "prompt": "Which DNS Manager action starts the signing workflow?",
+    "options": [
+      "Zone context menu → DNSSEC → Sign the Zone",
+      "Conditional Forwarders → New Rule",
+      "VMware Network Editor → Add VMnet",
+      "Computer Name → Change → More"
+    ],
+    "correct": 0,
+    "en": "The zone’s DNSSEC menu starts the signing wizard.",
+    "ru": "Zone ka DNSSEC menu signing wizard shuru karta hai."
+  },
+  {
+    "id": 13,
+    "cat": "Lab scenario",
+    "prompt": "DNSKEY, RRSIG and NSEC3 appear after signing. What does that establish?",
+    "options": [
+      "The zone published DNSSEC-related signed data",
+      "A separate resolver’s validation has been demonstrated",
+      "All clients now use encrypted DNS",
+      "Every trust anchor has been securely imported"
+    ],
+    "correct": 0,
+    "en": "Published DNSSEC records demonstrate signing, not every downstream validation step.",
+    "ru": "DNSSEC records signing dikhate hain, har downstream validation step nahin."
+  },
+  {
+    "id": 14,
+    "cat": "Lab scenario",
+    "prompt": "The classroom summary showed DNS01 as Key Master. What does that label concern?",
+    "options": [
+      "Management of the zone’s DNSSEC signing keys",
+      "The only server allowed to answer ordinary queries",
+      "The default gateway for DNS02",
+      "The owner of the Workstation virtual disk"
+    ],
+    "correct": 0,
+    "en": "Key Master is a signing/key-management role, not a general traffic route.",
+    "ru": "Key Master signing/key-management role hai, general traffic route nahin."
+  },
+  {
+    "id": 15,
+    "cat": "Lab scenario",
+    "prompt": "A screenshot shows RSA/SHA-256 and 2048-bit KSK settings. What can safely be recorded?",
+    "options": [
+      "Those captured settings, without inventing uncaptured wizard values",
+      "Every uncaptured ZSK and rollover setting is proven",
+      "All future key choices must use that exact size",
+      "End-to-end validation is guaranteed"
+    ],
+    "correct": 0,
+    "en": "A summary proves only the parameters it actually displays.",
+    "ru": "Summary sirf actually displayed parameters ka proof hai."
+  },
+  {
+    "id": 16,
+    "cat": "Lab scenario",
+    "prompt": "Which material should be distributed as public trust-anchor information?",
+    "options": [
+      "Authenticated public DNSKEY or DS anchor information",
+      "The signing server’s private KSK file",
+      "The local administrator’s password",
+      "The guest VM’s encryption password"
+    ],
+    "correct": 0,
+    "en": "Public trust material is shared through an authenticated process; private signing secrets are not.",
+    "ru": "Public trust material authenticated process se share hota hai; private signing secrets nahin."
+  },
+  {
+    "id": 17,
+    "cat": "Lab scenario",
+    "prompt": "A future lab imports a public anchor but never sends a validation test query. What remains unproven?",
+    "options": [
+      "Whether the resolver actually validates the tested zone successfully",
+      "Whether the import command was typed",
+      "Whether a file path can be written in a command",
+      "Whether DNSSEC has a public-key concept"
+    ],
+    "correct": 0,
+    "en": "Configuration and observed validation behavior require separate evidence.",
+    "ru": "Configuration aur observed validation behavior ki evidence alag chahiye."
+  },
+  {
+    "id": 18,
+    "cat": "Lab scenario",
+    "prompt": "What was the final recorded state after the classroom signing and unsigning exercise?",
+    "options": [
+      "VCPLAB.Com was unsigned",
+      "All zones remained signed permanently",
+      "Trust-anchor validation was completed",
+      "The forward zone became a secondary"
+    ],
+    "correct": 0,
+    "en": "The zone was signed and then unsigned; the final captured state was unsigned.",
+    "ru": "Zone sign aur phir unsign hui; final captured state unsigned thi."
+  },
+  {
+    "id": 19,
+    "cat": "Lab scenario",
+    "prompt": "Which PowerShell command inspects a zone’s trust anchors rather than creating them?",
+    "options": [
+      "Get-DnsServerTrustAnchor -Name VCPLAB.Com",
+      "Import-DnsServerTrustAnchor -KeySetFile C:\\DNSKeys\\keyset",
+      "Remove-DnsServerZone -Name VCPLAB.Com",
+      "Add-DnsServerPrimaryZone -Name VCPLAB.Com"
+    ],
+    "correct": 0,
+    "en": "Get inspects anchor information; importing or changing a zone is a different operation.",
+    "ru": "Get anchor information inspect karta hai; import ya zone change alag operation hai."
+  },
+  {
+    "id": 20,
+    "cat": "Lab scenario",
+    "prompt": "A normal A lookup succeeds through DNS03. What does that say about DNSSEC validation?",
+    "options": [
+      "Success alone does not demonstrate validation",
+      "It proves the complete trust chain was checked",
+      "It proves the query was encrypted",
+      "It proves DNS03 possesses DNS01’s private key"
+    ],
+    "correct": 0,
+    "en": "Ordinary resolution and authenticated validation are different evidence claims.",
+    "ru": "Ordinary resolution aur authenticated validation alag evidence claims hain."
+  },
+  {
+    "id": 21,
+    "cat": "Troubleshooting",
+    "prompt": "Signatures fail validation even though the records look correct. Which system setting is relevant?",
+    "options": [
+      "Accurate time on the validating and signing infrastructure",
+      "The desktop wallpaper",
+      "The order of VMware library folders",
+      "The client’s keyboard layout"
+    ],
+    "correct": 0,
+    "en": "Signatures have inception and expiration times, so clock errors can matter.",
+    "ru": "Signatures ki inception/expiration times hoti hain; clock errors matter kar sakti hain."
+  },
+  {
+    "id": 22,
+    "cat": "Troubleshooting",
+    "prompt": "An expired signature is returned for data expected to validate. What should be investigated?",
+    "options": [
+      "Signing renewal, current signatures and relevant time settings",
+      "Only whether the A record’s capitalization changed",
+      "Only the physical monitor connection",
+      "Convert every record into an MX record"
+    ],
+    "correct": 0,
+    "en": "Expired signature material cannot provide current valid authentication.",
+    "ru": "Expired signature material current valid authentication nahin deta."
+  },
+  {
+    "id": 23,
+    "cat": "Troubleshooting",
+    "prompt": "The zone is unsigned while a resolver still expects authenticated signed data through configured trust. What is a risk?",
+    "options": [
+      "Validation failures unless the trust transition is handled correctly",
+      "DNS automatically encrypts the unsigned data",
+      "The old public key signs new data by itself",
+      "All clients automatically join Active Directory"
+    ],
+    "correct": 0,
+    "en": "Unsigning and trust-anchor/delegation changes must be coordinated.",
+    "ru": "Unsigning aur trust-anchor/delegation changes coordinate honi chahiye."
+  },
+  {
+    "id": 24,
+    "cat": "Troubleshooting",
+    "prompt": "A lab wants evidence that a resolver enforces DNSSEC rather than just fetching RRSIGs. Which test is most useful?",
+    "options": [
+      "Verify valid data and rejection of deliberately invalid signed data in isolation",
+      "Only display an RRSIG in DNS Manager",
+      "Only query an unsigned local A record",
+      "Only ping the authoritative server"
+    ],
+    "correct": 0,
+    "en": "Controlled positive and invalid-signature cases help establish actual validation behavior.",
+    "ru": "Controlled valid aur invalid-signature cases actual validation behavior establish karte hain."
+  },
+  {
+    "id": 25,
+    "cat": "Troubleshooting",
+    "prompt": "SERVFAIL appears during a signed-zone lookup. What is the careful interpretation?",
+    "options": [
+      "Validation is one possible cause; investigate the trust/signature path and other resolver failures",
+      "It proves every SERVFAIL is a DNSSEC attack",
+      "It proves the requested name is NXDOMAIN",
+      "It guarantees the application port is blocked"
+    ],
+    "correct": 0,
+    "en": "SERVFAIL is not specific to DNSSEC; diagnosis needs supporting evidence.",
+    "ru": "SERVFAIL sirf DNSSEC ke liye specific nahin; diagnosis ko supporting evidence chahiye."
+  }
+]

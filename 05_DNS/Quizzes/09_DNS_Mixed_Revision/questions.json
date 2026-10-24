@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "cat": "Zone Types",
+    "prompt": "A branch needs to answer all existing internal records during a temporary primary outage, using its own valid data. Which design fits?",
+    "options": [
+      "A secondary holding a full zone copy",
+      "A stub holding only authority metadata",
+      "A DNS suffix on every workstation",
+      "A conditional rule pointing only to the unavailable primary"
+    ],
+    "correct": 0,
+    "en": "A valid secondary can serve its full copy without asking the failed primary for each answer.",
+    "ru": "Valid secondary failed primary se har jawab poochay baghair apni full copy serve kar sakta hai."
+  },
+  {
+    "id": 2,
+    "cat": "Zone Types",
+    "prompt": "One server is primary for lab.example and secondary for branch.example. A colleague says this is impossible. What is accurate?",
+    "options": [
+      "Roles belong to individual zones, so this combination is possible",
+      "Every server must have one permanent role for all namespaces",
+      "The server must be renamed before hosting another zone",
+      "Only stub zones can share a server"
+    ],
+    "correct": 0,
+    "en": "A server may host different roles for different zones.",
+    "ru": "Server mukhtalif zones ke liye mukhtalif roles host kar sakta hai."
+  },
+  {
+    "id": 3,
+    "cat": "Zone Types",
+    "prompt": "Two writable domain-controller DNS replicas host an AD-integrated zone. Which interpretation fits?",
+    "options": [
+      "They can accept suitable updates and use AD replication",
+      "The second must always be a standard read-only secondary",
+      "Every query requires a full AXFR between the replicas",
+      "Both become stubs because they are domain controllers"
+    ],
+    "correct": 0,
+    "en": "AD-integrated replication is different from standard file-backed primary/secondary replication.",
+    "ru": "AD-integrated replication standard file-backed primary/secondary se alag hai."
+  },
+  {
+    "id": 4,
+    "cat": "Zone Types",
+    "prompt": "Two DNS VMs have valid copies but share one ESXi host and its storage. What risk remains?",
+    "options": [
+      "Failure of shared infrastructure may stop both",
+      "The secondary automatically runs on another physical host",
+      "DNS replication eliminates host failures",
+      "Different VM names guarantee independent recovery"
+    ],
+    "correct": 0,
+    "en": "Separate VM instances do not remove shared failure dependencies.",
+    "ru": "Alag VM instances shared failure dependencies khatam nahin kartin."
+  },
+  {
+    "id": 5,
+    "cat": "nslookup",
+    "prompt": "You need to test DNS02 at .122 for DNS01’s name. Which command isolates that server choice?",
+    "options": [
+      "nslookup dns01.vcplab.com. 192.168.0.122",
+      "nslookup dns02.vcplab.com. 192.168.0.121",
+      "nslookup dns01.vcplab.com. 192.168.0.121",
+      "nslookup dns03.vcplab.com. 192.168.0.123"
+    ],
+    "correct": 0,
+    "en": "The final address selects the resolver; the queried host name is a separate argument.",
+    "ru": "Aakhri address resolver select karta hai; queried host name alag argument hai."
+  },
+  {
+    "id": 6,
+    "cat": "nslookup",
+    "prompt": "Output says Server: Unknown but then returns the correct host address. What is a careful conclusion?",
+    "options": [
+      "Forward resolution worked; the resolver’s reverse display name may be unavailable",
+      "The correct host address must be discarded as invalid",
+      "The entire DNS system is offline",
+      "A missing PTR proves the cause of every earlier timeout"
+    ],
+    "correct": 0,
+    "en": "The resolver display name and the requested answer are separate checks.",
+    "ru": "Resolver display name aur requested answer alag checks hain."
+  },
+  {
+    "id": 7,
+    "cat": "nslookup",
+    "prompt": "An A lookup succeeds but RDP to the returned address fails. What is the next relevant area?",
+    "options": [
+      "RDP service, TCP reachability and access controls",
+      "Assume DNS success guarantees the application works",
+      "Convert the primary zone into a stub immediately",
+      "Delete the A record because any connection failure proves it is wrong"
+    ],
+    "correct": 0,
+    "en": "DNS resolves a name; it does not prove application availability.",
+    "ru": "DNS naam resolve karta hai; application availability ka proof nahin."
+  },
+  {
+    "id": 8,
+    "cat": "Primary Configuration",
+    "prompt": "An administrator adds DNS03’s A record on DNS01. Which additional configuration is not accomplished by that action?",
+    "options": [
+      "Installing and configuring the DNS service on DNS03",
+      "Storing DNS03’s name mapping in the primary",
+      "Making the new record available for appropriate zone queries",
+      "Maintaining the new data at the writable source"
+    ],
+    "correct": 0,
+    "en": "Creating a record about a machine does not configure software on that machine.",
+    "ru": "Machine ka record banana us machine par software configure nahin karta."
+  },
+  {
+    "id": 9,
+    "cat": "Primary Configuration",
+    "prompt": "The alias dns.vcplab.com should lead to DNS01. What belongs in its CNAME target field?",
+    "options": [
+      "dns01.vcplab.com",
+      "192.168.0.121",
+      "255.255.255.0",
+      "0.168.192.in-addr.arpa"
+    ],
+    "correct": 0,
+    "en": "CNAME references a canonical DNS name; that name’s address record supplies the IP.",
+    "ru": "CNAME canonical DNS naam ko reference karta hai; us naam ka address record IP deta hai."
+  },
+  {
+    "id": 10,
+    "cat": "Primary Configuration",
+    "prompt": "A host A query works, but the corresponding reverse query fails. What should be inspected?",
+    "options": [
+      "The separate reverse zone and PTR data",
+      "Only the spelling of the VMware VM folder",
+      "Assume a working A record proves every PTR exists",
+      "Replace the A record with a subnet mask"
+    ],
+    "correct": 0,
+    "en": "Forward and reverse records are separate and require separate verification.",
+    "ru": "Forward aur reverse records alag hain; verification bhi alag chahiye."
+  },
+  {
+    "id": 11,
+    "cat": "Secondary Configuration",
+    "prompt": "A new test record exists on DNS01 but is absent when querying DNS02 directly. What is the focused investigation?",
+    "options": [
+      "Compare SOA serials and inspect refresh, master and transfer permissions",
+      "Rename DNS02 to the test record’s name",
+      "Clear every client cache without inspecting the secondary",
+      "Disable all DNS server interfaces"
+    ],
+    "correct": 0,
+    "en": "Direct stale results on the secondary call for zone-update diagnostics.",
+    "ru": "Secondary par direct stale result zone-update diagnostics mangta hai."
+  },
+  {
+    "id": 12,
+    "cat": "Secondary Configuration",
+    "prompt": "Notify is enabled on DNS01. Someone marks new-record replication complete without checking DNS02. What evidence is missing?",
+    "options": [
+      "The new data or relevant updated version on DNS02",
+      "The name of the Notify button",
+      "A screenshot of the Windows wallpaper",
+      "A successful lookup of an unrelated public name"
+    ],
+    "correct": 0,
+    "en": "Notify prompts checking; it is not the transfer’s completion receipt.",
+    "ru": "Notify check ka signal hai; transfer completion ki receipt nahin."
+  },
+  {
+    "id": 13,
+    "cat": "Secondary Configuration",
+    "prompt": "DNS01 is offline for an extended period and DNS02’s secondary copy expires. What must not be assumed?",
+    "options": [
+      "That DNS02 can keep serving the expired zone indefinitely",
+      "That copy validity matters for answering",
+      "That recovery needs investigation and planning",
+      "That zone expiry differs from record-cache TTL"
+    ],
+    "correct": 0,
+    "en": "An expired secondary cannot be relied on as an unlimited offline authoritative copy.",
+    "ru": "Expired secondary ko unlimited offline authoritative copy nahin samjha ja sakta."
+  },
+  {
+    "id": 14,
+    "cat": "Stub Configuration",
+    "prompt": "DNS03’s stub shows SOA, NS and necessary DNS01 address data but no ordinary alias list. What does that indicate?",
+    "options": [
+      "A limited authority-information copy, consistent with a stub",
+      "A full secondary with all records necessarily hidden",
+      "Proof every remote authority is reachable",
+      "Automatic creation of an AD domain trust"
+    ],
+    "correct": 0,
+    "en": "The missing ordinary record list is expected for the stub model.",
+    "ru": "Stub model mein ordinary record list ka na hona expected hai."
+  },
+  {
+    "id": 15,
+    "cat": "Stub Configuration",
+    "prompt": "A stub answers a host lookup correctly. Which claim needs separate evidence?",
+    "options": [
+      "Which upstream authority or cached data actually supplied the answer",
+      "That this query produced an answer",
+      "That the client submitted a DNS question",
+      "That the chosen resolver was contacted for the test"
+    ],
+    "correct": 0,
+    "en": "Client-visible success alone does not establish the exact resolver packet path.",
+    "ru": "Client-visible success akeli exact resolver packet path establish nahin karti."
+  },
+  {
+    "id": 16,
+    "cat": "Stub Configuration",
+    "prompt": "The stub’s required authorities are unreachable, and no usable answer is cached. Can it supply an arbitrary missing host record from its own full copy?",
+    "options": [
+      "No; it does not hold that full ordinary record set",
+      "Yes; every stub includes a full backup invisibly",
+      "Yes; it creates an A record from the requested spelling",
+      "Yes; it returns the subnet mask as the host address"
+    ],
+    "correct": 0,
+    "en": "Authority metadata does not contain every host’s answer.",
+    "ru": "Authority metadata mein har host ka answer nahin hota."
+  },
+  {
+    "id": 17,
+    "cat": "Conditional Forwarding",
+    "prompt": "DNS01 has KRNC.org → 172.16.0.18 saved, but the isolated lab has no verified route to that subnet. What is the next prerequisite?",
+    "options": [
+      "Establish the target’s real availability and a valid permitted network path",
+      "Assume the saved rule created a route",
+      "Change every local host to the remote DNS address",
+      "Delete the local authoritative zone first"
+    ],
+    "correct": 0,
+    "en": "A forwarding rule does not build routing or prove the target exists.",
+    "ru": "Forwarding rule routing nahin banata aur target ka hona prove nahin karta."
+  },
+  {
+    "id": 18,
+    "cat": "Conditional Forwarding",
+    "prompt": "A known remote name resolves directly at 172.16.0.18 but fails through DNS01. What should be examined?",
+    "options": [
+      "DNS01’s matching rule, target settings and its own path/policy",
+      "Assume direct success means the target is offline",
+      "Only the client’s desktop resolution",
+      "Only the local reverse-zone capitalization"
+    ],
+    "correct": 0,
+    "en": "The forwarding server can have a different network path or policy from the direct test client.",
+    "ru": "Forwarding server ka network path ya policy direct test client se alag ho sakta hai."
+  },
+  {
+    "id": 19,
+    "cat": "Conditional Forwarding",
+    "prompt": "DNS-A sends unresolved questions for the same namespace to DNS-B, which sends them back to DNS-A. What design fault is likely?",
+    "options": [
+      "A forwarding loop",
+      "A complete authoritative zone transfer",
+      "A successful signed delegation",
+      "A primary DNS suffix change"
+    ],
+    "correct": 0,
+    "en": "Circular forwarding can delay or fail resolution rather than reach an answer source.",
+    "ru": "Circular forwarding answer source tak pohanchne ke bajaye resolution delay ya fail kar sakti hai."
+  },
+  {
+    "id": 20,
+    "cat": "DNSSEC",
+    "prompt": "A zone shows DNSKEY and RRSIG records after signing. What additional claim is not established by that view?",
+    "options": [
+      "That a separate resolver successfully performed DNSSEC validation",
+      "That DNSSEC-related records were published",
+      "That zone signing generated signature material",
+      "That the zone view differs from its unsigned state"
+    ],
+    "correct": 0,
+    "en": "Signing and downstream validation need distinct evidence.",
+    "ru": "Signing aur downstream validation ki evidence alag chahiye."
+  },
+  {
+    "id": 21,
+    "cat": "DNSSEC",
+    "prompt": "A colleague wants to copy the private KSK to a resolver as its trust anchor. What is the appropriate alternative?",
+    "options": [
+      "Use authenticated public DNSKEY or DS anchor information",
+      "Share the administrator password instead",
+      "Publish the private key as a TXT record",
+      "Disable signature checking and call it validated"
+    ],
+    "correct": 0,
+    "en": "Trust-anchor distribution uses trusted public material, not private signing secrets.",
+    "ru": "Trust-anchor distribution trusted public material use karti hai, private signing secrets nahin."
+  },
+  {
+    "id": 22,
+    "cat": "DNSSEC",
+    "prompt": "The classroom zone was signed and then unsigned. Which checkpoint is accurate?",
+    "options": [
+      "Final state unsigned; anchor import and validation were not demonstrated",
+      "All resolvers were proven to validate every answer",
+      "All DNS traffic became encrypted permanently",
+      "The unsigned zone automatically retained active signatures"
+    ],
+    "correct": 0,
+    "en": "The record supports the signing/unsigning exercise, not full validation deployment.",
+    "ru": "Record signing/unsigning exercise support karta hai, full validation deployment nahin."
+  },
+  {
+    "id": 23,
+    "cat": "DNS Suffix",
+    "prompt": "DNS03 is given suffix VCPLAB.Com while retaining WORKGROUP. What changed?",
+    "options": [
+      "Its naming context; AD joining was not performed",
+      "It became an AD domain controller",
+      "It gained every zone record automatically",
+      "Its static IP became a DNSKEY record"
+    ],
+    "correct": 0,
+    "en": "A suffix change is distinct from domain membership and DNS role configuration.",
+    "ru": "Suffix change domain membership aur DNS role configuration se alag hai."
+  },
+  {
+    "id": 24,
+    "cat": "DNS Suffix",
+    "prompt": "dns02.vcplab.com. resolves but the short name dns02 fails in an application. What is the best area to check?",
+    "options": [
+      "That application/client’s suffix-search and resolution behavior",
+      "Assume the successful absolute A record is missing",
+      "Delete the primary zone immediately",
+      "Promote the secondary before any inspection"
+    ],
+    "correct": 0,
+    "en": "Absolute-name success narrows attention to short-name expansion and resolver paths.",
+    "ru": "Absolute-name success short-name expansion aur resolver paths ki taraf tawajjuh lati hai."
+  },
+  {
+    "id": 25,
+    "cat": "DNS Suffix",
+    "prompt": "Computer properties show DNS03.VCPLAB.Com, but DNS01 returns NXDOMAIN for that name. What should be checked?",
+    "options": [
+      "Whether DNS01 hosts the required record and whether registration/creation succeeded",
+      "Treat local computer properties as proof the remote record exists",
+      "Replace the DNS suffix with the subnet mask",
+      "Assume this proves all signatures are expired"
+    ],
+    "correct": 0,
+    "en": "Local naming is not proof of matching server-side DNS data.",
+    "ru": "Local naming matching server-side DNS data ka proof nahin."
+  }
+]

@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "cat": "Concept",
+    "prompt": "What is a DNS zone?",
+    "options": [
+      "An administratively managed portion of the DNS namespace",
+      "A network adapter with a static IP",
+      "A list of all devices on a switch",
+      "A password database for domain users"
+    ],
+    "correct": 0,
+    "en": "A zone groups DNS data under an administrative boundary; a server can host multiple zones.",
+    "ru": "Zone DNS namespace ka managed hissa hai; aik server multiple zones host kar sakta hai."
+  },
+  {
+    "id": 2,
+    "cat": "Concept",
+    "prompt": "In a standard file-backed primary/secondary design, where are zone records directly maintained?",
+    "options": [
+      "On the writable primary zone",
+      "On any secondary copy",
+      "Only inside the client resolver cache",
+      "On a stub instead of the primary"
+    ],
+    "correct": 0,
+    "en": "The standard primary is the writable source. Secondary copies receive changes through transfer.",
+    "ru": "Standard primary writable source hai; secondary changes transfer se leta hai."
+  },
+  {
+    "id": 3,
+    "cat": "Concept",
+    "prompt": "What does a secondary zone contain?",
+    "options": [
+      "A complete read-only copy of the zone",
+      "Only the IP addresses of forwarders",
+      "Only the most recently queried record",
+      "Only authority metadata without host records"
+    ],
+    "correct": 0,
+    "en": "A secondary holds the full zone data as a read-only authoritative copy.",
+    "ru": "Secondary ke paas full read-only authoritative zone copy hoti hai."
+  },
+  {
+    "id": 4,
+    "cat": "Concept",
+    "prompt": "What is the main purpose of a stub zone?",
+    "options": [
+      "Help a resolver locate the zone’s authoritative servers",
+      "Provide an independent full copy of every host record",
+      "Apply Group Policy to domain computers",
+      "Allocate IP addresses to new clients"
+    ],
+    "correct": 0,
+    "en": "A stub maintains limited authority information rather than the complete ordinary record set.",
+    "ru": "Stub limited authority information rakhta hai, tamam host records nahin."
+  },
+  {
+    "id": 5,
+    "cat": "Concept",
+    "prompt": "Which collection best describes stub-zone contents?",
+    "options": [
+      "SOA, NS and necessary address/glue records",
+      "Every A, CNAME and PTR record in the full zone",
+      "Only MX records and mail-server passwords",
+      "Client routing tables and default gateways"
+    ],
+    "correct": 0,
+    "en": "The stub identifies authorities. Multiple entries may exist; it is not exactly three individual records.",
+    "ru": "Stub authorities identify karta hai; multiple entries ho sakti hain, sirf teen records lazmi nahin."
+  },
+  {
+    "id": 6,
+    "cat": "Concept",
+    "prompt": "What is a zone transfer used for?",
+    "options": [
+      "Replicating zone data between DNS servers",
+      "Joining a workstation to Active Directory",
+      "Changing a VM’s port group",
+      "Encrypting a DNS client’s password"
+    ],
+    "correct": 0,
+    "en": "Zone transfer supplies replicated DNS data; it is separate from domain membership and networking changes.",
+    "ru": "Zone transfer DNS data copy karta hai; domain join aur network changes alag hain."
+  },
+  {
+    "id": 7,
+    "cat": "Concept",
+    "prompt": "Which statement about server and zone roles is accurate?",
+    "options": [
+      "One server can be primary for one zone and secondary for another",
+      "A machine labelled primary must be primary for every zone",
+      "A secondary cannot host any other zone",
+      "A stub role is permanently fixed to the hardware"
+    ],
+    "correct": 0,
+    "en": "The role is specific to a hosted zone, not a permanent identity of the whole machine.",
+    "ru": "Role hosted zone ka hai, poori machine ki permanent pehchan nahin."
+  },
+  {
+    "id": 8,
+    "cat": "Concept",
+    "prompt": "What does a forward lookup normally seek?",
+    "options": [
+      "An address associated with a DNS name",
+      "The physical switch port for a MAC address",
+      "The name associated with an IP via PTR",
+      "The current password of the named server"
+    ],
+    "correct": 0,
+    "en": "Forward lookup resolves names to addresses; reverse PTR lookup answers the opposite naming question.",
+    "ru": "Forward naam se address, reverse PTR IP se naam poochta hai."
+  },
+  {
+    "id": 9,
+    "cat": "Concept",
+    "prompt": "Which record is used for an address-to-name reverse lookup?",
+    "options": [
+      "PTR",
+      "CNAME",
+      "MX",
+      "TXT"
+    ],
+    "correct": 0,
+    "en": "PTR records belong to the reverse namespace and associate an address with a name.",
+    "ru": "PTR reverse namespace mein address ko naam se associate karta hai."
+  },
+  {
+    "id": 10,
+    "cat": "Concept",
+    "prompt": "How do suitable writable replicas of an AD-integrated zone replicate zone data?",
+    "options": [
+      "Through Active Directory replication",
+      "Only through standard primary-to-secondary transfers",
+      "By requiring every client to copy the zone",
+      "By converting all replicas into read-only stubs"
+    ],
+    "correct": 0,
+    "en": "AD-integrated storage uses AD replication; it is different from the standard file-backed model.",
+    "ru": "AD-integrated storage AD replication use karti hai; standard file-backed model se alag hai."
+  },
+  {
+    "id": 11,
+    "cat": "Lab scenario",
+    "prompt": "DNS01 (.121) is primary. DNS02 (.122) is secondary. A user queries DNS02 for an existing record. How can DNS02 answer?",
+    "options": [
+      "From its own valid full zone copy",
+      "It must ask DNS01 on every query",
+      "It must first become a domain controller",
+      "It must copy the entire zone for every request"
+    ],
+    "correct": 0,
+    "en": "A secondary can answer locally from its existing valid copy.",
+    "ru": "Secondary apni existing valid copy se locally jawab de sakta hai."
+  },
+  {
+    "id": 12,
+    "cat": "Lab scenario",
+    "prompt": "DNS01 is temporarily offline. DNS02 is reachable and its secondary copy is still valid. What is expected for existing records?",
+    "options": [
+      "DNS02 can answer without promotion",
+      "DNS02 must be promoted before any answer",
+      "DNS02 must remove its zone immediately",
+      "DNS02 must turn its full copy into a stub"
+    ],
+    "correct": 0,
+    "en": "Availability of existing records does not require converting the secondary into a writable primary.",
+    "ru": "Existing records serve karne ke liye secondary ko writable primary banana zaroori nahin."
+  },
+  {
+    "id": 13,
+    "cat": "Lab scenario",
+    "prompt": "You add an A record for DNS02 on DNS01. What has this action accomplished by itself?",
+    "options": [
+      "Created a name-to-address mapping in that zone",
+      "Installed the DNS role on DNS02",
+      "Created a secondary zone on DNS02",
+      "Enabled automatic failover between both servers"
+    ],
+    "correct": 0,
+    "en": "A host record is data. It does not configure the service or zone role on the named machine.",
+    "ru": "Host record data hai; named machine par DNS service ya zone role configure nahin karta."
+  },
+  {
+    "id": 14,
+    "cat": "Lab scenario",
+    "prompt": "DNS03 has a stub for VCPLAB.Com. Its required authorities are unreachable and it has no usable cached answer for a requested host. What follows?",
+    "options": [
+      "It cannot resolve that missing host from the stub alone",
+      "It reads the host from its full secondary copy",
+      "It automatically creates an authoritative A record",
+      "It returns the primary server’s IP for every host"
+    ],
+    "correct": 0,
+    "en": "Authority metadata is not the complete host list. A missing answer still needs a reachable source.",
+    "ru": "Authority metadata full host list nahin; missing answer ke liye reachable source chahiye."
+  },
+  {
+    "id": 15,
+    "cat": "Lab scenario",
+    "prompt": "All three lab servers return .122 for dns02.vcplab.com. What can you conclude?",
+    "options": [
+      "The name resolved through each tested server at that time",
+      "All three store identical full zone copies",
+      "All three have writable primary zones",
+      "Automatic failover has been fully verified"
+    ],
+    "correct": 0,
+    "en": "The same client-visible answer can come from different storage and resolver roles.",
+    "ru": "Same answer mukhtalif storage aur resolver roles se aa sakta hai."
+  },
+  {
+    "id": 16,
+    "cat": "Lab scenario",
+    "prompt": "Two DNS VMs run on the same ESXi host. What shared risk remains?",
+    "options": [
+      "A host failure can stop both DNS VMs",
+      "A primary zone cannot run in a VM",
+      "A secondary must always run on physical hardware",
+      "Each DNS VM automatically moves to a different site"
+    ],
+    "correct": 0,
+    "en": "Separate VMs still share the hypervisor host as a failure dependency.",
+    "ru": "Alag VMs phir bhi aik hypervisor host ki failure par depend karti hain."
+  },
+  {
+    "id": 17,
+    "cat": "Lab scenario",
+    "prompt": "You create a forward zone on DNS01. What is true about reverse DNS?",
+    "options": [
+      "Its reverse zone and PTR records require separate configuration",
+      "All reverse records now exist automatically",
+      "The forward zone becomes read-only",
+      "Reverse queries no longer use DNS"
+    ],
+    "correct": 0,
+    "en": "Forward and reverse namespaces are separate. Creation of a forward zone alone does not complete reverse setup.",
+    "ru": "Forward aur reverse namespaces alag hain; forward zone akeli reverse setup complete nahin karti."
+  },
+  {
+    "id": 18,
+    "cat": "Lab scenario",
+    "prompt": "A client lists DNS02 as its preferred DNS server. Does this setting define the hosted zone’s role?",
+    "options": [
+      "No; it selects a resolver, independently of the zone role",
+      "Yes; preferred always means writable primary",
+      "Yes; preferred always means secondary",
+      "Yes; preferred converts all zones into stubs"
+    ],
+    "correct": 0,
+    "en": "Client resolver selection and a server’s hosted zone roles are different settings.",
+    "ru": "Client resolver selection aur hosted zone roles alag settings hain."
+  },
+  {
+    "id": 19,
+    "cat": "Lab scenario",
+    "prompt": "A standard secondary zone must become writable after permanent loss of its primary. What is the appropriate interpretation?",
+    "options": [
+      "An administrator can plan a conversion and handle the old primary’s return",
+      "It automatically becomes writable as soon as one query fails",
+      "Its clients can edit the secondary directly without any change",
+      "A stub must be created before existing records can be read"
+    ],
+    "correct": 0,
+    "en": "Promotion/conversion is an administrative recovery action and needs consistency planning.",
+    "ru": "Conversion administrative recovery action hai; consistency planning chahiye."
+  },
+  {
+    "id": 20,
+    "cat": "Lab scenario",
+    "prompt": "A poster shows www, mail and db records, but no lab evidence establishes those entries. How should they be treated?",
+    "options": [
+      "Illustrative examples, not confirmed lab configuration",
+      "Proof those records exist on DNS01",
+      "Proof DNS02 transferred those specific records",
+      "Evidence that the printer and mail services are reachable"
+    ],
+    "correct": 0,
+    "en": "Educational illustrations are not captured configuration evidence.",
+    "ru": "Educational illustration captured configuration evidence nahin hoti."
+  },
+  {
+    "id": 21,
+    "cat": "Troubleshooting",
+    "prompt": "DNS02 is missing a newly added record. What is the best focused investigation?",
+    "options": [
+      "Compare zone serials and inspect master, transfer permissions and connectivity",
+      "Rename DNS02 until its hostname matches the record",
+      "Delete the reverse zone as the first action",
+      "Change every client’s default gateway immediately"
+    ],
+    "correct": 0,
+    "en": "Stale secondary data calls for transfer/update checks, not unrelated naming or routing changes.",
+    "ru": "Stale secondary data mein transfer/update checks chahiye, unrelated changes nahin."
+  },
+  {
+    "id": 22,
+    "cat": "Troubleshooting",
+    "prompt": "A secondary cannot refresh for longer than its zone expiry interval. What is the key concern?",
+    "options": [
+      "The expired zone copy cannot be served indefinitely",
+      "Expiry converts the copy into a writable primary",
+      "Expiry is identical to every record’s cache TTL",
+      "Expiry guarantees that a stub takes over the full data"
+    ],
+    "correct": 0,
+    "en": "SOA expiry limits serving a stale secondary copy; it is distinct from record-cache TTL.",
+    "ru": "SOA expiry stale secondary copy serve karne ki had hai; record-cache TTL se alag hai."
+  },
+  {
+    "id": 23,
+    "cat": "Troubleshooting",
+    "prompt": "After editing DNS01, an administrator sees a Notify configuration and claims DNS02 has the update. What evidence is still needed?",
+    "options": [
+      "Verify the new data or relevant version on DNS02",
+      "Only confirm that the Notify button exists",
+      "Only query an unrelated public website",
+      "Only check that DNS01 has an A record for itself"
+    ],
+    "correct": 0,
+    "en": "Notification prompts checking. It is not evidence that the transfer succeeded.",
+    "ru": "Notify check ka paigham hai; successful transfer ki evidence nahin."
+  },
+  {
+    "id": 24,
+    "cat": "Troubleshooting",
+    "prompt": "An internal-name query receives a valid NXDOMAIN. Which expectation is mistaken?",
+    "options": [
+      "Every alternate resolver must now be queried until one returns an address",
+      "The name’s spelling and selected zone should be checked",
+      "The chosen server returned a negative DNS response",
+      "The queried namespace might differ from the intended one"
+    ],
+    "correct": 0,
+    "en": "A valid negative reply is different from no reply; normal fallback is not a search for a preferred answer.",
+    "ru": "Valid negative reply aur no reply alag hain; fallback pasand ka answer dhoondna nahin."
+  },
+  {
+    "id": 25,
+    "cat": "Troubleshooting",
+    "prompt": "A correct A answer is returned, but the application still cannot connect. What should be checked next?",
+    "options": [
+      "Application service, port reachability and access controls",
+      "Assume successful DNS proves the application is running",
+      "Convert the forward zone into a reverse zone",
+      "Promote the secondary just to open the application port"
+    ],
+    "correct": 0,
+    "en": "Name resolution is one layer. It does not prove transport or application access.",
+    "ru": "Name resolution aik layer hai; transport ya application access ka proof nahin."
+  }
+]

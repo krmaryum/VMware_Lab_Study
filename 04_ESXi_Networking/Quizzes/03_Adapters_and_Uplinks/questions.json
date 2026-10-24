@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "cat": "Concept",
+    "prompt": "What does vmnic0 identify in ESXi?",
+    "options": [
+      "An adapter interface that ESXi can use as a physical-network uplink",
+      "The host management IP interface itself",
+      "A virtual disk inside a guest",
+      "A DNS suffix for a virtual switch"
+    ],
+    "correct": 0,
+    "en": "vmnic names identify ESXi network adapters, distinct from VMkernel vmk interfaces.",
+    "ru": "vmnic ESXi network adapter ka naam hai; VMkernel vmk interface se alag hai."
+  },
+  {
+    "id": 2,
+    "cat": "Concept",
+    "prompt": "What is the purpose of assigning a vmnic as a standard-switch uplink?",
+    "options": [
+      "Provide a path from the local virtual switch toward an external network",
+      "Assign every guest a static IP",
+      "Create reverse DNS records automatically",
+      "Mount a storage datastore automatically"
+    ],
+    "correct": 0,
+    "en": "An uplink provides a network path; addressing and storage configuration remain separate.",
+    "ru": "Uplink network path deta hai; addressing aur storage configuration alag rehti hain."
+  },
+  {
+    "id": 3,
+    "cat": "Concept",
+    "prompt": "How does a guest vNIC differ from an ESXi vmnic?",
+    "options": [
+      "The guest vNIC attaches a VM; the vmnic can uplink the ESXi switch",
+      "Both are always the same named interface",
+      "The guest vNIC always owns the host management address",
+      "The vmnic is a DNS zone file"
+    ],
+    "correct": 0,
+    "en": "Guest interfaces and host uplink adapters occupy different layers of the topology.",
+    "ru": "Guest interfaces aur host uplink adapters topology ki alag layers par hain."
+  },
+  {
+    "id": 4,
+    "cat": "Concept",
+    "prompt": "Where is an ESXi host’s management IP normally assigned?",
+    "options": [
+      "A VMkernel adapter such as vmk0",
+      "Directly to the standard-switch uplink vmnic",
+      "To the switch label alone",
+      "To each guest’s virtual disk"
+    ],
+    "correct": 0,
+    "en": "The vmnic carries frames while the VMkernel interface provides the host IP endpoint.",
+    "ru": "vmnic frames carry karta hai; VMkernel interface host IP endpoint deta hai."
+  },
+  {
+    "id": 5,
+    "cat": "Concept",
+    "prompt": "Can one vmnic simultaneously belong to two different standard switches?",
+    "options": [
+      "No; standard-switch membership must be reassigned",
+      "Yes; every adapter belongs to all switches by default",
+      "Only if both switches use the same label",
+      "Only if the adapter reports 10 Gbit/s"
+    ],
+    "correct": 0,
+    "en": "The existing assignment must be handled before moving the adapter.",
+    "ru": "Adapter move karne se pehle existing assignment handle hoti hai."
+  },
+  {
+    "id": 6,
+    "cat": "Concept",
+    "prompt": "What does link status Up establish by itself?",
+    "options": [
+      "The adapter reports a connected link",
+      "All remote application ports are reachable",
+      "All VLANs and routes are correct",
+      "An end-to-end performance benchmark passed"
+    ],
+    "correct": 0,
+    "en": "Link status is one layer of evidence, not a complete connectivity test.",
+    "ru": "Link status aik layer ki evidence hai, complete connectivity test nahin."
+  },
+  {
+    "id": 7,
+    "cat": "Concept",
+    "prompt": "What does 10000 Full mean in a reported link field?",
+    "options": [
+      "Reported 10000 Mbit/s, full duplex",
+      "Guaranteed 10000 Mbit/s Internet download speed",
+      "Guaranteed double speed with any second adapter",
+      "A verified recovery time of 10000 milliseconds"
+    ],
+    "correct": 0,
+    "en": "The field describes link characteristics, not measured application throughput.",
+    "ru": "Field link characteristics batata hai, measured application throughput nahin."
+  },
+  {
+    "id": 8,
+    "cat": "Concept",
+    "prompt": "What does an unclaimed adapter mean in the captured switch-assignment context?",
+    "options": [
+      "It is not assigned to a virtual switch at that checkpoint",
+      "It has no possible MAC address",
+      "It must be physically broken",
+      "It automatically has an IP of 0.0.0.0"
+    ],
+    "correct": 0,
+    "en": "Assignment state differs from link health and IP configuration.",
+    "ru": "Assignment state link health aur IP configuration se alag hai."
+  },
+  {
+    "id": 9,
+    "cat": "Concept",
+    "prompt": "In nested ESXi, what can the displayed physical adapter actually be?",
+    "options": [
+      "Virtual NIC hardware presented by VMware Workstation",
+      "Only a dedicated physical desktop PCI card",
+      "The Windows client resolver cache",
+      "A VMkernel TCP/IP stack"
+    ],
+    "correct": 0,
+    "en": "Nested ESXi sees the outer hypervisor’s presented NIC hardware.",
+    "ru": "Nested ESXi outer hypervisor ka presented NIC hardware dekhta hai."
+  },
+  {
+    "id": 10,
+    "cat": "Concept",
+    "prompt": "What does the Observed IP Ranges column represent?",
+    "options": [
+      "Information inferred from observed network traffic",
+      "The configured static IP assigned directly to each vmnic",
+      "The complete host routing table",
+      "Proof that every address in the range is free"
+    ],
+    "correct": 0,
+    "en": "Observed ranges are not a replacement for VMkernel IP settings or actual reachability tests.",
+    "ru": "Observed ranges VMkernel IP settings ya actual reachability tests ka badal nahin."
+  },
+  {
+    "id": 11,
+    "cat": "Lab scenario",
+    "prompt": "vmnic1 appears as (New) under Active before saving the dialog. What is established?",
+    "options": [
+      "A pending configuration choice, not a confirmed saved assignment",
+      "The final configuration has already been applied",
+      "A live failover test has completed",
+      "The host now has a new management IP"
+    ],
+    "correct": 0,
+    "en": "Pending UI changes must be saved and verified before they are called applied.",
+    "ru": "Pending UI changes ko applied kehne se pehle save aur verify karna chahiye."
+  },
+  {
+    "id": 12,
+    "cat": "Lab scenario",
+    "prompt": "A saved topology shows vmnic0 and vmnic1 on vSwitch0. Which conclusion is supported?",
+    "options": [
+      "Both are assigned at that captured checkpoint",
+      "A single transfer now has guaranteed 20 Gbit/s",
+      "A controlled failure test has passed",
+      "The links use independent physical routers"
+    ],
+    "correct": 0,
+    "en": "Membership is visible, but throughput and physical independence need their own evidence.",
+    "ru": "Membership nazar aati hai; throughput aur physical independence ki evidence alag chahiye."
+  },
+  {
+    "id": 13,
+    "cat": "Lab scenario",
+    "prompt": "An administrator removes vmnic1 from vSwitch0. Is this automatically a real link-failure test?",
+    "options": [
+      "No; administrative removal and controlled link-failure recovery are different",
+      "Yes; any configuration change proves failover",
+      "Yes; the removed adapter is now a standby link",
+      "Only if vmnic1 had a reverse DNS record"
+    ],
+    "correct": 0,
+    "en": "A failover test monitors traffic while configured alternate paths handle a link fault.",
+    "ru": "Failover test mein configured alternate paths ke saath link fault par traffic monitor hoti hai."
+  },
+  {
+    "id": 14,
+    "cat": "Lab scenario",
+    "prompt": "The original storage setup moved vmnic1 to vSwitch1. Why was freeing its old assignment relevant?",
+    "options": [
+      "It could not remain a member of both standard switches simultaneously",
+      "Its IP address had to match the datastore name",
+      "The DNS zone required two adapters with identical names",
+      "A virtual switch can never use a connected adapter"
+    ],
+    "correct": 0,
+    "en": "The adapter had to be available for the new switch assignment.",
+    "ru": "Nayi switch assignment ke liye adapter available hona chahiye tha."
+  },
+  {
+    "id": 15,
+    "cat": "Lab scenario",
+    "prompt": "A later inventory shows different uplink assignments from the earlier screenshots. What should documentation do?",
+    "options": [
+      "Record both chronological checkpoints and verify live state before new changes",
+      "Treat the oldest image as permanently current",
+      "Assume every intervening operation was captured",
+      "Delete the later evidence without inspection"
+    ],
+    "correct": 0,
+    "en": "Historical configuration changes should not be collapsed into one contradictory final inventory.",
+    "ru": "Historical changes ko aik contradictory final inventory mein mix nahin karna chahiye."
+  },
+  {
+    "id": 16,
+    "cat": "Lab scenario",
+    "prompt": "How should vmnic4 be matched to an outer Workstation adapter before a link test?",
+    "options": [
+      "Compare actual MAC addresses and inspect the outer network mapping",
+      "Assume Network Adapter 5 must always be vmnic4",
+      "Choose whichever adapter appears first alphabetically",
+      "Use the guest’s DNS suffix as the hardware mapping"
+    ],
+    "correct": 0,
+    "en": "MAC-based mapping avoids relying on adapter-order assumptions.",
+    "ru": "MAC mapping adapter order ke assumptions se bachati hai."
+  },
+  {
+    "id": 17,
+    "cat": "Lab scenario",
+    "prompt": "Two nested uplinks use the same desktop physical NIC and Windows host. What remains shared?",
+    "options": [
+      "The physical NIC and host can fail and affect both paths",
+      "Nothing; two virtual NICs guarantee independent hardware",
+      "Only the DNS alias spelling",
+      "Only the guest’s wallpaper"
+    ],
+    "correct": 0,
+    "en": "Virtual path duplication does not eliminate shared physical dependencies.",
+    "ru": "Virtual paths do honay se shared physical dependencies khatam nahin hotin."
+  },
+  {
+    "id": 18,
+    "cat": "Lab scenario",
+    "prompt": "Which command inventories ESXi NIC link, speed and adapter details?",
+    "options": [
+      "esxcli network nic list",
+      "esxcli network ip dns server list",
+      "esxcli storage filesystem list",
+      "esxcli system hostname get"
+    ],
+    "correct": 0,
+    "en": "The NIC list command reports adapter inventory; other commands inspect different objects.",
+    "ru": "NIC list adapter inventory deta hai; doosri commands alag objects inspect karti hain."
+  },
+  {
+    "id": 19,
+    "cat": "Lab scenario",
+    "prompt": "Which read-only command examines vmnic0 specifically?",
+    "options": [
+      "esxcli network nic get -n vmnic0",
+      "esxcli network ip interface ipv4 get",
+      "esxcli network vswitch standard remove -v vSwitch0",
+      "esxcli system shutdown poweroff"
+    ],
+    "correct": 0,
+    "en": "The get command selects one NIC without changing its configuration.",
+    "ru": "Get command aik NIC select karta hai baghair configuration badlay."
+  },
+  {
+    "id": 20,
+    "cat": "Lab scenario",
+    "prompt": "Two same-host VMs can ping while the external uplink is disconnected. What does this prove about the uplink?",
+    "options": [
+      "Nothing definitive; that local traffic may never use it",
+      "It proves the disconnected link carries traffic",
+      "It proves every external route works",
+      "It proves upstream VLAN compatibility"
+    ],
+    "correct": 0,
+    "en": "Local switching can bypass uplinks; external-path tests are required for uplink claims.",
+    "ru": "Local switching uplinks bypass kar sakti hai; uplink claims ke liye external-path tests chahiye."
+  },
+  {
+    "id": 21,
+    "cat": "Troubleshooting",
+    "prompt": "An adapter is missing from the new switch’s uplink dropdown. What is a focused first check?",
+    "options": [
+      "Inspect whether ESXi sees it and whether another switch owns it",
+      "Create a CNAME for the adapter",
+      "Delete every reverse zone",
+      "Change the guest administrator password"
+    ],
+    "correct": 0,
+    "en": "Availability depends on device visibility and current assignment.",
+    "ru": "Availability device visibility aur current assignment par depend karti hai."
+  },
+  {
+    "id": 22,
+    "cat": "Troubleshooting",
+    "prompt": "A nested vmnic reports link down. Which check is relevant?",
+    "options": [
+      "The mapped Workstation adapter’s Connected state and network attachment",
+      "The primary DNS suffix alone",
+      "The VM folder’s capitalization alone",
+      "The guest display resolution alone"
+    ],
+    "correct": 0,
+    "en": "The outer virtual connection is part of the nested adapter’s link path.",
+    "ru": "Outer virtual connection nested adapter ke link path ka hissa hai."
+  },
+  {
+    "id": 23,
+    "cat": "Troubleshooting",
+    "prompt": "The uplink is up, but the external endpoint is unreachable. What should be checked?",
+    "options": [
+      "Outer network mapping, VLAN compatibility, addressing, routes and peer firewall",
+      "Assume link-up guarantees every higher layer",
+      "Increase MTU everywhere without examining the path",
+      "Remove management vmk0 as the first action"
+    ],
+    "correct": 0,
+    "en": "A connected link can still lead to the wrong network or fail at higher layers.",
+    "ru": "Connected link ghalat network tak ja sakta ya higher layers par fail ho sakta hai."
+  },
+  {
+    "id": 24,
+    "cat": "Troubleshooting",
+    "prompt": "Observed IP Ranges shows No networks on a connected adapter. What is the careful response?",
+    "options": [
+      "Inspect configured VMkernel IPs and test the actual path before declaring failure",
+      "Assign the subnet mask as a vmnic IP",
+      "Assume all host networking is broken",
+      "Reinstall ESXi immediately"
+    ],
+    "correct": 0,
+    "en": "A traffic-derived display is not definitive configured-IP or connectivity evidence.",
+    "ru": "Traffic-derived display configured-IP ya connectivity ki definitive evidence nahin."
+  },
+  {
+    "id": 25,
+    "cat": "Troubleshooting",
+    "prompt": "You plan to disconnect a test uplink on a remotely managed host. What must be protected first?",
+    "options": [
+      "Identify the exact test adapter, preserve management paths and have console rollback",
+      "Only the browser bookmark’s title",
+      "Only the target DNS zone serial",
+      "Only the guest’s screen saver"
+    ],
+    "correct": 0,
+    "en": "Mistaking a management adapter for a test link can strand remote access.",
+    "ru": "Management adapter ko test link samajhne se remote access band ho sakta hai."
+  }
+]

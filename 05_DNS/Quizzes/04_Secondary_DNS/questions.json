@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "cat": "Concept",
+    "prompt": "What does a standard secondary DNS zone contain?",
+    "options": [
+      "A full read-only authoritative copy of the zone",
+      "Only recently cached client responses",
+      "Only the addresses of authoritative servers",
+      "A writable replica stored through AD replication"
+    ],
+    "correct": 0,
+    "en": "A secondary holds full zone data read-only, unlike a cache or stub.",
+    "ru": "Secondary full zone data read-only rakhta hai; cache ya stub se alag hai."
+  },
+  {
+    "id": 2,
+    "cat": "Concept",
+    "prompt": "Where should ordinary record changes be made in a standard primary/secondary design?",
+    "options": [
+      "At the writable primary zone",
+      "Directly in every secondary copy",
+      "Only in the client hosts file",
+      "In the secondary server’s reverse zone regardless of the record"
+    ],
+    "correct": 0,
+    "en": "The primary is the editing source; the secondary receives replicated changes.",
+    "ru": "Primary editing source hai; secondary replicated changes leta hai."
+  },
+  {
+    "id": 3,
+    "cat": "Concept",
+    "prompt": "What is a master server in a secondary-zone configuration?",
+    "options": [
+      "A server supplying zone data to that secondary",
+      "The client’s required default gateway",
+      "The only domain controller permitted in a forest",
+      "The first resolver in every client’s DNS list"
+    ],
+    "correct": 0,
+    "en": "A master is the transfer source and may host a primary or another secondary copy.",
+    "ru": "Master transfer source hai; primary ya doosri secondary copy host kar sakta hai."
+  },
+  {
+    "id": 4,
+    "cat": "Concept",
+    "prompt": "Which SOA field helps identify a newer zone version?",
+    "options": [
+      "Serial number",
+      "Primary DNS suffix",
+      "Client subnet mask",
+      "CNAME target length"
+    ],
+    "correct": 0,
+    "en": "The serial is used in checking whether a newer zone version is available.",
+    "ru": "Serial se check hota hai ke zone ka naya version available hai ya nahin."
+  },
+  {
+    "id": 5,
+    "cat": "Concept",
+    "prompt": "What does a DNS Notify message do?",
+    "options": [
+      "Prompts a recipient to check for zone changes",
+      "Contains proof that all new records were transferred",
+      "Converts the recipient into a writable primary",
+      "Sets the recipient’s default gateway"
+    ],
+    "correct": 0,
+    "en": "Notify is a change signal, not evidence of a completed transfer.",
+    "ru": "Notify change ka signal hai, completed transfer ki evidence nahin."
+  },
+  {
+    "id": 6,
+    "cat": "Concept",
+    "prompt": "Which transfer type requests a full zone transfer?",
+    "options": [
+      "AXFR",
+      "IXFR",
+      "PTR",
+      "CNAME"
+    ],
+    "correct": 0,
+    "en": "AXFR transfers the full zone; IXFR supports incremental changes.",
+    "ru": "AXFR full zone transfer hai; IXFR incremental changes ke liye hai."
+  },
+  {
+    "id": 7,
+    "cat": "Concept",
+    "prompt": "Which transfer type supports incremental zone updates?",
+    "options": [
+      "IXFR",
+      "AXFR",
+      "AAAA",
+      "MX"
+    ],
+    "correct": 0,
+    "en": "IXFR can transfer differences; availability and retained change history affect transfer behavior.",
+    "ru": "IXFR differences transfer kar sakta hai; support aur change history behavior affect karte hain."
+  },
+  {
+    "id": 8,
+    "cat": "Concept",
+    "prompt": "Which transport must be allowed for a standard full AXFR transfer?",
+    "options": [
+      "TCP port 53",
+      "UDP port 67",
+      "TCP port 3389",
+      "UDP port 123"
+    ],
+    "correct": 0,
+    "en": "Full AXFR uses TCP 53. DNS queries also require appropriate UDP/TCP access.",
+    "ru": "Full AXFR TCP 53 use karta hai; queries ke liye munasib UDP/TCP access bhi chahiye."
+  },
+  {
+    "id": 9,
+    "cat": "Concept",
+    "prompt": "What does a secondary zone’s SOA expiry interval govern?",
+    "options": [
+      "How long it can serve without a successful refresh before the copy expires",
+      "The lifetime of every client-side cached record",
+      "The duration of a Windows user password",
+      "The interval before automatic conversion to primary"
+    ],
+    "correct": 0,
+    "en": "Zone expiry limits stale secondary service; record-cache TTL is a different timer.",
+    "ru": "Zone expiry stale secondary service ki had hai; cache TTL alag timer hai."
+  },
+  {
+    "id": 10,
+    "cat": "Concept",
+    "prompt": "How are forward and reverse secondary zones related?",
+    "options": [
+      "They are separate zone configurations requiring their own data and transfer settings",
+      "Creating either one automatically creates the other",
+      "They share one zone name and record set",
+      "A reverse secondary can store only CNAME records"
+    ],
+    "correct": 0,
+    "en": "Forward and reverse are separate namespaces and must be configured and verified separately.",
+    "ru": "Forward aur reverse alag namespaces hain; configuration aur verification alag hoti hai."
+  },
+  {
+    "id": 11,
+    "cat": "Lab scenario",
+    "prompt": "In the classroom lab, DNS02 is .122 and DNS01 is .121. Which master address belongs in DNS02’s secondary wizard?",
+    "options": [
+      "192.168.0.121",
+      "192.168.0.122",
+      "192.168.0.123",
+      "255.255.255.0"
+    ],
+    "correct": 0,
+    "en": "DNS01 is the recorded transfer source for DNS02.",
+    "ru": "DNS02 ke liye recorded transfer source DNS01 hai."
+  },
+  {
+    "id": 12,
+    "cat": "Lab scenario",
+    "prompt": "Which destination should DNS01 authorize to transfer the zone to DNS02?",
+    "options": [
+      "DNS02’s address, 192.168.0.122",
+      "Only DNS01’s own address, 192.168.0.121",
+      "Only the subnet mask 255.255.255.0",
+      "Every Internet address without restriction"
+    ],
+    "correct": 0,
+    "en": "The transfer recipient must be authorized; permitting only the source’s own IP does not authorize DNS02.",
+    "ru": "Transfer recipient authorized hona chahiye; source ka apna IP allow karna DNS02 ki permission nahin."
+  },
+  {
+    "id": 13,
+    "cat": "Lab scenario",
+    "prompt": "DNS02 must host a secondary for VCPLAB.Com. What zone name should be entered?",
+    "options": [
+      "VCPLAB.Com",
+      "DNS02 only",
+      "192.168.0.122 only",
+      "The VMware folder name DNS"
+    ],
+    "correct": 0,
+    "en": "The secondary copies the same zone namespace hosted by its master.",
+    "ru": "Secondary master ki usi zone namespace ki copy leta hai."
+  },
+  {
+    "id": 14,
+    "cat": "Lab scenario",
+    "prompt": "Which reverse-zone name matches the classroom 192.168.0.0/24 network?",
+    "options": [
+      "0.168.192.in-addr.arpa",
+      "192.168.0.in-addr.arpa",
+      "122.168.192.in-addr.arpa",
+      "VCPLAB.Com.reverse"
+    ],
+    "correct": 0,
+    "en": "The three /24 network octets are reversed under in-addr.arpa.",
+    "ru": "/24 ke teen network octets ulat kar in-addr.arpa ke saath aate hain."
+  },
+  {
+    "id": 15,
+    "cat": "Lab scenario",
+    "prompt": "DNS02 displays SOA, NS, host A records and the DNS alias after transfer. What is established?",
+    "options": [
+      "Those records loaded into the secondary zone",
+      "A primary-outage test has passed",
+      "Every future update is guaranteed to arrive",
+      "DNS02 has become an AD domain controller"
+    ],
+    "correct": 0,
+    "en": "Loaded records establish the captured copy state, not outage recovery or future guarantees.",
+    "ru": "Loaded records captured copy state dikhate hain, outage recovery ya future guarantee nahin."
+  },
+  {
+    "id": 16,
+    "cat": "Lab scenario",
+    "prompt": "Which command directly tests DNS02’s forward DNS service for DNS01’s name?",
+    "options": [
+      "nslookup dns01.vcplab.com. 192.168.0.122",
+      "nslookup dns02.vcplab.com. 192.168.0.121",
+      "nslookup dns01.vcplab.com. 192.168.0.121",
+      "nslookup dns03.vcplab.com. 192.168.0.123"
+    ],
+    "correct": 0,
+    "en": "The final argument selects DNS02; the question asks for DNS01’s record.",
+    "ru": "Aakhri argument DNS02 choose karta hai; sawal DNS01 ke record ka hai."
+  },
+  {
+    "id": 17,
+    "cat": "Lab scenario",
+    "prompt": "Which command tests DNS01’s reverse mapping through DNS02?",
+    "options": [
+      "nslookup 192.168.0.121 192.168.0.122",
+      "nslookup 192.168.0.122 192.168.0.121",
+      "nslookup dns01.vcplab.com. 192.168.0.121",
+      "nslookup -type=CNAME vcplab.com. 192.168.0.122"
+    ],
+    "correct": 0,
+    "en": "The first IP is the reverse subject; the second is the responding DNS server.",
+    "ru": "Pehla IP reverse subject aur doosra responding DNS server hai."
+  },
+  {
+    "id": 18,
+    "cat": "Lab scenario",
+    "prompt": "DNS01 is unavailable, but DNS02 is reachable and its zone copy remains valid. What can DNS02 do?",
+    "options": [
+      "Answer existing records from its own copy without promotion",
+      "Answer only after becoming a writable primary",
+      "Obtain each requested record from the offline primary",
+      "Automatically remove all existing records"
+    ],
+    "correct": 0,
+    "en": "A valid secondary already provides authoritative answers for its zone data.",
+    "ru": "Valid secondary apni zone data ke authoritative answers pehle hi de sakta hai."
+  },
+  {
+    "id": 19,
+    "cat": "Lab scenario",
+    "prompt": "What is a strong test that a new edit reached DNS02?",
+    "options": [
+      "Add a controlled test record on DNS01 and query that record directly on DNS02",
+      "Query an unchanged old record only on DNS01",
+      "Observe that DNS01 has a Notify button",
+      "Ping the DNS02 machine without a DNS query"
+    ],
+    "correct": 0,
+    "en": "Testing the known new record on the recipient checks the update rather than only old data or reachability.",
+    "ru": "Known naya record recipient par test karna update check karta hai, sirf purana data ya reachability nahin."
+  },
+  {
+    "id": 20,
+    "cat": "Lab scenario",
+    "prompt": "DNS03’s IP is included in a classroom transfer list, but DNS03 hosts a stub. What does that permission imply?",
+    "options": [
+      "Permission alone does not turn DNS03 into a full secondary",
+      "DNS03 now stores every ordinary record automatically",
+      "DNS03 becomes writable because its IP is listed",
+      "DNS02’s zone automatically changes to a stub"
+    ],
+    "correct": 0,
+    "en": "Authorization and the recipient’s zone role are distinct settings.",
+    "ru": "Authorization aur recipient ka zone role alag settings hain."
+  },
+  {
+    "id": 21,
+    "cat": "Troubleshooting",
+    "prompt": "DNS02 receives no zone data after setup. Which checks are most relevant?",
+    "options": [
+      "Exact zone name, master address, transfer authorization, service and network path",
+      "Only whether the desktop can open a public website",
+      "Only whether DNS02’s display name is uppercase",
+      "Only whether the VM folder is named DNS"
+    ],
+    "correct": 0,
+    "en": "Zone transfer needs matching zone identity, a valid source, permission and connectivity.",
+    "ru": "Zone transfer ke liye matching zone, valid source, permission aur connectivity chahiye."
+  },
+  {
+    "id": 22,
+    "cat": "Troubleshooting",
+    "prompt": "Ordinary DNS queries succeed, but full zone transfer fails. What remains a useful check?",
+    "options": [
+      "TCP 53 connectivity and transfer permissions for DNS02",
+      "Assume every DNS operation must work if one query works",
+      "Replace all A records with PTR records",
+      "Disable the secondary zone to make it writable"
+    ],
+    "correct": 0,
+    "en": "Query success alone does not prove TCP AXFR access or authorization.",
+    "ru": "Query success TCP AXFR access ya authorization ka proof nahin."
+  },
+  {
+    "id": 23,
+    "cat": "Troubleshooting",
+    "prompt": "DNS02 answers an old value after DNS01 was changed. Which investigation fits?",
+    "options": [
+      "Compare SOA serials and check refresh/transfer state on DNS02",
+      "Reinstall Windows before inspecting DNS",
+      "Change the client gateway to DNS01’s address immediately",
+      "Delete the forward zone because a reverse lookup works"
+    ],
+    "correct": 0,
+    "en": "The secondary may be stale; compare versions and transfer status before unrelated changes.",
+    "ru": "Secondary stale ho sakta hai; unrelated changes se pehle versions aur transfer state compare hon."
+  },
+  {
+    "id": 24,
+    "cat": "Troubleshooting",
+    "prompt": "Forward queries succeed on DNS02, but reverse queries fail. What should be inspected?",
+    "options": [
+      "The reverse secondary zone, its PTR data and its transfer settings",
+      "Only the forward CNAME record",
+      "Only the DNS suffix of an unrelated workstation",
+      "The primary’s wallpaper and display resolution"
+    ],
+    "correct": 0,
+    "en": "Forward success does not establish reverse-zone configuration or PTR replication.",
+    "ru": "Forward success reverse-zone configuration ya PTR replication establish nahin karti."
+  },
+  {
+    "id": 25,
+    "cat": "Troubleshooting",
+    "prompt": "An accidental record deletion appears on both primary and secondary. What lesson follows?",
+    "options": [
+      "Replication is not a substitute for recoverable backups",
+      "Secondaries cannot receive deletions",
+      "A full secondary copy is always an immutable backup",
+      "Notify can recreate any deleted record automatically"
+    ],
+    "correct": 0,
+    "en": "Correct replication can propagate mistakes, so recovery requires appropriate backups and procedures.",
+    "ru": "Sahi replication ghalti bhi copy kar sakti hai; recovery ke liye backups aur procedures chahiye."
+  }
+]

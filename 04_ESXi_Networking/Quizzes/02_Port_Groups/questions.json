@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "cat": "Concept",
+    "prompt": "What is a standard-switch port group?",
+    "options": [
+      "A group of virtual ports sharing connection and policy settings",
+      "A collection of virtual disk partitions",
+      "A DNS zone for guest names",
+      "A list of Windows user passwords"
+    ],
+    "correct": 0,
+    "en": "Port groups organize network attachment and policies on a standard switch.",
+    "ru": "Port groups standard switch par network attachment aur policies organize karte hain."
+  },
+  {
+    "id": 2,
+    "cat": "Concept",
+    "prompt": "Which port-group use connects guest VM virtual NICs?",
+    "options": [
+      "Virtual-machine networking",
+      "VMkernel host networking only",
+      "Datastore formatting",
+      "DNS reverse lookup"
+    ],
+    "correct": 0,
+    "en": "A guest vNIC connects to a VM port group; VMkernel networking serves the host.",
+    "ru": "Guest vNIC VM port group se connect hota hai; VMkernel networking host ke liye hai."
+  },
+  {
+    "id": 3,
+    "cat": "Concept",
+    "prompt": "Which object owns an ESXi management IP associated with Management Network?",
+    "options": [
+      "The VMkernel adapter such as vmk0",
+      "The port-group label itself",
+      "Every guest attached to the switch",
+      "The standard-switch name"
+    ],
+    "correct": 0,
+    "en": "The VMkernel interface is the IP endpoint, not the group’s label.",
+    "ru": "VMkernel interface IP endpoint hai, group label nahin."
+  },
+  {
+    "id": 4,
+    "cat": "Concept",
+    "prompt": "Does a new port-group name alone create security isolation?",
+    "options": [
+      "No; segmentation depends on VLAN, policies and actual topology",
+      "Yes; every label automatically creates a unique VLAN",
+      "Yes; names are encrypted by default",
+      "Only uppercase names create isolation"
+    ],
+    "correct": 0,
+    "en": "Labels describe purpose; the underlying network settings determine separation.",
+    "ru": "Labels purpose batate hain; underlying settings separation tay karti hain."
+  },
+  {
+    "id": 5,
+    "cat": "Concept",
+    "prompt": "What does VLAN None (0) mean for a standard port group in this classroom setup?",
+    "options": [
+      "Untagged operation for that group",
+      "Every VLAN is trunked to the guest",
+      "The group is automatically disconnected",
+      "The guest receives an IP of 0.0.0.0"
+    ],
+    "correct": 0,
+    "en": "None (0) is the untagged setting, not guest trunking or an IP assignment.",
+    "ru": "None (0) untagged setting hai, guest trunking ya IP assignment nahin."
+  },
+  {
+    "id": 6,
+    "cat": "Concept",
+    "prompt": "What is the special meaning of VLAN 4095 on a standard VM port group?",
+    "options": [
+      "Guest VLAN trunking for a deliberately designed VGT setup",
+      "A normal single VLAN called VLAN 4095",
+      "Automatic DNS registration for every VM",
+      "An MTU of 4095 bytes"
+    ],
+    "correct": 0,
+    "en": "4095 has special guest-trunking semantics and should not be copied as an ordinary VLAN ID.",
+    "ru": "4095 special guest-trunking setting hai; ordinary VLAN ID samajh kar copy na karein."
+  },
+  {
+    "id": 7,
+    "cat": "Concept",
+    "prompt": "What does a port-group policy override affect?",
+    "options": [
+      "The policy applied to that group instead of the inherited switch setting",
+      "Every switch on every host automatically",
+      "Only the DNS suffix of attached guests",
+      "The storage filesystem format"
+    ],
+    "correct": 0,
+    "en": "An override has the scope of that group; inspect inheritance to understand effective settings.",
+    "ru": "Override ka scope us group ka hai; effective settings ke liye inheritance inspect hoti hai."
+  },
+  {
+    "id": 8,
+    "cat": "Concept",
+    "prompt": "What is the relationship between a standard port group and its standard switch?",
+    "options": [
+      "The group belongs to a particular local standard switch",
+      "The group always spans all hosts without configuration",
+      "The group replaces the switch’s forwarding function",
+      "The group is a physical router connected by USB"
+    ],
+    "correct": 0,
+    "en": "A standard port group is part of a host’s standard-switch configuration.",
+    "ru": "Standard port group host ki standard-switch configuration ka hissa hai."
+  },
+  {
+    "id": 9,
+    "cat": "Concept",
+    "prompt": "Does creating a VM port group assign guest operating-system IP addresses?",
+    "options": [
+      "No; guest addressing is configured separately",
+      "Yes; the label becomes the guest’s static IP",
+      "Yes; VLAN ID is automatically used as a gateway",
+      "Only if the group contains the word SERVERS"
+    ],
+    "correct": 0,
+    "en": "A network attachment point and guest IP configuration are different tasks.",
+    "ru": "Network attachment point aur guest IP configuration alag tasks hain."
+  },
+  {
+    "id": 10,
+    "cat": "Concept",
+    "prompt": "Which observation does Virtual Machines (0) describe?",
+    "options": [
+      "No guest VMs are currently shown attached to that group",
+      "The switch has no possible physical uplinks",
+      "The network is necessarily broken",
+      "A VMkernel adapter must have IP 0.0.0.0"
+    ],
+    "correct": 0,
+    "en": "An empty group may be a valid attachment point awaiting guests.",
+    "ru": "Khaali group valid attachment point ho sakta hai jo guests ka muntazir hai."
+  },
+  {
+    "id": 11,
+    "cat": "Lab scenario",
+    "prompt": "In the recorded SERVERS exercise, which type was selected?",
+    "options": [
+      "Virtual Machine Port Group for a Standard Switch",
+      "A new VMkernel adapter for every server guest",
+      "A DNS conditional forwarder",
+      "A new NFS datastore"
+    ],
+    "correct": 0,
+    "en": "SERVERS was created as a guest-VM attachment network, not a new host IP interface.",
+    "ru": "SERVERS guest-VM attachment network tha, naya host IP interface nahin."
+  },
+  {
+    "id": 12,
+    "cat": "Lab scenario",
+    "prompt": "Which switch was selected for the recorded SERVERS port group?",
+    "options": [
+      "vSwitch0",
+      "vSwitch1 for STORAGE",
+      "A new distributed switch confirmed in vCenter",
+      "The Windows host-only adapter itself"
+    ],
+    "correct": 0,
+    "en": "The captured SERVERS group was on vSwitch0.",
+    "ru": "Captured SERVERS group vSwitch0 par tha."
+  },
+  {
+    "id": 13,
+    "cat": "Lab scenario",
+    "prompt": "Which VLAN choice was shown for SERVERS?",
+    "options": [
+      "None (0)",
+      "A confirmed tagged VLAN 20",
+      "4095 guest trunking",
+      "A confirmed tagged VLAN 100"
+    ],
+    "correct": 0,
+    "en": "The captured group was untagged; no tagged-isolation test follows from it.",
+    "ru": "Captured group untagged tha; is se tagged-isolation test sabit nahin hota."
+  },
+  {
+    "id": 14,
+    "cat": "Lab scenario",
+    "prompt": "SERVERS and VM Network share the same switch and untagged network. What must not be assumed?",
+    "options": [
+      "That different labels alone place them in separate broadcast domains",
+      "That both labels can exist in the configuration",
+      "That guest IPs still need configuration",
+      "That policies can influence connectivity"
+    ],
+    "correct": 0,
+    "en": "Different labels do not necessarily create distinct Layer-2 segments.",
+    "ru": "Mukhtalif labels lazmi alag Layer-2 segments nahin banate."
+  },
+  {
+    "id": 15,
+    "cat": "Lab scenario",
+    "prompt": "You want a guest to use SERVERS after creating the group. What is a necessary next step?",
+    "options": [
+      "Select SERVERS for that guest’s virtual Network Adapter",
+      "Set the ESXi management IP as the guest password",
+      "Rename the datastore to SERVERS",
+      "Create a PTR for the port-group label"
+    ],
+    "correct": 0,
+    "en": "The guest’s vNIC must actually attach to the intended group.",
+    "ru": "Guest ka vNIC intended group se actually attach hona chahiye."
+  },
+  {
+    "id": 16,
+    "cat": "Lab scenario",
+    "prompt": "The STORAGE network has vmk1 at 172.16.0.102. Which object is responsible for that host address?",
+    "options": [
+      "vmk1 associated with the STORAGE group",
+      "A guest vNIC automatically created by the STORAGE label",
+      "The SERVERS port-group name",
+      "The DNS01 forward zone"
+    ],
+    "correct": 0,
+    "en": "A VMkernel interface supplies the host IP on that network.",
+    "ru": "VMkernel interface us network par host IP deta hai."
+  },
+  {
+    "id": 17,
+    "cat": "Lab scenario",
+    "prompt": "A screenshot shows SERVERS created but zero attached VMs. Which conclusion is justified?",
+    "options": [
+      "Creation is recorded; guest connectivity still needs testing",
+      "All server guests passed external ping tests",
+      "Every guest now has a DHCP lease",
+      "Automatic uplink failover is proven"
+    ],
+    "correct": 0,
+    "en": "Configuration completion is not evidence of guest traffic success.",
+    "ru": "Configuration completion guest traffic success ki evidence nahin."
+  },
+  {
+    "id": 18,
+    "cat": "Lab scenario",
+    "prompt": "Two compatible same-host guests share a group; the external uplink fails. Which traffic may still work?",
+    "options": [
+      "Their locally switched communication",
+      "Every connection to remote physical servers",
+      "Traffic that must cross the failed cable",
+      "Internet traffic solely because the label is unchanged"
+    ],
+    "correct": 0,
+    "en": "Local same-network switching can remain inside the ESXi host.",
+    "ru": "Local same-network switching ESXi host ke andar reh sakti hai."
+  },
+  {
+    "id": 19,
+    "cat": "Lab scenario",
+    "prompt": "You see VLAN -- in a topology summary. What is a careful next action?",
+    "options": [
+      "Inspect the group’s actual VLAN field before stating its value",
+      "Treat it as proof every group uses VLAN 0",
+      "Assume it always means guest trunking",
+      "Assume it proves the group is disabled"
+    ],
+    "correct": 0,
+    "en": "An incomplete summary display should not replace inspection of the configured field.",
+    "ru": "Incomplete summary display configured field ki inspection ka badal nahin."
+  },
+  {
+    "id": 20,
+    "cat": "Lab scenario",
+    "prompt": "Which read-only command inventories standard port groups?",
+    "options": [
+      "esxcli network vswitch standard portgroup list",
+      "esxcli network vswitch standard remove -v vSwitch0",
+      "esxcli system shutdown poweroff",
+      "esxcli storage filesystem unmount"
+    ],
+    "correct": 0,
+    "en": "The list command can confirm group names and their switch associations.",
+    "ru": "List command group names aur switch associations confirm kar sakta hai."
+  },
+  {
+    "id": 21,
+    "cat": "Troubleshooting",
+    "prompt": "A guest is attached to the wrong port group and cannot reach its peer. What is a focused check?",
+    "options": [
+      "Compare the intended group/switch/VLAN with the guest’s selected attachment",
+      "Delete every DNS zone before inspecting the attachment",
+      "Change the desktop wallpaper",
+      "Reformat the guest disk immediately"
+    ],
+    "correct": 0,
+    "en": "Start with the actual network attachment before unrelated changes.",
+    "ru": "Unrelated changes se pehle actual network attachment check karein."
+  },
+  {
+    "id": 22,
+    "cat": "Troubleshooting",
+    "prompt": "A tagged port group is configured, but the upstream path does not carry that VLAN. What is a likely result?",
+    "options": [
+      "External connectivity on that VLAN can fail",
+      "The switch automatically removes the tag everywhere",
+      "DNS automatically creates a route around the VLAN",
+      "All hosts move to the same broadcast domain by name"
+    ],
+    "correct": 0,
+    "en": "ESXi tagging must match the upstream and, in nested labs, outer network capabilities.",
+    "ru": "ESXi tagging upstream aur nested lab ke outer network capabilities se match honi chahiye."
+  },
+  {
+    "id": 23,
+    "cat": "Troubleshooting",
+    "prompt": "Switch teaming looks correct, but one group behaves differently during failure. What should be inspected?",
+    "options": [
+      "A port-group teaming override and its effective policy",
+      "Only the alphabetical order of VM names",
+      "Only the DNS zone serial",
+      "Only the virtual disk controller"
+    ],
+    "correct": 0,
+    "en": "An override can make a group use a different active/standby configuration.",
+    "ru": "Override group ka active/standby configuration mukhtalif kar sakti hai."
+  },
+  {
+    "id": 24,
+    "cat": "Troubleshooting",
+    "prompt": "Changing the management group’s VLAN disconnects Host Client access. Which recovery resource is most relevant?",
+    "options": [
+      "Local ESXi/Workstation console and the recorded previous settings",
+      "A public website’s MX records",
+      "A newly named folder on the desktop",
+      "An unrelated guest’s display resolution"
+    ],
+    "correct": 0,
+    "en": "Management-group changes can affect vmk0 reachability; console rollback is important.",
+    "ru": "Management-group changes vmk0 reachability affect kar sakti hain; console rollback aham hai."
+  },
+  {
+    "id": 25,
+    "cat": "Troubleshooting",
+    "prompt": "A new VM group exists, but the guest has the wrong subnet mask. What does the group’s existence prove?",
+    "options": [
+      "Only the network object exists; guest addressing still needs correction",
+      "The guest mask is automatically correct",
+      "The guest’s DNS records are signed",
+      "A physical network fault is the only possible cause"
+    ],
+    "correct": 0,
+    "en": "Port-group configuration does not validate the guest operating system’s IP settings.",
+    "ru": "Port-group configuration guest OS ki IP settings validate nahin karti."
+  }
+]

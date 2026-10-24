@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "cat": "Concept",
+    "prompt": "What is NIC teaming used for on a vSphere standard switch?",
+    "options": [
+      "Providing multiple uplink paths under a configured selection/failover policy",
+      "Replicating DNS zones between hosts",
+      "Joining every guest to Active Directory",
+      "Mounting every available storage export"
+    ],
+    "correct": 0,
+    "en": "Teaming combines eligible uplinks; its actual behavior depends on policy and upstream connectivity.",
+    "ru": "Teaming eligible uplinks deta hai; actual behavior policy aur upstream connectivity par depend karta hai."
+  },
+  {
+    "id": 2,
+    "cat": "Concept",
+    "prompt": "What does Active mean in a teaming policy?",
+    "options": [
+      "Eligible to carry normal traffic under that policy",
+      "Reserved only for a failure event",
+      "Excluded from every traffic path",
+      "Guaranteed to carry half of every flow"
+    ],
+    "correct": 0,
+    "en": "Active eligibility does not guarantee equal traffic on each link.",
+    "ru": "Active eligibility har link par equal traffic ki guarantee nahin."
+  },
+  {
+    "id": 3,
+    "cat": "Concept",
+    "prompt": "What is a Standby adapter’s intended role?",
+    "options": [
+      "A backup eligible when active uplink paths fail",
+      "A permanently forbidden adapter",
+      "A writable primary DNS server",
+      "A guarantee of twice the single-flow speed"
+    ],
+    "correct": 0,
+    "en": "Standby offers an alternate path when the active configuration cannot carry traffic.",
+    "ru": "Standby active configuration fail honay par alternate path deta hai."
+  },
+  {
+    "id": 4,
+    "cat": "Concept",
+    "prompt": "What does Unused mean for an adapter in a particular teaming policy?",
+    "options": [
+      "It is excluded from that policy’s normal traffic and failover",
+      "It is permanently unusable in every enterprise",
+      "It is always the first backup adapter",
+      "It must have a missing hardware driver"
+    ],
+    "correct": 0,
+    "en": "Unused is a policy-specific exclusion, not a universal hardware verdict.",
+    "ru": "Unused policy-specific exclusion hai, universal hardware verdict nahin."
+  },
+  {
+    "id": 5,
+    "cat": "Concept",
+    "prompt": "Under originating virtual port ID, how is traffic normally assigned?",
+    "options": [
+      "A virtual port uses a selected uplink rather than splitting every flow across all uplinks",
+      "Each packet is always divided equally across all links",
+      "The DNS suffix picks the fastest router",
+      "Every guest needs a manually configured IP hash"
+    ],
+    "correct": 0,
+    "en": "Originating-port selection does not promise multiplied bandwidth for one virtual port.",
+    "ru": "Originating-port selection aik virtual port ki multiplied bandwidth promise nahin karti."
+  },
+  {
+    "id": 6,
+    "cat": "Concept",
+    "prompt": "What does Link status only failure detection monitor?",
+    "options": [
+      "The NIC’s reported link state",
+      "Every upstream router’s application health",
+      "The latest DNS zone serial",
+      "The current datastore’s free capacity"
+    ],
+    "correct": 0,
+    "en": "A link can remain up while a failure farther upstream prevents communication.",
+    "ru": "Link up reh sakta hai jab upstream failure communication rok de."
+  },
+  {
+    "id": 7,
+    "cat": "Concept",
+    "prompt": "What does Failback enabled allow after an eligible preferred link recovers?",
+    "options": [
+      "Traffic can return to the recovered preferred path according to policy",
+      "Every VM is migrated to another ESXi host",
+      "A standby adapter is deleted automatically",
+      "All client DNS settings are restored"
+    ],
+    "correct": 0,
+    "en": "Failback concerns return to a recovered network path, not VM migration.",
+    "ru": "Failback recovered network path par wapsi hai, VM migration nahin."
+  },
+  {
+    "id": 8,
+    "cat": "Concept",
+    "prompt": "What is Notify switches intended to help update after a traffic-path change?",
+    "options": [
+      "Upstream MAC forwarding information",
+      "Windows user password history",
+      "The DNS primary suffix",
+      "The VM’s disk partition layout"
+    ],
+    "correct": 0,
+    "en": "Network notifications help upstream switches relearn where relevant MAC traffic is reachable.",
+    "ru": "Network notifications upstream switches ko relevant MAC traffic ka raasta relearn karne mein madad karti hain."
+  },
+  {
+    "id": 9,
+    "cat": "Concept",
+    "prompt": "What does a port-group teaming override change?",
+    "options": [
+      "That group’s effective teaming policy instead of inherited settings",
+      "Every switch on every ESXi host automatically",
+      "Only the computer’s DNS suffix",
+      "Only the guest disk controller"
+    ],
+    "correct": 0,
+    "en": "Inspect inheritance and overrides to know which policy a group actually uses.",
+    "ru": "Group ki actual policy ke liye inheritance aur overrides inspect hon."
+  },
+  {
+    "id": 10,
+    "cat": "Concept",
+    "prompt": "What is the purpose of explicit failover order?",
+    "options": [
+      "Prioritizing eligible uplinks rather than application-aware load balancing",
+      "Moving busy VMs between hosts using DRS",
+      "Selecting links by DNS answer order",
+      "Dividing all traffic into fixed application categories"
+    ],
+    "correct": 0,
+    "en": "Explicit failover order is a network-path preference policy, not DRS.",
+    "ru": "Explicit failover order network-path preference policy hai, DRS nahin."
+  },
+  {
+    "id": 11,
+    "cat": "Lab scenario",
+    "prompt": "Both vmnic0 and vmnic1 appear Active in a screenshot. Which statement is justified?",
+    "options": [
+      "Both are eligible in that captured configuration; failover still needs testing",
+      "A single transfer has verified 20 Gbit/s throughput",
+      "Both links are proven physically independent",
+      "Every application session survived a real fault"
+    ],
+    "correct": 0,
+    "en": "Membership evidence is not performance or failure-recovery evidence.",
+    "ru": "Membership evidence performance ya failure-recovery evidence nahin."
+  },
+  {
+    "id": 12,
+    "cat": "Lab scenario",
+    "prompt": "A student removes vmnic1 from the switch and calls it a complete failover test. What is the correction?",
+    "options": [
+      "Administrative removal is not the same as testing recovery from a link fault",
+      "Any removal automatically proves all failure cases",
+      "A removed adapter remains the policy’s Standby",
+      "Removing the adapter verifies IP-hash consistency"
+    ],
+    "correct": 0,
+    "en": "A controlled failure test observes traffic on configured alternate paths during a fault.",
+    "ru": "Controlled failure test fault ke dauran configured alternate paths par traffic observe karta hai."
+  },
+  {
+    "id": 13,
+    "cat": "Lab scenario",
+    "prompt": "A lab wants to test Active/Standby with the originating-port policy. Which arrangement fits?",
+    "options": [
+      "One lab uplink Active and another compatible lab uplink Standby",
+      "Both lab uplinks Unused",
+      "Only one uplink, with all backups deleted",
+      "A DNS A record labelled Standby"
+    ],
+    "correct": 0,
+    "en": "The backup must be configured as an eligible alternate path.",
+    "ru": "Backup eligible alternate path ke taur par configured hona chahiye."
+  },
+  {
+    "id": 14,
+    "cat": "Lab scenario",
+    "prompt": "Two lab uplinks are mapped to unrelated Workstation networks. What must be checked before treating them as equivalent failover paths?",
+    "options": [
+      "Both reach the intended compatible Layer-2 network/VLAN and endpoint",
+      "Only that their adapter numbers are consecutive",
+      "Only that their link-speed labels match",
+      "Only that both port-group names are uppercase"
+    ],
+    "correct": 0,
+    "en": "Teaming does not make unrelated outer networks interchangeable.",
+    "ru": "Teaming unrelated outer networks ko interchangeable nahin banati."
+  },
+  {
+    "id": 15,
+    "cat": "Lab scenario",
+    "prompt": "Which endpoint arrangement best tests that traffic actually uses an uplink?",
+    "options": [
+      "An external peer whose path crosses the tested uplink",
+      "Two compatible VMs whose traffic stays inside the same host",
+      "A guest pinging its own loopback address",
+      "A browser reading a local text file"
+    ],
+    "correct": 0,
+    "en": "An external path is needed to exercise uplink failover rather than local switching.",
+    "ru": "Local switching ke bajaye uplink failover exercise karne ke liye external path chahiye."
+  },
+  {
+    "id": 16,
+    "cat": "Lab scenario",
+    "prompt": "How should an outer Workstation NIC be identified before simulating a lab link fault?",
+    "options": [
+      "Match its MAC address to the intended ESXi vmnic",
+      "Assume Network Adapter 5 always means vmnic4",
+      "Pick the first enabled Windows adapter",
+      "Disable every outer adapter and inspect afterward"
+    ],
+    "correct": 0,
+    "en": "MAC mapping helps avoid disconnecting management or an unrelated network.",
+    "ru": "MAC mapping management ya unrelated network disconnect karne se bachati hai."
+  },
+  {
+    "id": 17,
+    "cat": "Lab scenario",
+    "prompt": "Both uplinks are Active under originating-port selection, but one transfer uses one uplink. What is the best interpretation?",
+    "options": [
+      "This can be normal for one virtual port under that policy",
+      "Active/Active must always double every transfer",
+      "The second uplink must be physically broken",
+      "DNS must distribute the packets evenly"
+    ],
+    "correct": 0,
+    "en": "Observe multiple virtual ports and counters before judging distribution.",
+    "ru": "Distribution judge karne se pehle multiple virtual ports aur counters observe karein."
+  },
+  {
+    "id": 18,
+    "cat": "Lab scenario",
+    "prompt": "The tested link is restored and Failback is enabled. What should the test record include?",
+    "options": [
+      "Recovery after reconnection and the final saved/effective policy",
+      "Only the original pre-fault screenshot",
+      "Only a public DNS lookup",
+      "Only the guest’s wallpaper"
+    ],
+    "correct": 0,
+    "en": "A complete exercise records baseline, fault, recovery and restored state.",
+    "ru": "Complete exercise baseline, fault, recovery aur restored state record karti hai."
+  },
+  {
+    "id": 19,
+    "cat": "Lab scenario",
+    "prompt": "Two nested NICs depend on one desktop physical NIC and Windows host. What does their failover test not prove?",
+    "options": [
+      "Independent physical hardware redundancy",
+      "That a virtual link fault was simulated",
+      "That an alternate virtual path may work",
+      "That configured traffic recovered in the observed test"
+    ],
+    "correct": 0,
+    "en": "Shared outer hardware remains a common failure dependency.",
+    "ru": "Shared outer hardware common failure dependency rehti hai."
+  },
+  {
+    "id": 20,
+    "cat": "Lab scenario",
+    "prompt": "A proposal uses 172.16.50.0/24 while existing STORAGE is 172.16.0.102/16. What must be resolved before the test?",
+    "options": [
+      "The overlapping subnet plan and the actual intended routing/path",
+      "Only the spelling of the VM names",
+      "Only whether both uplinks report Full duplex",
+      "Nothing because different third octets prevent overlap"
+    ],
+    "correct": 0,
+    "en": "The proposed /24 lies inside the existing /16 and needs deliberate redesign or verified alternatives.",
+    "ru": "Proposed /24 existing /16 ke andar hai; deliberate redesign ya verified alternatives chahiye."
+  },
+  {
+    "id": 21,
+    "cat": "Troubleshooting",
+    "prompt": "The switch policy has a valid standby, but one port group does not fail over. Which setting should be checked?",
+    "options": [
+      "That group’s override, active/standby list and effective policy",
+      "Only the unrelated reverse DNS zone",
+      "Only the VM’s optical-drive ISO",
+      "Only the order of browser tabs"
+    ],
+    "correct": 0,
+    "en": "A port-group override can change the policy seen at the switch level.",
+    "ru": "Port-group override switch level par nazar aane wali policy ko badal sakti hai."
+  },
+  {
+    "id": 22,
+    "cat": "Troubleshooting",
+    "prompt": "An upstream outage stops traffic while both NIC links remain Up under Link status only. What explains a missed failover?",
+    "options": [
+      "The fault may not change the local link state being monitored",
+      "Link status only verifies every remote application",
+      "The DNS suffix must have been erased",
+      "The failover policy automatically deletes all Standby links"
+    ],
+    "correct": 0,
+    "en": "Link-state detection has a scope; not every upstream failure produces a local link-down.",
+    "ru": "Link-state detection ka scope hai; har upstream failure local link-down nahin banata."
+  },
+  {
+    "id": 23,
+    "cat": "Troubleshooting",
+    "prompt": "IP-hash teaming is chosen on a standard switch without a compatible upstream aggregation design. What is the concern?",
+    "options": [
+      "The host and physical-switch configuration can be inconsistent and disrupt traffic",
+      "IP hash is simply sequential first-IP/second-IP failover",
+      "Any two unrelated outer networks are automatically aggregated",
+      "IP hash guarantees no upstream configuration is required"
+    ],
+    "correct": 0,
+    "en": "Standard-switch IP-hash designs require coordinated compatible static aggregation; it is not simple sequential failover.",
+    "ru": "Standard-switch IP-hash ko coordinated compatible static aggregation chahiye; simple sequential failover nahin."
+  },
+  {
+    "id": 24,
+    "cat": "Troubleshooting",
+    "prompt": "A colleague wants to enable LACP directly on a vSphere Standard Switch. What is accurate?",
+    "options": [
+      "LACP is not supported on a standard switch; it requires a suitable distributed-switch design",
+      "Every standard switch enables LACP by default",
+      "Selecting Explicit failover order enables LACP",
+      "Setting a port group to VLAN 0 creates a LAG"
+    ],
+    "correct": 0,
+    "en": "Do not confuse static aggregation with distributed-switch LACP support.",
+    "ru": "Static aggregation aur distributed-switch LACP support ko mix na karein."
+  },
+  {
+    "id": 25,
+    "cat": "Troubleshooting",
+    "prompt": "Management disconnects during an uplink test. What recovery approach is most appropriate?",
+    "options": [
+      "Use the local console to identify the affected path and restore the recorded management configuration",
+      "Reset every network object before identifying the change",
+      "Delete all guest disks to force reconnection",
+      "Rename the host as the only recovery action"
+    ],
+    "correct": 0,
+    "en": "Preserved console access and a known rollback avoid unnecessary broad changes.",
+    "ru": "Console access aur known rollback unnecessary broad changes se bachate hain."
+  }
+]

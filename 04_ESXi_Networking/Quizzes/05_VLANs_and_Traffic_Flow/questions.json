@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "cat": "Concept",
+    "prompt": "What is a VLAN primarily used to separate?",
+    "options": [
+      "Logical Layer-2 broadcast domains",
+      "DNS zone serial numbers",
+      "Virtual disk partitions",
+      "Windows local user accounts"
+    ],
+    "correct": 0,
+    "en": "VLANs segment Ethernet traffic logically; IP subnetting is a separate addressing concept.",
+    "ru": "VLANs Ethernet traffic logically segment karti hain; IP subnetting alag addressing concept hai."
+  },
+  {
+    "id": 2,
+    "cat": "Concept",
+    "prompt": "Which distinction between switching and routing is accurate?",
+    "options": [
+      "Switching forwards Layer-2 frames; routing connects IP networks",
+      "Switching always resolves DNS names; routing creates records",
+      "Routing requires every endpoint to share one subnet",
+      "A standard switch label automatically enables inter-subnet routing"
+    ],
+    "correct": 0,
+    "en": "Layer-2 connectivity and Layer-3 forwarding solve different problems.",
+    "ru": "Layer-2 connectivity aur Layer-3 forwarding alag problems solve karte hain."
+  },
+  {
+    "id": 3,
+    "cat": "Concept",
+    "prompt": "What does an A-record DNS lookup determine?",
+    "options": [
+      "The IPv4 address associated with a name",
+      "The switch port that must forward a frame",
+      "The permitted VLAN list on every trunk",
+      "The active storage session’s MTU"
+    ],
+    "correct": 0,
+    "en": "DNS naming is distinct from switching, routing and traffic authorization.",
+    "ru": "DNS naming switching, routing aur traffic authorization se alag hai."
+  },
+  {
+    "id": 4,
+    "cat": "Concept",
+    "prompt": "What does VLAN None (0) mean for the recorded standard port groups?",
+    "options": [
+      "The groups use untagged operation",
+      "All VLANs are forwarded to every guest",
+      "VLAN 0 is a normal tagged tenant VLAN",
+      "Every attached guest has address 0.0.0.0"
+    ],
+    "correct": 0,
+    "en": "In this port-group configuration, None (0) is the untagged setting.",
+    "ru": "Is port-group configuration mein None (0) untagged setting hai."
+  },
+  {
+    "id": 5,
+    "cat": "Concept",
+    "prompt": "What is special about VLAN 4095 on a standard VM port group?",
+    "options": [
+      "It enables guest VLAN trunking in a deliberate VGT design",
+      "It is an ordinary single tenant VLAN",
+      "It sets the switch MTU to 4095",
+      "It creates 4095 guest IP addresses"
+    ],
+    "correct": 0,
+    "en": "4095 is a special guest-trunk setting, not an ordinary VLAN to copy blindly.",
+    "ru": "4095 special guest-trunk setting hai, ordinary VLAN nahin jo blindly copy ho."
+  },
+  {
+    "id": 6,
+    "cat": "Concept",
+    "prompt": "Does using different IP subnets alone prove Layer-2 isolation?",
+    "options": [
+      "No; actual Layer-2 attachment and policies must also be examined",
+      "Yes; masks automatically create VLAN tags",
+      "Yes; a DNS suffix enforces subnet isolation",
+      "Only if the port-group names differ"
+    ],
+    "correct": 0,
+    "en": "Addressing choices and broadcast-domain separation must not be confused.",
+    "ru": "Addressing choices aur broadcast-domain separation ko mix nahin karna chahiye."
+  },
+  {
+    "id": 7,
+    "cat": "Concept",
+    "prompt": "Does tracert normally list every physical and virtual Layer-2 switch on the path?",
+    "options": [
+      "No; it primarily reveals responding routed hops",
+      "Yes; every vSwitch always appears as an IP hop",
+      "Yes; every switch port is listed separately",
+      "Only switches with uppercase labels appear"
+    ],
+    "correct": 0,
+    "en": "Layer-2 forwarding devices do not necessarily appear as routed traceroute hops.",
+    "ru": "Layer-2 forwarding devices lazmi routed traceroute hops ki tarah nazar nahin aate."
+  },
+  {
+    "id": 8,
+    "cat": "Concept",
+    "prompt": "What is required for ordinary communication between different IP subnets?",
+    "options": [
+      "An appropriate routed path and permitted traffic",
+      "Only matching port-group labels",
+      "Only identical virtual disk names",
+      "Only a CNAME on the DNS server"
+    ],
+    "correct": 0,
+    "en": "Routing and policy are necessary when traffic crosses IP networks.",
+    "ru": "IP networks cross karne ke liye routing aur policy chahiye."
+  },
+  {
+    "id": 9,
+    "cat": "Concept",
+    "prompt": "What does a port-group name such as SERVERS establish by itself?",
+    "options": [
+      "An administrative label indicating intended purpose",
+      "A unique VLAN and security boundary",
+      "A guaranteed default gateway",
+      "An authoritative DNS zone"
+    ],
+    "correct": 0,
+    "en": "Names aid administration but do not implement segmentation alone.",
+    "ru": "Names administration mein madad dete hain lekin akelay segmentation implement nahin karte."
+  },
+  {
+    "id": 10,
+    "cat": "Concept",
+    "prompt": "What does an uplink provide for traffic flow?",
+    "options": [
+      "A path from the ESXi switch toward an external network",
+      "A requirement for every same-host frame exchange",
+      "Automatic creation of all routes",
+      "A guarantee of Internet access for every VLAN"
+    ],
+    "correct": 0,
+    "en": "An uplink extends the path; upstream connectivity and policy still determine reachability.",
+    "ru": "Uplink path extend karta hai; upstream connectivity aur policy reachability tay karti hain."
+  },
+  {
+    "id": 11,
+    "cat": "Lab scenario",
+    "prompt": "Two same-host VMs share a compatible VLAN and policies allow communication. Where can their traffic stay?",
+    "options": [
+      "Within the host’s local virtual switching path",
+      "It must traverse the physical router for every frame",
+      "It must visit the DNS server for every packet",
+      "It must leave through both active uplinks"
+    ],
+    "correct": 0,
+    "en": "Local compatible traffic can be switched without an external uplink.",
+    "ru": "Local compatible traffic external uplink ke baghair switch ho sakti hai."
+  },
+  {
+    "id": 12,
+    "cat": "Lab scenario",
+    "prompt": "A nested VM must reach an external LAN peer. Which conceptual sequence is appropriate?",
+    "options": [
+      "Guest vNIC → port group → vSwitch → vmnic → outer Workstation/upstream path",
+      "Guest disk → DNS zone → physical monitor",
+      "VMkernel name → CNAME → guest disk",
+      "Guest vNIC → datastore → Windows user profile"
+    ],
+    "correct": 0,
+    "en": "Nested traffic crosses both the inner ESXi network and relevant outer virtual network.",
+    "ru": "Nested traffic inner ESXi network aur relevant outer virtual network dono cross karti hai."
+  },
+  {
+    "id": 13,
+    "cat": "Lab scenario",
+    "prompt": "A Windows browser manages ESXi9 at 10.0.0.10. Which endpoint receives host management traffic?",
+    "options": [
+      "vmk0 through its management network attachment",
+      "Every guest vNIC simultaneously",
+      "The SERVERS group name as an IP interface",
+      "The storage datastore file"
+    ],
+    "correct": 0,
+    "en": "The management VMkernel interface is the ESXi host’s IP endpoint.",
+    "ru": "Management VMkernel interface ESXi host ka IP endpoint hai."
+  },
+  {
+    "id": 14,
+    "cat": "Lab scenario",
+    "prompt": "SERVERS and VM Network both use the same untagged Layer-2 network. Which statement is safest?",
+    "options": [
+      "Different labels alone do not establish isolation",
+      "They are necessarily on different VLANs",
+      "Only uppercase names can communicate",
+      "A different label guarantees blocked broadcasts"
+    ],
+    "correct": 0,
+    "en": "Actual segmentation must be demonstrated by topology and policy, not labels.",
+    "ru": "Actual segmentation topology aur policy se demonstrate hoti hai, labels se nahin."
+  },
+  {
+    "id": 15,
+    "cat": "Lab scenario",
+    "prompt": "STORAGE uses 172.16.0.102/16 and Management uses 10.0.0.10/24. What is not proven merely by these addresses?",
+    "options": [
+      "End-to-end security isolation between the networks",
+      "That the displayed interfaces have different IP addresses",
+      "That their addressing prefixes differ",
+      "That routing should be considered for cross-subnet access"
+    ],
+    "correct": 0,
+    "en": "Separate subnets do not by themselves establish VLAN, physical or policy isolation.",
+    "ru": "Alag subnets akelay VLAN, physical ya policy isolation establish nahin karte."
+  },
+  {
+    "id": 16,
+    "cat": "Lab scenario",
+    "prompt": "A VM port group is set to VLAN 20. What must the external path support for traffic to a VLAN 20 peer?",
+    "options": [
+      "Compatible VLAN handling through the uplink and upstream network",
+      "Only a port-group label containing 20",
+      "A reverse DNS zone named VLAN20",
+      "A guest disk size of 20 GB"
+    ],
+    "correct": 0,
+    "en": "Tagging must align with the actual path, including the outer layer in a nested lab.",
+    "ru": "Tagging actual path se align honi chahiye, nested lab mein outer layer samait."
+  },
+  {
+    "id": 17,
+    "cat": "Lab scenario",
+    "prompt": "A VM has an IP in a subnet different from its peer’s and no router exists between them. What does adding an uplink alone accomplish?",
+    "options": [
+      "An external Layer-2 path, not automatic inter-subnet routing",
+      "Automatic routing between all IP subnets",
+      "Creation of the peer’s missing DNS record",
+      "A guaranteed application session"
+    ],
+    "correct": 0,
+    "en": "An uplink is not a router configuration.",
+    "ru": "Uplink router configuration nahin hai."
+  },
+  {
+    "id": 18,
+    "cat": "Lab scenario",
+    "prompt": "A same-host ping succeeds while an uplink is disconnected. What is still unverified?",
+    "options": [
+      "Connectivity to a peer that requires that external uplink",
+      "That the local ping succeeded",
+      "That the guests can exchange the tested local traffic",
+      "That the selected local addresses replied"
+    ],
+    "correct": 0,
+    "en": "A local path may bypass the disconnected link entirely.",
+    "ru": "Local path disconnected link ko bilkul bypass kar sakta hai."
+  },
+  {
+    "id": 19,
+    "cat": "Lab scenario",
+    "prompt": "An early topology shows VLAN --, while a later SERVERS dialog explicitly shows None (0). What can be recorded?",
+    "options": [
+      "The later SERVERS value, without inferring every other group’s VLAN",
+      "All groups always use VLAN 4095",
+      "Every historical group had a verified tagged VLAN",
+      "The dash proves all groups were disconnected"
+    ],
+    "correct": 0,
+    "en": "An explicit field establishes that setting only for the captured object/checkpoint.",
+    "ru": "Explicit field sirf captured object/checkpoint ki us setting ko establish karti hai."
+  },
+  {
+    "id": 20,
+    "cat": "Lab scenario",
+    "prompt": "Which test separates name resolution from HTTPS TCP connectivity to the management IP?",
+    "options": [
+      "Compare a name lookup with Test-NetConnection 10.0.0.10 -Port 443",
+      "Only rename the management port group",
+      "Only run a disk capacity command",
+      "Only check the DNS suffix field"
+    ],
+    "correct": 0,
+    "en": "DNS and TCP service reachability are distinct layers of a connection.",
+    "ru": "DNS aur TCP service reachability connection ki alag layers hain."
+  },
+  {
+    "id": 21,
+    "cat": "Troubleshooting",
+    "prompt": "A guest’s local peer works, but a VLAN 20 physical peer does not. What should be checked?",
+    "options": [
+      "Tagging, uplink mapping, upstream VLAN allowance and endpoint settings",
+      "Assume local success proves upstream VLAN support",
+      "Delete all VMkernel interfaces immediately",
+      "Change the guest disk format first"
+    ],
+    "correct": 0,
+    "en": "The external tagged path can fail even when local switching works.",
+    "ru": "Local switching work kare tab bhi external tagged path fail ho sakta hai."
+  },
+  {
+    "id": 22,
+    "cat": "Troubleshooting",
+    "prompt": "A management VLAN change disconnects the host remotely. What is the appropriate recovery route?",
+    "options": [
+      "Use console access and restore the recorded compatible settings",
+      "Blindly reset every virtual switch",
+      "Delete all guest disks",
+      "Change the DNS zone serial repeatedly"
+    ],
+    "correct": 0,
+    "en": "Console rollback can restore a broken management network without broad unrelated resets.",
+    "ru": "Console rollback broad unrelated resets ke baghair management network restore kar sakta hai."
+  },
+  {
+    "id": 23,
+    "cat": "Troubleshooting",
+    "prompt": "DNS resolves the expected IP, but no traffic reaches the peer after a VLAN change. What is the relevant next focus?",
+    "options": [
+      "Layer-2/VLAN path, IP routing and firewall checks",
+      "Assume a correct DNS answer proves the network works",
+      "Create a new PTR as the only required fix",
+      "Set every port group to 4095 without a design"
+    ],
+    "correct": 0,
+    "en": "DNS success does not repair incompatible tagging or missing connectivity.",
+    "ru": "DNS success incompatible tagging ya missing connectivity repair nahin karti."
+  },
+  {
+    "id": 24,
+    "cat": "Troubleshooting",
+    "prompt": "Two Workstation NICs behind nested ESXi are on unrelated outer networks. What should not be assumed?",
+    "options": [
+      "That assigning them to one team makes them equivalent paths to the same VLAN",
+      "That outer mapping can affect connectivity",
+      "That MAC mapping helps identify the adapters",
+      "That the intended topology needs inspection"
+    ],
+    "correct": 0,
+    "en": "Equivalent uplinks need compatible upstream networks; teaming does not merge unrelated networks.",
+    "ru": "Equivalent uplinks ko compatible upstream networks chahiye; teaming unrelated networks merge nahin karti."
+  },
+  {
+    "id": 25,
+    "cat": "Troubleshooting",
+    "prompt": "A student says zero VMs on SERVERS proves VLAN isolation passed. What is missing?",
+    "options": [
+      "Actual endpoint attachment and controlled connectivity/isolation tests",
+      "Only another spelling for the label",
+      "Only a new background color",
+      "Only a longer DNS suffix"
+    ],
+    "correct": 0,
+    "en": "An empty group provides no guest traffic evidence for isolation.",
+    "ru": "Khaali group guest traffic ki isolation evidence nahin deta."
+  }
+]

@@ -1,0 +1,352 @@
+[
+  {
+    "id": 1,
+    "cat": "Concept",
+    "prompt": "What is a vSphere Standard Switch (vSS)?",
+    "options": [
+      "A software Layer-2 switch within an ESXi host",
+      "A DNS server that assigns host names",
+      "A hardware router installed inside every VM",
+      "A datastore that stores virtual disks"
+    ],
+    "correct": 0,
+    "en": "A vSS connects compatible virtual interfaces and can use uplinks for external connectivity.",
+    "ru": "vSS compatible virtual interfaces connect karta aur bahar ke liye uplinks use kar sakta hai."
+  },
+  {
+    "id": 2,
+    "cat": "Concept",
+    "prompt": "Which object provides the ESXi host’s IP-enabled interface for management?",
+    "options": [
+      "A VMkernel adapter such as vmk0",
+      "The vSwitch name itself",
+      "The VM’s virtual disk",
+      "The physical switch’s power supply"
+    ],
+    "correct": 0,
+    "en": "The management IP belongs to a VMkernel interface, not the standard switch object.",
+    "ru": "Management IP VMkernel interface ka hota hai, standard switch object ka nahin."
+  },
+  {
+    "id": 3,
+    "cat": "Concept",
+    "prompt": "What is an uplink in standard-switch networking?",
+    "options": [
+      "An ESXi vmnic assigned to provide an external network path",
+      "A DNS suffix attached to a host name",
+      "A secondary virtual disk for a VM",
+      "A guest operating system’s default password"
+    ],
+    "correct": 0,
+    "en": "The uplink joins the virtual switch to a suitable network beyond its local switching domain.",
+    "ru": "Uplink virtual switch ko uske local switching domain se bahar munasib network se jorta hai."
+  },
+  {
+    "id": 4,
+    "cat": "Concept",
+    "prompt": "What connects a guest VM’s virtual network adapter to an ESXi standard-switch network?",
+    "options": [
+      "A virtual-machine port group",
+      "The ESXi hosts file",
+      "A DNS reverse zone",
+      "The datastore browser"
+    ],
+    "correct": 0,
+    "en": "A guest vNIC attaches to a VM port group on the switch.",
+    "ru": "Guest vNIC switch ke VM port group se attach hota hai."
+  },
+  {
+    "id": 5,
+    "cat": "Concept",
+    "prompt": "Who normally manages the configuration of a standard switch?",
+    "options": [
+      "Each ESXi host individually",
+      "Only a DNS primary server",
+      "Every guest VM independently",
+      "A single shared Windows hosts file"
+    ],
+    "correct": 0,
+    "en": "A vSS is host-specific; distributed-switch management follows a different model.",
+    "ru": "vSS host-specific hai; distributed switch management alag model hai."
+  },
+  {
+    "id": 6,
+    "cat": "Concept",
+    "prompt": "What is the role of a port group?",
+    "options": [
+      "Group virtual ports under common connection and policy settings",
+      "Assign a public DNS domain automatically",
+      "Convert every VM into a router",
+      "Store guest operating-system files"
+    ],
+    "correct": 0,
+    "en": "Port groups provide network attachment and policy context, not application storage or DNS registration.",
+    "ru": "Port groups network attachment aur policy context dete hain, application storage ya DNS registration nahin."
+  },
+  {
+    "id": 7,
+    "cat": "Concept",
+    "prompt": "Can a standard switch exist without a physical uplink?",
+    "options": [
+      "Yes; compatible local endpoints can still communicate within the host",
+      "No; ESXi automatically deletes every uplink-free switch",
+      "Only when every VM is powered off",
+      "Only if it becomes a DNS server"
+    ],
+    "correct": 0,
+    "en": "An uplink is required for an external path, not for every local exchange.",
+    "ru": "Uplink external path ke liye hai, har local exchange ke liye nahin."
+  },
+  {
+    "id": 8,
+    "cat": "Concept",
+    "prompt": "Does a basic standard switch route between different IP subnets by itself?",
+    "options": [
+      "No; inter-subnet connectivity requires suitable routing elsewhere",
+      "Yes; every new port group becomes a router",
+      "Yes; changing the switch name enables routing",
+      "Only if DNS resolves the destination"
+    ],
+    "correct": 0,
+    "en": "A vSS provides Layer-2 switching; routing is a different function.",
+    "ru": "vSS Layer-2 switching deta hai; routing alag function hai."
+  },
+  {
+    "id": 9,
+    "cat": "Concept",
+    "prompt": "What does a reported 10000 Full link indicate?",
+    "options": [
+      "A reported 10 Gbit/s full-duplex link property",
+      "Measured 10 Gbit/s Internet throughput",
+      "Guaranteed 10 Gbit/s for each application",
+      "Proof that all failover tests passed"
+    ],
+    "correct": 0,
+    "en": "Reported link characteristics are not end-to-end throughput measurements.",
+    "ru": "Reported link characteristics end-to-end throughput measurements nahin."
+  },
+  {
+    "id": 10,
+    "cat": "Concept",
+    "prompt": "What does a nested ESXi vmnic often represent?",
+    "options": [
+      "A virtualized hardware NIC presented by the outer hypervisor",
+      "Always a dedicated physical PCI card in the desktop",
+      "A Windows DNS zone file",
+      "The guest VM’s storage controller"
+    ],
+    "correct": 0,
+    "en": "Workstation can present virtual NIC hardware to nested ESXi.",
+    "ru": "Workstation nested ESXi ko virtual NIC hardware present kar sakta hai."
+  },
+  {
+    "id": 11,
+    "cat": "Lab scenario",
+    "prompt": "The recorded ESXi9 topology shows vmk0 at 10.0.0.10 on Management Network. Which object owns that IP?",
+    "options": [
+      "vmk0",
+      "vSwitch0 itself",
+      "The SERVERS label",
+      "Every VM on VM Network"
+    ],
+    "correct": 0,
+    "en": "The IP endpoint is the host VMkernel interface.",
+    "ru": "IP endpoint host ka VMkernel interface hai."
+  },
+  {
+    "id": 12,
+    "cat": "Lab scenario",
+    "prompt": "Two same-host VMs share a compatible Layer-2 network and policies allow communication. The external uplink is down. What can still work?",
+    "options": [
+      "Their local communication through the vSwitch",
+      "Every Internet connection through the failed uplink",
+      "A guaranteed path to every remote host",
+      "Only communication routed through the failed physical cable"
+    ],
+    "correct": 0,
+    "en": "Same-host switching may remain local and does not need the external uplink for that exchange.",
+    "ru": "Same-host switching local reh sakti hai aur us exchange ke liye external uplink nahin chahiye."
+  },
+  {
+    "id": 13,
+    "cat": "Lab scenario",
+    "prompt": "A VM needs to reach a physical peer on the same intended LAN. What is required beyond its local vNIC and port group?",
+    "options": [
+      "A working compatible uplink and upstream network path",
+      "Only a different display name for the port group",
+      "Only a larger virtual disk",
+      "A DNS alias regardless of network reachability"
+    ],
+    "correct": 0,
+    "en": "An external destination requires an actual path beyond the ESXi switch.",
+    "ru": "External destination ke liye ESXi switch se bahar actual path chahiye."
+  },
+  {
+    "id": 14,
+    "cat": "Lab scenario",
+    "prompt": "SERVERS and VM Network both use the same untagged Layer-2 network. Do different labels alone isolate their traffic?",
+    "options": [
+      "No; names alone do not create isolation",
+      "Yes; every name creates a unique VLAN",
+      "Yes; a label automatically enables a firewall",
+      "Only labels written in uppercase create isolation"
+    ],
+    "correct": 0,
+    "en": "Segmentation depends on network/policy design, not merely the group label.",
+    "ru": "Segmentation network/policy design par depend karti hai, sirf group label par nahin."
+  },
+  {
+    "id": 15,
+    "cat": "Lab scenario",
+    "prompt": "A snapshot shows SERVERS created with zero attached VMs. What is established?",
+    "options": [
+      "The port group exists; guest connectivity remains untested",
+      "Every server guest has passed a ping test",
+      "All VMs automatically moved into SERVERS",
+      "The network is definitely faulty because no VM is attached"
+    ],
+    "correct": 0,
+    "en": "Configuration existence and guest traffic verification are separate claims.",
+    "ru": "Configuration ka hona aur guest traffic verification alag claims hain."
+  },
+  {
+    "id": 16,
+    "cat": "Lab scenario",
+    "prompt": "vmnic1 must move from vSwitch0 to another standard switch. What constraint matters?",
+    "options": [
+      "A vmnic cannot belong to two standard switches simultaneously",
+      "A vmnic must always have a DNS A record first",
+      "The second switch must use the same name as the first",
+      "The host must delete every VM before any NIC assignment change"
+    ],
+    "correct": 0,
+    "en": "Its current switch membership must be handled before reassigning it.",
+    "ru": "Reassign karne se pehle uski current switch membership handle hoti hai."
+  },
+  {
+    "id": 17,
+    "cat": "Lab scenario",
+    "prompt": "A screen shows vmnic0 and vmnic1 assigned to a switch. Which claim requires additional testing?",
+    "options": [
+      "Automatic failover works during a real link failure",
+      "Two uplinks are shown in that captured configuration",
+      "The switch has those listed memberships at that time",
+      "The screenshot identifies two adapter names"
+    ],
+    "correct": 0,
+    "en": "Membership alone does not prove policy behavior or upstream path redundancy.",
+    "ru": "Membership akeli policy behavior ya upstream redundancy prove nahin karti."
+  },
+  {
+    "id": 18,
+    "cat": "Lab scenario",
+    "prompt": "The earlier screenshot shows one uplink; a later inventory shows two. How should the notes describe them?",
+    "options": [
+      "As separate historical checkpoints, with live state verified before changes",
+      "Treat the oldest image as the permanent final state",
+      "Assume the later image proves every uncaptured intermediate step",
+      "Delete one observation because they cannot both have occurred"
+    ],
+    "correct": 0,
+    "en": "Configuration changes over time; historical evidence needs chronology.",
+    "ru": "Configuration waqt ke saath badalti hai; historical evidence ko chronology chahiye."
+  },
+  {
+    "id": 19,
+    "cat": "Lab scenario",
+    "prompt": "A standard switch named STORAGE is created. Does its name alone prove a working storage datastore?",
+    "options": [
+      "No; storage endpoint and protocol/datastore tests are separate",
+      "Yes; the name automatically mounts NFS",
+      "Yes; ESXi creates an iSCSI target from the label",
+      "Only if the name contains an uppercase letter"
+    ],
+    "correct": 0,
+    "en": "Network objects do not automatically establish storage sessions or mount datastores.",
+    "ru": "Network objects automatically storage sessions ya datastores mount nahin karte."
+  },
+  {
+    "id": 20,
+    "cat": "Lab scenario",
+    "prompt": "You want to inspect existing standard switches and uplinks without changing them. Which shell command fits?",
+    "options": [
+      "esxcli network vswitch standard list",
+      "esxcli system shutdown poweroff",
+      "esxcli storage filesystem unmount",
+      "esxcli network vswitch standard remove -v vSwitch0"
+    ],
+    "correct": 0,
+    "en": "The list command inventories standard-switch configuration.",
+    "ru": "List command standard-switch configuration ki inventory deta hai."
+  },
+  {
+    "id": 21,
+    "cat": "Troubleshooting",
+    "prompt": "Local same-host VM traffic works, but external traffic fails. Which area is especially relevant?",
+    "options": [
+      "Uplink assignment/status and the outer/upstream network path",
+      "Only the datastore file names",
+      "Assume local success proves the external cable works",
+      "Only the browser bookmark title"
+    ],
+    "correct": 0,
+    "en": "The local path may bypass the uplink, so external failure needs separate path checks.",
+    "ru": "Local path uplink bypass kar sakta hai; external failure ke path checks alag hain."
+  },
+  {
+    "id": 22,
+    "cat": "Troubleshooting",
+    "prompt": "A management VLAN or uplink change disconnects remote access. What recovery preparation is most valuable?",
+    "options": [
+      "Working local console access and a recorded rollback configuration",
+      "An unrelated DNS MX record",
+      "A renamed desktop shortcut",
+      "A larger VM display resolution"
+    ],
+    "correct": 0,
+    "en": "Management-network changes can strand the session; console recovery preserves a way back.",
+    "ru": "Management changes session disconnect kar sakti hain; console recovery wapas access deti hai."
+  },
+  {
+    "id": 23,
+    "cat": "Troubleshooting",
+    "prompt": "A free vmnic is absent from the target switch’s selection. What should be checked first?",
+    "options": [
+      "Whether another switch already owns it and whether ESXi sees the adapter",
+      "Whether its name is listed in a reverse DNS zone",
+      "Whether every VM has the same administrator password",
+      "Whether the switch label ends in .com"
+    ],
+    "correct": 0,
+    "en": "Inventory the actual device and assignment before assuming it is available.",
+    "ru": "Available assume karne se pehle actual device aur assignment inspect karein."
+  },
+  {
+    "id": 24,
+    "cat": "Troubleshooting",
+    "prompt": "A nested uplink reports connected, but the external test endpoint is unreachable. What check is useful?",
+    "options": [
+      "Match its MAC to the Workstation NIC and verify the outer network mapping",
+      "Assume link-up proves all upstream paths are correct",
+      "Change every storage MTU to 9000 without testing",
+      "Delete the management interface first"
+    ],
+    "correct": 0,
+    "en": "A connected virtual link can still lead to the wrong outer network.",
+    "ru": "Connected virtual link phir bhi ghalat outer network tak ja sakta hai."
+  },
+  {
+    "id": 25,
+    "cat": "Troubleshooting",
+    "prompt": "A student uses a successful same-host ping as proof of uplink failover. What is missing?",
+    "options": [
+      "An external traffic path with controlled link fault and observed recovery",
+      "A different color for the port group label",
+      "A CNAME for every physical NIC",
+      "A second DNS suffix on the client"
+    ],
+    "correct": 0,
+    "en": "A local ping may never traverse an uplink, so it cannot establish that uplink’s failover.",
+    "ru": "Local ping uplink par ja hi na sakti ho; is se us uplink ka failover prove nahin."
+  }
+]
