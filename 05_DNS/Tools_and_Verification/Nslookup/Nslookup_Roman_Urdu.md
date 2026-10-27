@@ -1,4 +1,4 @@
-# nslookup — DNS troubleshooting ke study notes
+# nslookup (Name Server Lookup) — DNS troubleshooting ke study notes
 
 ## Maqsad
 
