@@ -37,7 +37,7 @@ Network: VMnet2 host-only, 192.168.0.0/24; gateway blank. Zone: VCPLAB.Com. DNS0
 | --- | --- |
 | Primary zone | Writable authoritative copy |
 | A | Naam se IPv4 address |
-| PTR | IP se DNS naam |
+| PTR (Pointer Record) | IP se DNS naam |
 | CNAME | Alias se asal DNS naam |
 | NS | Zone ka authoritative name server |
 | SOA | Authority, serial aur refresh ki information |
