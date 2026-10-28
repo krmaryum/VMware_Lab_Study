@@ -40,7 +40,7 @@ Finance-Read group, Finance OU aur Finance folder teen alag cheezein hain. Milte
 
 ## 1. Directory kya hai?
 
-Directory maloomat ki munazzam fehrist hoti hai. Phone directory mein naam aur numbers hote hain; network directory mein users, computers, groups aur doosre resources ki information ho sakti hai.
+Directory maloomat ki managed index hoti hai. Phone directory mein naam aur numbers hote hain; network directory mein users, computers, groups aur doosre resources ki information ho sakti hai.
 
 Kitaab ka index samajhne ki aik misaal hai. Magar directory sirf jagah nahin batati; woh entries ki tafseel bhi rakhti hai. User ka naam, logon name aur department aisi information ki examples hain.
 
