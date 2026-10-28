@@ -1,58 +1,60 @@
-# Sources, lecture map and clarifications
+# Source map and technical clarifications
 
-The original teacher PDF and screenshot are preserved. The study guides explain and qualify their points; they do not claim that example addresses or diagrams represent a verified deployment. Earlier unavailable screenshots are not included.
+## Supplied sources
 
-## Important distinctions
+- [Original typed class notes](CLASS_NOTES_ORIGINAL.md).
+- [Original 22-page teacher lecture](reference/Teacher_ADDS_Lecture.pdf), copied unchanged from the newly supplied attachment.
+- [Page 7 Kerberos diagram](images/teacher-kerberos.png), rendered from that PDF; this is class material, not a screenshot of a configured lab.
 
-- DNS existed before Windows 2000; Windows 2000 introduced Microsoft Active Directory, which relies on DNS.
-- The screenshot's “X.25” wording is ambiguous. X.25 is a networking protocol family, not a directory database. We do not silently replace the teacher's term with X.500.
-- AD DS, AD FS, AD LDS and AD RMS are different roles/products, not interchangeable names or a literal historical equation.
-- KCC calculates replication topology; it is not the entire replication engine.
-- Schema/configuration/domain/application describe partition categories. Multiple application partitions can exist; Global Catalog partial replicas qualify simple “domain data never crosses domains” statements.
-- AS and TGS are logical KDC functions; the diagram does not require three separate authentication servers. An ordinary resource server does not need NTDS.dit.
-- GPO configuration uses both AD and SYSVOL. GPO application depends on links, scope, filtering and processing; it does not automatically affect every machine.
-- The PDC emulator is not the sole writable DC or sole login processor. Infrastructure Master placement depends on forest/domain and Global Catalog design.
-- Schema version and functional level are different. Schema extension/deactivation is controlled administration, not routine object deletion.
-- The lecture's 250 MB figure concerns old database/log context, not a complete modern Windows Server requirement. Lab resource suggestions are not official minimum specifications.
-- AD sites represent network topology for directory operations. Site-to-site replication is not inherently faster. Renaming, promotion and demotion require planning.
-- Replication is not backup; a second DC is not disaster recovery by itself.
+## PDF coverage
 
-## Original lecture pages
+| PDF pages | Lecture topic | Study sections |
+|---|---|---|
+| 1–3 | Agenda and AD DS overview | 1–4, 11 |
+| 4–5 | Database and partitions | 13 |
+| 6–7 | Authentication | 12 |
+| 8–9 | Objects | 11 |
+| 10–13 | Purpose and features | 3, 11–13, 16 |
+| 14–15 | Logical and physical AD structure | 8, 11 |
+| 16–18 | FSMO roles | 14 |
+| 19–20 | Schema versions | 15 |
+| 21–22 | Installation requirements | 16 |
 
-- Page 1: Agenda — [page image](class_reference/page-01.png)
-- Page 2: AD DS title — [page image](class_reference/page-02.png)
-- Page 3: Overview and functions — [page image](class_reference/page-03.png)
-- Page 4: Partitions title — [page image](class_reference/page-04.png)
-- Page 5: Database partitions — [page image](class_reference/page-05.png)
-- Page 6: Authentication title — [page image](class_reference/page-06.png)
-- Page 7: Kerberos diagram — [page image](class_reference/page-07.png)
-- Page 8: Objects title — [page image](class_reference/page-08.png)
-- Page 9: Object examples — [page image](class_reference/page-09.png)
-- Page 10: Purpose title — [page image](class_reference/page-10.png)
-- Page 11: Purpose and integration — [page image](class_reference/page-11.png)
-- Page 12: Features title — [page image](class_reference/page-12.png)
-- Page 13: Features — [page image](class_reference/page-13.png)
-- Page 14: Structure title — [page image](class_reference/page-14.png)
-- Page 15: Logical and physical structure — [page image](class_reference/page-15.png)
-- Page 16: FSMO title — [page image](class_reference/page-16.png)
-- Page 17: Forest-wide roles — [page image](class_reference/page-17.png)
-- Page 18: Domain-wide roles — [page image](class_reference/page-18.png)
-- Page 19: Schema title — [page image](class_reference/page-19.png)
-- Page 20: Schema versions — [page image](class_reference/page-20.png)
-- Page 21: Requirements title — [page image](class_reference/page-21.png)
-- Page 22: Requirements — [page image](class_reference/page-22.png)
+## Clarifications applied
 
-## Official references
+1. SAM is not exclusive to workgroup computers; ordinary domain members also have local accounts.
+2. LDAP is a protocol. A directory server provides storage; Linux is not the only platform supporting LDAP.
+3. Port 389 is not the entirety of AD networking. LDAP may use StartTLS; LDAPS conventionally uses 636.
+4. vCenter SSO identity, ESXi root and an SSH alias are separate contexts.
+5. X.25 in the supplied shorthand requires teacher confirmation; X.500 is a possible intended reference, not an asserted correction.
+6. NT supported NTFS, and historical NT domains existed before Active Directory. DNS and NTFS were not introduced with Windows 2000.
+7. AD DS/FS/RMS/LDS are different services, not an equality or a single 2003 R2/SP2 launch event.
+8. Workgroup/domain describes management organization; physical topology describes connections. AD logical structure has its own meaning.
+9. UPN is a login-name format, not proof of an email mailbox. NetBIOS name and UPN suffix are distinct fields.
+10. Group Policy scope is conditional. Resource servers enforce access; a valid identity/trust is not universal permission.
+11. AS and TGS are KDC functions; a normal resource server does not need NTDS.dit.
+12. Four partition categories do not mean exactly four partitions. Global Catalog partial replicas qualify the domain-replication simplification.
+13. KCC calculates topology. SYSVOL file replication is distinct from AD database replication. Inter-site replication is not inherently faster.
+14. PDC Emulator is not the only authentication/password-writing DC or the processor of all client GPOs. Role placement and recovery require planning.
+15. Schema changes are controlled; routine schema deletion is not equivalent to deleting a user. Schema version and functional level are different.
+16. The lecture's 250 MB is not a complete modern server requirement. Example addresses are not verified available. Installation readiness must be checked for the actual lab.
 
-These support the technical clarifications and provide further reading. Consult current documentation before a production change.
+## Official reading
+
+These references support the distinctions and provide further study. They are not evidence of a deployed lab. The notes paraphrase and teach the concepts rather than reproducing vendor articles.
 
 - [AD DS overview](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/active-directory-domain-services)
-- [AD replication and KCC](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/replication/active-directory-replication-concepts)
-- [Kerberos authentication](https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview)
-- [Group Policy overview](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-overview)
-- [AD database learning module](https://learn.microsoft.com/en-us/training/modules/understand-active-directory-database/)
+- [SAM and account domains](https://learn.microsoft.com/en-us/windows/win32/secmgmt/built-in-and-account-domains)
+- [User name formats](https://learn.microsoft.com/en-us/windows/win32/secauthn/user-name-formats)
+- [LDAP and directory services](https://www.openldap.org/doc/admin26/intro.html)
+- [Windows service ports](https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/service-overview-and-network-port-requirements)
+- [vCenter SSO account context](https://knowledge.broadcom.com/external/article?legacyId=2033875)
+- [Microsoft Entra ID name change](https://learn.microsoft.com/en-us/entra/fundamentals/new-name)
+- [AD LDS and former ADAM name](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/adam/active-directory-lightweight-directory-services)
+- [Replication concepts and KCC](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/replication/active-directory-replication-concepts)
 - [FSMO roles](https://learn.microsoft.com/en-us/troubleshoot/windows-server/active-directory/fsmo-roles)
-- [Functional levels](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/active-directory-functional-levels)
-- [Schema versions](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/find-active-directory-schema)
+- [AD schema versions](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/deploy/find-active-directory-schema)
+- [AD functional levels](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/active-directory-functional-levels)
+- [Kerberos overview](https://learn.microsoft.com/en-us/windows-server/security/kerberos/kerberos-authentication-overview)
 
-[README](README.md)
+[Return to README](README.md)
