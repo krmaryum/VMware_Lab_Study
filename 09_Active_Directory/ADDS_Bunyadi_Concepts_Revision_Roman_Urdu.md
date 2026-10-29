@@ -191,7 +191,7 @@ Example: paanch minute inactivity ke baad screen lock ki suitable setting. Centr
 
 | Concept | Matlab | Example |
 | --- | --- | --- |
-| Policy | Settings aur qawaid | Inactivity ke baad screen lock |
+| Policy | Settings aur ruling | Inactivity ke baad screen lock |
 | Permission | Resource par allowed operation | Finance folder par Read |
 
 OU mein har object par har GPO setting nahin lagti. User settings users aur computer settings computers ke liye hoti hain; placement aur processing context matter karta hai. Security groups GPO filtering mein use ho sakte hain, lekin groups par user/computer settings seedha apply nahin hotin.
@@ -281,7 +281,7 @@ Delegation aur folder permission alag hain. Password-reset authority hone ka mat
 | Attribute | Entry ki maloomat |
 | Security group | Membership ke zariye permission management |
 | OU | Objects ka container, GPO scope aur delegation |
-| Policy | Settings aur qawaid |
+| Policy | Settings aur ruling |
 | Permission | Resource par allowed operation |
 | Replication | Directory changes copies tak pohanchana |
 | Site | AD mein subnet/connectivity grouping |
