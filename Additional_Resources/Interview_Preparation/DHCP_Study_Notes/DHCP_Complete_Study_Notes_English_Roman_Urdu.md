@@ -33,7 +33,7 @@
 - DNS server addresses
 - Lease duration and other DHCP options
 
-**Roman Urdu:** Jab naya laptop, desktop ya server network par connect hota hai to usko communication ke liye IP address chahiye hota hai. DHCP server automatically IP address aur network ki doosri settings provide kar sakta hai. Is se har device par manually IP type karne ki zaroorat kam hoti hai.
+**Roman Urdu:** Jab naya laptop, desktop ya server network par connect hota hai to usko communication ke liye IP address chahiye hota hai. DHCP server automatically IP address aur network ki doosri settings provide kar sakta hai. Is se har device par manually IP type karne ki Demand kam hoti hai.
 
 **Key idea:** DHCP provides configuration; DHCP **does not itself install Linux**.
 

@@ -364,7 +364,7 @@ sudo journalctl -k -b | grep -Ei 'firmware|bios|uefi|raid|nvme|error' | head -80
 
 BIOS ka full form **Basic Input/Output System** hai. Yeh firmware ki ek type hai. Jab Dell PowerEdge server ON hota hai to Linux seedha start nahi hota. Pehle BIOS/UEFI platform ke hardware ko initialize karta hai, POST checks hotay hain, phir boot order ke mutabiq disk ya network/PXE se boot ki koshish hoti hai.
 
-**Example:** Naya server rack mein install hua, Linux abhi install nahi. Aap phir bhi supported iDRAC remote console se BIOS/UEFI setup dekh sakte hain. Is ki wajah yeh hai ke BIOS ko Linux ki zaroorat nahi.
+**Example:** Naya server rack mein install hua, Linux abhi install nahi. Aap phir bhi supported iDRAC remote console se BIOS/UEFI setup dekh sakte hain. Is ki wajah yeh hai ke BIOS ko Linux ki Demand nahi.
 
 ### UEFI kya hai?
 
@@ -401,7 +401,7 @@ Aapka goal sirf server ko ON karna nahi, balkay **approved configuration ke saat
 
 **Step 3 — BIOS settings:** Boot mode, boot order, PXE, CPU settings, Secure Boot aur storage mode ko approved baseline se compare karein. Har setting change karna zaroori nahi.
 
-**Step 4 — Firmware versions:** BIOS, iDRAC, RAID, NIC aur zaroorat ke mutabiq disks/GPU ki versions note karein.
+**Step 4 — Firmware versions:** BIOS, iDRAC, RAID, NIC aur Demand ke mutabiq disks/GPU ki versions note karein.
 
 **Step 5 — Baseline compare:** Company ke approved version se compare karein. Newest version automatically approved nahi hota.
 

@@ -66,7 +66,7 @@ Farz karein **Linux VM1 (example `10.0.0.101`)** web request bhejti hai **Linux 
 
 ## 3. Decapsulation — Receiver par kya hota hai?
 
-Receiver par iska ulta process hota hai. Ethernet layer apni information check/process karti hai, IP layer packet handle karti hai, TCP destination port ki madad se data sahi application tak deta hai. TCP zaroorat par multiple segments ko sequence mein reassemble bhi karta hai.
+Receiver par iska ulta process hota hai. Ethernet layer apni information check/process karti hai, IP layer packet handle karti hai, TCP destination port ki madad se data sahi application tak deta hai. TCP Demand par multiple segments ko sequence mein reassemble bhi karta hai.
 
 ```text
 RECEIVER

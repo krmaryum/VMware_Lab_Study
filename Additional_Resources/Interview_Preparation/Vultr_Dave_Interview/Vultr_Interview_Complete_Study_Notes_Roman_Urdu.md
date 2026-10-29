@@ -6,7 +6,7 @@
 
 > **Source note:** Interview ka waqt, Dave ki tips, responsibilities aur qualification uski 12 October wali email/job description se li gayi hain. Neeche commands, troubleshooting examples, diagrams aur sample answers **study material** hain; inhein Vultr ki actual internal runbook na samjhein. Email mein naam **Scott Harman** hai lekin LinkedIn URL mein **hartman** hai—invite se confirm karein. Jahan aapko Puppet, PXE ya GPU ka production hands-on experience nahin, wahan “I would follow the approved runbook” kahein; jhoota claim na karein.
 
-## Fehrist / Table of contents
+## list / Table of contents
 1. Notes ka istemal
 2. Interview logistics aur video preparation
 3. Dave ki khas instructions

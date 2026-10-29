@@ -31,7 +31,7 @@ Pehle sections 1–5 parhein. Break ke baad naming aur history ki taraf jayein. 
 
 **User account** aik identity represent karta hai. Woh kisi insaan ka ho sakta hai ya service ke liye use ho sakta hai. **Security group** identities ko jama karta hai taake administrator consistent permissions de sake.
 
-Example: Ali aur Aisha Accounts mein kaam karte hain. Dono accounts Accounts security group mein add karein aur folder ki munasib permission group ko dein. Naya colleague aaye to har shakhs ke liye folder edit karne ke bajaye group membership se intended access di ja sakti hai.
+Example: Ali aur Aisha Accounts mein kaam karte hain. Dono accounts Accounts security group mein add karein aur folder ki munasib permission group ko dein. Naya colleague aaye to har person ke liye folder edit karne ke bajaye group membership se intended access di ja sakti hai.
 
 | Concept | Sawal | Example |
 |---|---|---|

@@ -75,7 +75,7 @@ iDRAC Port  -> Out-of-band management network
 4. Verify NIC MAC address against asset inventory.
 5. Confirm selected PXE NIC in BIOS/UEFI.
 
-**Roman Urdu:** Agar physical link hi nahi hai, to pehle NIC, cable aur switch port check karein. Is stage par DHCP ko blame karna jaldi hoga.
+**Roman Urdu:** Agar physical link hi nahi hai, to pehle NIC, cable aur switch port check karein. Is stage par DHCP ko blame karna Quick hoga.
 
 **Important:** Some BMCs use a dedicated management NIC, while others can share a physical port. Follow the actual hardware design.
 

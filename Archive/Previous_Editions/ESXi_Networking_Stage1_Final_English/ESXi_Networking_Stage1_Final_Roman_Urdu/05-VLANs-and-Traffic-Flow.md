@@ -10,7 +10,7 @@ VM-to-VM traffic, VM se LAN traffic aur Windows desktop se ESXi management tak t
 ## Traffic ke teen examples
 **A. Ek host, same port group/VLAN:** `VM-A frame → uska vNIC → Port Group → vSwitch → VM-B ka vNIC`. Aam tor par traffic host ke andar hi rehta hai; external uplink zaroori nahin (policies aur configuration allow karni chahiye).
 
-**B. Guest VM se external LAN:** `VM vNIC → VM Network → vSwitch0 → vmnic0 → VMware Workstation networking (agar nested ho) → external LAN`. Agar destination alag IP subnet mein hai to routing ki zaroorat hogi; route exactly kahan hota hai network topology par depend karega.
+**B. Guest VM se external LAN:** `VM vNIC → VM Network → vSwitch0 → vmnic0 → VMware Workstation networking (agar nested ho) → external LAN`. Agar destination alag IP subnet mein hai to routing ki Demand hogi; route exactly kahan hota hai network topology par depend karega.
 
 **C. Windows se ESXi management:** `Windows desktop → LAN → ESXi uplink → vSwitch0 → Management Network → vmk0 (10.0.0.10) → HTTPS service`.
 

@@ -237,7 +237,7 @@ Host dell-esxi9
     IdentitiesOnly yes
 ```
 
-Filename **config** hona chahiye, `config.txt` nahin. Notepad ke Save As mein zaroorat ho to All files select karein.
+Filename **config** hona chahiye, `config.txt` nahin. Notepad ke Save As mein Demand ho to All files select karein.
 
 | Setting | Matlab |
 | --- | --- |
@@ -384,4 +384,4 @@ Broadcom: Allowing SSH access to VMware vSphere ESXi/ESX hosts with public/priva
 
 https://knowledge.broadcom.com/external/article/313767/allowing-ssh-access-to-vmware-vsphere-es.html
 
-In notes mein ESXi 9.1 ki success user ke actual output se verified hai. Verified setup ke liye server password authentication disable karne, `sshd_config` edit karne ya SSH service restart karne ki zaroorat nahin padi.
+In notes mein ESXi 9.1 ki success user ke actual output se verified hai. Verified setup ke liye server password authentication disable karne, `sshd_config` edit karne ya SSH service restart karne ki Demand nahin padi.

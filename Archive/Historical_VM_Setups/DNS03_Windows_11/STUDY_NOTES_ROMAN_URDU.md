@@ -90,7 +90,7 @@ Windows 11 x64, 80 GB split disk, 4096 MB RAM, 2 cores aur Custom VMnet2 verify 
 
 ### 10. Power on and boot the installer
 
-Power on karein. Console ke andar click kar ke CD/DVD prompt par Space dabayein. TPM present hai. Zaroorat ho to VM ko DNS library folder mein move karein; final placement alag screenshot mein verify nahee hui.
+Power on karein. Console ke andar click kar ke CD/DVD prompt par Space dabayein. TPM present hai. Demand ho to VM ko DNS library folder mein move karein; final placement alag screenshot mein verify nahee hui.
 
 ![Step 10: Power on and boot the installer](screenshots/10_040605.png)
 
@@ -132,7 +132,7 @@ Windows 11 Enterprise aur Keep nothing verify kar ke Install karein. Restart par
 
 ### 17. Offline setup
 
-VMnet2 par internet na hona expected hai. Nazar aane wala I don’t have internet link click karein. Is installation mein bypass command ki zaroorat nahee pari.
+VMnet2 par internet na hona expected hai. Nazar aane wala I don’t have internet link click karein. Is installation mein bypass command ki Demand nahee pari.
 
 ![Step 17: Offline setup](screenshots/17_043705.png)
 

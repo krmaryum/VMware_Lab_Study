@@ -226,7 +226,7 @@ Yeh desktop ESXi 8 ka **Host Client** hai, vCenter nahi. ESXi 8/9 management ke 
 
 ## 11. SSO aur permissions
 
-**SSO - Single Sign-On:** supported applications/services ke darmiyan repeated login ki zaroorat kam karne wala authentication arrangement.
+**SSO - Single Sign-On:** supported applications/services ke darmiyan repeated login ki Demand kam karne wala authentication arrangement.
 
 | Concept | Sawal |
 |---|---|

@@ -185,7 +185,7 @@ Next step: Retest after approved correction
 ### Q3. What if a runbook step fails and no fix is documented?
 **English:** "I would stop, capture the error and logs, perform safe authorized checks, and escalate to the responsible team if the next action is unclear. After resolution, I would retest and document the outcome."
 
-**Roman Urdu:** Random changes nahi karunga. Evidence collect karunga, safe checks karunga aur zaroorat par escalate karunga.
+**Roman Urdu:** Random changes nahi karunga. Evidence collect karunga, safe checks karunga aur Demand par escalate karunga.
 
 ### Q4. How do you know a server is production-ready?
 **English:** "I would verify hardware, firmware, network, OS, configuration, and required services, confirm inventory accuracy, and ensure validation and approval steps are complete."

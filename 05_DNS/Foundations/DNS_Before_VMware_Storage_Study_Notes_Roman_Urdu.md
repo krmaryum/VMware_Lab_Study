@@ -175,7 +175,7 @@ Domain aur zone related concepts hain; advanced delegation designs mein unki bou
 Browser mein hostname enter karne par conceptual sequence:
 
 1. Computer local name-resolution information/cache check karta hai.
-2. Zaroorat par configured DNS resolver ko query bhejta hai.
+2. Demand par configured DNS resolver ko query bhejta hai.
 3. Resolver apne records/cache se answer deta hai ya appropriate DNS servers se answer hasil karta hai.
 4. Computer returned IP par connection try karta hai.
 

@@ -50,7 +50,7 @@ Directory mein shared folder ka reference hona, us folder ki tamam files directo
 
 **AD DS = Active Directory Domain Services.** Yeh Microsoft ki directory service hai jo users, computers, groups aur related network resources ki information centrally rakhne aur manage karne mein madad deti hai.
 
-**Domain** users, computers aur resources ke management ka aik logical daira hai. Domain ke accounts ka central management hota hai.
+**Domain** users, computers aur resources ke management ka aik logical circle hai. Domain ke accounts ka central management hota hai.
 
 **Domain Controller (DC)** woh server hai jis par AD DS chalti hai aur directory database ki copy hoti hai. Woh domain authentication aur directory queries jaise kaam provide karta hai. Domain mein aik se zyada DC ho sakte hain.
 
@@ -59,9 +59,9 @@ Example: admin Khalid ka domain account banata hai. DC us account ki information
 | Lafz | Seedhi pehchan |
 | --- | --- |
 | AD DS | Directory service |
-| Domain | Identities aur resources ka logical management daira |
+| Domain | Identities aur resources ka logical management circle |
 | DC | Directory services dene wala server |
-| Admin | Accounts aur settings manage karne wala authorized shakhs |
+| Admin | Accounts aur settings manage karne wala authorized person |
 
 ## 3. Domain aur Workgroup
 
@@ -210,7 +210,7 @@ Accounts aur memberships se munasib resource access organize hoti hai. Finance-R
 
 ### Security and Access Control
 
-Zaroorat ke mutabiq access dein aur zaroorat khatam ho to review/remove karein. Khalid Finance se Sales jaye to admin old Finance memberships aur suitable Sales memberships check kare.
+Demand ke mutabiq access dein aur Demand khatam ho to review/remove karein. Khalid Finance se Sales jaye to admin old Finance memberships aur suitable Sales memberships check kare.
 
 Finance-Read se nikaalne par us membership ke zariye milne wali access hatane ka maqsad hota hai, lekin doosre groups ya direct permissions se access phir bhi ho sakti hai. Existing sessions, security tokens aur tickets ki wajah se tabdeeli har jagah foran nazar nahin aati.
 
@@ -253,11 +253,11 @@ Site ko domain ke barabar na samjhein. Aik domain multiple sites mein ho sakta h
 
 Increasing Demand ke mutabiq system ki capacity barhana. Aaj 10 aur kal 100 computers hon to AD DS mazeed objects ka management kar sakta hai; design, capacity aur connectivity phir bhi assess karni hoti hai.
 
-Zaroorat par additional DCs deploy kiye ja sakte hain. capacity kam karna bhi planning ka hissa hai; DC ko hatane ke liye suitable demotion aur verification procedure chahiye. Sirf VM delete kar dena proper DC retirement nahin.
+Demand par additional DCs deploy kiye ja sakte hain. capacity kam karna bhi planning ka hissa hai; DC ko hatane ke liye suitable demotion aur verification procedure chahiye. Sirf VM delete kar dena proper DC retirement nahin.
 
 ### Delegation
 
-Kisi authorized shakhs ya team ko specific kaam ka limited ikhtiyar dena.
+Kisi authorized person ya team ko specific kaam ka limited authority dena.
 
 Example: help-desk operator ko Finance OU ke relevant users ke passwords reset karne ki delegated authority di jaye. Usay poore domain ka administrator banana zaroori nahin. Sensitive/protected accounts par additional restrictions ho sakti hain.
 
@@ -265,13 +265,13 @@ Delegation aur folder permission alag hain. Password-reset authority hone ka mat
 
 ## 15. Combined Revision aur Learning Checkpoint
 
-### Jaldi revision table
+### Quick revision table
 
 | Lafz | Seedha matlab |
 | --- | --- |
-| Directory | Entries aur unki information ki munazzam fehrist |
-| AD DS | Markazi directory service |
-| Domain | Identity/resources ka logical management daira |
+| Directory | Entries aur unki information ki managed list |
+| AD DS | centralizeddirectory service |
+| Domain | Identity/resources ka logical management circle |
 | DC | AD DS chalane wala server |
 | Authentication | Pehchan ki tasdeeq |
 | Authorization | Allowed operation ka faisla |
@@ -288,8 +288,8 @@ Delegation aur folder permission alag hain. Password-reset authority hone ka mat
 | Permission | Resource par allowed operation |
 | Replication | Directory changes copies tak pohanchana |
 | Site | AD mein subnet/connectivity grouping |
-| Scalability | Zaroorat ke mutabiq capacity barhana |
-| Delegation | Specific kaam ka limited administrative ikhtiyar |
+| Scalability | Demand ke mutabiq capacity barhana |
+| Delegation | Specific kaam ka limited administrative authority |
 
 ### Khud se sawalat
 
@@ -323,7 +323,7 @@ Key dekhne se pehle apne alfaaz mein jawab dein.
 ### Jawabat aur short explanations
 
 1. Attributes bhi rakhti hai; directory sirf pointer list nahin.
-2. AD DS service hai; domain logical management daira; DC server hai jo service aur directory copy deta hai.
+2. AD DS service hai; domain logical management circle; DC server hai jo service aur directory copy deta hai.
 3. Nahin, dono apni local account authorities ke accounts hain.
 4. Authentication: pehchan ki tasdeeq nahin hui.
 5. Is simplified case mein authorization check karein; login aur resource permission alag hain.
@@ -338,11 +338,11 @@ Key dekhne se pehle apne alfaaz mein jawab dein.
 14. Screen-lock policy; Finance folder Read permission.
 15. Nahin; user/computer settings, scope aur filtering matter karte hain.
 16. Nahin; domain password policy aur fine-grained password policies ke rules alag hain.
-17. Nahin; tokens, sessions aur tickets ki wajah se delay/refresh ki zaroorat ho sakti hai.
+17. Nahin; tokens, sessions aur tickets ki wajah se delay/refresh ki Demand ho sakti hai.
 18. Directory changes pohanchti hain; replication backup nahin.
 19. Jab DC2 suitable/available ho aur DNS, network aur required information/services kaam kar rahe hon.
 20. Nahin; subnet aur connectivity design matter karta hai.
-21. Zaroorat ke mutabiq system capacity barhana.
+21. Demand ke mutabiq system capacity barhana.
 22. Nahin; suitable OU scope mein specific authority delegate ki ja sakti hai.
 23. Nahin; users ke apne accounts aur passwords hain.
 24. Nahin; administrative delegation aur file-resource permissions alag hain.
@@ -353,19 +353,3 @@ Khalid PC1 par login karta hai → DNS suitable DC locate karne mein madad deta 
 
 Finance OU administration aur policy organization mein madad karti hai. Replication account changes doosre DC tak le jati hai. Additional DC availability improve kar sakta hai. Delegation help desk ko specific kaam deti hai, har resource ki access nahin.
 
-### Learning checkpoint — aage kahan se shuru karna hai?
-
-Dono original files ki stopping points mukhtalif hain:
-
-| Original record | Us waqt likha hua next topic |
-| --- | --- |
-| Bunyadi notes | AD DS Database aur Partitions |
-| Revision notes | AD DS Purpose mein Scalability/Delegation ke baad Directory-Based Service for Network Resources |
-
-Is merge se yeh assume nahin kiya gaya ke aap ne dono remaining topics complete kar liye. Current exact stopping point confirm hona baqi hai. Database file ka naam **NTDS.dit** hai; partitions ka detailed chapter is revision guide mein add nahin kiya gaya.
-
-Aap pehle apna current class/page checkpoint identify karein; phir usi se continue karein. Original stopping notes [coverage map](MERGE_MAP.md) aur archive mein preserved hain.
-
-**Documentation status:** merged study guide ready; practical evidence ya completed AD installation ka claim nahin.
-
-[README par wapas](README.md) | [Source coverage aur changes](MERGE_MAP.md)

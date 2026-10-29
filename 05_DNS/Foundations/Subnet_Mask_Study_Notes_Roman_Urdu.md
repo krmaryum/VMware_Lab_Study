@@ -50,7 +50,7 @@ Aapke desktop `10.0.0.213/24` se:
 | `192.168.109.101` — Dell ESXi 9 lab | Nahin | Munasib route chahiye; mumkin hai home router is virtual subnet ka rasta na janta ho |
 | `8.8.8.8` — public DNS server | Nahin | Aam tor par default gateway ko bheja jata hai |
 
-“Direct delivery” ke raste mein Ethernet switch ya Wi-Fi access point phir bhi ho sakta hai. Is ka matlab hai ke us local subnet par devices ke darmiyan aam tor par router ki zaroorat nahin hoti.
+“Direct delivery” ke raste mein Ethernet switch ya Wi-Fi access point phir bhi ho sakta hai. Is ka matlab hai ke us local subnet par devices ke darmiyan aam tor par router ki Demand nahin hoti.
 
 Sirf default gateway hone se remote destination automatically reachable nahin ho jati. Gateway aur destination network ke liye munasib routes chahiye, jin mein wapsi ka rasta bhi shamil hai. VMware host-only network doosre physical computer se automatically reachable nahin hota.
 
@@ -87,7 +87,7 @@ Asal operation mein Windows apni routing table dekhta hai aur sab se zyada speci
 
 DNS address dhoondne mein madad karta hai. Routing tay karti hai ke traffic us address tak kaise pohnchega. DNS lookup successful hone se connectivity ki guarantee nahin milti.
 
-Do local computers DNS ke baghair IP address se communicate kar sakte hain. Unke connected subnet par communication ke liye aam tor par default gateway ki zaroorat nahin hoti.
+Do local computers DNS ke baghair IP address se communicate kar sakte hain. Unke connected subnet par communication ke liye aam tor par default gateway ki Demand nahin hoti.
 
 ## 6. Windows commands
 

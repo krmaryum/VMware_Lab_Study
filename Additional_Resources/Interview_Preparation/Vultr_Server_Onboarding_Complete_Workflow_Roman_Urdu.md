@@ -52,7 +52,7 @@
 - Naye servers ka **hardware handoff** receive aur verify karna.
 - **BMC/iDRAC** ke through remote hardware management.
 - **BIOS/UEFI, firmware, boot mode/order** ko approved baseline se compare karna.
-- **Storage** (RAID/JBOD) aur zaroorat ke mutabiq **GPU** inventory/health verify karna.
+- **Storage** (RAID/JBOD) aur Demand ke mutabiq **GPU** inventory/health verify karna.
 - **Provisioning network** (NIC, switch port, VLAN, DHCP, IPv4/IPv6) validate karna.
 - **PXE-based automated OS imaging** ko initiate/monitor/troubleshoot karna.
 - OS boot, disks, network, services aur **existing Puppet workflow** ke results verify karna.

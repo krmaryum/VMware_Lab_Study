@@ -12,7 +12,7 @@ Aik waqt mein aik lesson parhein. Uska chhota sawal samajhne ke baad aglay lesso
 
 ---
 
-## Lesson 1 — DNS ki zaroorat kyun hai?
+## Lesson 1 — DNS ki Demand kyun hai?
 
 **Maqsad:** Naam, IP address, record aur zone samajhna.
 
@@ -303,7 +303,7 @@ Practical session mein yeh evidence table use karein:
 
 ### Mazeed parhne ke liye
 
-Yeh official references explanation ki bunyaad hain. Lessons ke baad zaroorat par parhein.
+Yeh official references explanation ki bunyaad hain. Lessons ke baad Demand par parhein.
 
 - [Microsoft: DNS zone types](https://learn.microsoft.com/en-us/windows-server/networking/dns/zone-types)
 - [Microsoft: Manage DNS zones](https://learn.microsoft.com/en-us/windows-server/networking/dns/manage-dns-zones)
