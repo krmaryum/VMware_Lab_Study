@@ -131,7 +131,6 @@ Video playback mein aam tor par media segments ki bohat si requests hoti hain. P
 
 ![Website infrastructure ko support karte cloud aur software engineers](images/Web_Infrastructure_Overview.png)
 
-*Tasveer 1. Doosri share ki gayi picture: cloud aur software engineers website ke infrastructure aur application ko support karte hain. Picture servers ke running honay aur databases ke accessible honay par zor deti hai. Arrows simplified architecture dikhate hain; har request ka exact rasta nahin.*
 
 | Role | Aam zimmedariyan |
 |---|---|
