@@ -50,7 +50,7 @@ Directory mein shared folder ka reference hona, us folder ki tamam files directo
 
 **AD DS = Active Directory Domain Services.** Yeh Microsoft ki directory service hai jo users, computers, groups aur related network resources ki information centrally rakhne aur manage karne mein madad deti hai.
 
-**Domain** users, computers aur resources ke intizam ka aik logical daira hai. Domain ke accounts ka central management hota hai.
+**Domain** users, computers aur resources ke management ka aik logical daira hai. Domain ke accounts ka central management hota hai.
 
 **Domain Controller (DC)** woh server hai jis par AD DS chalti hai aur directory database ki copy hoti hai. Woh domain authentication aur directory queries jaise kaam provide karta hai. Domain mein aik se zyada DC ho sakte hain.
 
@@ -67,7 +67,7 @@ Example: admin Khalid ka domain account banata hai. DC us account ki information
 
 | Domain | Workgroup |
 | --- | --- |
-| Domain accounts ka intizam centrally hota hai | Har computer ke local accounts alag manage hote hain |
+| Domain accounts ka management centrally hota hai | Har computer ke local accounts alag manage hote hain |
 | DCs domain directory services dete hain | AD domain jaisa central account nizam nahin hota |
 | Aik domain account se allowed domain computers par login mumkin hai | Har machine apne local account authority ke mutabiq credentials check karti hai |
 
@@ -202,7 +202,7 @@ OU mein har object par har GPO setting nahin lagti. User settings users aur comp
 
 ### Centralized Management
 
-Users aur computers ka markazi nizam se intizam. Khalid ka domain account centrally banaya aur manage kiya jata hai; har member computer par uska alag local account banana zaroori nahin.
+Users aur computers ka Centralized System se management. Khalid ka domain account centrally banaya aur manage kiya jata hai; har member computer par uska alag local account banana zaroori nahin.
 
 ### User and Resource Management
 
@@ -248,7 +248,7 @@ Site ko domain ke barabar na samjhein. Aik domain multiple sites mein ho sakta h
 
 ### Scalability
 
-Barhti zaroorat ke mutabiq system ki gunjaish barhana. Aaj 10 aur kal 100 computers hon to AD DS mazeed objects ka intizam kar sakta hai; design, capacity aur connectivity phir bhi assess karni hoti hai.
+Barhti zaroorat ke mutabiq system ki gunjaish barhana. Aaj 10 aur kal 100 computers hon to AD DS mazeed objects ka management kar sakta hai; design, capacity aur connectivity phir bhi assess karni hoti hai.
 
 Zaroorat par additional DCs deploy kiye ja sakte hain. Gunjaish kam karna bhi planning ka hissa hai; DC ko hatane ke liye suitable demotion aur verification procedure chahiye. Sirf VM delete kar dena proper DC retirement nahin.
 
