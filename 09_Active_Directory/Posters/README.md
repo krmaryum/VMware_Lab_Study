@@ -56,8 +56,7 @@ Copy this entire `Posters` folder into `09_Active_Directory/`.
 
 Add this line to `09_Active_Directory/README.md`:
 
-```markdown
 - [AD DS Learning Posters](Posters/README.md)
-```
+
 
 Keep images and PDF alongside this README so links work on GitHub. These are study illustrations, not screenshots proving a lab deployment.
