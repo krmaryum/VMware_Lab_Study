@@ -30,7 +30,7 @@ This folder contains Network Topology study notes in English and Roman Urdu, plu
 
 ## Poster preview
 
-![Network Topology — physical and logical topology, VLAN example and six common topology types](Network_Topology_Poster_English.png)
+![Network Topology — physical and logical topology, VLAN example and six common topology types](Network_Topology_Poster.png)
 
 ## Repository placement / Repo mein jagah
 
