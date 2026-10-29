@@ -32,13 +32,4 @@ This folder contains Network Topology study notes in English and Roman Urdu, plu
 
 ![Network Topology — physical and logical topology, VLAN example and six common topology types](Network_Topology_Poster.png)
 
-## Repository placement / Repo mein jagah
-
-Suggested folder:
-
-`VMware_Lab_Study/00_Networking_Foundations/Network_Topology/`
-
-Keep all four files together in this folder. Tamam chaar files isi folder mein rakhein.
-
-**Important:** Rename the downloaded poster to exactly `Network_Topology_Poster_English.png`. Keep the two study-note filenames unchanged so the links work.
 
