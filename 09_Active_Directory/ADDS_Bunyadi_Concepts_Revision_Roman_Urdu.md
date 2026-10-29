@@ -251,9 +251,9 @@ Site ko domain ke barabar na samjhein. Aik domain multiple sites mein ho sakta h
 
 ### Scalability
 
-Increasing Demand ke mutabiq system ki gunjaish barhana. Aaj 10 aur kal 100 computers hon to AD DS mazeed objects ka management kar sakta hai; design, capacity aur connectivity phir bhi assess karni hoti hai.
+Increasing Demand ke mutabiq system ki capacity barhana. Aaj 10 aur kal 100 computers hon to AD DS mazeed objects ka management kar sakta hai; design, capacity aur connectivity phir bhi assess karni hoti hai.
 
-Zaroorat par additional DCs deploy kiye ja sakte hain. Gunjaish kam karna bhi planning ka hissa hai; DC ko hatane ke liye suitable demotion aur verification procedure chahiye. Sirf VM delete kar dena proper DC retirement nahin.
+Zaroorat par additional DCs deploy kiye ja sakte hain. capacity kam karna bhi planning ka hissa hai; DC ko hatane ke liye suitable demotion aur verification procedure chahiye. Sirf VM delete kar dena proper DC retirement nahin.
 
 ### Delegation
 

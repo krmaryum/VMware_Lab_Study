@@ -18,7 +18,7 @@
 13. **Unused?** Excluded by that policy, including failover. Roman Urdu: Is policy mein eligible nahi.
 14. **Does active/active double one download?** No automatic guarantee. Roman Urdu: Single transfer ki speed double hona lazmi nahi.
 15. **Why use an external failover peer?** Host-local traffic can bypass uplinks. Roman Urdu: Bahar wala peer uplink path test karta hai.
-16. **Bandwidth vs throughput?** Capacity versus achieved rate. Roman Urdu: Maximum gunjaish aur asal transfer rate.
+16. **Bandwidth vs throughput?** Capacity versus achieved rate. Roman Urdu: Maximum capacity aur asal transfer rate.
 17. **Average vs peak?** Sustained rate target versus burst ceiling. Roman Urdu: Routine limit aur temporary upper limit.
 18. **Burst size?** Data quantity budget, not a bandwidth rate. Roman Urdu: Extra data ka budget.
 19. **Can ping measure bandwidth?** No; use a throughput tool such as iperf3. Roman Urdu: Ping reachability dikhata hai.
