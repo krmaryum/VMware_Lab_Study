@@ -108,7 +108,7 @@ Is liye AD client ki DNS settings ko domain records resolve karna aana chahiye. 
 
 ## 6. Kerberos, KDC, TGT aur Service Ticket
 
-Kerberos normal AD domain scenarios ka bunyadi authentication protocol hai. **Protocol** baat-cheet ke muqarrar qawaid ko kehte hain.
+Kerberos normal AD domain scenarios ka bunyadi authentication protocol hai. **Protocol** baat-cheet ke fixed ruling ko kehte hain.
 
 DC par **KDC — Key Distribution Center** service hoti hai. KDC authentication aur tickets ke silsilay ko handle karti hai.
 
