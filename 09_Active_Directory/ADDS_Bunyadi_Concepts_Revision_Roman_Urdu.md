@@ -242,7 +242,10 @@ Availability aur redundancy ke liye. DC1 band ho to suitable available DC2 authe
 
 Do offices ya buildings alag sites ho sakte hain, lekin har building lazmi separate AD site nahin. Design ko connectivity aur network requirements ke mutabiq tay karte hain.
 
-Site ko domain ke barabar na samjhein. Aik domain multiple sites mein ho sakta hai; aik site mein multiple domains ke DCs bhi ho sakte hain. Beginner level par pehle yeh yaad karein: domain identity organization hai, site network connectivity ki directory representation hai.
+Site ko domain ke barabar na samjhein. Aik domain multiple sites mein ho sakta hai; aik site mein multiple domains ke DCs bhi ho sakte hain.
+## Beginner level par pehle yeh yaad karein: 
+- Domain identity organization hai.
+- Site network connectivity ki directory representation hai.
 
 ## 14. Scalability aur Delegation
 
