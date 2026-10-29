@@ -170,7 +170,7 @@ User aik waqt mein kai groups ka member ho sakta hai. Khalid ko Sales group mein
 
 OU ke bunyadi kaam:
 
-- Objects munazzam karna.
+- Objects managed karna.
 - Applicable users/computers ke liye Group Policy ka scope banana.
 - Limited administrative authority delegate karna.
 
