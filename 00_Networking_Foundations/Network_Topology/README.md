@@ -44,9 +44,9 @@ Keep all four files together in this folder. Tamam chaar files isi folder mein r
 
 Parent README mein yeh link add kar sakte hain:
 
-```markdown
+
 - [Network Topology — Study Notes and Poster](Network_Topology/README.md)
-```
+
 
 ## Learning status
 
