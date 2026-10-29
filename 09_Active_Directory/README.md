@@ -11,6 +11,10 @@ Start here. This bundle combines your typed class notes with the supplied 22-pag
 | Class note corrections and source coverage | [Open source map](SOURCES_AND_LECTURE_MAP.md) |
 | Original teacher PDF | [Open lecture](reference/Teacher_ADDS_Lecture.pdf) |
 | Original typed notes | [Open transcript](CLASS_NOTES_ORIGINAL.md) |
+| Federation — English | [Read brief notes](Federation_Brief_Study_Notes_English.md) |
+| Federation — Roman Urdu | [Read brief notes](Federation_Brief_Study_Notes_Roman_Urdu.md) |
+| AD DS learning posters | [Open gallery](Posters/README.md) |
+| Combined poster PDF | [Open four-page PDF](Posters/AD_DS_Learning_Posters.pdf) |
 
 ## Recommended reading
 
@@ -46,3 +50,20 @@ Both revision files now sit beside this README. Their links above use filenames 
 
 The original revision packages contained a separate `MERGE_MAP.md` and archived source notes. Those companion files are not visible in the supplied screenshot. If the revision files still link to `MERGE_MAP.md`, retain the appropriate companion map or adjust those references when reorganizing the revision files. `SOURCES_AND_LECTURE_MAP.md` documents the teacher lecture and class-guide sources; it is a different document from the revision merge map.
 
+## Federation — Brief Study Notes
+
+- [English](Federation_Brief_Study_Notes_English.md)
+- [Roman Urdu](Federation_Brief_Study_Notes_Roman_Urdu.md)
+
+## AD DS Learning Posters
+
+Four English posters provide visual revision in this order:
+
+1. [AD DS Foundations](Posters/01_AD_DS_Foundations.png)
+2. [Database and Partitions](Posters/02_Database_and_Partitions.png)
+3. [Kerberos Authentication](Posters/03_Kerberos_Authentication.png)
+4. [OU, Groups, Policies and Delegation](Posters/04_OU_Groups_Policies_and_Delegation.png)
+
+[Open poster gallery and reading notes](Posters/README.md) | [Open combined four-page PDF](Posters/AD_DS_Learning_Posters.pdf)
+
+Keep the corrected poster bundle's `Posters` folder inside `09_Active_Directory`, alongside this README. Use the posters for quick revision and the study guides for detailed explanations.

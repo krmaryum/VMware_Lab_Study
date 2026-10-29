@@ -30,8 +30,10 @@ Copy this whole `00_Networking_Foundations` folder into the root of `VMware_Lab_
 
 Add this entry to the repository's main README:
 
-```markdown
 - [Networking Foundations](00_Networking_Foundations/README.md)
-```
+
+- [Protocol — Brief Study Note (English)](Protocol_Brief_Study_Note_English.md)
+- [Protocol — Brief Study Note (Roman Urdu)](Protocol_Brief_Study_Note_Roman_Urdu.md)
+
 
 ESXi-specific configuration remains in your existing ESXi networking section. This folder provides foundational reading and cross-platform observation, not a replacement for your screenshot-based practical chapters.
