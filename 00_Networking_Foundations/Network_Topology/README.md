@@ -42,17 +42,3 @@ Keep all four files together in this folder. Tamam chaar files isi folder mein r
 
 **Important:** Rename the downloaded poster to exactly `Network_Topology_Poster_English.png`. Keep the two study-note filenames unchanged so the links work.
 
-Parent README mein yeh link add kar sakte hain:
-
-
-- [Network Topology — Study Notes and Poster](Network_Topology/README.md)
-
-
-## Learning status
-
-| Area | Status |
-| --- | --- |
-| English and Roman Urdu theory notes | Ready |
-| English revision poster | Ready |
-| Practical lab | Future exercise |
-
