@@ -12,7 +12,9 @@ Bhai, yeh guide aapki classroom DNS01/DNS02/DNS03 misaal se teen zone roles samj
 
 ## 1. Pehle server, zone aur record alag samjhein
 
-**DNS server** woh service/machine hai jo DNS sawalon ka jawab deti hai. **Zone** DNS namespace ka administratively managed hissa hai. **Record** us zone ki aik individual entry hai.
+- **DNS server** woh service/machine hai jo DNS sawalon ka jawab deti hai.
+- **Zone** DNS namespace ka administratively managed hissa hai. 
+- **Record** us zone ki aik individual entry hai.
 
 Records office ki misaal lein: server service dene wala office, zone managed register aur record us register ki entry hai. Misaal samajhne ke liye hai; har zone simple file mein hona lazmi nahin. Storage design ke mutabiq hoti hai.
 

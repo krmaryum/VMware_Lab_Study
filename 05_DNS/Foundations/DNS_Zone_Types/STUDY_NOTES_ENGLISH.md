@@ -12,7 +12,9 @@ This guide explains the three zone roles using your classroom DNS01/DNS02/DNS03 
 
 ## 1. First separate server, zone and record
 
-A **DNS server** is the service/machine answering DNS questions. A **zone** is an administratively managed part of the DNS namespace. A **record** is an individual entry in that zone.
+- A **DNS server** is the service/machine answering DNS questions. 
+- A **zone** is an administratively managed part of the DNS namespace.
+- A **record** is an individual entry in that zone.
 
 Think of a records office: the server is the office providing the service, the zone is a managed register, and each DNS record is an entry. The analogy is useful, but a zone is not necessarily a simple file: its storage depends on the design.
 
