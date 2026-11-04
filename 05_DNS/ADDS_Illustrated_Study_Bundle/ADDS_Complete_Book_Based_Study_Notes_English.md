@@ -73,6 +73,8 @@ Repeated Windows Server labels, decorative artwork and repeated console images i
 
 **Active Directory Domain Services is Microsoft's directory service for organizing identities and resources in a domain environment.**
 
+[Object, Attributes, Relationship ](md/ADDS_Objects_Attributes_and_Relationships_English.md)
+
 A directory is an organized collection of objects and their attributes. AD DS stores identities such as users, computers and groups, together with relationships and security information. Administrators use it to manage access and resources centrally.
 
 A **Domain Controller (DC)** is a Windows Server that has been promoted to run AD DS. Installing the AD DS role alone does not finish promotion.

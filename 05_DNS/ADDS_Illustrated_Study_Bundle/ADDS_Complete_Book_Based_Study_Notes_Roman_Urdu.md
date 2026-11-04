@@ -76,6 +76,8 @@ Repeated Windows Server labels, sajawati artwork aur repeated console pictures c
 
 Directory objects aur un ke attributes ka tarteeb diya hua collection hoti hai. AD DS users, computers aur groups jaisi identities, un ke relationships aur security information store karta hai. Administrators is se access aur resources ko centrally manage karte hain.
 
+[Object, Attributes, Relationship ](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md)
+
 **Domain Controller (DC)** woh Windows Server hai jisay AD DS chalane ke liye promote kiya gaya ho. Sirf AD DS role install kar dena promotion ko mukammal nahin karta.
 
 **Misal:** Khalid ka domain account hai. Woh ijazat walay domain computers par sign in kar sakta hai, baghair is ke ke administrator har computer par us ka alag local account banaye.
