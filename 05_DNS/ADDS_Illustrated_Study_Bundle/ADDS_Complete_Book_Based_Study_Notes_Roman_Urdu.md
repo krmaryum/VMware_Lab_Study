@@ -111,14 +111,17 @@ AD DS hierarchical hai kyun ke [forest](md/ADDS_Forest.md) mein domains hote hai
 **Wazahat / durusti - Group Policy:** GPOs sites, domains aur OUs se link ho sakte hain. Scope, inheritance aur filtering decide karte hain ke kaunsi settings apply hongi. Har GPO har computer par apply nahin hota.
 
 ### 2.4 KCC kya karta hai?
+KCC = Knowledge Consistency Checker. Yeh AD DS ka built-in component hai jo replication topology banata aur maintain karta hai. Replication topology batati hai ke kaun se Domain Controllers (DCs) ek doosre se directory changes hasil karte hain.
 
-**KCC = Knowledge Consistency Checker.**
+KCC zaroorat ke mutabiq connection objects banata hai. Har connection object destination DC ko batata hai ke woh kis source DC se changes pull karega. Misal ke taur par, agar DC02 ke paas DC01 se inbound replication ka connection hai, to DC02, DC01 se changes pull karta hai. KCC connection banata hai; changes transfer karna AD DS replication ka kaam hai.
 
-Lecture KCC ko replication se jorta hai. Zyada durust taur par KCC replication topology calculate aur maintain karta hai, jis mein replication partners ko describe karne walay connection objects bhi shamil hain. Yeh aisi alag standalone service nahin jo khud har database update transport karti ho.
+Multi-master replication: Bohat se aam directory updates kisi bhi writable DC par kiye ja sakte hain. Misal ke taur par, agar aap DC01 par kisi user ka department change karein, to woh update replication ke zariye doosre DCs tak pohanch sakta hai. RODC (Read-Only Domain Controller) directory ki read-only copy rakhta hai; directory updates us par originate nahin hote.
 
-**Mazeed wazahat:** Writable DCs aam tor par multi-master replication use karte hain: bohat se aam updates mukhtalif writable DCs par originate ho sakte hain. Replication lazman foran nahin hoti. DNS, connectivity aur site configuration is par asar dalte hain. RODC read-only replicas rakhta hai aur us ki mazeed restrictions hoti hain.
+Replication foran hona zaroori nahin. DNS ya network connectivity ki problems replication mein rukawat daal sakti hain. Alag sites ke darmiyan site-link schedule bhi tay karta hai ke replication kab ho sakti hai.
 
-Replication availability behtar karti hai, lekin backup nahin: na-pasandeeda ya ghalat change bhi replicate ho sakta hai.
+Replication availability behtar karti hai, lekin backup ka badal nahin hai. Agar koi user account ghalti se delete ho jaye, to woh deletion bhi doosre DCs tak replicate ho sakti hai.
+
+<img src="images/Windows-Server-KCC-replication.png" width="400">
 
 ## 3. Database partitions aur paths
 
