@@ -80,6 +80,16 @@ A **Domain Controller (DC)** is a Windows Server that has been promoted to run A
 
 **Example:** Khalid has a domain account. He can sign in to permitted domain computers without administrators creating a separate local account on each computer.
 
+### 2.1 What is AD DS?
+
+**Active Directory Domain Services (AD DS) is Microsoft’s directory service that helps organize and centrally manage [identities](md/ADDS_Domain_Environment.md) and [resources](md/ADDS_Domain_Environment.md) in a [domain environment](md/ADDS_Domain_Environment.md).**
+
+A directory is an organized collection of [objects](md/ADDS_Objects_Attributes_and_Relationships_English.md) and their [attributes](md/ADDS_Objects_Attributes_and_Relationships_English.md). AD DS stores objects such as users, computers, and groups, along with their [relationships](md/ADDS_Objects_Attributes_and_Relationships_English.md) and security information. Administrators use this information to manage accounts, access, and resources centrally.
+
+A **Domain Controller (DC)** is a Windows Server that has been **configured, or promoted, to provide a domain’s directory and authentication services through AD DS**. Installing the AD DS role alone does not make the server a Domain Controller; promotion must also be completed.
+
+**Example:** Khalid has a domain account. He can use that account to sign in to domain computers where he has permission. Administrators do not need to create a separate local account for Khalid on each computer.
+
 <img src="images/Windows-Server-AD-DS.png" width="400">
 
 ### 2.2 History and hierarchy
@@ -134,24 +144,36 @@ Replication improves availability, but it does not replace backups. If a user ac
 
 ### 3.1 NTDS.DIT
 
-The AD DS database file is **NTDS.DIT**. The lecture expands NTDS as “New Technology Directory Service” and DIT as “Directory Information Tree.” Treat this as terminology; remember the exact filename.
+**NTDS.DIT is the main AD DS database file on a Domain Controller.** It stores directory objects such as users, computers, and groups, along with their attributes and relationships. The local AD DS database uses **Microsoft’s Extensible Storage Engine (ESE)**.
 
-The database uses Microsoft's Extensible Storage Engine (ESE). It holds directory information, including protected credential-related data. It is security-sensitive and is not a normal document to copy or edit casually.
+**NTDS** is historically associated with **Windows NT Directory Services**. **DIT stands for Directory Information Tree.** For your studies, remember the exact filename: **`ntds.dit`**.
 
-### 3.2 Four partition categories, not always exactly four partitions
+**Default location:** `C:\Windows\NTDS\ntds.dit`
 
-A **directory partition**, also called a naming context, is a logical unit of directory data with its own replication scope.
+A different database location can be selected during Domain Controller promotion.
 
-The lecture lists four categories:
+**This is a security-sensitive database.** It contains directory information and protected credential-related data. It should not be manually edited like an ordinary document, and simply copying the file should not be considered a complete backup.
 
-| Category | Main contents | Normal replication scope |
+Use **AD DS-aware backup tools and supported procedures** for backup and recovery.
+
+### 3.2 Four categories of directory partitions — not always exactly four partitions
+
+A **directory partition**, also called a **naming context**, is a logical portion of directory data with its own replication scope. Its data replicates to the domain controllers (DCs) that hold a replica of that partition.
+
+AD DS has four categories of directory partitions:
+
+| Category | Main contents | Typical replication scope |
 | --- | --- | --- |
-| Schema | Definitions of object classes and attributes | All DCs in the [forest](md/ADDS_Forest) |
-| Configuration | Forest configuration, sites, subnets, site links and service/topology information | All DCs in the forest |
-| Domain | Objects belonging to a particular domain | DCs for that domain; Global Catalog qualification below |
-| Application | Application-specific directory data, such as AD-integrated DNS data | Selected/enlisted DC replicas according to its scope |
+| **Schema** | Definitions of object classes and attributes | All DCs in the forest |
+| **Configuration** | Forest configuration, sites, subnets, site links, and replication topology information | All DCs in the forest |
+| **Domain** | Objects belonging to a particular domain, such as users, computers, and groups | All DCs in that domain hold a full domain replica |
+| **Application** | Application-specific directory data, such as AD-integrated DNS data | DCs selected/enlisted to hold a replica of that partition |
 
-**Clarification:** A DC can host multiple application partitions. Therefore, “four types” does not mean the database always contains exactly four individual partitions.
+**Global Catalog clarification:** In addition to a full replica of its own domain, a Global Catalog (GC) holds partial, read-only replicas of the forest’s other domains. “Partial” means that only selected attributes of those domains’ objects are included.
+
+**Four categories does not mean exactly four partitions:** A DC can host multiple application partitions. For example, AD-integrated DNS can use `DomainDnsZones` and `ForestDnsZones` as two separate application partitions.
+
+**Remember:** These are logical partitions within the directory database, not disk partitions such as `C:` or `D:`.
 
 ### 3.3 Schema partition - the directory's rules
 

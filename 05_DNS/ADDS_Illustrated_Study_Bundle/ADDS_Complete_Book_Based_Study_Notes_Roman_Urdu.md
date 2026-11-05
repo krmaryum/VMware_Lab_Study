@@ -71,14 +71,13 @@ Repeated Windows Server labels, sajawati artwork aur repeated console pictures c
 **Kitab ka topic - pages 2-3.**
 
 ### 2.1 AD DS kya hai?
+Active Directory Domain Services (AD DS) Microsoft ki directory service hai jo [domain environment](md/ADDS_Domain_Environment.md) mein [identities](md/ADDS_Identities.md) aur [resources](md/ADDS_Resources.md) ko organize aur centrally manage karne mein madad karti hai.
 
-**Active Directory Domain Services Microsoft ki directory service hai jo [domain environment](md/ADDS_Domain_Environment.md) mein [identities](md/ADDS_Identities.md) aur [resources](md/ADDS_Resources.md) ko organize karti hai.**
+Directory, [objects](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md) aur un ke [attributes](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md) ka ek munazzam collection hoti hai. AD DS users, computers aur groups jaise objects ke saath un ke [relationships](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md) aur security information bhi store karta hai. Administrators is information ki madad se accounts, access aur resources ka central management karte hain.
 
-Directory [objects](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md) aur un ke [attributes](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md) ka tarteeb diya hua collection hoti hai. AD DS users, computers aur groups jaisi identities, un ke [relationships](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md) aur security information store karta hai. Administrators is se access aur resources ko centrally manage karte hain.
+**Domain Controller (DC)** woh Windows Server hai jisay AD DS ke zariye domain ki directory aur authentication services provide karne ke liye configure, yani promote, kiya gaya ho. Sirf AD DS role install karne se server Domain Controller nahin banta; promotion bhi mukammal karni hoti hai.
 
-**Domain Controller (DC)** woh Windows Server hai jisay AD DS chalane ke liye promote kiya gaya ho. Sirf AD DS role install kar dena promotion ko mukammal nahin karta.
-
-**Misal:** Khalid ka domain account hai. Woh ijazat walay domain computers par sign in kar sakta hai, baghair is ke ke administrator har computer par us ka alag local account banaye.
+**Misal:** Khalid ka ek domain account hai. Woh us account se un domain computers par sign in kar sakta hai jahan usay ijazat ho. Administrator ko har computer par Khalid ka alag local account banane ki zaroorat nahin hoti.
 
 <img src="images/Windows-Server-AD-DS.png" width="400">
 
@@ -133,24 +132,36 @@ Replication availability behtar karti hai, lekin backup ka badal nahin hai. Agar
 
 ### 3.1 NTDS.DIT
 
-AD DS ki database file **NTDS.DIT** hai. Lecture NTDS ko “New Technology Directory Service” aur DIT ko “Directory Information Tree” ke taur par expand karta hai. Isay terminology samjhein; exact filename yaad rakhein.
+**NTDS.DIT, Domain Controller par AD DS ki main database file hai.** Is mein users, computers, groups aur doosre directory objects ke attributes aur relationships store hote hain. AD DS ka local database **Microsoft Extensible Storage Engine (ESE)** use karta hai.
 
-Database Microsoft ka Extensible Storage Engine (ESE) use karta hai. Is mein directory information aur protected credential-related data hota hai. Yeh security-sensitive hai; aam document ki tarah be-fikri se copy ya edit karne wali file nahin.
+**NTDS** ka historical naam **Windows NT Directory Services** se related hai. **DIT = Directory Information Tree.** Study ke liye exact filename **`ntds.dit`** yaad rakhna zaroori hai.
 
-### 3.2 Partition ki chaar categories; hamesha sirf chaar partitions nahin
+**Default location:** `C:\Windows\NTDS\ntds.dit`
 
-**Directory partition**, jisay naming context bhi kehte hain, directory data ka logical unit hai jiska apna replication scope hota hai.
+Domain Controller promotion ke waqt database ke liye doosra location bhi select kiya ja sakta hai.
 
-Lecture chaar categories deta hai:
+**Yeh security-sensitive database hai.** Is mein directory information ke saath protected credential-related data bhi hota hai. Isay aam document ki tarah manually edit karna ya sirf file copy ko mukammal backup samajhna durust nahin.
+
+Backup aur recovery ke liye **AD DS-aware backup tools aur supported procedures** use karne chahiye.
+
+### 3.2 Directory partitions ki chaar categories — hamesha sirf chaar partitions nahin
+
+**Directory partition**, jisay **naming context** bhi kehte hain, directory data ka ek logical hissa hai jiska apna replication scope hota hai. Yani us partition ka data un DCs tak replicate hota hai jo us ki replica rakhte hain.
+
+AD DS mein directory partitions ki chaar categories hain:
 
 | Category | Bunyadi contents | Aam replication scope |
 | --- | --- | --- |
-| Schema | Object classes aur attributes ki definitions | Forest ke tamam DCs |
-| Configuration | Forest configuration, sites, subnets, site links aur service/topology information | Forest ke tamam DCs |
-| Domain | Kisi khaas domain ke objects | Usi domain ke DCs; neeche Global Catalog ki wazahat dekhein |
-| Application | Application-specific directory data, jaise AD-integrated DNS data | Scope ke mutabiq selected/enlisted DC replicas |
+| **Schema** | Object classes aur attributes ki definitions | Forest ke tamam DCs |
+| **Configuration** | Forest ki configuration, sites, subnets, site links aur replication topology ki information | Forest ke tamam DCs |
+| **Domain** | Kisi khaas domain ke objects, jaise users, computers aur groups | Usi domain ke tamam DCs full domain replica rakhte hain |
+| **Application** | Application-specific directory data, jaise AD-integrated DNS data | Us partition ki replica rakhne ke liye selected/enlisted DCs |
 
-**Wazahat / durusti:** Ek DC multiple application partitions host kar sakta hai. Is liye “chaar types” ka matlab nahin ke database mein hamesha exactly chaar individual partitions hon.
+**Global Catalog ki wazahat:** Global Catalog (GC) apne domain ki full replica ke ilawa forest ke doosre domains ki partial, read-only replicas bhi rakhta hai. “Partial” ka matlab hai ke un domains ke objects ke sirf selected attributes rakhe jate hain.
+
+**Chaar categories, exactly chaar partitions nahin:** Ek DC multiple application partitions host kar sakta hai. Misal ke taur par, AD-integrated DNS mein `DomainDnsZones` aur `ForestDnsZones` do alag application partitions ho sakte hain.
+
+**Yaad rakhein:** Yeh directory database ke logical partitions hain; disk ke `C:` ya `D:` jaise partitions nahin.
 
 ### 3.3 Schema partition - directory ke rules
 
