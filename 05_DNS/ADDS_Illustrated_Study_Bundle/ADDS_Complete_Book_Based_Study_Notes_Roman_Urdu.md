@@ -72,11 +72,9 @@ Repeated Windows Server labels, sajawati artwork aur repeated console pictures c
 
 ### 2.1 AD DS kya hai?
 
-**Active Directory Domain Services Microsoft ki directory service hai jo domain environment mein identities aur resources ko organize karti hai.**
+**Active Directory Domain Services Microsoft ki directory service hai jo [domain environment](md/ADDS_Domain_Environment.md) mein [identities](md/ADDS_Identities.md) aur [resources](md/ADDS_Resources.md) ko organize karti hai.**
 
-Directory objects aur un ke attributes ka tarteeb diya hua collection hoti hai. AD DS users, computers aur groups jaisi identities, un ke relationships aur security information store karta hai. Administrators is se access aur resources ko centrally manage karte hain.
-
-[Object, Attributes, Relationship ](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md)
+Directory [objects](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md) aur un ke [attributes](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md) ka tarteeb diya hua collection hoti hai. AD DS users, computers aur groups jaisi identities, un ke [relationships](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md) aur security information store karta hai. Administrators is se access aur resources ko centrally manage karte hain.
 
 **Domain Controller (DC)** woh Windows Server hai jisay AD DS chalane ke liye promote kiya gaya ho. Sirf AD DS role install kar dena promotion ko mukammal nahin karta.
 

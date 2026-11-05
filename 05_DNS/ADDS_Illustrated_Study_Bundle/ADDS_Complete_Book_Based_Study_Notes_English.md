@@ -71,11 +71,10 @@ Repeated Windows Server labels, decorative artwork and repeated console images i
 
 ### 2.1 What is AD DS?
 
-**Active Directory Domain Services is Microsoft's directory service for organizing identities and resources in a domain environment.**
+**Active Directory Domain Services is Microsoft's directory service for organizing [identities](md/ADDS_Identities.md) and [resources](md/ADDS_Resources.md) in a [domain environment](md/ADDS_Domain_Environment.md).**
 
-[Object, Attributes, Relationship ](md/ADDS_Objects_Attributes_and_Relationships_English.md)
 
-A directory is an organized collection of objects and their attributes. AD DS stores identities such as users, computers and groups, together with relationships and security information. Administrators use it to manage access and resources centrally.
+A directory is an organized collection of [object](md/ADDS_Objects_Attributes_and_Relationships_English.md) and their [attributes](md/ADDS_Objects_Attributes_and_Relationships_English.md). AD DS stores identities such as users, computers and groups, together with [relationships](md/ADDS_Objects_Attributes_and_Relationships_English.md) and security information. Administrators use it to manage access and resources centrally.
 
 A **Domain Controller (DC)** is a Windows Server that has been promoted to run AD DS. Installing the AD DS role alone does not finish promotion.
 
@@ -138,7 +137,7 @@ The lecture lists four categories:
 
 | Category | Main contents | Normal replication scope |
 | --- | --- | --- |
-| Schema | Definitions of object classes and attributes | All DCs in the forest |
+| Schema | Definitions of object classes and attributes | All DCs in the [forest](md/ADDS_Forest) |
 | Configuration | Forest configuration, sites, subnets, site links and service/topology information | All DCs in the forest |
 | Domain | Objects belonging to a particular domain | DCs for that domain; Global Catalog qualification below |
 | Application | Application-specific directory data, such as AD-integrated DNS data | Selected/enlisted DC replicas according to its scope |
