@@ -80,7 +80,7 @@ Directory [objects](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md) 
 
 **Misal:** Khalid ka domain account hai. Woh ijazat walay domain computers par sign in kar sakta hai, baghair is ke ke administrator har computer par us ka alag local account banaye.
 
-<img src="images/Windows-Server-AD-DS.png" width="700">
+<img src="images/Windows-Server-AD-DS.png" width="400">
 
 
 ### 2.2 Tareekh aur hierarchy
