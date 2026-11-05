@@ -111,7 +111,7 @@ AD DS hierarchical hai kyun ke [forest](md/ADDS_Forest.md) mein domains hote hai
 **Wazahat / durusti - Group Policy:** GPOs sites, domains aur OUs se link ho sakte hain. Scope, inheritance aur filtering decide karte hain ke kaunsi settings apply hongi. Har GPO har computer par apply nahin hota.
 
 ### 2.4 KCC kya karta hai?
-KCC = Knowledge Consistency Checker. Yeh AD DS ka built-in component hai jo replication topology banata aur maintain karta hai. Replication topology batati hai ke kaun se Domain Controllers (DCs) ek doosre se directory changes hasil karte hain.
+KCC = Knowledge Consistency Checker. Yeh AD DS ka built-in component hai jo replication [topology](/00_Networking_Foundations/Network_Topology/Network_Topology_Poster.png) banata aur maintain karta hai. Replication topology batati hai ke kaun se Domain Controllers (DCs) ek doosre se directory changes hasil karte hain.
 
 KCC zaroorat ke mutabiq connection objects banata hai. Har connection object destination DC ko batata hai ke woh kis source DC se changes pull karega. Misal ke taur par, agar DC02 ke paas DC01 se inbound replication ka connection hai, to DC02, DC01 se changes pull karta hai. KCC connection banata hai; changes transfer karna AD DS replication ka kaam hai.
 
