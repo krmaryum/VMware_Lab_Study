@@ -80,6 +80,8 @@ A **Domain Controller (DC)** is a Windows Server that has been promoted to run A
 
 **Example:** Khalid has a domain account. He can sign in to permitted domain computers without administrators creating a separate local account on each computer.
 
+<img src="images/Windows-Server-AD-DS.png" width="700">
+
 ### 2.2 History and hierarchy
 
 The lecture dates Active Directory's introduction to **Windows 2000**, which is correct. Modern AD DS develops from that directory platform.
