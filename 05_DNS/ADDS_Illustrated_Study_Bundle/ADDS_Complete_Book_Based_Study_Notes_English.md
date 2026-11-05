@@ -86,7 +86,10 @@ A **Domain Controller (DC)** is a Windows Server that has been promoted to run A
 
 The lecture dates Active Directory's introduction to **Windows 2000**, which is correct. Modern AD DS develops from that directory platform.
 
-It is hierarchical because objects are arranged within structures such as forests, domains and OUs. “Hierarchical directory database” describes this organization; it does not mean it is a shared folder containing ordinary documents.
+AD DS is hierarchical because a [forest](md/ADDS_Forest.md) contains domains, and [organizational units](md/ADDS_Forest.md) (OUs) can be created within those domains to organize objects such as users, computers, and groups.
+
+<img src="images/Active-Directory-history-hierarchy.png" width="400">
+
 
 ### 2.3 Every function listed in the book
 

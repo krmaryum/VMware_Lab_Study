@@ -87,7 +87,9 @@ Directory [objects](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md) 
 
 Lecture mein Active Directory ka ta'aruf **Windows 2000** ke saath bataya gaya hai, jo durust hai. Modern AD DS isi directory platform ki taraqqi yafta surat hai.
 
-Isay hierarchical is liye kehte hain ke objects forests, domains aur OUs jaisi structures mein arrange hote hain. “Hierarchical directory database” is tarteeb ko bayan karta hai; iska matlab aam documents wala shared folder nahin.
+AD DS hierarchical hai kyun ke [forest](md/ADDS_Forest.md) mein domains hote hain, aur domains ke andar [OUs](md/ADDS_Forest.md) bana kar users, computers aur groups jaise objects organize kiye ja sakte hain.
+
+<img src="images/Active-Directory-history-hierarchy.png" width="400">
 
 ### 2.3 Kitab mein diye gaye tamam functions
 
