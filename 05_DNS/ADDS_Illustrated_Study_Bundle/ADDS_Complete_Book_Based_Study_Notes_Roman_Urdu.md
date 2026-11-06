@@ -174,7 +174,7 @@ AD DS mein directory partitions ki chaar categories hain:
 
 Schema tay karta hai:
 
-- **Object classes:** Kaun se types ke objects ban sakte hain, jaise user, computer ya group.
+- **Object [classes](md/ADDS_Class.md):** Kaun se types ke objects ban sakte hain, jaise user, computer ya group.
 - **Attributes:** Har object class ke liye kaun se attributes allowed hain, jaise user ka display name aur department.
 - **Required aur optional attributes:** Kaun se attributes lazmi hain aur kaun se ikhtiyari.
 - **Structural rules:** Object classes ki inheritance aur directory mein un ki allowed placement ke rules.
@@ -188,6 +188,9 @@ Schema tay karta hai:
 Schema ko zaroorat ke mutabiq **extend** kiya ja sakta hai, jaise kisi application ke liye nayi object classes ya attributes add karna. Is ke liye munasib permissions aur supported procedures chahiye. Schema ki originating changes **Schema Master** DC par hoti hain aur phir forest ke doosre DCs tak replicate hoti hain.
 
 **Yaad rakhein:** Schema extension forest-wide change hai. Isay planning aur testing ke saath karein; har administrator ko schema change karne ki permission nahin hoti.
+
+<img src="images/Windows-Server-Schema-Partition.png" width="400">
+
 
 ### 3.4 Configuration partition — forest ki tarteeb
 

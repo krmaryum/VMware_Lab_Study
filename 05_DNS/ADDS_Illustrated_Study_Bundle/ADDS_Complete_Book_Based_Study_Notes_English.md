@@ -187,7 +187,7 @@ The **schema partition** stores definitions of objects and their attributes in A
 
 The schema determines:
 
-- **Object classes:** Which types of objects can be created, such as users, computers, or groups.
+- **Object [classes](md/ADDS_Class.md):** Which types of objects can be created, such as users, computers, or groups.
 - **Attributes:** Which attributes are allowed for each object class, such as a user’s display name and department.
 - **Required and optional attributes:** Which attributes are mandatory and which are optional.
 - **Structural rules:** Rules governing object-class inheritance and where objects can be placed within the directory.
@@ -201,6 +201,10 @@ The schema determines:
 The schema can be **extended** when necessary, such as by adding new object classes or attributes for an application. This requires appropriate permissions and supported procedures. Schema changes originate on the **Schema Master** DC and then replicate to the other DCs in the forest.
 
 **Remember:** A schema extension is a forest-wide change. Plan and test it carefully; not every administrator has permission to modify the schema.
+
+<img src="images/Windows-Server-Schema-Partition.png" width="400">
+
+
 
 ### 3.4 Configuration partition — organizing the forest
 
