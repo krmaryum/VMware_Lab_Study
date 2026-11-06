@@ -145,6 +145,8 @@ Domain Controller promotion ke waqt database ke liye doosra location bhi select 
 
 Backup aur recovery ke liye **AD DS-aware backup tools aur supported procedures** use karne chahiye.
 
+<img src="images/NTDS.DIT_ AD-DS-Directory-Database.png" width="400">
+
 ### 3.2 Directory partitions ki chaar categories — hamesha sirf chaar partitions nahin
 
 **Directory partition**, jisay **naming context** bhi kehte hain, directory data ka ek logical hissa hai jiska apna replication scope hota hai. Yani us partition ka data un Domain Controllers (DCs) tak replicate hota hai jo us ki replica rakhte hain.
@@ -168,6 +170,8 @@ AD DS mein directory partitions ki chaar categories hain:
 
 **Yaad rakhein:** Yeh directory database ke logical partitions hain; disk ke `C:` ya `D:` jaise partitions nahin.
 
+<img src="images/Windows-Server-directory-partitions.png" width="400">
+
 ### 3.3 Schema partition — directory ke rules
 
 **Schema partition** AD DS mein objects aur un ke attributes ki definitions rakhta hai. Yeh directory ka structure define karta hai.
@@ -188,8 +192,6 @@ Schema tay karta hai:
 Schema ko zaroorat ke mutabiq **extend** kiya ja sakta hai, jaise kisi application ke liye nayi object classes ya attributes add karna. Is ke liye munasib permissions aur supported procedures chahiye. Schema ki originating changes **Schema Master** DC par hoti hain aur phir forest ke doosre DCs tak replicate hoti hain.
 
 **Yaad rakhein:** Schema extension forest-wide change hai. Isay planning aur testing ke saath karein; har administrator ko schema change karne ki permission nahin hoti.
-
-<img src="images/Windows-Server-Schema-Partition.png" width="400">
 
 
 ### 3.4 Configuration partition — forest ki tarteeb

@@ -158,6 +158,8 @@ A different database location can be selected during Domain Controller promotion
 
 Use **AD DS-aware backup tools and supported procedures** for backup and recovery.
 
+<img src="images/NTDS.DIT_ AD-DS-Directory-Database.png" width="400">
+
 ### 3.2 Four categories of directory partitions — not always exactly four partitions
 
 A **directory partition**, also called a **naming context**, is a logical portion of directory data with its own replication scope. Its data replicates to the Domain Controllers (DCs) that hold a replica of that partition.
@@ -181,6 +183,8 @@ AD DS has four categories of directory partitions:
 
 **Remember:** These are logical partitions within the directory database, not disk partitions such as `C:` or `D:`.
 
+<img src="images/Windows-Server-directory-partitions.png" width="400">
+
 ### 3.3 Schema partition — the directory’s rules
 
 The **schema partition** stores definitions of objects and their attributes in AD DS. It defines the directory’s structure.
@@ -201,9 +205,6 @@ The schema determines:
 The schema can be **extended** when necessary, such as by adding new object classes or attributes for an application. This requires appropriate permissions and supported procedures. Schema changes originate on the **Schema Master** DC and then replicate to the other DCs in the forest.
 
 **Remember:** A schema extension is a forest-wide change. Plan and test it carefully; not every administrator has permission to modify the schema.
-
-<img src="images/Windows-Server-Schema-Partition.png" width="400">
-
 
 
 ### 3.4 Configuration partition — organizing the forest
