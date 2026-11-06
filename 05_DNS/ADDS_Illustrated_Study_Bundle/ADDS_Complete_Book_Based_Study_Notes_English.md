@@ -525,67 +525,244 @@ Renaming a user or moving the account to another OU within the same domain norma
 
 ## 6. Purposes of AD DS
 
-**Book topic - pages 10-11. All nine purposes are covered.**
+**Book topic — pages 10–11.** This section explains the nine purposes listed in the notes.
 
-| Purpose | What it means | Example |
+The main purpose of AD DS is to centrally manage identities and directory information in a domain environment. It supports authentication, access control, administration, and applications. Some capabilities require additional services or integration tools.
+
+| Purpose | Meaning | Example |
 | --- | --- | --- |
-| Centralized authentication and authorization support | Common identities and group information | Domain sign-in followed by file-server permission checks |
-| User and resource management | Maintain directory entries and relationships | Disable a departing employee's account |
-| Security and access control | Use identities, permissions and policies | Restrict a Finance share to approved groups |
-| Scalability and delegation | Grow the directory while distributing limited administration | Let help desk reset passwords for one OU |
-| Directory-based service for resources | Discover information through the directory | Find a published printer or application directory entry |
-| Trust relationships and federation | Connect identity environments through appropriate mechanisms | Cross-domain authentication or a separate federation service |
-| Replication for high availability | Maintain directory replicas | Another DC can answer suitable requests during an outage |
-| Cloud and hybrid support | Integrate with cloud identity/services using additional components | Synchronize selected identities to Microsoft Entra ID |
-| Directory services for applications | Let applications query/use directory identities and information | An LDAP-aware business application |
+| **Centralized authentication and authorization support** | Supporting authentication and access decisions through shared domain identities and group information | A DC authenticates the user; a file server checks access based on the user’s identity and permissions |
+| **User and resource management** | Maintaining directory objects, their attributes, and relationships | Disabling a departing employee’s account and reviewing their group memberships |
+| **Security and access control** | Managing access through identities, groups, permissions, and policies | Restricting access to the Finance share to approved security groups |
+| **Scalability and delegation** | Expanding the directory as needed and assigning responsibility for specific administrative tasks | Allowing the help desk to reset passwords only for users in the Finance OU |
+| **Directory-based resource discovery** | Finding resources through published directory information | Locating a published printer or an application directory entry |
+| **Trust relationships and federation support** | Supporting cross-domain authentication through AD DS trusts and integrating identity systems through separate federation services | Authenticating a user from a trusted domain or supporting application sign-in through a service such as AD FS |
+| **Availability through replication** | Maintaining replicas of directory data on multiple DCs | Another healthy DC handles appropriate domain requests when one DC is unavailable |
+| **Cloud and hybrid integration** | Integrating on-premises identities with cloud identity services through additional components and tools | Synchronizing selected identities with Microsoft Entra ID |
+| **Directory services for applications** | Allowing applications to query or use directory identities and information | An LDAP-aware business application queries user or group information |
 
-**Clarification - federation:** AD DS trusts and federation are not synonyms. AD FS is a separate role/service. Federation generally uses trust and tokens/assertions across identity systems.
+### 6.1 Authentication versus authorization
 
-**Clarification - cloud:** Microsoft Entra ID is not simply a cloud-hosted writable replica of NTDS.DIT. Hybrid integration requires design and appropriate tools.
+**Authentication** verifies the identity of a user or another principal. **Authorization** determines what that identity is allowed to do.
 
-**Clarification - delegation:** Give only the permissions required for the task. Delegating password resets in Finance does not mean granting Domain Admin rights.
+AD DS provides identities and group information, but a DC does not directly decide permissions for every resource. The file server or application enforces its applicable permissions and rules.
+
+**Remember:** A successful domain sign-in does not guarantee access to every resource.
+
+### 6.2 Trusts versus federation
+
+**AD DS trusts** and **federation** are not two names for the same thing.
+
+- **AD DS trust:** Provides an authentication path between domains or forests.
+- **Federation:** Supports sign-in through trust between identity systems and applications, using tokens or assertions.
+- **AD FS:** Active Directory Federation Services is a separate Windows Server role/service. Installing AD DS alone does not deploy AD FS.
+
+**Remember:** A trust does not automatically grant resource permissions. Authentication restrictions and resource authorization still apply.
+
+### 6.3 Cloud and hybrid integration
+
+**Microsoft Entra ID** is not a cloud-hosted writable replica of the AD DS `ntds.dit` database. They are different identity services.
+
+Hybrid integration requires an appropriate architecture, supported synchronization tools, and configuration. Installing AD DS alone does not automatically synchronize identities to the cloud.
+
+### 6.4 Delegation and least privilege
+
+**Delegation** means granting an administrator or support team permission to perform specific administrative tasks on specific objects.
+
+**Example:** Allowing the help desk to reset passwords for users in the Finance OU is not the same as granting Domain Admin rights across the entire domain.
+
+Under the principle of **least privilege**, grant only the permissions necessary for the assigned task.
+
+### 6.5 Limits of replication and availability
+
+Multiple healthy DCs reduce dependency on a single server. However, availability also requires functioning DNS, connectivity, replication, and an appropriate failure-domain design.
+
+**Replication does not replace backups.** Incorrect changes or accidental deletions can also replicate. Similarly, adding another DC does not automatically replicate or protect the files on a separate file server.
 
 ## 7. Features and limitations
 
 **Book topic - pages 12-13. All seven listed features are explained.**
 
-### 7.1 Administration using Group Policy
+### 7.1 Administration through Group Policy
 
-GPOs centralize supported settings, scripts and some software deployment mechanisms. Windows Installer package deployment is one example; GPO is not a universal replacement for application-management systems.
+**Group Policy Objects (GPOs)** help administrators centrally manage supported user and computer settings. They can configure security settings, scripts, and certain software deployment tasks.
 
-Computer/user clients process applicable policy. A GPO's location, filters and precedence affect the result.
+| Use | Example |
+| --- | --- |
+| **Security settings** | Configuring account-lockout policies or Windows Firewall settings |
+| **User and computer settings** | Managing screen-lock settings or Control Panel access |
+| **Scripts** | Configuring computer startup/shutdown or user logon/logoff scripts |
+| **Software deployment** | Assigning or publishing supported Windows Installer (`.msi`) packages |
+
+**GPO scope:** GPOs can be linked to sites, domains, and OUs. Applicable settings affect users or computers; inheritance, security filtering, and other processing rules determine which GPOs take effect.
+
+**Processing clarification:** Domain Controllers provide policy information and files, but the client computer’s Group Policy components process and apply the applicable settings.
+
+**Software deployment limitations:** Group Policy Software Installation is useful for certain supported deployment scenarios, but it does not manage every application, installer format, or update workflow. It should not be considered a universal replacement for every application-management system.
+
+**Remember:** Creating a GPO alone is not enough; correct linking, scope, permissions, and successful client processing are also necessary.
 
 ### 7.2 Renaming a DC or domain
 
-The lecture lists both as possible features. They are separate operations with different prerequisites and application limitations.
+**Domain Controller renaming** and **domain renaming** are separate operations. They have different prerequisites, dependencies, and application limitations.
 
-A DC rename is not equivalent to renaming an ordinary standalone PC without checking dependencies. A domain rename is a specialized project and may be unsupported by applications in the environment. Plan and validate; do not treat it as routine name cleanup.
+| Operation | What changes? | Example |
+| --- | --- | --- |
+| **DC rename** | The computer/host name of a particular Domain Controller | `DC01.ad.example.com` to `DC02.ad.example.com` |
+| **Domain rename** | The AD domain’s DNS name and/or NetBIOS name | `ad.example.com` to `corp.example.com` |
+
+#### Domain Controller rename
+
+Renaming a DC should not be treated as a simple standalone-PC rename. A Domain Controller is integrated with DNS records, replication, and other services.
+
+Before renaming it, review these dependencies:
+
+- DNS records and name resolution.
+- Replication health.
+- Certificates and service identities.
+- Applications, scripts, and monitoring tools that use the old hostname.
+- Additional roles installed on the server and whether they support renaming.
+
+**Clarification:** Renaming a DC does not change the AD domain’s name.
+
+#### Domain rename
+
+Renaming a domain is a specialized infrastructure project. It can affect Domain Controllers, domain members, DNS, Group Policy, and applications that depend on domain names.
+
+Not every application or additional server role supports domain renaming. Therefore, the availability of an AD DS rename mechanism does not guarantee compatibility across the entire environment.
+
+**Example:** If an application uses the old domain name in its configuration, it may require configuration updates or additional remediation after the domain is renamed.
+
+**Remember:** Before either operation, review current Microsoft and application-vendor guidance, prepare backups and a recovery plan, and perform testing. Do not treat DC or domain renaming as routine naming cleanup.
 
 ### 7.3 Integrated security with Kerberos
 
-Kerberos supports domain authentication and single sign-on. Permissions, secure configuration and other controls are still needed; the presence of Kerberos does not make the entire environment automatically secure.
+**Kerberos** supports authentication in AD DS domain environments and **single sign-on (SSO)** for supported services. Using tickets, a user can authenticate without repeatedly providing their password to every service.
+
+**Example:** Khalid signs in with a domain account. If the file service supports Kerberos and integrated authentication, he can authenticate to that service without entering his password again.
+
+**Integrated security** means that an application can use the domain’s identity and authentication facilities. However, not every application necessarily uses Kerberos or SSO; appropriate support and configuration are required.
+
+#### What is still necessary alongside Kerberos?
+
+- **Resource permissions:** After authentication, the file server or application still evaluates access rules.
+- **Secure configuration:** DNS, SPNs, time synchronization, and service-account configuration must be correct.
+- **Least privilege:** Users, administrators, and service accounts should receive only the permissions they need.
+- **Other security controls:** Updates, firewall rules, monitoring, and credential protection are also necessary.
+
+**Clarification:** Using Kerberos authentication does not automatically encrypt all application network traffic. Protecting data also requires appropriate security settings for the application and protocol.
+
+**Remember:** Kerberos helps verify identity; SSO reduces repeated prompts; permissions determine what is allowed. The presence of Kerberos alone does not automatically make the entire environment secure.
 
 ### 7.4 Installing or uninstalling AD DS
 
-Promoting a server creates a DC; supported demotion removes that role as a DC. Demotion planning includes DNS, replication, role holders and whether other DCs remain.
+**Installing the AD DS role**, **promoting** a server, and **demoting** it are separate operations.
 
-Removing the last DC can remove the domain. Deleting a DC VM is not the same as supported demotion.
+| Operation | What happens? |
+| --- | --- |
+| **AD DS role installation** | Installs the required AD DS components; the server does not become a DC yet |
+| **Promotion** | Configures the server as a Domain Controller |
+| **Demotion** | Removes the server’s Domain Controller status through a supported procedure |
+| **Role removal** | Removes the installed AD DS role components after demotion |
+
+#### Planning before demotion
+
+Before demoting a DC, review the following:
+
+- **DNS:** Ensure that clients and other servers can use an available DNS service.
+- **Replication:** Verify directory replication health and confirm that necessary changes have reached other DCs.
+- **FSMO roles:** If the DC holds FSMO roles, transfer them to an appropriate DC before planned removal.
+- **Global Catalog and remaining DCs:** Ensure that other available DCs can provide the required authentication and directory services.
+- **Dependencies:** Plan alternatives for applications, scripts, and clients that use this DC directly.
+
+#### Removing the last DC
+
+**Demoting the last DC in a domain removes that AD domain.** If it is also the last domain in the forest, the forest is removed as well. Do not treat this operation like removing an additional DC.
+
+**Deleting a DC’s virtual machine is not demotion.** Simply deleting the VM can leave behind the DC’s metadata, DNS records, and replication references in the directory. If a DC is permanently lost, supported recovery and metadata-cleanup procedures may be necessary.
+
+**Remember:** For planned removal, review dependencies first, then complete a supported demotion. Uninstalling the AD DS role or deleting the VM is not a replacement for demotion.
 
 ### 7.5 Cross-forest trust
 
-A forest trust can provide an authentication path between forests when prerequisites and policy permit it. Trust is not a merger, database replication relationship or automatic file permission.
+A **forest trust** can provide an authentication path between two AD DS forests, provided that prerequisites, connectivity, and security policies permit it.
+
+It allows users from one forest to be granted access to resources in another forest. However, actual access also requires appropriate permissions and authentication settings.
+
+| Aspect | Explanation |
+| --- | --- |
+| **Authentication path** | Provides a way to authenticate an identity from the other forest |
+| **Trust direction** | Can be one-way or two-way; the direction determines which forest’s identities can authenticate for access in the other forest |
+| **Resource permissions** | Resource administrators must assign the required permissions separately |
+| **Authentication scope** | Forest-wide or selective authentication settings can allow or restrict authentication |
+| **Forest boundaries** | Both forests retain their separate directory databases, schemas, and administration |
+
+**Example:** Forest A trusts Forest B. In this one-way relationship, users from Forest B can be granted access to resources in Forest A if authentication restrictions and resource permissions permit it. This does not automatically give users from Forest A access to Forest B.
+
+**Selective authentication clarification:** With this configuration, users from the trusted forest need additional permission to authenticate to specified computers or services. Resource permissions are still checked separately.
+
+**What does a trust not do?**
+
+- It does not merge the two forests into one forest.
+- It does not establish AD DS database replication between the forests.
+- It does not automatically grant users permissions to files, folders, or applications.
+
+**Remember:** A trust provides an authentication path; authentication restrictions and resource permissions determine whether access is possible and allowed.
 
 ### 7.6 Site-to-site replication
 
-The lecture calls site-to-site replication faster.
+**Site-to-site replication**, also called **intersite replication**, replicates directory changes between Domain Controllers in different AD sites.
 
-**Clarification:** Intersite replication is designed around link cost, scheduling and bandwidth considerations; it is not inherently faster than intrasite replication. Within a well-connected site, change notification generally supports quicker convergence. Actual timing depends on configuration and connectivity.
+The lecture describes it as “faster,” but intersite replication is not inherently faster than **intrasite replication**, which occurs within the same site.
+
+| Aspect | Intrasite replication | Intersite replication |
+| --- | --- | --- |
+| **Where does it occur?** | Between DCs within the same AD site | Between DCs in different AD sites |
+| **Typical design** | Distributing changes quickly over good connectivity | Managing replication according to site links and available connectivity |
+| **Timing** | Change notifications generally help initiate replication promptly | Usually follows the site-link schedule and interval; configuration can change this behavior |
+
+#### Effects of site-link settings
+
+- **Cost:** Helps the KCC choose preferred routes for the replication topology. A lower cost does not necessarily mean higher bandwidth or faster transfers.
+- **Schedule:** Determines when replication is permitted over the link.
+- **Replication interval:** Determines the time between periodic replication attempts within the permitted schedule.
+- **Actual connectivity:** Bandwidth, latency, packet loss, and network availability affect how quickly changes arrive.
+
+**Example:** Chicago and Dallas are separate AD sites. If their site link has a long replication interval, changes may take time to reach the other site even when the network connection is fast.
+
+**Convergence** means that relevant changes have reached the appropriate DC replicas through replication.
+
+**Remember:** The purpose of intersite replication is not speed alone, but an appropriate topology and controlled replication between sites. Actual timing depends on configuration, replication health, and network connectivity.
 
 ### 7.7 Extensible schema
 
-New classes and attributes can support applications.
+The AD DS schema is **extensible**. This means that new **object classes** and **attributes** can be added to meet application requirements.
 
-**Clarification:** Schema extensions are forest-wide changes. Schema class/attribute definitions are not ordinary objects that you can freely delete afterward. Supported definitions can sometimes be marked defunct, subject to restrictions. Test, plan permissions and backups, and use supported application/vendor procedures.
+**Example:** If an application needs to store additional information about user objects, a new attribute can be defined through a supported schema extension. Not every additional requirement needs a schema extension; review existing attributes and application guidance first.
+
+#### Forest-wide impact
+
+The schema is shared throughout the forest. Schema changes originate on the **Schema Master** DC and then replicate to the other DCs in the forest.
+
+Therefore, a schema extension is a **forest-wide change**, not a local configuration change affecting only one server or OU.
+
+#### Deletion versus defunct status
+
+Schema class and attribute definitions cannot be freely deleted like ordinary user or group objects.
+
+Some eligible definitions can be marked **defunct** under supported conditions and restrictions. This means making the definition inactive; it is not equivalent to deleting it from the database or completely reversing the extension.
+
+**Not every definition can be marked defunct.** Dependencies and schema rules can restrict this operation.
+
+#### Preparation before making changes
+
+- Follow the application/vendor’s supported schema-extension procedure.
+- Verify the required permissions and availability of the Schema Master.
+- Validate the changes in an appropriate test environment first.
+- Review replication health, backups, and recovery planning.
+- Document the changes and their expected impact.
+
+**Remember:** Having a backup does not make a schema extension a simple “undo” operation. Perform schema changes with planning, testing, and controlled change management.
 
 ## 8. Logical and physical structure
 
@@ -597,39 +774,92 @@ New classes and attributes can support applications.
 
 ### 8.1 Logical components
 
+The **logical structure** of AD DS describes how domains and objects are organized within the directory. This is separate from physical servers and network locations.
+
 | Component | Meaning | Example |
 | --- | --- | --- |
-| Domain | Directory partition and administrative/replication unit within a forest | `ad.example.com` |
-| Tree | One or more domains with a contiguous DNS namespace | `example.com` and `hr.example.com` |
-| Forest | One or more domains sharing schema, configuration and forest-wide relationships | A forest can contain multiple trees |
-| OU | Organizational/delegation/GPO container within a domain | Finance OU |
+| **Domain** | A logical unit within a forest that has its own domain directory partition; provides a scope for identities, administration, and full domain replication | `ad.example.com` |
+| **Tree** | A group of one or more AD domains that share a contiguous DNS namespace | `example.com` and its child domain `hr.example.com` |
+| **Forest** | One or more AD domains that share a common schema, configuration, and Global Catalog structure | A forest can contain multiple domain trees |
+| **Organizational Unit (OU)** | A container within a domain for organizing objects, delegating administration, and linking GPOs | Finance OU |
 
-A forest can contain a single domain. Different trees in one forest can use different DNS namespaces.
+#### Domains and trees
 
-**Additional explanation:** The forest is the central AD security boundary. A domain is an administrative/replication boundary, but it is not complete security isolation from highly privileged administrators elsewhere in the same forest.
+A **contiguous DNS namespace** means that domain names follow a parent-child naming hierarchy.
+
+**Example:** `hr.example.com` can be a child domain of `example.com`. However, creating a DNS subdomain alone does not make it an AD child domain; it must be deployed as an AD DS domain.
+
+A tree can contain just one domain.
+
+#### Forests and multiple trees
+
+A forest can also contain just one domain. If it contains multiple trees, they can use different DNS namespaces while sharing the forest’s schema and configuration.
+
+**Example:** `example.com` and `example.net` can be two separate domain trees within the same forest.
+
+#### OU scope
+
+An OU belongs to one domain. It can organize users, computers, groups, and other OUs. An OU cannot contain multiple domains.
+
+#### Security boundary clarification
+
+**The forest is the fundamental AD DS security boundary.** A domain provides a scope for administration and replication, but it does not guarantee complete security isolation from highly privileged administrators in other domains within the same forest.
+
+**Remember:** The forest is the highest-level logical structure; it contains domain trees and domains. Within domains, OUs help organize objects.
 
 ### 8.2 DNS namespace
 
-A namespace organizes names hierarchically. In `dc01.ad.example.com`:
-- `com` is the top-level domain.
-- `example.com` is a domain.
-- `ad.example.com` is a subdomain.
-- `dc01` is the host label in this example.
+A **DNS namespace** organizes names into a hierarchy. In `dc01.ad.example.com`:
 
-A DNS domain name does not by itself prove an AD domain exists. DNS and AD are related but different systems.
+| Part | Meaning |
+| --- | --- |
+| **`com`** | The top-level domain (TLD) |
+| **`example.com`** | A domain beneath the `.com` top-level domain |
+| **`ad.example.com`** | A subdomain of `example.com` |
+| **`dc01`** | The host label in this example |
+
+The complete name, **`dc01.ad.example.com`**, identifies the host within the DNS hierarchy. Its fully qualified form can be written as `dc01.ad.example.com.` with a trailing dot representing the DNS root.
+
+**DNS versus AD DS:** The existence of a DNS domain name does not prove that an AD DS domain exists. DNS organizes names and provides name resolution; AD DS manages directory objects, identities, and domain services.
+
+**Example:** Creating a DNS zone named `ad.example.com` alone does not create an AD DS domain. The AD DS domain must be deployed separately.
+
+**Remember:** DNS and AD DS are related but different systems. AD DS uses DNS to help clients locate Domain Controllers and services.
 
 ### 8.3 Physical components
 
+The **physical structure** of AD DS describes how Domain Controllers and network subnets are arranged into sites and how replication between sites is organized.
+
+Sites, subnets, and site links are directory objects that represent the actual network topology.
+
 | Component | Meaning |
 | --- | --- |
-| Site | Group of IP subnets considered well connected for AD locality/topology purposes |
-| Subnet | Network prefix mapped to a site |
-| Site link | Logical relationship used to model replication connectivity/cost/schedule |
-| DC | Server hosting directory replicas and domain services |
+| **Site** | A logical group of one or more IP subnets that generally share reliable, well-connected network connectivity |
+| **Subnet** | An AD object representing an IP network prefix that is associated with a site |
+| **Site link** | A logical relationship that models replication connectivity between sites; it includes settings such as cost, schedule, and interval |
+| **Domain Controller (DC)** | A physical or virtual server that hosts replicas of directory partitions and provides domain services |
 
-A site often corresponds to a location, but it is not simply a city label. Accurate subnet mapping matters. One domain can span sites; one site can contain DCs from multiple domains.
+#### Sites and geographical locations
 
-**Additional explanation:** Logical structure answers “How are identities organized?” Physical structure answers “Where are services and network connections located?”
+A site often corresponds to an office, branch, or data-center location, but it is not simply a city name. Site design depends on actual network connectivity and service-location requirements.
+
+**Example:** Mapping the Chicago office’s IP subnet to the Chicago AD site helps clients identify their site and locate a suitable DC.
+
+#### Importance of subnet mapping
+
+Correct subnet-to-site mapping supports site-aware DC discovery. Missing or incorrect mappings can cause a client to locate a DC in another site instead of the intended local DC.
+
+**Clarification:** Creating a subnet object in AD does not create an actual network subnet or configure routers. It associates an existing IP network with an AD site.
+
+#### Relationship between domains and sites
+
+- A domain’s DCs can be distributed across multiple sites.
+- A site can contain DCs from multiple domains.
+- Site boundaries and domain boundaries do not have to match.
+
+**Site-link clarification:** A site link does not create an actual network cable, VPN, or router connection. It models available connectivity for AD replication planning.
+
+**Remember:** Logical structure asks, “How are directory objects and identities organized?” Physical structure asks, “Where are DCs and clients located on the network, and how will replication occur between sites?”
 
 ## 9. All five FSMO roles
 
@@ -655,61 +885,215 @@ Two roles per forest plus three per domain means **2 + (3 x number of domains)**
 
 ### 9.1 Schema Master
 
-One per forest. Schema updates originate on its DC and then replicate.
+The **Schema Master** is a **forest-wide FSMO role**. Each forest has only one holder of this role.
 
-The source includes deleting schema classes/attributes. That wording is misleading: normal deletion of classSchema/attributeSchema definitions is not allowed. Adding/modifying definitions and supported defunct handling are different operations.
+Schema changes originate on the writable DC holding the role. These changes then replicate to the other DCs in the forest through schema-partition replication.
+
+#### Main responsibility
+
+The Schema Master provides a single-master point for schema updates. These updates can include adding new object classes or attributes and modifying existing definitions through supported procedures.
+
+**Example:** If an application installation requires a new directory attribute, the schema extension requires an available Schema Master and appropriate permissions.
+
+**Permissions clarification:** Holding the Schema Master role does not automatically give a user permission to modify the schema. The account performing the operation must also have the required permissions.
+
+#### Deletion and defunct handling
+
+The lecture’s reference to deleting schema classes and attributes is misleading. Normal deletion of `classSchema` and `attributeSchema` definitions is not allowed.
+
+- **Add/modify:** Adding or modifying definitions according to supported schema rules.
+- **Defunct:** Marking certain eligible definitions as inactive, subject to restrictions.
+- **Delete:** Removing a definition from the directory; this should not be treated as a normal schema-management operation.
+
+**Marking a definition as defunct is not equivalent to deletion or a complete rollback.**
+
+**Remember:** The Schema Master is the single-master point where changes originate; it is not the only DC holding a copy of the schema. Every DC in the forest holds a replica of the schema partition.
 
 ### 9.2 Domain Naming Master
 
-One per forest. It coordinates changes such as adding/removing domains and application naming contexts and keeps namespace references consistent.
+The **Domain Naming Master** is a **forest-wide FSMO role**. Each forest has only one holder of this role.
 
-The lecture mentions domain rename. Role availability is only one part of any supported rename workflow; the role alone does not make a rename safe or supported.
+It coordinates changes involving the addition or removal of domains and application directory partitions, also called application naming contexts. It helps prevent conflicting entries in the forest’s directory namespace and keeps naming-context references consistent.
+
+#### Main responsibilities
+
+- Handling namespace changes associated with adding a new AD domain to the forest.
+- Handling namespace changes associated with removing a domain.
+- Participating in operations that add or remove application directory partitions.
+- Handling single-master updates related to naming-context references in the configuration partition’s **Partitions container**.
+
+**Example:** Deploying a new child domain named `hr.example.com` in an existing forest requires an available Domain Naming Master and appropriate permissions.
+
+#### Domain rename clarification
+
+The lecture mentions domain renaming. The availability of the Domain Naming Master is one part of a supported domain-rename workflow, but this role alone does not make the rename safe or supported.
+
+Domain renaming also requires reviewing DNS, replication, domain members, installed applications, and vendor support.
+
+**Important distinction:** The Domain Naming Master is not a replacement for a DNS server. Creating ordinary DNS records or resolving hostnames is not the responsibility of this FSMO role.
+
+**Remember:** The Domain Naming Master coordinates domain and partition changes in the forest’s directory namespace; it does not manage every user account name or DNS record.
 
 ### 9.3 RID Master
 
-One per domain. It allocates pools of Relative Identifiers to writable DCs. A DC uses its available pool when creating security principals.
+The **RID Master** is a **domain-wide FSMO role**. Each domain has only one holder of this role.
 
-**SID concept:** Domain SID + RID gives the principal's domain SID identity.
+It allocates pools of **Relative Identifiers (RIDs)** to writable Domain Controllers. When a writable DC creates a new security principal, it uses a RID from its available pool.
 
-The RID Master does not have to personally issue a fresh RID for every user creation request. If it is unavailable, DCs may continue creating principals while their usable pools last.
+Examples of **security principals** include user accounts, computer accounts, and security groups.
+
+#### Relationship between a SID and a RID
+
+A domain security principal’s **Security Identifier (SID)** is formed by appending its RID to the domain SID:
+
+**Principal SID = Domain SID + RID**
+
+**Fictional example:**
+
+- **Domain SID:** `S-1-5-21-111111111-222222222-333333333`
+- **RID:** `1105`
+- **Principal SID:** `S-1-5-21-111111111-222222222-333333333-1105`
+
+The domain SID identifies the domain; the RID uniquely identifies the security principal within that domain.
+
+#### How are RIDs allocated?
+
+The RID Master does not issue an individual RID for every user-creation request. It allocates pools to DCs, which then use RIDs from those pools.
+
+**Example:** If DC01 has a usable RID pool, it can assign a RID when creating a new user without immediately contacting the RID Master for each request.
+
+#### What happens if the RID Master is unavailable?
+
+- Writable DCs can continue creating new security principals while they have usable RIDs remaining in their pools.
+- If a DC exhausts its usable pool and cannot obtain another one, creating new security principals on that DC can fail.
+- Existing users’ authentication does not necessarily stop simply because the RID Master is unavailable.
+- Not every directory object needs a RID; for example, an OU is not a security principal.
+
+**Remember:** The RID Master allocates pools; a writable DC uses a RID from its pool to create a new security principal.
 
 ### 9.4 PDC Emulator
 
-One per domain. Relevant functions include:
-- Preferential receipt of password updates.
-- Helping resolve failed-password authentication attempts when another DC may have older information.
-- Account-lockout processing.
-- A special place in Windows domain time synchronization.
-- Preferred administrative targeting for tools such as Group Policy management.
-- Historical compatibility with Windows NT-style PDC expectations.
+The **PDC Emulator (Primary Domain Controller Emulator)** is a **domain-wide FSMO role**. Each domain has only one holder of this role.
 
-**Clarifications:**
-- Other writable DCs can accept ordinary password changes.
-- The PDC is not the only DC that authenticates users.
-- Clients process Group Policy; the PDC does not personally apply every client's settings.
-- The forest-root PDC occupies the top of the normal domain time hierarchy; configure an appropriate reliable upstream time source. Every machine does not need to query it directly.
-- NT 4.0 compatibility explains history, not a recommendation to deploy obsolete clients.
+It has special responsibilities in password-change coordination, authentication checks, account lockout, domain time synchronization, and certain administrative operations.
+
+| Function | Explanation |
+| --- | --- |
+| **Password updates** | Receives password changes made on other writable DCs through preferential replication |
+| **Failed-password verification** | If password verification fails on another DC, the normal behavior is to check the latest password with the PDC Emulator before rejecting the request |
+| **Account lockout** | Plays a central coordination role in domain account-lockout processing |
+| **Time synchronization** | Acts as a special reference point in the Windows domain time hierarchy |
+| **Group Policy administration** | Is the default or preferred DC for Group Policy management tools |
+| **Historical compatibility** | Was designed to support the PDC expectations of older Windows NT environments |
+
+#### Password changes and authentication
+
+**Other writable DCs can also accept password changes.** The PDC Emulator is not the domain’s only writable DC or authentication server.
+
+**Example:** Khalid’s password was changed on DC01. If DC02 has not yet received the update and considers the new password incorrect, checking the latest password with the PDC Emulator can help prevent an authentication failure.
+
+This behavior depends on appropriate connectivity and the latest password information being available on the PDC.
+
+#### Time synchronization
+
+In the normal AD domain time hierarchy, the **PDC Emulator in the forest-root domain** is the top-level reference. It should be configured with an appropriate, reliable upstream time source.
+
+Not every computer needs to obtain time directly from the forest-root PDC. Domain members and other DCs generally follow the domain time hierarchy.
+
+**Remember:** Each domain has its own PDC Emulator, but the forest-root domain’s PDC Emulator sits at the top of the normal forest-wide time hierarchy.
+
+#### Group Policy clarification
+
+Group Policy management tools generally use the PDC Emulator as their default or preferred administrative target, but other writable DCs can also accept GPO changes.
+
+The client computer’s Group Policy components process and apply applicable policies. The PDC Emulator does not directly apply settings to every client.
+
+#### Historical compatibility
+
+Windows NT PDC compatibility explains the history of this role. It does not mean that only the PDC Emulator is writable in a modern domain or that obsolete Windows NT clients should be deployed.
+
+**Remember:** The PDC Emulator is important for password coordination, lockout processing, the time hierarchy, and administrative consistency; not all domain authentication depends exclusively on this DC.
+
 
 ### 9.5 Infrastructure Master
 
-One per domain. It maintains references to objects in other domains, such as cross-domain group membership references after changes.
+The **Infrastructure Master** is a **domain-wide FSMO role**. Each domain has only one holder of this role.
 
-Its practical workload depends on the forest design, GC placement and features such as AD Recycle Bin. It is not the role that replicates all objects or updates every user's attributes.
+Its traditional responsibility is to update **references to objects in other domains** within its own domain when a referenced object’s name or other relevant identity information changes.
+
+**Example:** A group in Domain A contains a user from Domain B. If that user is renamed in Domain B, the Infrastructure Master helps keep the cross-domain reference information updated.
+
+**Clarification:** It maintains the reference; it does not copy the other domain’s complete user object into its own domain.
+
+#### Effect of Global Catalog placement
+
+In a traditional configuration where some DCs in a domain are Global Catalog (GC) servers and others are not, the Infrastructure Master should generally be placed on a **non-GC DC**.
+
+However, if **all DCs in the domain are GC servers**, they all hold the relevant cross-domain information. In this situation, placing the Infrastructure Master on a GC is not a problem.
+
+#### Effect of AD Recycle Bin
+
+If **AD Recycle Bin is enabled** in the forest, each DC is responsible for updating its cross-domain object references. In this situation, the Infrastructure Master’s traditional reference-update tasks are no longer required.
+
+The role should still remain assigned to a **valid DC**.
+
+#### Limits of this role
+
+The Infrastructure Master:
+
+- Is not responsible for replicating all directory objects.
+- Does not centrally update every user’s attributes.
+- Does not independently determine permissions associated with cross-domain group membership.
+- Does not establish database synchronization between forests.
+
+**Remember:** The Infrastructure Master’s practical workload depends on forest design, GC placement, and AD Recycle Bin configuration. Its core concept is maintaining consistency of cross-domain references.
 
 ### 9.6 Transfer versus seizure
 
-The lecture mentions ntdsutil and GUI tools.
+There are two ways to move a FSMO role to another DC: **transfer** and **seizure**. They are used in different situations.
 
-| Operation | Appropriate situation |
+| Operation | Appropriate situation | Main distinction |
+| --- | --- | --- |
+| **Transfer** | The current role holder is available and cooperative; a planned migration or maintenance operation | Responsibility is handed over to another DC through normal coordination |
+| **Seizure** | Transfer from the current holder is not possible and recovery of the role is necessary | The role is assigned to another DC without the previous holder’s cooperation |
+
+#### When should you transfer a role?
+
+For planned DC replacement, maintenance, or decommissioning, **transfer is the preferred approach** when the current role holder is available.
+
+**Example:** If DC01 is healthy but scheduled for retirement, its FSMO roles can be transferred to an appropriate DC02.
+
+#### When should you seize a role?
+
+Seizure is a recovery operation. Consider it when transfer is not possible, restoring the current holder in time is not feasible, and the role’s availability is operationally necessary.
+
+**Example:** The role holder has permanently failed, and supported recovery planning requires assigning its role to another healthy writable DC.
+
+**Seizure is not routine failover for a brief outage.** Assess the failure, the urgency of the role, and recovery options first.
+
+#### FSMO management tools
+
+| Tool | Relevant roles |
 | --- | --- |
-| Transfer | Current role holder is available; planned move |
-| Seizure | Role holder cannot be recovered in the required situation; recovery procedure |
+| **Active Directory Users and Computers** | RID Master, PDC Emulator, and Infrastructure Master |
+| **Active Directory Domains and Trusts** | Domain Naming Master |
+| **Active Directory Schema snap-in** | Schema Master |
+| **PowerShell** | FSMO role transfer/seizure with the required module and permissions |
+| **ntdsutil** | FSMO role transfer/seizure through supported procedures |
 
-GUI tools differ by role: AD Users and Computers for domain roles, AD Domains and Trusts for Domain Naming Master, and the Schema snap-in for Schema Master. PowerShell and ntdsutil are other supported tools.
+**Clarification:** The GUI consoles are used for normal role transfers. Seizure uses supported tools such as PowerShell or `ntdsutil`.
 
-Seizure is not routine failover for a short outage. Follow recovery guidance before bringing an old role holder back. This document intentionally provides no role-seizure command.
+#### Returning the previous role holder
 
-Role loss does not necessarily stop all logins immediately. Impact depends on the role, cached/pool information, topology and outage duration.
+After a seizure, do not reconnect the previous holder to the network without planning. Follow role-specific Microsoft recovery guidance and plan metadata cleanup, demotion, or rebuilding where required.
+
+After a RID Master seizure, recovery requirements concerning RID allocation and preventing duplicate security identifiers are particularly important.
+
+#### Effect of an unavailable role
+
+An unavailable FSMO role does not necessarily stop all logons immediately. The impact depends on the role, available RID pools, cached information, topology, and outage duration.
+
+**Remember:** Use transfer for a planned move and seizure for necessary recovery. Seizure commands are intentionally omitted from this section because their use should depend on the actual environment and recovery assessment.
 
 ## 10. Schema versions
 

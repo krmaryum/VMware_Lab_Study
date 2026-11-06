@@ -81,13 +81,13 @@ Directory, [objects](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md)
 
 <img src="images/Windows-Server-AD-DS.png" width="400">
 
-### 2.2 History and hierarchy
+### 2.2 Tareekh aur hierarchy
 
-Microsoft introduced Active Directory with **Windows 2000 Server**. Modern AD DS evolved from that directory platform.
+Microsoft ne Active Directory ko **Windows 2000 Server** ke saath introduce kiya tha. Modern AD DS isi directory platform se taraqqi karke apni mojooda surat tak pohancha hai.
 
-AD DS is hierarchical because a [**forest**](md/ADDS_Forest.md) contains one or more **domains**, and [**organizational units (OUs)**](md/ADDS_Forest.md) can be created within domains to organize objects such as users, computers, and groups. OUs can also contain other OUs.
+AD DS hierarchical hai kyun ke ek [**forest**](md/ADDS_Forest.md) mein ek ya zyada **domains** hote hain, aur domains ke andar [**organizational units (OUs)**](md/ADDS_Forest.md) banayi ja sakti hain taa ke users, computers aur groups jaise objects ko organize kiya ja sake. OUs ke andar doosri OUs bhi ho sakti hain.
 
-The phrase **“hierarchical directory database”** describes this structured organization of directory information. It does not mean a shared folder containing ordinary documents.
+**“Hierarchical directory database”** ki istilah directory information ki isi munazzam tarteeb ko bayan karti hai. Is ka matlab aam documents rakhne wala shared folder nahin hai.
 
 <img src="images/Active-Directory-history-hierarchy.png" width="400">
 
@@ -508,25 +508,59 @@ User ka naam badalne ya usay usi domain ki doosri OU mein move karne se us ka SI
 
 ## 6. AD DS ke maqasid
 
-**Kitab ka topic - pages 10-11. Tamam nau maqasid cover hain.**
+**Kitab ka topic — pages 10–11.** Is section mein notes mein diye gaye nau maqasid samjhaye gaye hain.
+
+AD DS ka bunyadi maqsad domain environment mein identities aur directory information ko centrally manage karna hai. Yeh authentication, access control, administration aur applications ko support karta hai. Kuch capabilities ke liye additional services ya integration tools ki zaroorat hoti hai.
 
 | Maqsad | Matlab | Misal |
 | --- | --- | --- |
-| Centralized authentication aur authorization support | Mushtarka identities aur group information | Domain sign-in ke baad file-server permission checks |
-| User aur resource management | Directory entries aur relationships maintain karna | Job chhorne walay employee ka account disable karna |
-| Security aur access control | Identities, permissions aur policies use karna | Finance share ko approved groups tak mehdood rakhna |
-| Scalability aur delegation | Directory ko barhana aur mehdood administration taqseem karna | Help desk ko ek OU mein password resets ki ijazat |
-| Resources ke liye directory-based service | Directory se information discover karna | Published printer ya application directory entry dhoondna |
-| Trust relationships aur federation | Munasib mechanisms se identity environments jorna | Cross-domain authentication ya alag federation service |
-| High availability ke liye replication | Directory replicas maintain karna | Outage mein doosra DC munasib requests ka jawab de |
-| Cloud aur hybrid support | Additional components se cloud identity/services ke saath integration | Selected identities Microsoft Entra ID se synchronize karna |
-| Applications ke liye directory services | Applications ko directory identities/information query ya use karne dena | LDAP-aware business application |
+| **Centralized authentication aur authorization support** | Mushtarka domain identities aur group information ke zariye authentication aur access decisions ko support karna | DC user authenticate karta hai; file server us ki identity aur permissions ki bunyaad par access check karta hai |
+| **User aur resource management** | Directory objects, un ke attributes aur relationships maintain karna | Job chhorne walay employee ka account disable karna aur us ki group memberships review karna |
+| **Security aur access control** | Identities, groups, permissions aur policies ki madad se access manage karna | Finance share ki access approved security groups tak mehdood rakhna |
+| **Scalability aur delegation** | Directory ko zaroorat ke mutabiq barhana aur specific administrative tasks ki zimmedari taqseem karna | Help desk ko sirf Finance OU ke users ke passwords reset karne ki ijazat dena |
+| **Directory-based resource discovery** | Published directory information ki madad se resources dhoondna | Published printer ya application directory entry locate karna |
+| **Trust relationships aur federation support** | AD DS trusts se cross-domain authentication support karna; alag federation services se identity systems ko integrate karna | Trusted domain ke user ko authenticate karna, ya AD FS jaisi service se application sign-in support karna |
+| **Replication ke zariye availability** | Directory data ki replicas mukhtalif DCs par maintain karna | Ek DC unavailable ho to doosra healthy DC munasib domain requests handle kare |
+| **Cloud aur hybrid integration** | Additional components aur tools se on-premises identities ko cloud identity services ke saath integrate karna | Selected identities ko Microsoft Entra ID ke saath synchronize karna |
+| **Applications ke liye directory services** | Applications ko directory identities aur information query ya use karne dena | LDAP-aware business application ka user ya group information query karna |
 
-**Wazahat / durusti - federation:** AD DS trusts aur federation ek hi cheez ke do naam nahin. AD FS alag role/service hai. Federation aam tor par identity systems ke darmiyan trust aur tokens/assertions use karti hai.
+### 6.1 Authentication aur authorization ka farq
 
-**Wazahat / durusti - cloud:** Microsoft Entra ID sirf NTDS.DIT ka cloud par hosted writable replica nahin. Hybrid integration ko design aur munasib tools chahiye.
+**Authentication** user ya doosray principal ki pehchan verify karti hai. **Authorization** tay karti hai ke us identity ko kya karne ki ijazat hai.
 
-**Wazahat / durusti - delegation:** Sirf task ke liye darkar permissions dein. Finance mein password resets delegate karna Domain Admin rights dene ke barabar nahin.
+AD DS identities aur group information provide karta hai, lekin har resource ki permission seedha DC decide nahin karta. File server ya application apne applicable permissions aur rules enforce karti hai.
+
+**Yaad rakhein:** Successful domain sign-in har resource ki access ki guarantee nahin.
+
+### 6.2 Trusts aur federation ka farq
+
+**AD DS trusts** aur **federation** ek hi cheez ke do naam nahin hain.
+
+- **AD DS trust:** Domains ya forests ke darmiyan authentication ka rasta provide karta hai.
+- **Federation:** Identity systems aur applications ke darmiyan trust ke zariye tokens ya assertions use karke sign-in support karti hai.
+- **AD FS:** Active Directory Federation Services ek alag Windows Server role/service hai; sirf AD DS install karne se AD FS deploy nahin hota.
+
+**Yaad rakhein:** Trust apne aap resource permissions nahin deta. Authentication restrictions aur resource authorization phir bhi apply hoti hain.
+
+### 6.3 Cloud aur hybrid integration
+
+**Microsoft Entra ID**, AD DS ki `ntds.dit` database ka cloud-hosted writable replica nahin hai. Dono mukhtalif identity services hain.
+
+Hybrid integration ke liye munasib architecture, supported synchronization tools aur configuration chahiye. Sirf AD DS install karne se identities khud-ba-khud cloud mein synchronize nahin hotin.
+
+### 6.4 Delegation aur least privilege
+
+**Delegation** ka matlab kisi administrator ya support team ko specific objects par specific administrative tasks ki permission dena hai.
+
+**Misal:** Help desk ko Finance OU ke users ke passwords reset karne ki ijazat dena, usay poore domain ke Domain Admin rights dene ke barabar nahin.
+
+**Least privilege** ke mutabiq sirf utni permissions dein jitni assigned task ke liye zaroori hon.
+
+### 6.5 Replication aur availability ki hudood
+
+Multiple healthy DCs ek server par dependency kam karte hain. Lekin availability ke liye DNS, connectivity, replication aur munasib failure-domain design bhi zaroori hain.
+
+**Replication backup ka badal nahin hai.** Ghalat changes ya accidental deletions bhi replicate ho sakti hain. Isi tarah, doosra DC kisi alag file server ki files ko khud-ba-khud replicate ya protect nahin karta.
 
 ## 7. Features aur un-ki-hudood
 
@@ -534,41 +568,186 @@ User ka naam badalne ya usay usi domain ki doosri OU mein move karne se us ka SI
 
 ### 7.1 Group Policy se administration
 
-GPOs supported settings, scripts aur kuch software deployment mechanisms ko centralize karte hain. Windows Installer package deployment ek misal hai; GPO har application-management system ka universal replacement nahin.
+**Group Policy Objects (GPOs)** administrators ko supported user aur computer settings centrally manage karne mein madad dete hain. In ke zariye security settings, scripts aur kuch software deployment tasks configure kiye ja sakte hain.
+
+| Istemaal | Misal |
+| --- | --- |
+| **Security settings** | Account-lockout policy ya Windows Firewall settings configure karna |
+| **User aur computer settings** | Screen-lock settings ya Control Panel access manage karna |
+| **Scripts** | Computer startup/shutdown ya user logon/logoff scripts configure karna |
+| **Software deployment** | Supported Windows Installer (`.msi`) packages assign ya publish karna |
+
+**GPO ka scope:** GPOs ko sites, domains aur OUs se link kiya ja sakta hai. Applicable settings user ya computer par apply hoti hain; inheritance, security filtering aur doosray processing rules tay karte hain ke kaunsa GPO asar karega.
+
+**Processing ki wazahat:** Domain Controller policy information aur files provide karta hai, lekin client computer ke Group Policy components applicable settings process aur apply karte hain.
+
+**Software deployment ki had:** Group Policy Software Installation kuch supported deployment scenarios ke liye useful hai, lekin har application, installer format ya update workflow ko manage nahin karta. Isay har application-management system ka universal replacement nahin samajhna chahiye.
+
+**Yaad rakhein:** GPO banana akela kaafi nahin; sahi linking, scope, permissions aur successful client processing bhi zaroori hain.
 
 Computer/user clients applicable policy process karte hain. GPO ki location, filters aur precedence result par asar dalte hain.
 
 ### 7.2 DC ya domain ka naam badalna
 
-Lecture dono ko mumkin features mein shamil karta hai. Yeh alag operations hain jinki prerequisites aur application limitations mukhtalif hain.
+**Domain Controller rename** aur **domain rename** do alag operations hain. Dono ki prerequisites, dependencies aur application limitations mukhtalif hoti hain.
 
-Dependencies check kiye baghair DC rename ko aam standalone PC rename jaisa na samjhein. Domain rename ek specialized project hai; environment ki applications isay support na bhi karti hon. Plan aur validate karein; isay routine naam ki safai na samjhein.
+| Operation | Kya badalta hai? | Misal |
+| --- | --- | --- |
+| **DC rename** | Kisi khaas Domain Controller ka computer/host name | `DC01.ad.example.com` se `DC02.ad.example.com` |
+| **Domain rename** | AD domain ka DNS naam aur/ya NetBIOS naam | `ad.example.com` se `corp.example.com` |
+
+#### Domain Controller rename
+
+DC rename ko aam standalone PC ka naam badalne jaisa simple operation nahin samajhna chahiye. Domain Controller, DNS records, replication aur doosri services ke saath integrated hota hai.
+
+Rename se pehle yeh dependencies review karein:
+
+- DNS records aur name resolution.
+- Replication health.
+- Certificates aur service identities.
+- Applications, scripts aur monitoring tools jo purana hostname use karte hain.
+- Server par installed additional roles aur un ki rename support.
+
+**Wazahat:** DC rename se AD domain ka naam nahin badalta.
+
+#### Domain rename
+
+Domain rename ek specialized infrastructure project hai. Is ka asar Domain Controllers, domain members, DNS, Group Policy aur domain names par depend karne wali applications par ho sakta hai.
+
+Har application ya additional server role domain rename support nahin karta. Is liye sirf AD DS mein rename ka mechanism available hona, poore environment ke liye compatibility ki guarantee nahin hai.
+
+**Misal:** Agar koi application configuration mein purana domain name use karti hai, to domain rename ke baad us ki configuration update ya additional remediation ki zaroorat ho sakti hai.
+
+**Yaad rakhein:** Kisi bhi rename se pehle current Microsoft aur application-vendor guidance, backups, recovery planning aur testing zaroori hain. DC ya domain rename ko routine naming cleanup na samjhein.
 
 ### 7.3 Kerberos ke saath integrated security
 
-Kerberos domain authentication aur single sign-on support karta hai. Permissions, secure configuration aur doosray controls ab bhi chahiye; Kerberos ki mojoodgi poora environment khud-ba-khud secure nahin banati.
+**Kerberos** AD DS domain environments mein authentication aur supported services ke liye **single sign-on (SSO)** support karta hai. Tickets ki madad se user baar baar har service ko apna password diye baghair authenticate kar sakta hai.
+
+**Misal:** Khalid domain account se sign in karta hai. Agar file service Kerberos aur integrated authentication support karti ho, to woh dobara password enter kiye baghair service par authenticate ho sakta hai.
+
+**Integrated security** ka matlab hai ke application domain ki identity aur authentication facilities use kar sakti hai. Lekin har application lazman Kerberos ya SSO use nahin karti; munasib support aur configuration zaroori hain.
+
+#### Kerberos ke saath bhi kya zaroori hai?
+
+- **Resource permissions:** Authentication ke baad bhi file server ya application access rules evaluate karti hai.
+- **Secure configuration:** DNS, SPNs, time synchronization aur service-account configuration sahi honi chahiye.
+- **Least privilege:** Users, administrators aur service accounts ko sirf zaroori permissions milni chahiye.
+- **Doosray security controls:** Updates, firewall rules, monitoring aur credential protection bhi zaroori hain.
+
+**Wazahat:** Kerberos authentication ka istemal apne aap application ke tamam network traffic ko encrypt nahin karta. Data protection ke liye application aur protocol ki munasib security settings bhi chahiye.
+
+**Yaad rakhein:** Kerberos pehchan verify karne mein madad karta hai; SSO repeated prompts kam karta hai; permissions tay karti hain ke kya allowed hai. Sirf Kerberos ki mojoodgi poore environment ko khud-ba-khud secure nahin banati.
 
 ### 7.4 AD DS install ya uninstall karna
 
-Server ko promote karne se DC banta hai; supported demotion us ki DC wali haisiyat remove karti hai. Demotion planning mein DNS, replication, role holders aur baqi DCs ka hona shamil hai.
+**AD DS role install karna**, server ko **promote** karna aur usay **demote** karna alag operations hain.
 
-Aakhri DC remove karne se domain bhi remove ho sakta hai. DC VM delete karna supported demotion ke barabar nahin.
+| Operation | Kya hota hai? |
+| --- | --- |
+| **AD DS role installation** | Server par AD DS ke zaroori components install hote hain; server abhi DC nahin banta |
+| **Promotion** | Server ko Domain Controller ke taur par configure kiya jata hai |
+| **Demotion** | Server ki Domain Controller wali haisiyat supported procedure se remove ki jati hai |
+| **Role removal** | Demotion ke baad AD DS role ke installed components remove kiye ja sakte hain |
+
+#### Demotion se pehle planning
+
+DC ko demote karne se pehle yeh cheezein review karein:
+
+- **DNS:** Clients aur doosray servers kisi available DNS service ko use kar saken.
+- **Replication:** Directory replication ki health aur zaroori changes ka doosray DCs tak pohanchna verify karein.
+- **FSMO roles:** Agar DC role holder hai, to planned removal se pehle roles munasib DC par transfer karein.
+- **Global Catalog aur baqi DCs:** Zaroori authentication aur directory services doosray available DCs provide kar saken.
+- **Dependencies:** Applications, scripts aur clients jo is DC ko directly use karte hain, un ka alternative plan karein.
+
+#### Aakhri DC ko remove karna
+
+**Domain ke aakhri DC ko demote karne se woh AD domain remove ho jata hai.** Agar woh forest ka bhi aakhri domain ho, to forest bhi remove ho jata hai. Is operation ko aam additional DC ki removal jaisa na samjhein.
+
+**DC VM delete karna demotion nahin hai.** Sirf virtual machine delete karne se directory mein us DC ke metadata, DNS records aur replication references reh sakte hain. Agar DC permanently lost ho, to supported recovery aur metadata-cleanup procedures ki zaroorat ho sakti hai.
+
+**Yaad rakhein:** Planned removal mein pehle dependencies review karein, phir supported demotion complete karein. AD DS role uninstall karna ya VM delete karna, demotion ka replacement nahin.
 
 ### 7.5 Cross-forest trust
 
-Prerequisites aur policy ki ijazat ho to forest trust forests ke darmiyan authentication ka rasta de sakta hai. Trust merger, database replication relationship ya khud-ba-khud file permission nahin.
+**Forest trust** do AD DS forests ke darmiyan authentication ka rasta provide kar sakta hai, bashart-e-ke prerequisites, connectivity aur security policies is ki ijazat dein.
+
+Is se ek forest ke users ko doosray forest ke resources tak access dena mumkin hota hai, lekin actual access ke liye munasib permissions aur authentication settings bhi zaroori hain.
+
+| Pehlu | Wazahat |
+| --- | --- |
+| **Authentication path** | Doosray forest ki identity ko authenticate karne ka rasta provide karta hai |
+| **Trust direction** | One-way ya two-way ho sakti hai; direction tay karti hai ke kis forest ki identities doosray forest mein access ke liye authenticate ho sakti hain |
+| **Resource permissions** | Resource administrators ko required permissions alag se assign karni hoti hain |
+| **Authentication scope** | Forest-wide ya selective authentication ki configuration authentication ko allow ya restrict kar sakti hai |
+| **Forest boundaries** | Dono forests apni alag directory databases, schemas aur administration barqarar rakhte hain |
+
+**Misal:** Forest A, Forest B par trust karta hai. Is one-way relationship mein Forest B ke users ko Forest A ke resources tak access diya ja sakta hai, agar authentication restrictions aur resource permissions ijazat dein. Is se Forest A ke users ko Forest B mein access khud-ba-khud nahin milta.
+
+**Selective authentication ki wazahat:** Is configuration mein trusted forest ke users ko specified computers ya services par authenticate karne ke liye additional permission ki zaroorat hoti hai. Resource permissions phir bhi alag se check hoti hain.
+
+**Trust kya nahin karta?**
+
+- Dono forests ko ek forest mein merge nahin karta.
+- Dono forests ke darmiyan AD DS database replication establish nahin karta.
+- Users ko khud-ba-khud files, folders ya applications ki permissions nahin deta.
+
+**Yaad rakhein:** Trust authentication ka rasta deta hai; authentication restrictions aur resource permissions tay karti hain ke access mumkin aur allowed hai ya nahin.
 
 ### 7.6 Site-to-site replication
 
-Lecture site-to-site replication ko faster kehta hai.
+**Site-to-site replication**, jisay **intersite replication** bhi kehte hain, mukhtalif AD sites ke Domain Controllers ke darmiyan directory changes replicate karti hai.
 
-**Wazahat / durusti:** Intersite replication link cost, schedule aur bandwidth ko madde nazar rakh kar design hoti hai; yeh fitratan intrasite replication se tez nahin. Achhi connectivity wali site ke andar change notification aam tor par jaldi convergence mein madad karti hai. Asal timing configuration aur connectivity par depend karti hai.
+Lecture isay “faster” kehta hai, lekin intersite replication fitratan **intrasite replication**, yani ek hi site ke andar replication, se tez nahin hoti.
+
+| Pehlu | Intrasite replication | Intersite replication |
+| --- | --- | --- |
+| **Kahan hoti hai?** | Ek hi AD site ke DCs ke darmiyan | Mukhtalif AD sites ke DCs ke darmiyan |
+| **Aam design** | Achhi connectivity par changes jaldi phailana | Site links aur available connectivity ke mutabiq replication manage karna |
+| **Timing** | Change notifications aam tor par jaldi replication shuru karne mein madad deti hain | Aam tor par site-link schedule aur interval ke mutabiq hoti hai; configuration se behavior badal sakta hai |
+
+#### Site-link settings ka asar
+
+- **Cost:** KCC ko replication topology ke liye preferred routes choose karne mein madad deta hai. Kam cost ka matlab lazman zyada bandwidth ya tez transfer nahin.
+- **Schedule:** Tay karta hai ke link par replication kab allowed hai.
+- **Replication interval:** Allowed schedule ke andar periodic replication attempts ke darmiyan waqfa tay karta hai.
+- **Actual connectivity:** Bandwidth, latency, packet loss aur network availability changes pohanchne ki timing par asar dalte hain.
+
+**Misal:** Chicago aur Dallas ki alag AD sites hain. Agar un ke site link ka replication interval lamba ho, to changes doosri site tak pohanchne mein waqt lag sakta hai, chahe network link ki speed achhi ho.
+
+**Convergence** ka matlab hai ke relevant changes replication ke zariye mutalliq DC replicas tak pohanch jayein.
+
+**Yaad rakhein:** Intersite replication ka maqsad sirf speed nahin, balkay sites ke darmiyan munasib topology aur controlled replication hai. Asal timing configuration, replication health aur network connectivity par depend karti hai.
 
 ### 7.7 Extensible schema
 
-Nayi classes aur attributes applications ki zarooriyat support kar sakti hain.
+AD DS ka schema **extensible** hai. Is ka matlab hai ke applications ki zarooriyat ke mutabiq nayi **object classes** aur **attributes** add kiye ja sakte hain.
 
-**Wazahat / durusti:** Schema extensions forest-wide changes hain. Schema class/attribute definitions aam objects nahin jinhen baad mein azadi se delete kar dein. Supported definitions ko kuch halaat mein restrictions ke saath defunct mark kiya ja sakta hai. Test karein, permissions aur backups plan karein aur supported application/vendor procedures use karein.
+**Misal:** Kisi application ko user objects ke liye additional information store karni ho, to supported schema extension ke zariye naya attribute define kiya ja sakta hai. Har additional requirement ke liye schema extension zaroori nahin; pehle existing attributes aur application ki guidance review karein.
+
+#### Forest-wide asar
+
+Schema poore forest mein mushtarka hota hai. Schema changes **Schema Master** DC par originate hoti hain aur phir forest ke doosray DCs tak replicate hoti hain.
+
+Is liye schema extension sirf ek server ya OU ki local configuration nahin, balkay **forest-wide change** hai.
+
+#### Deletion aur defunct status ka farq
+
+Schema class aur attribute definitions aam user ya group objects ki tarah freely delete nahin ki ja sakti.
+
+Kuch eligible definitions ko supported conditions aur restrictions ke tehat **defunct** mark kiya ja sakta hai. Is ka matlab definition ko inactive karna hai; yeh usay database se delete karne ya extension ko mukammal taur par reverse karne ke barabar nahin.
+
+**Har definition ko defunct nahin kiya ja sakta.** Dependencies aur schema rules is operation ko restrict kar sakte hain.
+
+#### Change se pehle preparation
+
+- Application/vendor ki supported schema-extension procedure follow karein.
+- Required permissions aur Schema Master ki availability verify karein.
+- Changes ko pehle munasib test environment mein validate karein.
+- Replication health, backups aur recovery planning review karein.
+- Changes aur un ke expected impact ko document karein.
+
+**Yaad rakhein:** Backup hona schema extension ko simple “undo” operation nahin banata. Schema changes ko planning, testing aur controlled change management ke saath perform karein.
 
 ## 8. Logical aur physical structure
 
@@ -580,40 +759,92 @@ Nayi classes aur attributes applications ki zarooriyat support kar sakti hain.
 
 ### 8.1 Logical components
 
+AD DS ki **logical structure** batati hai ke directory mein domains aur objects kis tarah organize hain. Yeh physical servers ya network locations se alag concept hai.
+
 | Component | Matlab | Misal |
 | --- | --- | --- |
-| Domain | Forest mein directory partition aur administrative/replication unit | `ad.example.com` |
-| Tree | Ek ya zyada domains jinka DNS namespace contiguous ho | `example.com` aur `hr.example.com` |
-| Forest | Ek ya zyada domains jo schema, configuration aur forest-wide relationships share karte hain | Forest mein multiple trees ho sakte hain |
-| OU | Domain ke andar organization/delegation/GPO container | Finance OU |
+| **Domain** | Forest ke andar ek logical unit jiska apna domain directory partition hota hai; identities, administration aur full domain replication ka scope provide karta hai | `ad.example.com` |
+| **Tree** | Ek ya zyada AD domains ka group jo contiguous DNS namespace share karte hain | `example.com` aur us ka child domain `hr.example.com` |
+| **Forest** | Ek ya zyada AD domains jo mushtarka schema, configuration aur Global Catalog structure share karte hain | Ek forest mein multiple domain trees ho sakte hain |
+| **Organizational Unit (OU)** | Domain ke andar objects organize karne, administration delegate karne aur GPOs link karne ka container | Finance OU |
 
-Forest mein sirf ek domain bhi ho sakta hai. Ek forest ke mukhtalif trees alag DNS namespaces use kar sakte hain.
+#### Domain aur tree
 
-**Mazeed wazahat:** Forest AD ki bunyadi security boundary hai. Domain administrative/replication boundary hai, lekin usi forest ke doosray hissay mein bohat privileged administrators se mukammal security isolation nahin.
+**Contiguous DNS namespace** ka matlab hai ke domain names parent-child naming hierarchy follow karte hain.
+
+**Misal:** `hr.example.com`, `example.com` ka child domain ho sakta hai. Lekin sirf DNS subdomain banana usay AD child domain nahin banata; usay AD DS domain ke taur par deploy karna hota hai.
+
+Ek tree mein sirf ek domain bhi ho sakta hai.
+
+#### Forest aur multiple trees
+
+Ek forest mein sirf ek domain bhi ho sakta hai. Agar multiple trees hon, to woh mukhtalif DNS namespaces use kar sakte hain, lekin forest ka schema aur configuration mushtarka rehte hain.
+
+**Misal:** `example.com` aur `example.net` ek hi forest ke do alag domain trees ho sakte hain.
+
+#### OU ka scope
+
+OU kisi ek domain ke andar hoti hai. Is mein users, computers, groups aur doosri OUs organize ki ja sakti hain. Ek OU mukhtalif domains ko apne andar contain nahin karti.
+
+#### Security boundary ki wazahat
+
+**Forest, AD DS ki bunyadi security boundary hai.** Domain administration aur replication ka scope provide karta hai, lekin usi forest ke doosray domains ke highly privileged administrators se mukammal security isolation ki guarantee nahin deta.
+
+**Yaad rakhein:** Forest sab se upar wali logical structure hai; us mein domain trees aur domains hote hain. Domains ke andar OUs objects ko organize karne mein madad karti hain.
 
 ### 8.2 DNS namespace
 
-Namespace naamon ko hierarchy mein organize karta hai. `dc01.ad.example.com` mein:
+A **DNS namespace** organizes names into a hierarchy. In `dc01.ad.example.com`:
 
-- `com` top-level domain hai.
-- `example.com` domain hai.
-- `ad.example.com` subdomain hai.
-- Is misal mein `dc01` host label hai.
+| Part | Meaning |
+| --- | --- |
+| **`com`** | The top-level domain (TLD) |
+| **`example.com`** | A domain beneath the `.com` top-level domain |
+| **`ad.example.com`** | A subdomain of `example.com` |
+| **`dc01`** | The host label in this example |
 
-Sirf DNS domain name hona AD domain ke wajood ka saboot nahin. DNS aur AD mutalliq lekin mukhtalif systems hain.
+The complete name, **`dc01.ad.example.com`**, identifies the host within the DNS hierarchy. Its fully qualified form can be written as `dc01.ad.example.com.` with a trailing dot representing the DNS root.
+
+**DNS versus AD DS:** The existence of a DNS domain name does not prove that an AD DS domain exists. DNS organizes names and provides name resolution; AD DS manages directory objects, identities, and domain services.
+
+**Example:** Creating a DNS zone named `ad.example.com` alone does not create an AD DS domain. The AD DS domain must be deployed separately.
+
+**Remember:** DNS and AD DS are related but different systems. AD DS uses DNS to help clients locate Domain Controllers and services.
 
 ### 8.3 Physical components
 
+AD DS ki **physical structure** batati hai ke Domain Controllers aur network subnets kis tarah sites mein arrange hain aur sites ke darmiyan replication kaise organize hoti hai.
+
+Sites, subnets aur site links directory objects hain jo actual network topology ko represent karte hain.
+
 | Component | Matlab |
 | --- | --- |
-| Site | IP subnets ka group jinhen AD locality/topology ke liye achhi connectivity wala samjha jata hai |
-| Subnet | Network prefix jo site se map ho |
-| Site link | Replication connectivity/cost/schedule model karne wala logical relationship |
-| DC | Directory replicas aur domain services host karne wala server |
+| **Site** | Ek ya zyada IP subnets ka logical group jo aam tor par reliable aur achhi connectivity share karte hain |
+| **Subnet** | IP network prefix ko represent karne wala AD object, jisay kisi site se associate kiya jata hai |
+| **Site link** | Sites ke darmiyan replication connectivity ko model karne wala logical relationship; cost, schedule aur interval jaisi settings rakhta hai |
+| **Domain Controller (DC)** | Directory partitions ki replicas aur domain services host karne wala physical ya virtual server |
 
-Site aksar location se milti hai, lekin sirf shehar ka label nahin. Sahi subnet mapping aham hai. Ek domain multiple sites mein phail sakta hai; ek site mein multiple domains ke DCs ho sakte hain.
+#### Site aur geographical location
 
-**Mazeed wazahat:** Logical structure ka sawal hai “Identities kis tarah organize hain?” Physical structure ka sawal hai “Services aur network connections kahan hain?”
+Site aksar office, branch ya data-center location se match karti hai, lekin sirf shehar ka naam nahin hoti. Site design actual network connectivity aur service-location requirements par depend karta hai.
+
+**Misal:** Chicago office ke IP subnet ko Chicago AD site se map karne se clients ko apni site identify karne aur munasib DC locate karne mein madad milti hai.
+
+#### Subnet mapping ki ahmiyat
+
+Sahi subnet-to-site mapping, site-aware DC discovery mein madad karti hai. Missing ya ghalat mapping ki wajah se client ko intended local DC ke bajaye doosri site ka DC mil sakta hai.
+
+**Wazahat:** AD mein subnet object banana actual network subnet ya router configuration create nahin karta. Yeh existing IP network ko AD site ke saath associate karta hai.
+
+#### Domains aur sites ka taalluq
+
+- Ek domain ke DCs multiple sites mein ho sakte hain.
+- Ek site mein multiple domains ke DCs ho sakte hain.
+- Site boundary aur domain boundary ka ek jaisa hona zaroori nahin.
+
+**Site link ki wazahat:** Site link actual network cable, VPN ya router connection create nahin karta. Yeh available connectivity ko AD replication planning ke liye model karta hai.
+
+**Yaad rakhein:** Logical structure ka sawal hai, “Directory objects aur identities kis tarah organize hain?” Physical structure ka sawal hai, “DCs aur clients kis network location mein hain, aur sites ke darmiyan replication kaise hogi?”
 
 ## 9. Tamam paanch FSMO roles
 
@@ -639,63 +870,214 @@ Har forest ke do roles aur har domain ke teen roles ka matlab **2 + (3 x domains
 
 ### 9.1 Schema Master
 
-Har forest mein ek. Schema updates is ke DC par originate hote hain aur phir replicate hote hain.
+**Schema Master** ek **forest-wide FSMO role** hai. Har forest mein is role ka sirf ek holder hota hai.
 
-Source schema classes/attributes delete karna bhi likhta hai. Yeh misleading hai: classSchema/attributeSchema definitions ki normal deletion allowed nahin. Definitions add/modify karna aur supported defunct handling alag operations hain.
+Schema ki originating changes, role hold karne walay writable DC par hoti hain. Phir yeh changes schema partition ki replication ke zariye forest ke doosray DCs tak pohanchti hain.
+
+#### Bunyadi zimmedari
+
+Schema Master, schema updates ke liye single-master point provide karta hai. In updates mein supported procedures ke mutabiq nayi object classes ya attributes add karna aur existing definitions modify karna shamil ho sakta hai.
+
+**Misal:** Kisi application ki installation ke liye naya directory attribute define karna ho, to schema extension ke liye Schema Master ki availability aur munasib permissions zaroori hoti hain.
+
+**Permissions ki wazahat:** Schema Master role hold karna kisi user ko khud-ba-khud schema modify karne ki permission nahin deta. Operation karne walay account ke paas required permissions bhi honi chahiye.
+
+#### Deletion aur defunct handling
+
+Lecture mein schema classes aur attributes delete karne ka zikr misleading hai. `classSchema` aur `attributeSchema` definitions ki normal deletion allowed nahin hoti.
+
+- **Add/modify:** Supported schema rules ke mutabiq definitions add ya modify karna.
+- **Defunct:** Kuch eligible definitions ko restrictions ke tehat inactive mark karna.
+- **Delete:** Definition ko directory se remove karna; isay normal schema-management operation na samjhein.
+
+**Defunct mark karna deletion ya complete rollback ke barabar nahin hai.**
+
+**Yaad rakhein:** Schema Master changes originate karne ka single-master point hai; schema ki copy sirf isi DC par nahin hoti. Forest ke tamam DCs schema partition ki replica rakhte hain.
 
 ### 9.2 Domain Naming Master
 
-Har forest mein ek. Domains aur application naming contexts add/remove karne jaisi changes coordinate karta hai aur namespace references consistent rakhta hai.
+**Domain Naming Master** ek **forest-wide FSMO role** hai. Har forest mein is role ka sirf ek holder hota hai.
 
-Lecture domain rename ka zikr karta hai. Role ka available hona kisi supported rename workflow ka sirf ek hissa hai; role akela rename ko safe ya supported nahin banata.
+Yeh forest mein domains aur application directory partitions, yani application naming contexts, add ya remove karne se mutalliq changes coordinate karta hai. Is ka kaam forest ke directory namespace mein conflicting entries se bachne aur naming-context references consistent rakhne mein madad dena hai.
+
+#### Bunyadi zimmedariyan
+
+- Forest mein naya AD domain add karne se mutalliq namespace changes handle karna.
+- Domain remove karne se mutalliq namespace changes handle karna.
+- Application directory partitions add ya remove karne se mutalliq operations mein hissa lena.
+- Configuration partition ke **Partitions container** mein naming-context references se mutalliq single-master updates handle karna.
+
+**Misal:** Existing forest mein `hr.example.com` naam ka naya child domain deploy karna ho, to Domain Naming Master ki availability aur munasib permissions zaroori hoti hain.
+
+#### Domain rename ki wazahat
+
+Lecture domain rename ka zikr karta hai. Domain Naming Master ki availability, supported domain-rename workflow ka ek hissa hai, lekin role akela rename ko safe ya supported nahin banata.
+
+Domain rename ke liye DNS, replication, domain members, installed applications aur vendor support bhi review karna hota hai.
+
+**Zaroori farq:** Domain Naming Master, DNS server ka replacement nahin hai. Aam DNS records banana ya hostname resolve karna is FSMO role ka kaam nahin.
+
+**Yaad rakhein:** Domain Naming Master forest ke directory namespace mein domain aur partition changes coordinate karta hai; yeh har user account ka naam ya har DNS record manage nahin karta.
 
 ### 9.3 RID Master
 
-Har domain mein ek. Writable DCs ko Relative Identifiers ke pools allocate karta hai. Security principals create karte waqt DC apne available pool se RID use karta hai.
+**RID Master** ek **domain-wide FSMO role** hai. Har domain mein is role ka sirf ek holder hota hai.
 
-**SID ka concept:** Domain SID + RID se principal ki domain SID identity banti hai.
+Yeh writable Domain Controllers ko **Relative Identifiers (RIDs)** ke pools allocate karta hai. Jab writable DC naya security principal banata hai, to woh apne available RID pool se ek RID use karta hai.
 
-RID Master ko har user-creation request ke liye khud naya RID dena zaroori nahin. Agar yeh unavailable ho to DCs apne usable pools baqi rehne tak principals create karte reh sakte hain.
+**Security principals** ki misalein user accounts, computer accounts aur security groups hain.
+
+#### SID aur RID ka taalluq
+
+Domain ke security principal ka **Security Identifier (SID)**, domain SID ke saath us principal ka RID jorne se banta hai:
+
+**Principal SID = Domain SID + RID**
+
+**Farzi misal:**
+
+- **Domain SID:** `S-1-5-21-111111111-222222222-333333333`
+- **RID:** `1105`
+- **Principal SID:** `S-1-5-21-111111111-222222222-333333333-1105`
+
+Domain SID domain ki pehchan karta hai; RID us domain ke andar security principal ko unique banata hai.
+
+#### RID allocation kaise hoti hai?
+
+RID Master har user-creation request ke liye alag se RID issue nahin karta. Woh DCs ko pools allocate karta hai, aur DCs un pools se RIDs use karte hain.
+
+**Misal:** DC01 ke paas usable RID pool ho, to woh har naya user banate waqt RID Master se foran contact kiye baghair us pool se RID assign kar sakta hai.
+
+#### RID Master unavailable ho to kya hota hai?
+
+- Writable DCs apne usable RID pools baqi rehne tak naye security principals create kar sakte hain.
+- Jab kisi DC ka usable pool khatam ho jaye aur woh naya pool hasil na kar sake, to us DC par naye security principals banana fail ho sakta hai.
+- Existing users ki authentication sirf RID Master unavailable honay ki wajah se lazman band nahin hoti.
+- Har directory object ko RID nahin chahiye; misal ke taur par OU security principal nahin hai.
+
+**Yaad rakhein:** RID Master pools allocate karta hai; writable DC apne pool se RID use karke naya security principal banata hai.
 
 ### 9.4 PDC Emulator
 
-Har domain mein ek. Is ke mutalliq functions mein shamil hain:
+**PDC Emulator (Primary Domain Controller Emulator)** ek **domain-wide FSMO role** hai. Har domain mein is role ka sirf ek holder hota hai.
 
-- Password updates preferential taur par receive karna.
-- Jab doosray DC ke paas purani information ho sakti ho to failed-password authentication attempts resolve karne mein madad.
-- Account-lockout processing.
-- Windows domain time synchronization mein khaas jagah.
-- Group Policy management jaisay tools ke liye preferred administrative target.
-- Windows NT ke PDC expectations ke saath historical compatibility.
+Yeh password-change coordination, authentication checks, account lockout, domain time synchronization aur kuch administrative operations mein khaas zimmedariyan rakhta hai.
 
-**Wazahat / durusti:**
+| Function | Wazahat |
+| --- | --- |
+| **Password updates** | Doosray writable DCs par honay wali password changes preferential replication ke zariye receive karta hai |
+| **Failed-password verification** | Agar kisi doosray DC par password verification fail ho, to aam behavior mein woh request reject karne se pehle PDC Emulator se latest password check karta hai |
+| **Account lockout** | Domain ke account-lockout processing mein central coordination role rakhta hai |
+| **Time synchronization** | Windows domain time hierarchy mein khaas reference point hota hai |
+| **Group Policy administration** | Group Policy management tools ke liye default ya preferred DC hota hai |
+| **Historical compatibility** | Purane Windows NT environments ki PDC expectations support karne ke liye design kiya gaya tha |
 
-- Doosray writable DCs bhi aam password changes accept kar sakte hain.
-- PDC akela users authenticate karne wala DC nahin.
-- Clients Group Policy process karte hain; PDC khud har client ki settings apply nahin karta.
-- Forest-root PDC normal domain time hierarchy ke top par hota hai; is ke liye munasib reliable upstream time source configure karein. Har machine ko seedha usi se query karna zaroori nahin.
-- NT 4.0 compatibility tareekh samjhati hai; obsolete clients deploy karne ki recommendation nahin.
+#### Password changes aur authentication
+
+**Doosray writable DCs bhi password changes accept kar sakte hain.** PDC Emulator domain ka akela writable ya authentication server nahin hai.
+
+**Misal:** Khalid ka password DC01 par change hua hai. Agar DC02 ko abhi update nahin mila aur woh naye password ko incorrect samjhe, to PDC Emulator se latest password verification authentication failure se bachne mein madad kar sakti hai.
+
+Yeh behavior munasib connectivity aur PDC par latest password information available honay par depend karta hai.
+
+#### Time synchronization
+
+Normal AD domain time hierarchy mein **forest-root domain ka PDC Emulator** top-level reference hota hai. Is ke liye munasib reliable upstream time source configure karna chahiye.
+
+Har computer ka seedha forest-root PDC se time lena zaroori nahin. Domain members aur doosray DCs aam tor par domain time hierarchy follow karte hain.
+
+**Yaad rakhein:** Har domain ka apna PDC Emulator hota hai, lekin normal forest-wide time hierarchy ke top par forest-root domain ka PDC Emulator hota hai.
+
+#### Group Policy ki wazahat
+
+Group Policy management tools aam tor par PDC Emulator ko default ya preferred administrative target banate hain, lekin doosray writable DCs bhi GPO changes accept kar sakte hain.
+
+Client computers ke Group Policy components applicable policies process aur apply karte hain. PDC Emulator khud har client par settings apply nahin karta.
+
+#### Historical compatibility
+
+Windows NT ki PDC compatibility is role ki tareekh samjhati hai. Is ka matlab yeh nahin ke modern domain mein sirf PDC Emulator writable hai, ya obsolete Windows NT clients deploy karne chahiye.
+
+**Yaad rakhein:** PDC Emulator password coordination, lockout processing, time hierarchy aur administrative consistency mein aham hai; tamam domain authentication sirf isi DC par depend nahin karti.
 
 ### 9.5 Infrastructure Master
 
-Har domain mein ek. Doosray domains ke objects ke references maintain karta hai, jaise changes ke baad cross-domain group membership references.
+**Infrastructure Master** ek **domain-wide FSMO role** hai. Har domain mein is role ka sirf ek holder hota hai.
 
-Is ka practical workload forest design, GC placement aur AD Recycle Bin jaisay features par depend karta hai. Yeh tamam objects replicate karne ya har user ke attributes update karne wala role nahin.
+Is ka traditional kaam apne domain ke objects mein **doosray domains ke objects ke references** update karna hai, jab referenced object ka naam ya doosri relevant identity information badalti hai.
+
+**Misal:** Domain A ke group mein Domain B ka user member hai. Agar Domain B mein user rename ho, to Infrastructure Master cross-domain reference information ko updated rakhne mein hissa leta hai.
+
+**Wazahat:** Yeh reference maintain karta hai; doosray domain ka poora user object apne domain mein copy nahin karta.
+
+#### Global Catalog placement ka asar
+
+Traditional configuration mein, agar domain ke kuch DCs Global Catalog (GC) hon aur kuch na hon, to Infrastructure Master aam tor par **non-GC DC** par hona chahiye.
+
+Lekin agar **domain ke tamam DCs GC servers hon**, to sab ke paas relevant cross-domain information hoti hai. Is surat mein Infrastructure Master ko GC par rakhna masla nahin hota.
+
+#### AD Recycle Bin ka asar
+
+Agar forest mein **AD Recycle Bin enabled** ho, to har DC apne cross-domain object references update karne ka zimmedar hota hai. Is surat mein Infrastructure Master ke traditional reference-update tasks ki zaroorat nahin rehti.
+
+Phir bhi role ko ek **valid DC** par assigned rehna chahiye.
+
+#### Is role ki hudood
+
+Infrastructure Master:
+
+- Tamam directory objects ki replication ka zimmedar nahin.
+- Har user ke attributes centrally update nahin karta.
+- Cross-domain group membership ki permissions khud decide nahin karta.
+- Forests ke darmiyan database synchronization establish nahin karta.
+
+**Yaad rakhein:** Infrastructure Master ka practical workload forest design, GC placement aur AD Recycle Bin ki configuration par depend karta hai. Is ka bunyadi concept cross-domain references ki consistency hai.
 
 ### 9.6 Transfer aur seizure ka farq
 
-Lecture ntdsutil aur GUI tools ka zikr karta hai.
+FSMO role ko doosray DC par move karne ke do tareeqay hain: **transfer** aur **seizure**. Dono ka istemal mukhtalif situations mein hota hai.
 
-| Operation | Munasib surat |
+| Operation | Munasib surat | Bunyadi farq |
+| --- | --- | --- |
+| **Transfer** | Mojooda role holder available aur cooperative ho; planned migration ya maintenance | Role ki zimmedari normal coordination ke saath doosray DC ko di jati hai |
+| **Seizure** | Mojooda holder se transfer mumkin na ho aur role ki recovery zaroori ho | Purane holder ki cooperation ke baghair role doosray DC ko diya jata hai |
+
+#### Transfer kab karein?
+
+Planned DC replacement, maintenance ya decommissioning mein, agar current role holder available ho, to **transfer preferred approach** hai.
+
+**Misal:** DC01 retire karna ho aur woh healthy ho, to us ke FSMO roles munasib DC02 par transfer kiye ja sakte hain.
+
+#### Seizure kab karein?
+
+Seizure recovery operation hai. Isay tab consider karein jab transfer mumkin na ho, current holder ko waqt par restore karna feasible na ho, aur role ki availability operationally zaroori ho.
+
+**Misal:** Role holder permanently fail ho gaya ho aur supported recovery planning ke mutabiq us ka role doosray healthy writable DC ko dena zaroori ho.
+
+**Seizure chhoti outage ka routine failover nahin hai.** Pehle failure, role ki urgency aur recovery options assess karein.
+
+#### FSMO management tools
+
+| Tool | Mutalliq roles |
 | --- | --- |
-| Transfer | Mojooda role holder available ho; planned move |
-| Seizure | Zaroori recovery situation mein role holder recover na ho sake; recovery procedure |
+| **Active Directory Users and Computers** | RID Master, PDC Emulator aur Infrastructure Master |
+| **Active Directory Domains and Trusts** | Domain Naming Master |
+| **Active Directory Schema snap-in** | Schema Master |
+| **PowerShell** | Required module aur permissions ke saath FSMO role transfer/seizure |
+| **ntdsutil** | Supported procedures ke mutabiq FSMO role transfer/seizure |
 
-Har role ke GUI tools alag hain: domain roles ke liye AD Users and Computers, Domain Naming Master ke liye AD Domains and Trusts aur Schema Master ke liye Schema snap-in. PowerShell aur ntdsutil bhi supported tools hain.
+**Wazahat:** GUI consoles normal role transfer ke liye use hoti hain. Seizure ke liye PowerShell ya `ntdsutil` jaisay supported tools use kiye jate hain.
 
-Seizure chhoti outage ka routine failover nahin. Purana role holder wapas lane se pehle recovery guidance follow karein. Is document mein jaan-boojh kar role-seizure command nahin di gayi.
+#### Purane role holder ki wapsi
 
-Role unavailable honay se lazman foran tamam logins band nahin hote. Asar role, cached/pool information, topology aur outage ke duration par depend karta hai.
+Seizure ke baad purane holder ko bina planning ke network par wapas na laayein. Role-specific Microsoft recovery guidance follow karein aur zaroorat ke mutabiq metadata cleanup, demotion ya rebuild plan karein.
+
+Khaas taur par RID Master seizure ke baad RID allocation aur duplicate security identifiers se bachne ki recovery requirements aham hoti hain.
+
+#### Role unavailable honay ka asar
+
+FSMO role unavailable honay se lazman foran tamam logins band nahin hote. Asar role, available RID pools, cached information, topology aur outage ke duration par depend karta hai.
+
+**Yaad rakhein:** Planned move mein transfer; zaroori recovery mein seizure. Is section mein jaan-boojh kar seizure commands nahin di gayin, kyun ke un ka istemal actual environment aur recovery assessment ke mutabiq hona chahiye.
 
 ## 10. Schema versions
 
