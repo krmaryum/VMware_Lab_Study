@@ -94,9 +94,11 @@ A **Domain Controller (DC)** is a Windows Server that has been **configured, or 
 
 ### 2.2 History and hierarchy
 
-The lecture dates Active Directory's introduction to **Windows 2000**, which is correct. Modern AD DS develops from that directory platform.
+Microsoft introduced Active Directory with **Windows 2000 Server**. Modern AD DS evolved from that directory platform.
 
-AD DS is hierarchical because a [forest](md/ADDS_Forest.md) contains domains, and [organizational units](md/ADDS_Forest.md) (OUs) can be created within those domains to organize objects such as users, computers, and groups.
+AD DS is hierarchical because a [**forest**](md/ADDS_Forest.md) contains one or more **domains**, and [**organizational units (OUs)**](md/ADDS_Forest.md) can be created within domains to organize objects such as users, computers, and groups. OUs can also contain other OUs.
+
+The phrase **“hierarchical directory database”** describes this structured organization of directory information. It does not mean a shared folder containing ordinary documents.
 
 <img src="images/Active-Directory-history-hierarchy.png" width="400">
 
@@ -158,7 +160,7 @@ Use **AD DS-aware backup tools and supported procedures** for backup and recover
 
 ### 3.2 Four categories of directory partitions — not always exactly four partitions
 
-A **directory partition**, also called a **naming context**, is a logical portion of directory data with its own replication scope. Its data replicates to the domain controllers (DCs) that hold a replica of that partition.
+A **directory partition**, also called a **naming context**, is a logical portion of directory data with its own replication scope. Its data replicates to the Domain Controllers (DCs) that hold a replica of that partition.
 
 AD DS has four categories of directory partitions:
 
@@ -166,68 +168,126 @@ AD DS has four categories of directory partitions:
 | --- | --- | --- |
 | **Schema** | Definitions of object classes and attributes | All DCs in the forest |
 | **Configuration** | Forest configuration, sites, subnets, site links, and replication topology information | All DCs in the forest |
-| **Domain** | Objects belonging to a particular domain, such as users, computers, and groups | All DCs in that domain hold a full domain replica |
+| **Domain** | Objects belonging to a particular domain, such as users, computers, groups, and OUs | All DCs in that domain |
 | **Application** | Application-specific directory data, such as AD-integrated DNS data | DCs selected/enlisted to hold a replica of that partition |
 
-**Global Catalog clarification:** In addition to a full replica of its own domain, a Global Catalog (GC) holds partial, read-only replicas of the forest’s other domains. “Partial” means that only selected attributes of those domains’ objects are included.
+**Full replica versus writable replica:** Every DC holds a full replica of its own domain partition. Updates can be made on a writable DC. A **Read-Only Domain Controller (RODC)** holds a read-only replica, with restrictions on the replication of passwords and other secret attributes. Therefore, “full replica” does not mean that every DC holds all credentials or accepts updates.
+
+**Global Catalog clarification:** In addition to a full replica of its own domain, a Global Catalog (GC) holds **partial, read-only replicas** of the forest’s other domains. “Partial” means that only selected attributes of those domains’ objects are included. Being a GC does not make an RODC writable.
 
 **Four categories does not mean exactly four partitions:** A DC can host multiple application partitions. For example, AD-integrated DNS can use `DomainDnsZones` and `ForestDnsZones` as two separate application partitions.
 
+**Example:** A DNS-server DC in a single-domain forest that hosts the schema, configuration, and domain partitions, together with `DomainDnsZones` and `ForestDnsZones`, hosts five directory partitions. This is only an example; not every DC necessarily hosts five partitions.
+
 **Remember:** These are logical partitions within the directory database, not disk partitions such as `C:` or `D:`.
 
-### 3.3 Schema partition - the directory's rules
+### 3.3 Schema partition — the directory’s rules
 
-The schema defines:
-- Which object classes can exist, such as user or computer.
-- Which attributes those objects can have.
-- Required/optional attributes and relevant structural rules.
+The **schema partition** stores definitions of objects and their attributes in AD DS. It defines the directory’s structure.
 
-The lecture calls it a template and says it displays the database in form format. A better explanation is that it defines the allowed structure; it is not a graphical form-rendering feature.
+The schema determines:
 
-There is one shared schema per forest. It is extensible under controlled conditions, rather than freely changeable by every administrator. Extending it affects the forest.
+- **Object classes:** Which types of objects can be created, such as users, computers, or groups.
+- **Attributes:** Which attributes are allowed for each object class, such as a user’s display name and department.
+- **Required and optional attributes:** Which attributes are mandatory and which are optional.
+- **Structural rules:** Rules governing object-class inheritance and where objects can be placed within the directory.
 
-### 3.4 Configuration partition - how the forest is organized
+**Example:** The user-class definition specifies which attributes a user object can have. Khalid’s actual user object and the value of his department attribute are stored in the domain partition.
 
-This includes the forest's directory configuration: sites, subnet mappings, site links, server/DC topology objects and references to naming contexts.
+**Lecture clarification:** Describing the schema as a “template” can help explain the concept. However, saying that the schema displays the database in “form format” is incorrect. The schema defines the allowed data structure; displaying graphical forms is the responsibility of management tools.
 
-**Example:** Mapping a Chicago client subnet to a Chicago site helps AD choose appropriate services and replication arrangements.
+**Each forest has one shared schema**, with a replica on every Domain Controller in the forest.
 
-### 3.5 Domain partition - domain objects
+The schema can be **extended** when necessary, such as by adding new object classes or attributes for an application. This requires appropriate permissions and supported procedures. Schema changes originate on the **Schema Master** DC and then replicate to the other DCs in the forest.
 
-This includes the domain's users, groups, computer accounts, OUs and related objects.
+**Remember:** A schema extension is a forest-wide change. Plan and test it carefully; not every administrator has permission to modify the schema.
 
-The lecture says it “never replicates with other domains.” That needs qualification:
-- A full domain replica normally goes to DCs in that domain.
-- A **Global Catalog (GC)** can hold partial, read-only replicas of other domains' domain partitions: all their objects with a selected subset of attributes.
-- A writable GC also keeps its normal full local-domain replica.
-- This does not merge all domains into one writable domain database.
+### 3.4 Configuration partition — organizing the forest
+
+The **configuration partition** stores the forest’s directory configuration. It includes:
+
+- **Sites:** AD sites representing network locations and connectivity.
+- **Subnet mappings:** Associations between IP subnets and AD sites.
+- **Site links:** Cost, schedule, and interval settings for replication between sites.
+- **Server and DC topology objects:** Server objects, NTDS Settings, and replication connection objects.
+- **Naming-context references:** References identifying the forest’s directory partitions and their locations.
+
+**Every Domain Controller in the forest holds a replica of the configuration partition**, allowing DCs to use the forest’s shared configuration.
+
+**Example:** Mapping the Chicago clients’ IP subnet to the **Chicago site** helps clients identify their AD site and locate a suitable, usually local, Domain Controller. Sites and site-link settings also help the KCC build the intersite replication topology.
+
+**Remember:** Subnet mappings help identify a client’s site; site links model connectivity and timing for replication planning. They are related, but they are not the same setting.
+
+### 3.5 Domain partition — the domain’s objects
+
+The **domain partition** stores directory objects belonging to a particular domain. These include users, groups, computer accounts, OUs, and related objects.
+
+**Example:** In the `ad.example.com` domain, Khalid’s user account and the Finance OU are stored in that domain’s domain partition.
+
+**Lecture clarification:** Saying that the domain partition “never replicates to other domains” is not entirely accurate. It is important to distinguish full domain replication from Global Catalog replication:
+
+- **Full replica of its own domain:** Every DC holds a full replica of its own domain partition. A writable DC accepts updates; an RODC holds a read-only replica with restrictions on the replication of secret attributes.
+- **Partial replicas of other domains:** A Global Catalog (GC) holds partial, read-only replicas of the domain partitions belonging to other domains in the forest.
+- **Meaning of partial:** All objects from those other domains are included, but only selected attributes of each object are stored.
+- **The GC’s own domain:** A writable GC holds a full, writable replica of its own domain. An RODC can also be a GC, but becoming a GC does not make it writable.
+- **Domains remain separate:** GC replication does not merge all domains into one shared, writable domain partition.
+
+**Remember:** The domain partition is only one part of the AD DS database. The schema and configuration partitions are also part of that database, and a DC can host additional application partitions.
 
 The domain partition is one part of AD data; schema and configuration information are also AD database contents.
 
 ### 3.6 Application partitions
 
-The lecture notes their introduction with Windows Server 2003 and their use with AD-integrated applications such as DNS.
+**Application directory partitions** were introduced in Windows Server 2003. They store application-specific directory data, such as AD-integrated DNS zones and records.
 
-Common DNS examples are **DomainDnsZones** and **ForestDnsZones**. Their replication scopes differ. Custom application partitions are also possible.
+Their advantage is that the data does not have to replicate to every DC in the forest or domain. Replication can be limited to DCs **enlisted** to hold a replica of that partition.
 
-They can be created and removed through appropriate supported procedures. Removing a partition can remove useful application data; it is not routine cleanup.
+**Enlisted** means that a DC is configured to hold a replica of an application partition and participate in its replication.
 
-### 3.7 Default paths and what they contain
+Two common application partitions used by AD-integrated DNS are:
 
-| Item from the lecture | Typical default location | Meaning |
+| Application partition | Typical replication scope |
+| --- | --- |
+| **DomainDnsZones** | DNS-server DCs in the same domain that are enlisted in this partition |
+| **ForestDnsZones** | DNS-server DCs throughout the forest that are enlisted in this partition |
+
+**Example:** If a DNS zone’s replication scope is set to “all DNS servers running on domain controllers in this domain,” the zone is typically stored in `DomainDnsZones`. Selecting the forest-wide DNS-server scope typically stores the zone in `ForestDnsZones`.
+
+**Custom application partitions** can also be created to manage data and replication scope according to an application’s requirements.
+
+**Global Catalog clarification:** Application partition data is not included in the Global Catalog simply because a server is a GC. A GC server holds a replica of an application partition only when it is also enlisted in that partition. This replica is separate from the GC’s partial domain data.
+
+Application partitions can be created and removed using supported tools and procedures.
+
+**Remember:** Deleting an entire application partition can also remove the DNS or other application data stored within it. This is different from **unenlisting** a single DC, which removes that DC from the partition’s replica set. Partition deletion is not routine cleanup; verify dependencies, backups, and impact first.
+
+### 3.7 Default paths and their contents
+
+The AD DS database, transaction logs, and SYSVOL serve different purposes. The common default locations below assume that Windows is installed in `C:\Windows`.
+
+| Item | Common default location or tool | Purpose |
 | --- | --- | --- |
-| Database | `C:\Windows\NTDS\ntds.dit` | Directory database |
-| AD transaction logs | `C:\Windows\NTDS\` | ESE transaction logs used for database consistency/recovery |
-| SYSVOL | `C:\Windows\SYSVOL\` | Replicated file content such as policy templates and scripts |
-| ADSI Edit | Management tool, opened with `adsiedit.msc` | Views/edits directory objects and naming contexts |
+| **AD DS database** | `C:\Windows\NTDS\ntds.dit` | Stores directory objects, attributes, and related information |
+| **AD transaction logs** | `C:\Windows\NTDS\` | Record ESE database changes and support consistency and recovery |
+| **SYSVOL** | `C:\Windows\SYSVOL\` | Holds replicated content, including Group Policy file components and domain logon scripts |
+| **ADSI Edit** | `adsiedit.msc` | An advanced management tool for viewing and editing directory objects and naming contexts |
 
-**Clarification:** ADSI Edit is not a database file or installation path. Logs and SYSVOL are not partitions inside NTDS.DIT.
+**ADSI Edit clarification:** ADSI Edit is not a database file or storage location. It is a management tool for inspecting and modifying the directory.
 
-A GPO has:
-1. A directory component in AD.
-2. A file component in SYSVOL.
+**Storage clarification:** Transaction logs and SYSVOL are not directory partitions inside `ntds.dit`. They are separate files and folders.
 
-Modern SYSVOL replication uses DFS Replication (DFSR), separate from AD database replication. Paths can be customized during promotion. Do not hand-edit database files or make experimental directory changes through ADSI Edit.
+#### The two components of a GPO
+
+A **Group Policy Object (GPO)** has two related components:
+
+1. **Group Policy Container (GPC):** The directory component stored in the AD DS domain partition. It contains metadata such as GPO properties and version information.
+2. **Group Policy Template (GPT):** The file component stored in SYSVOL. It contains policy-setting files and related content.
+
+**Replication difference:** The GPC replicates through AD DS replication. In modern domains, the GPT and other SYSVOL content replicate through **DFS Replication (DFSR)**. These are two separate replication mechanisms.
+
+**Paths can be customized:** During Domain Controller promotion, alternative supported locations can be selected for the database, transaction logs, and SYSVOL. Therefore, not every DC necessarily uses the default paths.
+
+**Remember:** Do not manually edit or move database files. Make changes through ADSI Edit only when you understand their impact and are following a supported procedure; incorrect changes can affect the directory and its applications.
 
 ## 4. Kerberos authentication
 
@@ -239,65 +299,142 @@ Modern SYSVOL replication uses DFS Replication (DFSR), separate from AD database
 
 ### 4.1 What Kerberos does
 
-Kerberos is AD DS's primary domain authentication mechanism. It uses tickets to let a client prove its identity to services without sending the user's password to each service.
+**Kerberos** is the primary authentication protocol in AD DS domain environments. It uses **tickets** to let a client prove its identity to a service without sending the user’s password to every service.
 
-The lecture's diagram lists an Authentication Server, Ticket Granting Server and “Real Server.”
+**Example:** Khalid signs in with a domain account. When he accesses a file-server service, the client can obtain and present a Kerberos ticket for that service. Khalid does not need to provide his password to the file server.
 
-**Clarification:** AS and TGS are logical functions of the **Key Distribution Center (KDC)** on a DC. They do not require two separate Windows servers. “Real Server” is better called the **target/resource/application server**.
+#### KDC, AS, and TGS
 
-### 4.2 Correct roles
+In AD DS, the **Key Distribution Center (KDC)** runs on a Domain Controller. It has two logical functions:
 
-| Component | Role |
+| Function | Full name | Main purpose |
+| --- | --- | --- |
+| **AS** | Authentication Service | Handles the initial authentication exchange and issues a Ticket-Granting Ticket (TGT) |
+| **TGS** | Ticket-Granting Service | Uses the TGT to issue a service ticket for a particular service |
+
+**Lecture clarification:** The diagram may use the terms “Authentication Server” and “Ticket Granting Server.” In AD DS, understand these as logical functions of the KDC; they do not require two separate Windows servers.
+
+The diagram’s **“Real Server”** means the server hosting the service that the client wants to access. **Target server**, **resource server**, or **application server** is a clearer term.
+
+**Remember:** Kerberos authentication verifies identity. Access to a resource also depends on that resource’s permissions and authorization checks. Not every Windows sign-in or connection necessarily uses Kerberos.
+
+### 4.2 Kerberos authentication mein components ke roles
+
+Har component ka kaam alag hai. DNS discovery mein madad karta hai, KDC tickets issue karta hai, aur target service authentication ke baad access permissions evaluate karti hai.
+
+| Component | Kaam |
 | --- | --- |
-| Client | Acts for the user or other principal |
-| DNS | Helps discover domain controllers and services |
-| KDC: Authentication Service (AS) | Handles initial ticket-granting-ticket exchange |
-| KDC: Ticket-Granting Service (TGS) | Issues tickets for particular services |
-| Target service | Receives the service ticket and authenticates the client |
-| Resource/application authorization | Decides which operations the authenticated identity may perform |
+| **Client** | User ya kisi doosray security principal ki taraf se tickets request karta hai aur target service ko service ticket pesh karta hai |
+| **DNS** | Domain Controllers ko locate karne aur target server ke naam ko IP address mein resolve karne mein madad karta hai |
+| **KDC: Authentication Service (AS)** | Initial authentication exchange handle karta hai aur successful authentication par Ticket-Granting Ticket (TGT) aur client–TGS session key provide karta hai |
+| **KDC: Ticket-Granting Service (TGS)** | Valid TGT aur mutalliq authenticator ki bunyaad par requested service ke liye service ticket aur client–service session key provide karta hai |
+| **Target service** | Service ticket aur mutalliq authenticator validate karke client ki pehchan verify karti hai |
+| **Resource/application authorization** | Authenticated identity, group information, permissions aur applicable rules ki bunyaad par decide karti hai ke kaun se operations allowed hain |
 
-### 4.3 Step-by-step password-based example
+**Security principal** aisi identity hoti hai jisay authenticate kiya ja sakta hai aur permissions di ja sakti hain, jaise user, computer ya service account.
 
-1. Khalid signs in on a domain client.
-2. The client discovers an appropriate DC, using DNS and domain-location information.
-3. The client performs an AS exchange with the KDC. In typical password-based pre-authentication it proves knowledge of a key derived from the credentials; it does not send a plain-text password to the DC.
-4. The KDC issues a **Ticket-Granting Ticket (TGT)** and associated client session information.
-5. To access a file service, the client requests a service ticket using its TGT. The request identifies the service using a **Service Principal Name (SPN)**.
-6. The KDC issues the appropriate **service ticket**.
-7. The client presents the ticket to the file service.
-8. The service validates the authentication information.
-9. The file server evaluates share/NTFS permissions and other applicable rules.
-10. Access succeeds only if the relevant authorization checks permit it.
+**DNS ki wazahat:** DNS ticket issue nahin karta aur user authenticate nahin karta. Yeh client ko munasib DC aur target server dhoondne mein madad deta hai.
+
+**Target service ki wazahat:** Sirf ticket receive karna kaafi nahin; service ticket ke saath mutalliq authenticator bhi validate karti hai. Yeh checks client ko apni pehchan prove karne mein madad dete hain.
+
+**Yaad rakhein:** Authentication ka sawal hai, “Aap kaun hain?” Authorization ka sawal hai, “Aap ko kya karne ki ijazat hai?” Successful authentication har resource ki permission nahin deti.
+
+### 4.3 Password-based authentication ki misal — step-by-step
+
+Yeh misal assume karti hai ke Khalid online domain sign-in kar raha hai, munasib DC available hai aur file service Kerberos support karti hai.
+
+1. **Sign-in shuru hota hai:** Khalid domain-joined computer par apna domain username aur password enter karta hai.
+
+2. **DC locate hota hai:** Client DNS aur domain-discovery information ki madad se munasib Domain Controller dhoondta hai.
+
+3. **Initial authentication hoti hai:** Client, DC ke KDC ki **Authentication Service (AS)** ke saath exchange karta hai. Aam password-based pre-authentication mein client password se derive ki gayi key ka ilm prove karta hai; plain-text password DC ko nahin bhejta.
+
+4. **TGT milta hai:** Successful authentication par KDC client ko **Ticket-Granting Ticket (TGT)** aur protected response mein **client–TGS session key** provide karta hai. Client TGT ke encrypted contents khud nahin parhta; usay baad mein TGS ko pesh karta hai.
+
+5. **Service ticket request hoti hai:** File service access karne ke liye client, KDC ki **Ticket-Granting Service (TGS)** ko TGT aur mutalliq authenticator pesh karta hai. Request mein **Service Principal Name (SPN)** target service ki pehchan karta hai.
+
+6. **Service ticket milta hai:** Request validate honay par KDC, requested service ke liye **service ticket** aur protected response mein **client–service session key** provide karta hai.
+
+7. **Client service se connect karta hai:** Client, file service ko service ticket aur client–service session key se protected naya authenticator pesh karta hai.
+
+8. **Service identity verify karti hai:** File service ticket aur authenticator validate karke client ki pehchan verify karti hai. Mutual authentication request honay par service bhi client ko apni pehchan ka saboot deti hai.
+
+9. **Permissions check hoti hain:** File server authenticated identity, group information, share permissions, NTFS permissions aur doosray applicable rules evaluate karta hai.
+
+10. **Access allow ya deny hota hai:** Khalid sirf woh operations kar sakta hai jin ki authorization checks ijazat deti hain. Successful Kerberos authentication har file ki access guarantee nahin karti.
+
+**Yaad rakhein:** TGT, service tickets hasil karne ke liye hota hai. Service ticket, kisi khaas service ke samnay authenticate karne ke liye hota hai.
+
+**Model ki had:** Yeh beginner explanation hai; har Kerberos message ki poori technical tafseel nahin. Cached logon, pehle se available tickets, smart cards aur Windows Hello for Business jaisay mechanisms initial authentication ka flow badal sakte hain.
 
 This is a beginner model, not a full description of every Kerberos message. Smart cards, Windows Hello and other mechanisms can change the initial credential exchange.
 
-### 4.4 TGT versus service ticket
+### 4.4 The difference between a TGT and a service ticket
 
-| Ticket | Used for |
-| --- | --- |
-| TGT | Requesting service tickets from the KDC |
-| Service ticket | Authenticating to a particular service |
+In Kerberos, a **Ticket-Granting Ticket (TGT)** and a **service ticket** serve different purposes:
 
-A ticket is not unlimited permission. Its validity, service identity and authorization context matter.
+| Ticket | What is it used for? | Who receives it? |
+| --- | --- | --- |
+| **TGT** | Obtaining service tickets from the KDC’s Ticket-Granting Service | The **TGS** |
+| **Service ticket** | Authenticating to a particular service | The **target service**, such as a file service |
 
-### 4.5 Correcting the source diagram
+**Example:** Khalid’s client presents its TGT to the TGS to obtain a ticket for the file service. It then presents the resulting service ticket to the file service. The file service does not receive the TGT.
 
-The source places NTDS.DIT/domain-partition labels below both the authentication server and the resource server.
+**A ticket alone is not enough:** The client also presents an **authenticator** protected using the relevant session key. The receiving service validates it.
 
-A normal member file/application server **does not need a local NTDS.DIT database**. It can validate a Kerberos ticket using the service's key. AD stores the relevant domain account information on DCs.
+**A ticket does not grant unlimited permissions.** Its validity, intended service identity, and authorization information matter. Even after successful authentication, the resource server checks permissions and applicable rules.
 
-The diagram also shows DNS, AD, a switch and multiple clients. These illustrate discovery and network connectivity; DNS is not a gateway carrying every subsequent login packet.
+**Remember:** A TGT is used to obtain a service ticket; a service ticket is used to authenticate to the target service; resource permissions determine which access is allowed.
+
+### 4.5 Source diagram ki durusti
+
+Lecture ke diagram mein authentication server aur resource server, dono ke neeche `NTDS.DIT` ya domain-partition ke labels dikhaye gaye hain. Is se yeh ghalat fehmi ho sakti hai ke har resource server apni local AD DS database rakhta hai.
+
+**Aam member file/application server ko local AD DS `ntds.dit` database ki zaroorat nahin hoti.** Domain ki directory aur account information, Domain Controllers par store hoti hai.
+
+Kerberos authentication mein target service:
+
+- Apne service account se associated key ki madad se service ticket ke encrypted contents validate karti hai.
+- Ticket se hasil honay wali client–service session key ki madad se accompanying authenticator validate karti hai.
+- Authentication ke baad permissions aur applicable authorization rules evaluate karti hai.
+
+**Zaroori farq:** Har service-ticket validation ke liye poori AD database resource server par copy nahin hoti. Kuch scenarios mein additional validation ya doosray operations ke liye resource server ko DC se communication ki zaroorat ho sakti hai.
+
+**Exception:** Agar koi server DC bhi ho aur resource service bhi host karta ho, to us par AD DS database ho sakti hai. Lekin aam member resource server ko DC samajhna durust nahin.
+
+#### Diagram mein DNS aur network components
+
+Diagram mein DNS, AD, switch aur multiple clients discovery aur network connectivity ko samjhate hain.
+
+- **DNS:** Munasib DC locate karne aur server names ko IP addresses mein resolve karne mein madad karta hai.
+- **DC/KDC:** Kerberos authentication exchanges handle karta aur tickets issue karta hai.
+- **Switch:** Network devices ke darmiyan traffic forward karta hai.
+- **Client:** DC/KDC aur target service se zaroorat ke mutabiq communicate karta hai.
+
+**Yaad rakhein:** DNS authentication traffic ka gateway nahin hai. Naam resolve honay ke baad client, DC/KDC ya target service se seedha network communication kar sakta hai; har login packet DNS server se nahin guzarta.
 
 ### 4.6 Dependencies and exceptions
 
-**Additional explanation:**
-- Correct DNS configuration helps clients find DCs and services.
-- Time must be sufficiently synchronized for Kerberos validation.
-- SPNs must identify the intended service correctly.
-- Firewalls must permit the necessary protocols.
-- Some Windows scenarios use NTLM or other mechanisms. Do not assume every successful Windows login proves Kerberos was used.
-- Cached interactive logon may allow sign-in while a DC is unavailable; it does not prove access to all live domain services.
-- Single sign-on reduces repeated prompts but does not eliminate authorization checks.
+Having a domain account alone is not enough for Kerberos authentication. DNS, time synchronization, service identities, and network connectivity must also be configured correctly.
+
+| Dependency | Why is it necessary? |
+| --- | --- |
+| **DNS configuration** | Helps the client locate a suitable Domain Controller and resolve the target server’s name |
+| **Time synchronization** | The clocks on the client, DC, and target server must remain within the allowed clock-skew limit |
+| **Service Principal Names (SPNs)** | Identify the requested service and associate it with the correct service account; missing, duplicate, or incorrect SPNs can cause authentication problems |
+| **Network and firewall rules** | Allow the connectivity required for DNS, Kerberos, and application traffic |
+
+**Time clarification:** Clocks do not have to match to the exact second, but their difference must remain within the configured tolerance. Different timezone displays alone do not mean that the actual system clocks are incorrectly synchronized.
+
+#### Exceptions and important distinctions
+
+- **Not every Windows sign-in uses Kerberos:** Some scenarios use NTLM, local-account authentication, or other mechanisms. A successful sign-in alone does not prove that Kerberos was used.
+- **NTLM fallback is not guaranteed:** A connection does not necessarily switch to NTLM when Kerberos fails. Applications, policies, and security configurations can restrict fallback.
+- **Cached interactive logon:** If information from a previous domain sign-in is cached locally and policy permits it, a user may sign in to the computer even when a DC is unavailable. This is not live DC authentication and does not guarantee access to all domain resources.
+- **Single sign-on (SSO):** Reduces the need to enter credentials repeatedly for supported services. Not every application necessarily supports SSO.
+- **Authorization is still required:** SSO or successful Kerberos authentication does not bypass resource permissions. Each resource evaluates its applicable access rules.
+
+**Remember:** A successful sign-in, successful Kerberos authentication, and access to a resource are three related but distinct outcomes.
 
 ## 5. Directory objects
 
@@ -325,26 +462,66 @@ The source lists all of the following:
 | Sites | Configuration objects representing network locality |
 | Group Policy | GPO directory objects plus associated SYSVOL content; not entirely stored in NTDS.DIT |
 
-### 5.1 OU versus group
+### 5.1 The difference between an OU and a group
 
-- **OU:** organize objects, delegate administration and scope linked GPOs.
-- **Security group:** collect identities for permission assignment.
-- A user can belong to many groups while occupying one parent container/OU at a time.
-- Moving a user to an OU does not automatically grant access to a file share.
-- A container named Users is not necessarily an OU.
+An **Organizational Unit (OU)** and a **security group** serve different purposes. An OU helps organize directory objects, delegate administration, and define the scope of Group Policy. A security group brings identities together to simplify permission assignments.
 
-### 5.2 Names used in AD
-
-**Additional explanation:**
-
-| Name | Example | Meaning |
+| Aspect | Organizational Unit (OU) | Security group |
 | --- | --- | --- |
-| UPN | `khalid@ad.example.com` | User Principal Name; a sign-in name, not proof of a mailbox |
-| Down-level logon | `LAB\khalid` | NetBIOS domain name plus account name |
-| Distinguished Name | `CN=Khalid,OU=Finance,DC=ad,DC=example,DC=com` | Directory location/name |
-| SID | Domain SID plus an object's RID | Security identity used in Windows access control |
+| **Main purpose** | Object organization, administrative delegation, and Group Policy scope | Grouping identities to assign permissions and user rights |
+| **Relationship to objects** | An object resides in one parent container or OU within the directory | A user or computer can belong to multiple groups |
+| **Group Policy** | A GPO can be linked directly to an OU | A GPO cannot be linked directly to a group; a security group can be used for filtering |
+| **Resource permissions** | Being in an OU alone does not grant file-share access | A security group can be assigned file-share and NTFS permissions |
 
-The “DC=” parts of a DN mean **domain component**, not domain-controller server.
+**Example:** Khalid’s user object is in the `Finance` OU. A GPO linked to that OU may apply to his user account if scope and filtering permit it. To grant access to Finance files, Khalid can be added to the `Finance-Share-Read` security group, which has been assigned the required permissions.
+
+**One parent, multiple memberships:** Khalid’s user object resides in one parent container or OU at a time, but he can belong to multiple security groups.
+
+**OU moves and permissions:** Moving a user into the Finance OU does not automatically grant file-share permissions. The move can change applicable GPOs and inherited directory permissions; resource access is evaluated separately.
+
+**The default Users container:** The default AD DS `Users` container is not an OU. A GPO cannot be linked directly to it. However, applicable policies inherited from the domain or site can still affect objects within it.
+
+**Remember:** An OU determines where an object is organized in the directory; security-group membership helps with permission assignment.
+
+### 5.2 Names and identifiers used in AD
+
+An account in AD DS can be represented by different names and identifiers. Each format serves a different purpose.
+
+| Name / identifier | Example | Meaning |
+| --- | --- | --- |
+| **UPN (User Principal Name)** | `khalid@ad.example.com` | The user’s sign-in name; its email-like format does not mean that a mailbox exists |
+| **Down-level logon name** | `LAB\khalid` | The NetBIOS domain name followed by the user’s `sAMAccountName` |
+| **Distinguished Name (DN)** | `CN=Khalid,OU=Finance,DC=ad,DC=example,DC=com` | The object’s complete name and location within the directory hierarchy |
+| **SID (Security Identifier)** | `S-1-5-21-111111111-222222222-333333333-1105` | Identifies a security principal in Windows access control; this is a fictional example |
+
+#### UPN and down-level logon
+
+`khalid@ad.example.com` and `LAB\khalid` can be two sign-in formats for the same user account.
+
+- **UPN:** Consists of a username and a UPN suffix. The UPN suffix can be configured to differ from the domain’s DNS name.
+- **Down-level logon:** Uses the `DOMAIN\username` format. In this example, `LAB` is the domain’s NetBIOS name, and `khalid` is the account’s `sAMAccountName`.
+
+**Remember:** A UPN that looks like an email address does not prove that the account has an email mailbox.
+
+#### Understanding a Distinguished Name
+
+In `CN=Khalid,OU=Finance,DC=ad,DC=example,DC=com`:
+
+- **CN=Khalid:** The object’s Common Name.
+- **OU=Finance:** The parent Organizational Unit.
+- **DC=ad,DC=example,DC=com:** The components of the domain name `ad.example.com`.
+
+**In a DN, `DC` means Domain Component**, not a Domain Controller server.
+
+Renaming an object or moving it to another OU can change its DN.
+
+#### Understanding a SID
+
+A domain account’s SID generally consists of a **domain SID + Relative Identifier (RID)**. The RID uniquely identifies that security principal within the domain.
+
+Renaming a user or moving the account to another OU within the same domain normally does not change its SID. However, deleting the account and creating a new account with the same name produces a different SID.
+
+**Remember:** Sign-in names are used to access an account, the DN describes its directory location, and the SID represents its security identity in Windows permissions.
 
 ## 6. Purposes of AD DS
 

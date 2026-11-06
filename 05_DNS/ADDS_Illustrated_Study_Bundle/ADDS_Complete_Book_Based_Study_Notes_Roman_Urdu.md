@@ -81,12 +81,13 @@ Directory, [objects](md/ADDS_Objects_Attributes_and_Relationships_Roman_Urdu.md)
 
 <img src="images/Windows-Server-AD-DS.png" width="400">
 
+### 2.2 History and hierarchy
 
-### 2.2 Tareekh aur hierarchy
+Microsoft introduced Active Directory with **Windows 2000 Server**. Modern AD DS evolved from that directory platform.
 
-Lecture mein Active Directory ka ta'aruf **Windows 2000** ke saath bataya gaya hai, jo durust hai. Modern AD DS isi directory platform ki taraqqi yafta surat hai.
+AD DS is hierarchical because a [**forest**](md/ADDS_Forest.md) contains one or more **domains**, and [**organizational units (OUs)**](md/ADDS_Forest.md) can be created within domains to organize objects such as users, computers, and groups. OUs can also contain other OUs.
 
-AD DS hierarchical hai kyun ke [forest](md/ADDS_Forest.md) mein domains hote hain, aur domains ke andar [OUs](md/ADDS_Forest.md) bana kar users, computers aur groups jaise objects organize kiye ja sakte hain.
+The phrase **“hierarchical directory database”** describes this structured organization of directory information. It does not mean a shared folder containing ordinary documents.
 
 <img src="images/Active-Directory-history-hierarchy.png" width="400">
 
@@ -146,7 +147,7 @@ Backup aur recovery ke liye **AD DS-aware backup tools aur supported procedures*
 
 ### 3.2 Directory partitions ki chaar categories — hamesha sirf chaar partitions nahin
 
-**Directory partition**, jisay **naming context** bhi kehte hain, directory data ka ek logical hissa hai jiska apna replication scope hota hai. Yani us partition ka data un DCs tak replicate hota hai jo us ki replica rakhte hain.
+**Directory partition**, jisay **naming context** bhi kehte hain, directory data ka ek logical hissa hai jiska apna replication scope hota hai. Yani us partition ka data un Domain Controllers (DCs) tak replicate hota hai jo us ki replica rakhte hain.
 
 AD DS mein directory partitions ki chaar categories hain:
 
@@ -154,71 +155,124 @@ AD DS mein directory partitions ki chaar categories hain:
 | --- | --- | --- |
 | **Schema** | Object classes aur attributes ki definitions | Forest ke tamam DCs |
 | **Configuration** | Forest ki configuration, sites, subnets, site links aur replication topology ki information | Forest ke tamam DCs |
-| **Domain** | Kisi khaas domain ke objects, jaise users, computers aur groups | Usi domain ke tamam DCs full domain replica rakhte hain |
+| **Domain** | Kisi khaas domain ke objects, jaise users, computers, groups aur OUs | Usi domain ke tamam DCs |
 | **Application** | Application-specific directory data, jaise AD-integrated DNS data | Us partition ki replica rakhne ke liye selected/enlisted DCs |
 
-**Global Catalog ki wazahat:** Global Catalog (GC) apne domain ki full replica ke ilawa forest ke doosre domains ki partial, read-only replicas bhi rakhta hai. “Partial” ka matlab hai ke un domains ke objects ke sirf selected attributes rakhe jate hain.
+**Full replica aur writable replica ka farq:** Har DC apne domain ki full domain replica rakhta hai. Writable DC par updates kiye ja sakte hain. **Read-Only Domain Controller (RODC)** ki replica read-only hoti hai, aur passwords aur doosray secret attributes ki replication par restrictions hoti hain. Is liye “full replica” ka matlab yeh nahin ke har DC par tamam credentials maujood hain ya updates kiye ja sakte hain.
+
+**Global Catalog ki wazahat:** Global Catalog (GC) apne domain ki full replica ke ilawa forest ke doosre domains ki **partial, read-only replicas** bhi rakhta hai. “Partial” ka matlab hai ke un domains ke objects ke sirf selected attributes rakhe jate hain. GC hona kisi RODC ko writable DC nahin banata.
 
 **Chaar categories, exactly chaar partitions nahin:** Ek DC multiple application partitions host kar sakta hai. Misal ke taur par, AD-integrated DNS mein `DomainDnsZones` aur `ForestDnsZones` do alag application partitions ho sakte hain.
 
+**Misal:** Ek single-domain DNS-server DC par schema, configuration aur domain partitions ke saath `DomainDnsZones` aur `ForestDnsZones` bhi hon, to woh paanch directory partitions host karta hai. Yeh sirf ek example hai; har DC ka partition count lazman paanch nahin hota.
+
 **Yaad rakhein:** Yeh directory database ke logical partitions hain; disk ke `C:` ya `D:` jaise partitions nahin.
 
-### 3.3 Schema partition - directory ke rules
+### 3.3 Schema partition — directory ke rules
 
-Schema define karta hai:
+**Schema partition** AD DS mein objects aur un ke attributes ki definitions rakhta hai. Yeh directory ka structure define karta hai.
 
-- Kaunsi object classes ho sakti hain, jaise user ya computer.
-- In objects ke kaun se attributes ho sakte hain.
-- Required/optional attributes aur mutalliq structural rules.
+Schema tay karta hai:
 
-Lecture isay template kehta hai aur batata hai ke yeh database ko form format mein display karta hai. Behtar explanation yeh hai ke schema allowed structure define karta hai; yeh graphical forms render karne ka feature nahin.
+- **Object classes:** Kaun se types ke objects ban sakte hain, jaise user, computer ya group.
+- **Attributes:** Har object class ke liye kaun se attributes allowed hain, jaise user ka display name aur department.
+- **Required aur optional attributes:** Kaun se attributes lazmi hain aur kaun se ikhtiyari.
+- **Structural rules:** Object classes ki inheritance aur directory mein un ki allowed placement ke rules.
 
-Har forest mein ek mushtarka schema hota hai. Isay controlled conditions mein extend kiya ja sakta hai; har administrator apni marzi se nahin badal sakta. Schema extension poore forest par asar dalti hai.
+**Misal:** User class ki definition batati hai ke user object ke kaun se attributes ho sakte hain. Khalid ka actual user object aur us ke department ki value domain partition mein store hoti hai.
 
-### 3.4 Configuration partition - forest ki tarteeb
+**Lecture ki wazahat:** Schema ko “template” kehna samajhne mein madad de sakta hai. Lekin yeh kehna ke schema database ko “form format” mein display karta hai durust nahin. Schema allowed data structure define karta hai; graphical forms display karna management tools ka kaam hai.
 
-Is mein forest ki directory configuration hoti hai: sites, subnet mappings, site links, server/DC topology objects aur naming contexts ke references.
+**Har forest ka ek mushtarka schema hota hai**, jis ki replica forest ke tamam Domain Controllers par hoti hai.
 
-**Misal:** Chicago clients ke subnet ko Chicago site se map karna AD ko munasib services aur replication arrangement choose karne mein madad deta hai.
+Schema ko zaroorat ke mutabiq **extend** kiya ja sakta hai, jaise kisi application ke liye nayi object classes ya attributes add karna. Is ke liye munasib permissions aur supported procedures chahiye. Schema ki originating changes **Schema Master** DC par hoti hain aur phir forest ke doosre DCs tak replicate hoti hain.
 
-### 3.5 Domain partition - domain ke objects
+**Yaad rakhein:** Schema extension forest-wide change hai. Isay planning aur testing ke saath karein; har administrator ko schema change karne ki permission nahin hoti.
 
-Is mein domain ke users, groups, computer accounts, OUs aur mutalliq objects hote hain.
+### 3.4 Configuration partition — forest ki tarteeb
 
-Lecture kehta hai ke yeh “doosray domains ke saath kabhi replicate nahin hota.” Is mein wazahat zaroori hai:
+**Configuration partition** forest ki directory configuration store karta hai. Is mein yeh information shamil hoti hai:
 
-- Full domain replica aam tor par usi domain ke DCs ko jata hai.
-- **Global Catalog (GC)** doosray domains ke domain partitions ke partial, read-only replicas rakh sakta hai: un ke tamam objects, lekin attributes ka selected subset.
-- Writable GC apne local domain ka normal full replica bhi rakhta hai.
-- Is ka matlab tamam domains ko ek writable domain database mein merge karna nahin.
+- **Sites:** Network locations aur connectivity ko represent karne wali AD sites.
+- **Subnet mappings:** IP subnets ka AD sites ke saath association.
+- **Site links:** Sites ke darmiyan replication ke liye cost, schedule aur interval ki settings.
+- **Server aur DC topology objects:** Server objects, NTDS Settings aur replication connection objects.
+- **Naming-context references:** Forest ke directory partitions ki pehchan aur location se mutalliq references.
 
-Domain partition AD data ka ek hissa hai; schema aur configuration information bhi AD database ka hissa hain.
+**Configuration partition ki replica forest ke tamam Domain Controllers par hoti hai**, taa ke woh forest ki mushtarka configuration use kar saken.
+
+**Misal:** Chicago clients ke IP subnet ko **Chicago site** se map karne se clients ko apni AD site identify karne aur munasib, aam tor par local, Domain Controller dhoondne mein madad milti hai. Sites aur site-link settings, KCC ko intersite replication topology banane mein bhi madad deti hain.
+
+**Yaad rakhein:** Subnet mapping client ki site pehchanne mein madad karti hai; site links replication ki planning ke liye connectivity aur timing model karte hain. Dono related hain, lekin ek hi setting nahin.
+
+### 3.5 Domain partition — domain ke objects
+
+**Domain partition** kisi khaas domain ke directory objects store karta hai. Is mein users, groups, computer accounts, OUs aur mutalliq objects shamil hote hain.
+
+**Misal:** `ad.example.com` domain mein Khalid ka user account aur Finance OU, us domain ke domain partition mein store hote hain.
+
+**Lecture ki wazahat:** Yeh kehna ke domain partition “doosray domains ke saath kabhi replicate nahin hota” mukammal taur par durust nahin. Full domain replication aur Global Catalog replication ka farq samajhna zaroori hai:
+
+- **Apne domain ki full replica:** Har DC apne domain partition ki full replica rakhta hai. Writable DC updates accept karta hai; RODC ki replica read-only hoti hai aur secret attributes ki replication par restrictions hoti hain.
+- **Doosray domains ki partial replicas:** Global Catalog (GC) forest ke doosray domains ke domain partitions ki partial, read-only replicas rakhta hai.
+- **Partial ka matlab:** Doosray domains ke tamam objects shamil hote hain, lekin un ke sirf selected attributes rakhe jate hain.
+- **GC ka apna domain:** Writable GC apne domain ki full, writable replica rakhta hai. RODC bhi GC ho sakta hai, lekin GC banne se writable nahin hota.
+- **Domains alag rehte hain:** GC replication tamam domains ko ek mushtarka writable domain partition mein merge nahin karti.
+
+**Yaad rakhein:** Domain partition, AD DS database ka sirf ek hissa hai. Schema aur configuration partitions bhi isi database ka hissa hain; DC additional application partitions bhi host kar sakta hai.
 
 ### 3.6 Application partitions
 
-Lecture in ka ta'aruf Windows Server 2003 se batata hai aur DNS jaisi AD-integrated applications mein in ka istemal samjhata hai.
+**Application directory partitions** Windows Server 2003 mein introduce huay thay. Yeh application-specific directory data store karte hain, jaise AD-integrated DNS zones aur records.
 
-DNS ki aam misalein **DomainDnsZones** aur **ForestDnsZones** hain. Un ke replication scopes mukhtalif hain. Custom application partitions bhi mumkin hain.
+In ka faida yeh hai ke data ko poore forest ya domain ke har DC par replicate karna lazmi nahin. Replication un DCs tak mehdood rakhi ja sakti hai jo us partition ki replica rakhne ke liye **enlisted** hon.
 
-Munasib supported procedures se inhen create aur remove kiya ja sakta hai. Partition remove karne se useful application data bhi remove ho sakta hai; yeh routine cleanup nahin.
+**Enlisted** ka matlab hai ke DC us application partition ki replica rakhne aur us ki replication mein hissa lene ke liye configured hai.
+
+AD-integrated DNS ki do aam application partitions hain:
+
+| Application partition | Aam replication scope |
+| --- | --- |
+| **DomainDnsZones** | Usi domain ke DNS-server DCs jo is partition mein enlisted hon |
+| **ForestDnsZones** | Forest ke DNS-server DCs jo is partition mein enlisted hon |
+
+**Misal:** Agar DNS zone ka replication scope “all DNS servers running on domain controllers in this domain” select kiya jaye, to zone aam tor par `DomainDnsZones` mein store hota hai. Forest-wide DNS-server scope select karne par zone aam tor par `ForestDnsZones` mein store hota hai.
+
+**Custom application partitions** bhi banaye ja sakte hain, taa ke application ki zaroorat ke mutabiq data aur replication scope manage kiya ja sake.
+
+**Global Catalog ki wazahat:** Application partition ka data sirf GC honay ki wajah se Global Catalog mein shamil nahin hota. GC server application partition ki replica tab rakhta hai jab woh us partition mein enlisted bhi ho; yeh replica GC ke partial domain data se alag hoti hai.
+
+Application partitions ko supported tools aur procedures se create aur remove kiya ja sakta hai.
+
+**Yaad rakhein:** Poora application partition delete karne se us mein stored DNS ya doosra application data bhi remove ho sakta hai. Yeh sirf ek DC ko partition ki replica rakhne se hatane, yani **unenlist** karne, se alag operation hai. Partition deletion routine cleanup nahin; pehle dependencies, backups aur impact verify karein.
 
 ### 3.7 Default paths aur un ke contents
 
-| Lecture ka item | Aam default location | Matlab |
+AD DS ki database, transaction logs aur SYSVOL ke functions alag hain. Neeche aam default locations di gayi hain; yeh assume karti hain ke Windows `C:\Windows` mein installed hai.
+
+| Item | Aam default location ya tool | Maqsad |
 | --- | --- | --- |
-| Database | `C:\Windows\NTDS\ntds.dit` | Directory database |
-| AD transaction logs | `C:\Windows\NTDS\` | Database consistency/recovery ke ESE transaction logs |
-| SYSVOL | `C:\Windows\SYSVOL\` | Replicated files, jaise policy templates aur scripts |
-| ADSI Edit | Management tool, `adsiedit.msc` se khulta hai | Directory objects aur naming contexts view/edit karta hai |
+| **AD DS database** | `C:\Windows\NTDS\ntds.dit` | Directory objects, attributes aur mutalliq information store karti hai |
+| **AD transaction logs** | `C:\Windows\NTDS\` | ESE database changes record karte hain aur consistency/recovery mein madad dete hain |
+| **SYSVOL** | `C:\Windows\SYSVOL\` | Group Policy ke file components aur domain logon scripts jaisa replicated content rakhta hai |
+| **ADSI Edit** | `adsiedit.msc` | Directory objects aur naming contexts ko view aur edit karne ka advanced management tool |
 
-**Wazahat / durusti:** ADSI Edit database file ya installation path nahin. Logs aur SYSVOL, NTDS.DIT ke andar partitions nahin hain.
+**ADSI Edit ki wazahat:** ADSI Edit database file ya storage location nahin hai. Yeh directory ko inspect aur modify karne ka management tool hai.
 
-GPO ke do hissay hote hain:
+**Storage ki wazahat:** Transaction logs aur SYSVOL, `ntds.dit` ke andar directory partitions nahin hain. Yeh alag files aur folders hain.
 
-1. AD mein directory component.
-2. SYSVOL mein file component.
+#### GPO ke do components
 
-Modern SYSVOL replication, DFS Replication (DFSR) use karti hai jo AD database replication se alag hai. Promotion ke waqt paths customize ho sakte hain. Database files ko haath se edit na karein aur ADSI Edit mein tajriban directory changes na karein.
+Ek **Group Policy Object (GPO)** ke do related components hote hain:
+
+1. **Group Policy Container (GPC):** AD DS ke domain partition mein stored directory component. Is mein GPO ki properties aur version information jaisi metadata hoti hai.
+2. **Group Policy Template (GPT):** SYSVOL mein stored file component. Is mein policy settings ki files aur mutalliq content hota hai.
+
+**Replication ka farq:** GPC, AD DS replication ke zariye replicate hota hai. Modern domains mein GPT aur doosra SYSVOL content **DFS Replication (DFSR)** ke zariye replicate hota hai. Yeh do alag replication mechanisms hain.
+
+**Paths customize ho sakte hain:** Domain Controller promotion ke waqt database, transaction logs aur SYSVOL ke liye doosri supported locations select ki ja sakti hain. Is liye har DC par paths lazman defaults jaise nahin honge.
+
+**Yaad rakhein:** Database files ko manually edit ya move na karein. ADSI Edit mein sirf samajh kar aur supported procedure ke mutabiq changes karein; ghalat changes directory aur applications ko mutasir kar sakte hain.
 
 ## 4. Kerberos authentication
 
@@ -230,66 +284,140 @@ Modern SYSVOL replication, DFS Replication (DFSR) use karti hai jo AD database r
 
 ### 4.1 Kerberos ka kaam
 
-Kerberos, AD DS ka primary domain authentication mechanism hai. Tickets ki madad se client services ko apni pehchan prove karta hai, baghair har service ko user ka password bheje.
+**Kerberos**, AD DS domain environments mein primary authentication protocol hai. Yeh **tickets** ki madad se client ko kisi service ke samnay apni pehchan prove karne deta hai, baghair har service ko user ka password bheje.
 
-Lecture ke diagram mein Authentication Server, Ticket Granting Server aur “Real Server” diye gaye hain.
+**Misal:** Khalid domain account se sign in karta hai. Jab woh file server ki service access karta hai, to client us service ke liye Kerberos ticket hasil karke pesh kar sakta hai. File server ko Khalid ka password dene ki zaroorat nahin hoti.
 
-**Wazahat / durusti:** AS aur TGS, DC par **Key Distribution Center (KDC)** ke logical functions hain. In ke liye do alag Windows servers lazmi nahin. “Real Server” ko **target/resource/application server** kehna behtar hai.
+#### KDC, AS aur TGS
 
-### 4.2 Durust roles
+AD DS mein **Key Distribution Center (KDC)** Domain Controller par chalta hai. Is ke do logical functions hain:
+
+| Function | Poora naam | Bunyadi kaam |
+| --- | --- | --- |
+| **AS** | Authentication Service | Initial authentication exchange handle karke Ticket-Granting Ticket (TGT) issue karta hai |
+| **TGS** | Ticket-Granting Service | TGT ki bunyaad par kisi khaas service ke liye service ticket issue karta hai |
+
+**Lecture ki wazahat:** Diagram mein “Authentication Server” aur “Ticket Granting Server” likha ho sakta hai. AD DS mein inhen KDC ke logical functions samjhein; in ke liye do alag Windows servers lazmi nahin.
+
+Diagram mein **“Real Server”** se murad woh server hai jis ki service client access karna chahta hai. Isay **target server**, **resource server** ya **application server** kehna zyada clear hai.
+
+**Yaad rakhein:** Kerberos authentication pehchan verify karti hai. Resource tak access milna us resource ki permissions aur authorization checks par bhi depend karta hai. Har Windows sign-in ya connection lazman Kerberos use nahin karta.
+
+### 4.2 Kerberos authentication mein components ke roles
+
+Har component ka kaam alag hai. DNS discovery mein madad karta hai, KDC tickets issue karta hai, aur target service authentication ke baad access permissions evaluate karti hai.
 
 | Component | Kaam |
 | --- | --- |
-| Client | User ya doosray principal ki taraf se kaam karta hai |
-| DNS | Domain controllers aur services dhoondne mein madad karta hai |
-| KDC: Authentication Service (AS) | Shuru ka ticket-granting-ticket exchange handle karta hai |
-| KDC: Ticket-Granting Service (TGS) | Khaas services ke tickets issue karta hai |
-| Target service | Service ticket receive karke client authenticate karti hai |
-| Resource/application authorization | Decide karti hai ke authenticated identity kaun se operations kar sakti hai |
+| **Client** | User ya kisi doosray security principal ki taraf se tickets request karta hai aur target service ko service ticket pesh karta hai |
+| **DNS** | Domain Controllers ko locate karne aur target server ke naam ko IP address mein resolve karne mein madad karta hai |
+| **KDC: Authentication Service (AS)** | Initial authentication exchange handle karta hai aur successful authentication par Ticket-Granting Ticket (TGT) aur client–TGS session key provide karta hai |
+| **KDC: Ticket-Granting Service (TGS)** | Valid TGT aur mutalliq authenticator ki bunyaad par requested service ke liye service ticket aur client–service session key provide karta hai |
+| **Target service** | Service ticket aur mutalliq authenticator validate karke client ki pehchan verify karti hai |
+| **Resource/application authorization** | Authenticated identity, group information, permissions aur applicable rules ki bunyaad par decide karti hai ke kaun se operations allowed hain |
 
-### 4.3 Password-based misal step-by-step
+**Security principal** aisi identity hoti hai jisay authenticate kiya ja sakta hai aur permissions di ja sakti hain, jaise user, computer ya service account.
 
-1. Khalid domain client par sign in karta hai.
-2. Client DNS aur domain-location information se munasib DC dhoondta hai.
-3. Client KDC ke saath AS exchange karta hai. Aam password-based pre-authentication mein credentials se nikli key ka ilm prove karta hai; DC ko plain-text password nahin bhejta.
-4. KDC **Ticket-Granting Ticket (TGT)** aur mutalliq client session information issue karta hai.
-5. File service tak access ke liye client apna TGT use karke service ticket mangta hai. Request mein **Service Principal Name (SPN)** service ki pehchan karta hai.
-6. KDC munasib **service ticket** issue karta hai.
-7. Client ticket file service ko pesh karta hai.
-8. Service authentication information validate karti hai.
-9. File server share/NTFS permissions aur doosray applicable rules evaluate karta hai.
-10. Access tabhi successful hota hai jab mutalliq authorization checks ijazat dein.
+**DNS ki wazahat:** DNS ticket issue nahin karta aur user authenticate nahin karta. Yeh client ko munasib DC aur target server dhoondne mein madad deta hai.
 
-Yeh beginner model hai; har Kerberos message ki poori technical tafseel nahin. Smart cards, Windows Hello aur doosray mechanisms shuru ka credential exchange badal sakte hain.
+**Target service ki wazahat:** Sirf ticket receive karna kaafi nahin; service ticket ke saath mutalliq authenticator bhi validate karti hai. Yeh checks client ko apni pehchan prove karne mein madad dete hain.
+
+**Yaad rakhein:** Authentication ka sawal hai, “Aap kaun hain?” Authorization ka sawal hai, “Aap ko kya karne ki ijazat hai?” Successful authentication har resource ki permission nahin deti.
+
+### 4.3 Password-based authentication ki misal — step-by-step
+
+Yeh misal assume karti hai ke Khalid online domain sign-in kar raha hai, munasib DC available hai aur file service Kerberos support karti hai.
+
+1. **Sign-in shuru hota hai:** Khalid domain-joined computer par apna domain username aur password enter karta hai.
+
+2. **DC locate hota hai:** Client DNS aur domain-discovery information ki madad se munasib Domain Controller dhoondta hai.
+
+3. **Initial authentication hoti hai:** Client, DC ke KDC ki **Authentication Service (AS)** ke saath exchange karta hai. Aam password-based pre-authentication mein client password se derive ki gayi key ka ilm prove karta hai; plain-text password DC ko nahin bhejta.
+
+4. **TGT milta hai:** Successful authentication par KDC client ko **Ticket-Granting Ticket (TGT)** aur protected response mein **client–TGS session key** provide karta hai. Client TGT ke encrypted contents khud nahin parhta; usay baad mein TGS ko pesh karta hai.
+
+5. **Service ticket request hoti hai:** File service access karne ke liye client, KDC ki **Ticket-Granting Service (TGS)** ko TGT aur mutalliq authenticator pesh karta hai. Request mein **Service Principal Name (SPN)** target service ki pehchan karta hai.
+
+6. **Service ticket milta hai:** Request validate honay par KDC, requested service ke liye **service ticket** aur protected response mein **client–service session key** provide karta hai.
+
+7. **Client service se connect karta hai:** Client, file service ko service ticket aur client–service session key se protected naya authenticator pesh karta hai.
+
+8. **Service identity verify karti hai:** File service ticket aur authenticator validate karke client ki pehchan verify karti hai. Mutual authentication request honay par service bhi client ko apni pehchan ka saboot deti hai.
+
+9. **Permissions check hoti hain:** File server authenticated identity, group information, share permissions, NTFS permissions aur doosray applicable rules evaluate karta hai.
+
+10. **Access allow ya deny hota hai:** Khalid sirf woh operations kar sakta hai jin ki authorization checks ijazat deti hain. Successful Kerberos authentication har file ki access guarantee nahin karti.
+
+**Yaad rakhein:** TGT, service tickets hasil karne ke liye hota hai. Service ticket, kisi khaas service ke samnay authenticate karne ke liye hota hai.
+
+**Model ki had:** Yeh beginner explanation hai; har Kerberos message ki poori technical tafseel nahin. Cached logon, pehle se available tickets, smart cards aur Windows Hello for Business jaisay mechanisms initial authentication ka flow badal sakte hain.
 
 ### 4.4 TGT aur service ticket ka farq
 
-| Ticket | Kis liye? |
-| --- | --- |
-| TGT | KDC se service tickets mangne ke liye |
-| Service ticket | Kisi khaas service ke samnay authenticate karne ke liye |
+Kerberos mein **Ticket-Granting Ticket (TGT)** aur **service ticket** ke functions alag hain:
 
-Ticket be-hadd permission nahin. Is ki validity, service identity aur authorization context aham hain.
+| Ticket | Kis liye istemal hota hai? | Kis ko pesh kiya jata hai? |
+| --- | --- | --- |
+| **TGT** | KDC ki Ticket-Granting Service se service tickets hasil karne ke liye | **TGS** ko |
+| **Service ticket** | Kisi khaas service ke samnay authenticate karne ke liye | **Target service**, jaise file service, ko |
+
+**Misal:** Khalid ka client file service ke liye ticket hasil karne ko TGT, TGS ke samnay pesh karta hai. Phir milne wala service ticket file service ko pesh karta hai. File service ko TGT nahin diya jata.
+
+**Ticket akela kaafi nahin:** Client ticket ke saath mutalliq session key se protected **authenticator** bhi pesh karta hai, jisay receiving service validate karti hai.
+
+**Ticket unlimited permission nahin deta.** Ticket ki validity, intended service ki identity aur authorization information aham hain. Authentication successful honay ke baad bhi resource server permissions aur applicable rules check karta hai.
+
+**Yaad rakhein:** TGT se service ticket milta hai; service ticket se target service par authentication hoti hai; resource permissions tay karti hain ke kya access allowed hai.
 
 ### 4.5 Source diagram ki durusti
 
-Source authentication server aur resource server dono ke neeche NTDS.DIT/domain-partition labels dikhata hai.
+Lecture ke diagram mein authentication server aur resource server, dono ke neeche `NTDS.DIT` ya domain-partition ke labels dikhaye gaye hain. Is se yeh ghalat fehmi ho sakti hai ke har resource server apni local AD DS database rakhta hai.
 
-Aam member file/application server ko **local NTDS.DIT database ki zaroorat nahin hoti**. Woh service ki key se Kerberos ticket validate kar sakta hai. AD mutalliq domain account information DCs par rakhta hai.
+**Aam member file/application server ko local AD DS `ntds.dit` database ki zaroorat nahin hoti.** Domain ki directory aur account information, Domain Controllers par store hoti hai.
 
-Diagram DNS, AD, switch aur multiple clients bhi dikhata hai. Yeh discovery aur network connectivity ko samjhate hain; DNS aisa gateway nahin jis se baad ka har login packet guzarta ho.
+Kerberos authentication mein target service:
+
+- Apne service account se associated key ki madad se service ticket ke encrypted contents validate karti hai.
+- Ticket se hasil honay wali client–service session key ki madad se accompanying authenticator validate karti hai.
+- Authentication ke baad permissions aur applicable authorization rules evaluate karti hai.
+
+**Zaroori farq:** Har service-ticket validation ke liye poori AD database resource server par copy nahin hoti. Kuch scenarios mein additional validation ya doosray operations ke liye resource server ko DC se communication ki zaroorat ho sakti hai.
+
+**Exception:** Agar koi server DC bhi ho aur resource service bhi host karta ho, to us par AD DS database ho sakti hai. Lekin aam member resource server ko DC samajhna durust nahin.
+
+#### Diagram mein DNS aur network components
+
+Diagram mein DNS, AD, switch aur multiple clients discovery aur network connectivity ko samjhate hain.
+
+- **DNS:** Munasib DC locate karne aur server names ko IP addresses mein resolve karne mein madad karta hai.
+- **DC/KDC:** Kerberos authentication exchanges handle karta aur tickets issue karta hai.
+- **Switch:** Network devices ke darmiyan traffic forward karta hai.
+- **Client:** DC/KDC aur target service se zaroorat ke mutabiq communicate karta hai.
+
+**Yaad rakhein:** DNS authentication traffic ka gateway nahin hai. Naam resolve honay ke baad client, DC/KDC ya target service se seedha network communication kar sakta hai; har login packet DNS server se nahin guzarta.
 
 ### 4.6 Dependencies aur exceptions
 
-**Mazeed wazahat:**
+Kerberos authentication ke liye sirf domain account hona kaafi nahin. DNS, time synchronization, service identities aur network connectivity bhi sahi honi chahiye.
 
-- Sahi DNS configuration clients ko DCs aur services dhoondne mein madad deti hai.
-- Kerberos validation ke liye time munasib had tak synchronized hona chahiye.
-- SPNs ko intended service ki sahi pehchan deni chahiye.
-- Firewalls ko zaroori protocols allow karne chahiye.
-- Kuch Windows scenarios NTLM ya doosray mechanisms use karte hain. Har successful Windows login ko Kerberos use honay ka saboot na samjhein.
-- Cached interactive logon, DC unavailable honay par bhi sign-in allow kar sakta hai; is se tamam live domain services ki access sabit nahin hoti.
-- Single sign-on baar baar prompts kam karta hai, lekin authorization checks khatam nahin karta.
+| Dependency | Kyun zaroori hai? |
+| --- | --- |
+| **DNS configuration** | Client ko munasib Domain Controller locate karne aur target server ka naam resolve karne mein madad deti hai |
+| **Time synchronization** | Client, DC aur target server ke clocks ka farq allowed clock-skew limit ke andar hona chahiye |
+| **Service Principal Names (SPNs)** | Requested service ko sahi service account ke saath identify karte hain; missing, duplicate ya ghalat SPNs authentication problems paida kar sakte hain |
+| **Network aur firewall rules** | DNS, Kerberos aur required application traffic ke liye zaroori connectivity allow karte hain |
+
+**Time ki wazahat:** Clocks ka bilkul ek second par hona lazmi nahin, lekin un ka farq configured tolerance ke andar hona chahiye. Sirf timezone display mukhtalif honay ka matlab yeh nahin ke actual time synchronization ghalat hai.
+
+#### Exceptions aur zaroori farq
+
+- **Har Windows sign-in Kerberos nahin hota:** Kuch scenarios NTLM, local-account authentication ya doosray mechanisms use karte hain. Successful sign-in akela Kerberos use honay ka saboot nahin.
+- **NTLM fallback guaranteed nahin:** Kerberos fail honay par connection lazman NTLM par switch nahin karta. Application, policy aur security configuration fallback ko restrict kar sakti hain.
+- **Cached interactive logon:** Agar pehle ke domain sign-in ki information locally cached ho aur policy ijazat de, to DC unavailable honay par bhi user computer par sign in kar sakta hai. Yeh live DC authentication nahin aur tamam domain resources ki access ki guarantee bhi nahin.
+- **Single sign-on (SSO):** Supported services ke liye baar baar credentials enter karne ki zaroorat kam karta hai. Har application lazman SSO support nahin karti.
+- **Authorization ab bhi zaroori hai:** SSO ya successful Kerberos authentication resource permissions ko bypass nahin karti. Har resource apne applicable access rules evaluate karta hai.
+
+**Yaad rakhein:** Successful sign-in, successful Kerberos authentication aur kisi resource ki access — yeh teen related lekin alag outcomes hain.
 
 ## 5. Directory objects
 
@@ -319,24 +447,64 @@ Source mein yeh tamam categories hain:
 
 ### 5.1 OU aur group ka farq
 
-- **OU:** Objects organize karna, administration delegate karna aur linked GPOs ka scope tay karna.
-- **Security group:** Permission assignment ke liye identities jama karna.
-- User multiple groups ka member ho sakta hai, lekin ek waqt mein ek parent container/OU mein hota hai.
-- User ko OU mein move karne se file share ki permission khud-ba-khud nahin milti.
-- Users naam ka container lazman OU nahin hota.
+**Organizational Unit (OU)** aur **security group** ke functions alag hain. OU directory objects ko organize karne, administration delegate karne aur Group Policy apply karne ka scope banane mein madad karti hai. Security group identities ko jama karke permissions assign karne mein madad karta hai.
 
-### 5.2 AD mein istemal honay walay naam
-
-**Mazeed wazahat:**
-
-| Naam | Misal | Matlab |
+| Pehlu | Organizational Unit (OU) | Security group |
 | --- | --- | --- |
-| UPN | `khalid@ad.example.com` | User Principal Name; sign-in name, mailbox honay ka saboot nahin |
-| Down-level logon | `LAB\khalid` | NetBIOS domain name aur account name |
-| Distinguished Name | `CN=Khalid,OU=Finance,DC=ad,DC=example,DC=com` | Directory location/naam |
-| SID | Domain SID aur object ka RID | Windows access control ki security identity |
+| **Bunyadi maqsad** | Objects ki organization, administrative delegation aur Group Policy scope | Permissions aur user rights assign karne ke liye identities ko group karna |
+| **Objects se taalluq** | Object directory mein kisi ek parent container ya OU ke andar hota hai | User ya computer multiple groups ka member ho sakta hai |
+| **Group Policy** | GPO ko OU se directly link kiya ja sakta hai | GPO directly group se link nahin hota; security group filtering mein use ho sakta hai |
+| **Resource permissions** | Sirf OU mein honay se file-share access nahin milta | Security group ko file-share aur NTFS permissions di ja sakti hain |
 
-DN mein “DC=” ka matlab **domain component** hai, domain-controller server nahin.
+**Misal:** Khalid ka user object `Finance` OU mein hai. Us OU par linked GPO us ke user account par apply ho sakta hai, agar scope aur filtering ijazat dein. Finance files ki access dene ke liye Khalid ko `Finance-Share-Read` security group mein add kiya ja sakta hai, jisay required permissions di gayi hon.
+
+**Ek parent, multiple memberships:** Khalid ka user object ek waqt mein ek parent container ya OU mein hota hai, lekin woh multiple security groups ka member ho sakta hai.
+
+**OU move aur permissions:** User ko Finance OU mein move karne se file-share permissions khud-ba-khud nahin miltin. Move se applicable GPOs aur inherited directory permissions badal sakti hain; resource access alag evaluate hoti hai.
+
+**Default Users container:** AD DS ka default `Users` container, OU nahin hota. Is se GPO directly link nahin kiya ja sakta. Lekin is ke andar objects par domain ya site se inherited applicable policies phir bhi asar kar sakti hain.
+
+**Yaad rakhein:** OU batati hai ke object directory mein kahan organized hai; security-group membership permission assignment mein madad karti hai.
+
+### 5.2 AD mein istemal honay walay naam aur identifiers
+
+AD DS mein ek account ko mukhtalif names aur identifiers se represent kiya ja sakta hai. Har format ka maqsad alag hai.
+
+| Naam / identifier | Misal | Matlab |
+| --- | --- | --- |
+| **UPN (User Principal Name)** | `khalid@ad.example.com` | User ka sign-in name; email jaisa format honay ka matlab mailbox hona nahin |
+| **Down-level logon name** | `LAB\khalid` | NetBIOS domain name aur user ka `sAMAccountName` |
+| **Distinguished Name (DN)** | `CN=Khalid,OU=Finance,DC=ad,DC=example,DC=com` | Directory hierarchy mein object ka poora naam aur location |
+| **SID (Security Identifier)** | `S-1-5-21-111111111-222222222-333333333-1105` | Windows access control mein security principal ki pehchan; yeh farzi example hai |
+
+#### UPN aur down-level logon
+
+`khalid@ad.example.com` aur `LAB\khalid` ek hi user account ke do sign-in formats ho sakte hain.
+
+- **UPN:** Username aur UPN suffix par mushtamil hota hai. UPN suffix domain ke DNS naam se mukhtalif bhi configure kiya ja sakta hai.
+- **Down-level logon:** `DOMAIN\username` format use karta hai. Is misal mein `LAB` domain ka NetBIOS naam aur `khalid` account ka `sAMAccountName` hai.
+
+**Yaad rakhein:** UPN ka email jaisa nazar aana yeh sabit nahin karta ke account ke paas email mailbox bhi hai.
+
+#### Distinguished Name ko samjhein
+
+`CN=Khalid,OU=Finance,DC=ad,DC=example,DC=com` mein:
+
+- **CN=Khalid:** Object ka Common Name.
+- **OU=Finance:** Parent Organizational Unit.
+- **DC=ad,DC=example,DC=com:** Domain name `ad.example.com` ke components.
+
+**DN mein `DC` ka matlab Domain Component hai**, Domain Controller server nahin.
+
+Object ko rename ya doosri OU mein move karne se us ka DN badal sakta hai.
+
+#### SID ko samjhein
+
+Domain account ka SID aam tor par **domain SID + Relative Identifier (RID)** se banta hai. RID us security principal ko domain ke andar unique banata hai.
+
+User ka naam badalne ya usay usi domain ki doosri OU mein move karne se us ka SID aam tor par nahin badalta. Lekin account delete karke usi naam se naya account banaya jaye, to naye account ka SID alag hota hai.
+
+**Yaad rakhein:** Sign-in names account tak pohanchne ke liye hain, DN directory mein us ki location batata hai, aur SID Windows permissions mein us ki security identity hoti hai.
 
 ## 6. AD DS ke maqasid
 
